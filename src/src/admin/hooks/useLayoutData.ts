@@ -1,44 +1,35 @@
-// useLayoutData.ts
-//
-// Custom React hook for serializing and restoring admin layout state.
-// Used by useUrlSharing and useLocalStorage for persistence and sharing.
-// Handles mapping between runtime state and serializable layout data.
-
-import { useLayoutContext } from '../LayoutContext';
+import { useAdminLayoutContext } from '../AdminLayoutContext';
+import { LayoutData } from '../LayoutContext';
 import { FormblockerComponents } from 'src/data/Components';
+import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
-export interface LayoutData {
-  dropped: Array<{ name: string; props: any }>;
-  topBarProps: any;
-  showTopBar: boolean;
-  bottomButtonsProps: any;
-  showBottomButtons: boolean;
-  showToast: boolean;
-  toastProps: any;
-  showStatusBar: boolean; // <-- add
-  statusBarProps: any;    // <-- add
-  description?: string;   // <-- add for multi-layout compatibility
+/**
+ * LayoutsData Interface
+ * 
+ * Defines the structure of serializable layout data for multiple layouts.
+ * This is used for saving/loading layouts, URL sharing, and history management.
+ */
+export interface LayoutsData {
+  /** Array of layout data, one per phone preview */
+  layouts: LayoutData[];
+  /** Names for each layout for display and identification */
+  layoutNames: string[];
+  /** Index of the currently active layout */
+  activeLayoutIndex: number;
+  layoutPositions: Record<number, { row: number, col: number }>;
+  gridRows: number;
+  gridCols: number;
 }
 
 /**
- * useLayoutData (Context version)
+ * useLayoutData Hook
  *
  * Provides serialization and restoration of layout state for sharing and persistence.
  * Converts between runtime state (with component references) and serializable data.
- * Uses LayoutContext for state and dispatch.
- * 
- * CRITICAL ISSUE FOR HISTORY SYSTEM:
- * The getLayoutData() function returns a LayoutData object that contains only
- * serializable data (no component references), but the history system stores
- * this exact structure. However, when we restore from history, we call
- * restoreLayout() which expects a LayoutData object and converts it back to
- * runtime state with component references.
- * 
- * This should work correctly, but there might be edge cases where the
- * serialization/deserialization process doesn't preserve all necessary data.
+ * Uses AdminLayoutContext for state and dispatch.
  */
 export const useLayoutData = () => {
-  const [state, dispatch] = useLayoutContext();
+  const [state, dispatch] = useAdminLayoutContext();
 
   /**
    * Get current layout data for sharing/downloading
@@ -50,65 +41,198 @@ export const useLayoutData = () => {
    * - Transmitted over network
    * 
    * It strips out non-serializable data like component references and keeps
-   * only the essential layout configuration.
+   * only the essential layout configuration for all layouts.
    * 
-   * @returns LayoutData object with serializable layout configuration
+   * @returns LayoutsData object with serializable layout configuration
    */
-  const getLayoutData = (): LayoutData => {
+  const getLayoutData = (): LayoutsData => {
+    const layouts = state.layouts.map(layout => ({
+      components: layout.components.map(c => ({ name: c.name, props: { ...c.props } })),
+      topBarProps: layout.topBarProps,
+      showTopBar: layout.showTopBar,
+      bottomButtonsProps: layout.bottomButtonsProps,
+      showBottomButtons: layout.showBottomButtons,
+      showToast: layout.showToast,
+      toastProps: layout.toastProps,
+      showStatusBar: layout.showStatusBar,
+      statusBarProps: layout.statusBarProps,
+      description: layout.description
+    }));
+    
+    // Transform image URLs before returning to ensure they work in production
+    const transformedLayouts = transformLayoutsImageUrls(layouts);
+    
     return {
-      dropped: state.dropped.map(c => ({ name: c.name, props: { ...c.props } })),
-      topBarProps: state.topBarProps,
-      showTopBar: state.showTopBar,
-      bottomButtonsProps: state.bottomButtonsProps,
-      showBottomButtons: state.showBottomButtons,
-      showToast: state.showToast,
-      toastProps: state.toastProps,
-      showStatusBar: state.showStatusBar, // <-- add
-      statusBarProps: state.statusBarProps, // <-- add
-      description: state.description // <-- add
+      layouts: transformedLayouts,
+      layoutNames: state.layoutNames,
+      activeLayoutIndex: state.activeLayoutIndex,
+      layoutPositions: state.layoutPositions,
+      gridRows: state.gridRows,
+      gridCols: state.gridCols,
     };
   };
 
   /**
-   * Restore layout from serialized data
+   * Restore layouts from serialized data
    * 
-   * This function takes a LayoutData object (from getLayoutData, localStorage,
+   * This function takes a LayoutsData object (from getLayoutData, localStorage,
    * URL sharing, or history stack) and restores it to the runtime layout state.
    * 
    * It converts the serialized data back into runtime state by:
-   * - Mapping component names back to component references
+   * - Mapping component names back to component references for all layouts
    * - Restoring all layout configuration properties
+   * - Setting the active layout index
    * 
    * NOTE: Selection state (selectedIdx, selectedSpecial) is managed separately
-   * in AdminView as local state, so we don't restore it here. The AdminView
-   * should handle resetting selection when layout is restored.
+   * in the parent component as local state, so we don't restore it here.
    * 
-   * @param data - LayoutData object to restore from
+   * @param data - LayoutsData object to restore from
    */
-  const restoreLayout = (data: LayoutData) => {
+  const restoreLayouts = (data: LayoutsData) => {
+    const restoredLayouts = (data.layouts || []).map((layoutData: any) => ({
+      components: (layoutData.components || []).map((item: any) => ({
+        name: item.name,
+        Component: (FormblockerComponents as any)[item.name],
+        props: item.props || {}
+      })),
+      topBarProps: layoutData.topBarProps,
+      showTopBar: !!layoutData.showTopBar,
+      bottomButtonsProps: layoutData.bottomButtonsProps,
+      showBottomButtons: !!layoutData.showBottomButtons,
+      showToast: !!layoutData.showToast,
+      toastProps: layoutData.toastProps,
+      showStatusBar: layoutData.showStatusBar !== undefined ? !!layoutData.showStatusBar : true, // default true
+      statusBarProps: layoutData.statusBarProps,
+      description: layoutData.description
+    }));
+
+    // If grid info is missing, generate a default linear grid
+    let layoutPositions = data.layoutPositions;
+    let gridRows = data.gridRows;
+    let gridCols = data.gridCols;
+    if (!layoutPositions || !gridRows || !gridCols) {
+      layoutPositions = {};
+      for (let i = 0; i < restoredLayouts.length; i++) {
+        layoutPositions[i] = { row: 0, col: i };
+      }
+      gridRows = 1;
+      gridCols = restoredLayouts.length;
+    }
+
     dispatch({
-      type: 'UPDATE',
-      payload: {
-        dropped: (data.dropped || []).map((item: any) => ({
+      type: 'SET_ALL_LAYOUTS',
+      layouts: restoredLayouts,
+      names: data.layoutNames || [],
+      layoutPositions,
+      gridRows,
+      gridCols,
+    });
+
+    // Set active layout index if valid
+    if (data.activeLayoutIndex !== undefined && 
+        data.activeLayoutIndex >= 0 && 
+        data.activeLayoutIndex < restoredLayouts.length) {
+      dispatch({ type: 'SET_ACTIVE_LAYOUT', index: data.activeLayoutIndex });
+    }
+  };
+
+  /**
+   * Export layout data as JSON string
+   * 
+   * @returns JSON string representation of the layout data
+   */
+  const exportLayout = (): string => {
+    return JSON.stringify(getLayoutData(), null, 2);
+  };
+
+  /**
+   * Import layout data from JSON string
+   * 
+   * @param jsonString - JSON string to import from
+   * @returns true if import was successful, false otherwise
+   */
+  const importLayout = (jsonString: string): boolean => {
+    try {
+      const data = JSON.parse(jsonString) as LayoutsData;
+      restoreLayouts(data);
+      return true;
+    } catch (error) {
+      console.error('Failed to import layout data:', error);
+      return false;
+    }
+  };
+
+  /**
+   * Get a single layout's data by index
+   * 
+   * @param index - Index of the layout to get data for
+   * @returns LayoutData for the specified layout, or null if index is invalid
+   */
+  const getLayoutDataByIndex = (index: number): LayoutData | null => {
+    if (index < 0 || index >= state.layouts.length) return null;
+    
+    const layout = state.layouts[index];
+    return {
+      components: layout.components.map(c => ({ name: c.name, props: { ...c.props } })),
+      topBarProps: layout.topBarProps,
+      showTopBar: layout.showTopBar,
+      bottomButtonsProps: layout.bottomButtonsProps,
+      showBottomButtons: layout.showBottomButtons,
+      showToast: layout.showToast,
+      toastProps: layout.toastProps,
+      showStatusBar: layout.showStatusBar,
+      statusBarProps: layout.statusBarProps,
+      description: layout.description
+    };
+  };
+
+  /**
+   * Restore a single layout by index
+   * 
+   * @param index - Index of the layout to restore
+   * @param layoutData - LayoutData to restore
+   */
+  const restoreLayoutByIndex = (index: number, layoutData: LayoutData) => {
+    if (index < 0 || index >= state.layouts.length) return;
+    
+    const restoredLayout = {
+      components: (layoutData.components || []).map((item: any) => ({
           name: item.name,
           Component: (FormblockerComponents as any)[item.name],
           props: item.props || {}
         })),
-        topBarProps: data.topBarProps,
-        showTopBar: !!data.showTopBar,
-        bottomButtonsProps: data.bottomButtonsProps,
-        showBottomButtons: !!data.showBottomButtons,
-        showToast: !!data.showToast,
-        toastProps: data.toastProps,
-        showStatusBar: !!data.showStatusBar, // <-- add
-        statusBarProps: data.statusBarProps, // <-- add
-        description: data.description // <-- add
-      }
+      topBarProps: layoutData.topBarProps,
+      showTopBar: !!layoutData.showTopBar,
+      bottomButtonsProps: layoutData.bottomButtonsProps,
+      showBottomButtons: !!layoutData.showBottomButtons,
+      showToast: !!layoutData.showToast,
+      toastProps: layoutData.toastProps,
+      showStatusBar: layoutData.showStatusBar !== undefined ? !!layoutData.showStatusBar : true, // default true
+      statusBarProps: layoutData.statusBarProps,
+      description: layoutData.description
+    };
+
+    dispatch({
+      type: 'UPDATE_LAYOUT',
+      index,
+      payload: restoredLayout
     });
   };
 
   return {
+    // Layout operations
     getLayoutData,
-    restoreLayout
+    restoreLayouts,
+    exportLayout,
+    importLayout,
+    
+    // Single layout operations (by index)
+    getLayoutDataByIndex,
+    restoreLayoutByIndex,
+    
+    // Current state
+    layouts: state.layouts,
+    layoutNames: state.layoutNames,
+    activeLayoutIndex: state.activeLayoutIndex
   };
 }; 

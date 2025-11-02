@@ -1,191 +1,144 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import ComponentCard from 'src/admin/components/ComponentCard';
 import ToolbarButton from './ToolbarButton';
-import { SearchInput } from '../LabeledInput';
-import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
 import * as Icons from 'src/data/Icons';
 import { ICON_24 } from 'src/components/Icon';
-import styles from '../index.module.sass';
-import SelectInput from '../LabeledInput/SelectInput';
-import { AdminTemplates, AdminTemplate } from '../Templates';
+import styles from 'src/admin/index.module.sass';
+import layoutsStyles from 'src/admin/layouts.module.sass';
+import { useLayoutData } from 'src/admin/hooks/useLayoutData';
+import { useAdminLayoutContext } from 'src/admin/AdminLayoutContext';
+import { formatComponentName } from 'src/admin/formatComponentName';
+import EditableLabel from './EditableLabel';
+import { usePanelResize } from '../hooks/usePanelResize';
 
 /**
  * Props interface for the ComponentPanel component
  * Defines all the callbacks and state needed for the admin panel functionality
  */
 interface ComponentPanelProps {
-  /** Controls whether the admin panel is visible */
   showAdminPanel: boolean;
-  /** Width of the admin panel in pixels */
   adminPanelWidth: number;
-  /** Current search query for filtering components */
-  search: string;
-  /** Callback to update the search query */
-  onSearchChange: (value: string) => void;
-  /** Callback to hide the admin panel */
+  setAdminPanelWidth: (w: number) => void;
   onHideAdminPanel: () => void;
-  /** Callback to show keyboard shortcuts panel */
   onShowKeyboardShortcuts: () => void;
-  /** Callback to open the save modal */
   onOpenSave: () => void;
-  /** Callback to open the load modal */
   onOpenLoad: () => void;
-  /** Callback to share the current configuration */
   onShare: () => void;
-  /** Callback when dragging a component starts */
-  onDragStart: ((e: React.DragEvent, name: string) => void) | ((name: string) => void);
-  /** Callback when dragging a component ends */
-  onDragEnd: () => void;
-  /** Callback when a component is clicked */
-  onComponentClick: (name: string, Component: React.ComponentType<any>) => void;
-  /** Number of components currently dropped on the canvas */
-  droppedLength: number;
-  /** Currently selected template */
-  selectedTemplate: AdminTemplate | null;
-  /** Callback to apply a template */
-  onApplyTemplate: (template: AdminTemplate) => void;
-  /** Callback to show history modal */
-  onShowHistory: () => void;
+  onOpenTemplates: () => void;
+  onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void;
+  selected?: { layoutIdx: number, droppedIdx: number } | null;
 }
 
-/**
- * ComponentPanel - Main admin panel for the Interventions Hub component builder
- * 
- * This component provides:
- * - A toolbar with various admin actions (save, load, share, etc.)
- * - A searchable grid of available components
- * - Template selection functionality
- * - Drag and drop support for components
- * 
- * The panel animates in/out using Framer Motion and provides a comprehensive
- * interface for managing the component builder workspace.
- */
 const ComponentPanel: React.FC<ComponentPanelProps> = ({
   showAdminPanel,
   adminPanelWidth,
-  search,
-  onSearchChange,
+  setAdminPanelWidth,
   onHideAdminPanel,
   onShowKeyboardShortcuts,
   onOpenSave,
   onOpenLoad,
   onShare,
-  onDragStart,
-  onDragEnd,
-  onComponentClick,
-  droppedLength,
-  selectedTemplate,
-  onApplyTemplate,
-  onShowHistory
+  onOpenTemplates,
+  onDroppedComponentClick,
+  selected
 }) => {
+  const { layoutNames, activeLayoutIndex } = useLayoutData();
+  const [layoutState, dispatch] = useAdminLayoutContext();
+
+  // Handler for renaming a layout
+  const handleRenameLayout = (idx: number, newName: string) => {
+    dispatch({ type: 'RENAME_LAYOUT', index: idx, name: newName });
+  };
+
+  // --- Resizing logic (now via hook) ---
+  const [width, resizeHandle, isResizing, , isHoveringEdge] = usePanelResize({
+    initialWidth: 320,
+    minWidth: 220,
+    maxWidth: 480,
+    edge: 'right',
+    width: adminPanelWidth,
+    setWidth: setAdminPanelWidth,
+  });
+  // --- End resizing logic ---
+
   return (
-    // Main admin panel container with smooth width/opacity animations
     <motion.div
-      className={styles.AdminPanel}
+      className={
+        styles.AdminPanel +
+        (isHoveringEdge || isResizing ? ' ' + styles.resizing : '')
+      }
+      style={{ width: adminPanelWidth, borderRightColor: (isHoveringEdge || isResizing) ? '#00C244' : undefined }}
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: adminPanelWidth, opacity: 1 }}
+      animate={{ width, opacity: 1 }}
       exit={{ width: 0, opacity: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
       key="admin-panel"
     >
-      <div className={styles.Tools}>
-        {/* Top toolbar with admin controls */}
-        <div className={styles.ToolBar}>
-          {/* Left side - Hide panel button */}
-          <div>
-            <ToolbarButton
-              onClick={onHideAdminPanel}
-              title="Hide admin panel (⌘.)"
-              icon={Icons.InterventionsHubCustomer16}
-              iconSize={ICON_24}
-            />
-          </div>
-          {/* Right side - Action buttons */}
-          <div>
-            <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts" icon={Icons.Keyboard24} position="bottom" />
-            <ToolbarButton onClick={onOpenSave} title="Save" icon={Icons.Download16} position="bottom" />
-            {/* History button - currently disabled/comment out */}
-            {/* <ToolbarButton onClick={onShowHistory} title="History" icon={Icons.Time24} position="bottom" /> */}
-            <ToolbarButton onClick={onOpenLoad} title="Load" icon={Icons.Load24} position="bottom" />
-            <ToolbarButton onClick={onShare} title="Share" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom" />
-          </div>
-        </div>
-        
-        {/* Main content area with search and component grid */}
-        <div className={styles.AvailableComponents}>
-          {/* Search and template selection section */}
-          <div className={styles.SearchTemplate}>
-            {/* 
-              Using an IIFE to create local state for search focus
-              This allows us to conditionally show/hide the template selector
-              based on whether the search input is focused
-            */}
-            {(() => {
-              const [searchFocused, setSearchFocused] = useState(false);
-              return (
-                <>
-                  {/* Search input for filtering components */}
-                  <SearchInput
-                    placeholder="Search components..."
-                    value={search}
-                    onChange={onSearchChange}
-                    onFocus={() => setSearchFocused(true)}
-                    onBlur={() => setSearchFocused(false)}
-                  />
-                  {/* 
-                    Template selector - only visible when search is not focused
-                    This prevents UI clutter when user is actively searching
-                  */}
-                  {!searchFocused && (
-                    <SelectInput
-                      label=""
-                      value={selectedTemplate?.name || ''}
-                      options={[
-                        { value: '', label: 'Choose a template' }, 
-                        ...AdminTemplates.map(t => ({ value: t.name, label: t.name }))
-                      ]}
-                      inputStyle={{width: 150}}
-                      onChange={val => {
-                        const t = AdminTemplates.find(t => t.name === val);
-                        if (t) onApplyTemplate(t);
-                      }}
-                    />
-                  )}
-                </>
-              );
-            })()}
-          </div>
-          
-          {/* Component grid container */}
-          <div className={styles.ComponentStack}>
-            <div className={styles.grid}>
-              {/* 
-                Render all available components, filtered by search query
-                Components are sorted alphabetically for consistent ordering
-              */}
-              {Object.entries(FormblockerComponents)
-                .filter(([name]) => name.toLowerCase().includes(search.toLowerCase()))
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([name, Component]) => (
-                  <ComponentCard
-                    key={name}
-                    name={name}
-                    Component={Component}
-                    componentProps={initialComponentProps}
-                    draggable
-                    onDragStart={e => {
-                      if (onDragStart.length === 2) {
-                        (onDragStart as (e: React.DragEvent, name: string) => void)(e, name);
-                      } else {
-                        (onDragStart as (name: string) => void)(name);
-                      }
-                    }}
-                    onDragEnd={onDragEnd}
-                    onClick={() => onComponentClick(name, Component)}
-                  />
-                ))}
+      {/* Draggable right edge */}
+      {resizeHandle}
+      {/* Panel content */}
+      <div style={{ height: '100%', position: 'relative' }}>
+        <div className={styles.Tools}>
+          <div className={styles.ToolBar}>
+            <div>
+              <ToolbarButton
+                onClick={onHideAdminPanel}
+                title="Hide admin panel (⌘.)"
+                icon={Icons.InterventionsHubCustomer16}
+                iconSize={ICON_24}
+              />
             </div>
+            <div>
+              <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts (⌘k)" icon={Icons.Keyboard24} position="bottom-left" />
+              <ToolbarButton onClick={onOpenTemplates} title="Flow library (⌘/)" icon={Icons.DocumentW224} position="bottom" />
+              <ToolbarButton onClick={onOpenSave} title="Save (⌘s)" icon={Icons.Download16} position="bottom" />
+              <ToolbarButton onClick={onOpenLoad} title="Load (⌘l)" icon={Icons.Load24} position="bottom" />
+              <ToolbarButton onClick={onShare} title="Share (⌘p)" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom-right" />
+            </div>
+          </div>
+          {/* Layout List */}
+          <div className={layoutsStyles.LayoutList}>
+            {layoutNames.map((name, idx) => {
+              const isActive = idx === activeLayoutIndex;
+              const components = layoutState.layouts[idx]?.components || [];
+                const selectedComponentIdx = selected && selected.layoutIdx === idx ? selected.droppedIdx : null;
+              return (
+                <div
+                  key={name + idx}
+                  className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
+                  onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
+                >
+                  <h4>
+                    <EditableLabel
+                      label={name}
+                      onRenameFinish={newName => handleRenameLayout(idx, newName)}
+                      onRenameCancel={() => {}}
+                      className={layoutsStyles.LayoutName}
+                      inputClassName={layoutsStyles.LayoutName}
+                    />
+                  </h4>
+                  {/* Show components if this layout is active */}
+                  {isActive && components.length > 0 && (
+                    <ul>
+                      {components.map((item, cidx) => (
+                        <li
+                          key={item.name + cidx}
+                          className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
+                          onClick={e => {
+                            e.stopPropagation();
+                            if (onDroppedComponentClick) {
+                              onDroppedComponentClick(idx, cidx);
+                            }
+                          }}
+                        >
+                          {formatComponentName(item.name)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

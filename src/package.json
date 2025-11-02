@@ -10,7 +10,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-assets": "node scripts/generateAssetMapping.js",
-    "setup-llm": "node scripts/setup-llm.js",
     "setup-goose": "node scripts/setup-goose-integration.js"
   },
   "dependencies": {

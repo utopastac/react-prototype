@@ -1,7 +1,7 @@
 {
   "layouts": [
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -45,7 +45,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -263,7 +263,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -351,7 +351,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -439,7 +439,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -509,7 +509,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -573,7 +573,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -661,7 +661,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -764,7 +764,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {
@@ -817,7 +817,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Divider",
           "props": {

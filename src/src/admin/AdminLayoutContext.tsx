@@ -8,17 +8,17 @@ import {
 } from './LayoutContext';
 
 /**
- * MultiLayoutContext
+ * AdminLayoutContext
  * 
  * Manages multiple layout states for the admin/editor interface.
- * This context extends the single-layout system to support multiple phone previews,
- * each with independent state, drag-and-drop, and prop editing capabilities.
+ * This context supports multiple phone previews, each with independent state,
+ * drag-and-drop, and prop editing capabilities.
  * 
  * SEPARATION OF CONCERNS:
- * - MultiLayoutState: Persistent data that defines multiple UI layouts
+ * - AdminLayoutState: Persistent data that defines multiple UI layouts
  * - Local State: Ephemeral UI state (selectedIdx, selectedSpecial, isAltPressed, etc.)
  * 
- * The multi-layout state includes:
+ * The layout state includes:
  * - Array of layout states (one per phone preview)
  * - Active layout selection
  * - Layout names for identification
@@ -29,10 +29,10 @@ import {
 /** Default layout name template */
 const DEFAULT_LAYOUT_NAME = (index: number) => `Layout ${index + 1}`;
 
-/** Initial multi-layout state with one default layout */
-const INITIAL_MULTI_LAYOUT_STATE = {
+/** Initial layout state with one default layout */
+const INITIAL_LAYOUT_STATE = {
   layouts: [{
-    dropped: [],
+    components: [],
     showTopBar: true,
     topBarProps: INITIAL_TOP_BAR_PROPS,
     showBottomButtons: true,
@@ -41,33 +41,29 @@ const INITIAL_MULTI_LAYOUT_STATE = {
     toastProps: INITIAL_TOAST_PROPS,
     showStatusBar: true,
     statusBarProps: INITIAL_STATUS_BAR_PROPS,
-    draggedName: null,
-    description: '', // <-- add here
+    description: '',
   }],
   activeLayoutIndex: 0, // -1 means no selection
   layoutNames: ['Layout 1'],
-  draggedName: null,
   layoutPositions: { 0: { row: 0, col: 0 } },
   gridRows: 2,
   gridCols: 2,
 };
 
 /**
- * MultiLayoutState Interface
+ * AdminLayoutState Interface
  * 
- * Defines the structure of persistent multi-layout data.
+ * Defines the structure of persistent layout data.
  * This state is serialized for saving/loading layouts, URL sharing,
  * and history management (undo/redo).
  */
-export interface MultiLayoutState {
+export interface AdminLayoutState {
   /** Array of layout states, one per phone preview */
   layouts: (LayoutState & { description?: string })[];
   /** Index of the currently active/selected layout */
   activeLayoutIndex: number;
   /** Names for each layout for display and identification */
   layoutNames: string[];
-  /** Name of the layout currently being dragged */
-  draggedName: string | null;
   layoutPositions: Record<number, { row: number, col: number }>;
   gridRows: number;
   gridCols: number;
@@ -76,11 +72,11 @@ export interface MultiLayoutState {
 // ===== REDUCER & ACTIONS =====
 
 /**
- * MultiLayoutAction Types
+ * AdminLayoutAction Types
  * 
- * Defines the actions that can be dispatched to update multi-layout state.
+ * Defines the actions that can be dispatched to update layout state.
  */
-type MultiLayoutAction =
+type AdminLayoutAction =
   | { type: 'ADD_LAYOUT', name?: string, index?: number }
   | { type: 'REMOVE_LAYOUT', index: number }
   | { type: 'SET_ACTIVE_LAYOUT', index: number }
@@ -92,20 +88,19 @@ type MultiLayoutAction =
   | { type: 'RESET_ALL' }
   | { type: 'RESET_LAYOUT', index: number }
   | { type: 'SET_ALL_LAYOUTS', layouts: LayoutState[], names: string[], layoutPositions?: Record<number, { row: number, col: number }>, gridRows?: number, gridCols?: number }
-  | { type: 'SET_DRAGGED_NAME', name: string | null }
   | { type: 'MOVE_LAYOUT_TO_POSITION', layoutIndex: number, newPosition: { row: number, col: number } }
   | { type: 'SWAP_LAYOUT_POSITIONS', layoutIndex1: number, layoutIndex2: number };
 
 /**
- * MultiLayout Reducer
+ * AdminLayout Reducer
  * 
- * Handles state updates for the multi-layout context.
+ * Handles state updates for the layout context.
  * 
- * @param state - Current multi-layout state
+ * @param state - Current layout state
  * @param action - Action to perform
- * @returns New multi-layout state
+ * @returns New layout state
  */
-function multiLayoutReducer(state: MultiLayoutState, action: MultiLayoutAction): MultiLayoutState {
+function adminLayoutReducer(state: AdminLayoutState, action: AdminLayoutAction): AdminLayoutState {
   switch (action.type) {
     case 'ADD_LAYOUT': {
       const newLayoutName = action.name || DEFAULT_LAYOUT_NAME(state.layouts.length);
@@ -114,7 +109,7 @@ function multiLayoutReducer(state: MultiLayoutState, action: MultiLayoutAction):
         : state.layouts.length;
       const newLayouts = [...state.layouts];
       const newNames = [...state.layoutNames];
-      newLayouts.splice(insertIdx, 0, { ...INITIAL_MULTI_LAYOUT_STATE.layouts[0] });
+      newLayouts.splice(insertIdx, 0, { ...INITIAL_LAYOUT_STATE.layouts[0] });
       newNames.splice(insertIdx, 0, newLayoutName);
       return {
         ...state,
@@ -276,14 +271,14 @@ function multiLayoutReducer(state: MultiLayoutState, action: MultiLayoutAction):
     }
 
     case 'RESET_ALL': {
-      return { ...INITIAL_MULTI_LAYOUT_STATE };
+      return { ...INITIAL_LAYOUT_STATE };
     }
 
     case 'RESET_LAYOUT': {
       if (action.index < 0 || action.index >= state.layouts.length) return state;
       
       const newLayouts = [...state.layouts];
-      newLayouts[action.index] = { ...INITIAL_MULTI_LAYOUT_STATE.layouts[0], description: '' };
+      newLayouts[action.index] = { ...INITIAL_LAYOUT_STATE.layouts[0], description: '' };
       
       return {
         ...state,
@@ -308,9 +303,6 @@ function multiLayoutReducer(state: MultiLayoutState, action: MultiLayoutAction):
       console.log('[REDUCER] SET_ALL_LAYOUTS new state:', newState);
       return newState;
     }
-
-    case 'SET_DRAGGED_NAME':
-      return { ...state, draggedName: action.name };
 
     case 'MOVE_LAYOUT_TO_POSITION': {
       const { layoutIndex, newPosition } = action;
@@ -379,39 +371,39 @@ function multiLayoutReducer(state: MultiLayoutState, action: MultiLayoutAction):
 // ===== CONTEXT CREATION =====
 
 /**
- * MultiLayout Context
+ * AdminLayout Context
  * 
- * React context that provides multi-layout state and dispatch function.
+ * React context that provides layout state and dispatch function.
  * The context value is a tuple: [state, dispatch]
  */
-const MultiLayoutContext = createContext<[MultiLayoutState, Dispatch<MultiLayoutAction>] | undefined>(undefined);
+const AdminLayoutContext = createContext<[AdminLayoutState, Dispatch<AdminLayoutAction>] | undefined>(undefined);
 
 /**
- * MultiLayout Provider Component
+ * AdminLayout Provider Component
  * 
- * Wraps the application to provide multi-layout state management.
- * Uses useReducer to manage state with the multiLayoutReducer.
+ * Wraps the application to provide layout state management.
+ * Uses useReducer to manage state with the adminLayoutReducer.
  * 
  * @param children - React children to wrap with the context
  */
-export const MultiLayoutProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const value = useReducer(multiLayoutReducer, INITIAL_MULTI_LAYOUT_STATE);
-  return <MultiLayoutContext.Provider value={value}>{children}</MultiLayoutContext.Provider>;
+export const AdminLayoutProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const value = useReducer(adminLayoutReducer, INITIAL_LAYOUT_STATE);
+  return <AdminLayoutContext.Provider value={value}>{children}</AdminLayoutContext.Provider>;
 };
 
 /**
- * useMultiLayoutContext Hook
+ * useAdminLayoutContext Hook
  * 
- * Custom hook to access the multi-layout context.
+ * Custom hook to access the layout context.
  * Provides type safety and error handling for context usage.
  * 
- * @returns Tuple of [multiLayoutState, dispatch] for managing multi-layout
- * @throws Error if used outside of MultiLayoutProvider
+ * @returns Tuple of [layoutState, dispatch] for managing layouts
+ * @throws Error if used outside of AdminLayoutProvider
  */
-export function useMultiLayoutContext() {
-  const ctx = useContext(MultiLayoutContext);
+export function useAdminLayoutContext() {
+  const ctx = useContext(AdminLayoutContext);
   if (!ctx) {
-    throw new Error('useMultiLayoutContext must be used within a MultiLayoutProvider');
+    throw new Error('useAdminLayoutContext must be used within an AdminLayoutProvider');
   }
   return ctx;
 }
@@ -424,7 +416,7 @@ export function useMultiLayoutContext() {
  * @returns Object with active layout, index, and update function
  */
 export function useActiveLayout() {
-  const [state, dispatch] = useMultiLayoutContext();
+  const [state, dispatch] = useAdminLayoutContext();
   const activeIndex = state.activeLayoutIndex;
   const activeLayout = activeIndex >= 0 ? state.layouts[activeIndex] : null;
 

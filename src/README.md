@@ -1,6 +1,6 @@
 # Interventions Hub React
 
-A modern, interactive React application that recreates the Interventions Hub experience with advanced animations, theming, and mobile-first design. Built with TypeScript, Vite, and cutting-edge animation libraries.
+A modern, interactive React application for our Interventions Hub.
 
 ![Interventions Hub React](https://img.shields.io/badge/React-18.3.1-blue?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-blue?style=flat-square&logo=typescript)
@@ -10,7 +10,7 @@ A modern, interactive React application that recreates the Interventions Hub exp
 ## 🚀 Features
 
 ### Core Functionality
-- **Complete Interventions Hub Interface**: Faithful recreation of Interventions Hub's main screens including Discover, Activity, and Account views
+- **Complete Interventions Hub Interface**: Interventions Hub is the destination for the interventions platform
 - **Interactive Navigation**: Smooth animated transitions between screens with Framer Motion
 - **Mobile-First Design**: Responsive design optimized for mobile devices with iOS-style status bars and home indicators
 - **Real-time Balance Display**: Dynamic balance and transaction management

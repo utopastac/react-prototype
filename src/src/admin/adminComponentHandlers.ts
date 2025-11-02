@@ -1,22 +1,22 @@
-// Multi-layout-aware component handlers for use in MultiLayoutAdminView and similar contexts
+// Layout-aware component handlers for use in AdminView and similar contexts
 
 export function handleDeleteMulti({
   dispatch,
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   dispatch: (action: any) => void;
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
   if (componentIndex === null) return;
-  const newDropped = dropped.filter((_: any, i: number) => i !== componentIndex);
+  const newComponents = components.filter((_: any, i: number) => i !== componentIndex);
   const newSelectedIdx = componentIndex > 0 ? componentIndex - 1 : null;
-  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { dropped: newDropped } });
+  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { components: newComponents } });
   setSelected(newSelectedIdx === null ? null : { phoneIndex, componentIndex: newSelectedIdx });
 }
 
@@ -24,19 +24,19 @@ export function handleMoveUpMulti({
   dispatch,
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   dispatch: (action: any) => void;
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
   if (componentIndex === null || componentIndex <= 0) return;
-  const newDropped = [...dropped];
+  const newComponents = [...components];
   [newDropped[componentIndex - 1], newDropped[componentIndex]] = [newDropped[componentIndex], newDropped[componentIndex - 1]];
-  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { dropped: newDropped } });
+  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { components: newComponents } });
   setSelected({ phoneIndex, componentIndex: componentIndex - 1 });
 }
 
@@ -44,19 +44,19 @@ export function handleMoveDownMulti({
   dispatch,
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   dispatch: (action: any) => void;
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
-  if (componentIndex === null || componentIndex >= dropped.length - 1) return;
-  const newDropped = [...dropped];
-  [newDropped[componentIndex + 1], newDropped[componentIndex]] = [newDropped[componentIndex], newDropped[componentIndex + 1]];
-  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { dropped: newDropped } });
+    if (componentIndex === null || componentIndex >= components.length - 1) return;
+  const newComponents = [...components];
+  [newComponents[componentIndex + 1], newComponents[componentIndex]] = [newComponents[componentIndex], newComponents[componentIndex + 1]];
+  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { components: newComponents } });
   setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
 }
 
@@ -64,37 +64,37 @@ export function handleDuplicateMulti({
   dispatch,
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   dispatch: (action: any) => void;
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
   if (componentIndex === null) return;
-  const newDropped = [...dropped];
+  const newComponents = [...components];
   const component = newDropped[componentIndex];
   newDropped.splice(componentIndex + 1, 0, { ...component });
-  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { dropped: newDropped } });
+  dispatch({ type: 'UPDATE_LAYOUT', index: phoneIndex, payload: { components: newComponents } });
   setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
 }
 
 export function handleSelectPreviousMulti({
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
   if (componentIndex === null) {
-    if (dropped.length > 0) {
-      setSelected({ phoneIndex, componentIndex: dropped.length - 1 });
+    if (components.length > 0) {
+      setSelected({ phoneIndex, componentIndex: components.length - 1 });
     }
   } else if (componentIndex > 0) {
     setSelected({ phoneIndex, componentIndex: componentIndex - 1 });
@@ -104,19 +104,19 @@ export function handleSelectPreviousMulti({
 export function handleSelectNextMulti({
   phoneIndex,
   componentIndex,
-  dropped,
+  components,
   setSelected,
 }: {
   phoneIndex: number;
   componentIndex: number | null;
-  dropped: any[];
+  components: any[];
   setSelected: (sel: { phoneIndex: number; componentIndex: number } | null) => void;
 }) {
   if (componentIndex === null) {
-    if (dropped.length > 0) {
+    if (components.length > 0) {
       setSelected({ phoneIndex, componentIndex: 0 });
     }
-  } else if (componentIndex < dropped.length - 1) {
+  } else if (componentIndex < components.length - 1) {
     setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
   }
 }
@@ -124,22 +124,22 @@ export function handleSelectNextMulti({
 // Copy the selected component to clipboardRef
 export function handleCopyMultiComponent({
   selected,
-  multiLayoutState,
+  layoutState,
   clipboardRef,
   deepClone = (obj: any) => JSON.parse(JSON.stringify(obj)),
 }: {
   selected: { phoneIndex: number, componentIndex: number } | null;
-  multiLayoutState: any;
+  layoutState: any;
   clipboardRef: React.MutableRefObject<any>;
   deepClone?: (obj: any) => any;
 }) {
   if (selected) {
     const { phoneIndex, componentIndex } = selected;
-    const layout = multiLayoutState.layouts[phoneIndex];
-    if (componentIndex !== null && layout.dropped[componentIndex]) {
+    const layout = layoutState.layouts[phoneIndex];
+    if (componentIndex !== null && layout.components[componentIndex]) {
       clipboardRef.current = {
         type: 'component',
-        data: deepClone(layout.dropped[componentIndex])
+        data: deepClone(layout.components[componentIndex])
       };
       console.log('Copied component:', clipboardRef.current.data);
       return true;
@@ -153,14 +153,14 @@ export function handleCopyMultiComponent({
 import { FormblockerComponents } from 'src/data/Components';
 export function handlePasteMultiComponent({
   selected,
-  multiLayoutState,
+  layoutState,
   dispatch,
   setSelected,
   clipboardRef,
   deepClone = (obj: any) => JSON.parse(JSON.stringify(obj)),
 }: {
   selected: { phoneIndex: number, componentIndex: number } | null;
-  multiLayoutState: any;
+  layoutState: any;
   dispatch: any;
   setSelected: any;
   clipboardRef: React.MutableRefObject<any>;
@@ -173,24 +173,24 @@ export function handlePasteMultiComponent({
   }
   if (selected) {
     const { phoneIndex, componentIndex } = selected;
-    const layout = multiLayoutState.layouts[phoneIndex];
+    const layout = layoutState.layouts[phoneIndex];
     if (layout) {
       const newComponent = {
         ...deepClone(clipboard.data),
         Component: (FormblockerComponents as any)[clipboard.data.name]
       };
       // Insert after selected component, or at end if none selected
-      const insertIdx = componentIndex !== null ? componentIndex + 1 : layout.dropped.length;
-      const newDropped = [
-        ...layout.dropped.slice(0, insertIdx),
+      const insertIdx = componentIndex !== null ? componentIndex + 1 : layout.components.length;
+      const newComponents = [
+        ...layout.components.slice(0, insertIdx),
         newComponent,
-        ...layout.dropped.slice(insertIdx)
+        ...layout.components.slice(insertIdx)
       ];
       console.log('Pasting component at', insertIdx, newComponent);
       dispatch({
         type: 'UPDATE_LAYOUT',
         index: phoneIndex,
-        payload: { dropped: newDropped }
+        payload: { components: newComponents }
       });
       setSelected({ phoneIndex, componentIndex: insertIdx });
       return true;

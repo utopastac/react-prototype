@@ -9,7 +9,7 @@ import SelectInput from '../LabeledInput/SelectInput';
 import * as Icons from 'src/data/Icons';
 import { ICON_24 } from 'src/components/Icon';
 import styles from '../index.module.sass';
-import { useActiveLayout } from '../MultiLayoutContext';
+import { useActiveLayout } from '../AdminLayoutContext';
 import { AdminTemplates, AdminTemplate } from '../Templates';
 import LabeledInput from '../LabeledInput';
 import { usePanelResize } from '../hooks/usePanelResize';

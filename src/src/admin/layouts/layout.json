@@ -1,7 +1,7 @@
 {
   "layouts": [
     {
-      "dropped": [],
+      "components": [],
       "topBarProps": {
         "title": "Funblocker",
         "inverse": false,
@@ -30,7 +30,7 @@
       }
     },
     {
-      "dropped": [
+      "components": [
         {
           "name": "Header",
           "props": {
@@ -68,7 +68,7 @@
       }
     },
     {
-      "dropped": [],
+      "components": [],
       "topBarProps": {
         "title": "Funblocker",
         "inverse": false,
@@ -97,7 +97,7 @@
       }
     },
     {
-      "dropped": [],
+      "components": [],
       "topBarProps": {
         "title": "Funblocker",
         "inverse": false,
@@ -126,7 +126,7 @@
       }
     },
     {
-      "dropped": [],
+      "components": [],
       "topBarProps": {
         "title": "Funblocker",
         "inverse": false,

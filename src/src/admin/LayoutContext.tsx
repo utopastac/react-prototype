@@ -14,7 +14,7 @@ import { ButtonGroupProps } from 'src/components/ButtonGroup';
  * - Local State: Ephemeral UI state (selectedIdx, selectedSpecial, isAltPressed, etc.)
  * 
  * The layout state includes:
- * - Component composition (dropped components with their props)
+ * - Component composition (components with their props)
  * - Special UI elements (top bar, bottom buttons, toast)
  * - Visibility toggles for layout elements
  */
@@ -22,8 +22,8 @@ import { ButtonGroupProps } from 'src/components/ButtonGroup';
 // ===== INITIAL VALUES =====
 // These define the default state for a new layout
 
-/** Empty array of dropped components for initial state */
-const INITIAL_DROPPED: { name: string; Component: React.ComponentType<any>; props: any }[] = [];
+/** Empty array of components for initial state */
+const INITIAL_COMPONENTS: { name: string; Component: React.ComponentType<any>; props: any }[] = [];
 
 /** Default top bar visibility */
 const INITIAL_SHOW_TOP_BAR = true;
@@ -77,8 +77,8 @@ export const INITIAL_STATUS_BAR_PROPS = {
  * and should persist across sessions, navigation, and sharing.
  */
 export interface LayoutState {
-  /** Array of components that have been dropped into the layout */
-  dropped: { name: string; Component: React.ComponentType<any>; props: any }[];
+  /** Array of components in the layout */
+  components: { name: string; Component: React.ComponentType<any>; props: any }[];
   /** Whether the top bar is visible in the layout */
   showTopBar: boolean;
   /** Configuration properties for the top bar */
@@ -100,13 +100,44 @@ export interface LayoutState {
 }
 
 /**
+ * LayoutData Interface
+ * 
+ * Defines the structure of serializable layout data (without Component references).
+ * This is used for saving/loading layouts, URL sharing, and history management.
+ * 
+ * Similar to LayoutState but with serializable component data (name and props only).
+ */
+export interface LayoutData {
+  /** Array of component data (name and props only, no Component references) */
+  components: Array<{ name: string; props: any }>;
+  /** Configuration properties for the top bar */
+  topBarProps: TopBarProps;
+  /** Whether the top bar is visible in the layout */
+  showTopBar: boolean;
+  /** Configuration properties for the bottom button group */
+  bottomButtonsProps: ButtonGroupProps;
+  /** Whether the bottom button group is visible in the layout */
+  showBottomButtons: boolean;
+  /** Whether the toast notification is visible in the layout */
+  showToast: boolean;
+  /** Configuration properties for the toast notification */
+  toastProps: typeof INITIAL_TOAST_PROPS;
+  /** Whether the iOS status bar is visible in the layout */
+  showStatusBar: boolean;
+  /** Configuration properties for the iOS status bar */
+  statusBarProps: { showNotch?: boolean; transparent?: boolean };
+  /** Optional description for the layout */
+  description?: string;
+}
+
+/**
  * Initial layout state
  * 
  * Provides the default values for a new layout.
  * This is used when creating a new layout or resetting to initial state.
  */
 const INITIAL_LAYOUT_STATE: LayoutState = {
-  dropped: INITIAL_DROPPED,
+  components: INITIAL_COMPONENTS,
   showTopBar: INITIAL_SHOW_TOP_BAR,
   topBarProps: INITIAL_TOP_BAR_PROPS,
   showBottomButtons: INITIAL_SHOW_BOTTOM_BUTTONS,

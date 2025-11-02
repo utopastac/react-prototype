@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useMultiLayoutContext, useActiveLayout } from './MultiLayoutContext';
+import { useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
 import PhonePreviewContent from './PhonePreviewContent';
 import styles from './index.module.sass';
-import multiStyles from './multi.module.sass';
+import layoutsStyles from './layouts.module.sass';
 import TopBar from 'src/components/TopBar';
 import ButtonGroup from 'src/components/ButtonGroup';
 import Toast from 'src/components/Toast';
@@ -12,8 +12,6 @@ import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
 import Icon, { ICON_16, ICON_24, ICON_ADMIN, ICON_SUBTLE } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import ToolbarButton from './components/ToolbarButton';
-import { useMultiLayoutDragDrop } from './hooks/useMultiLayoutDragDrop';
-import { useDragAndDrop } from './hooks/useDragAndDrop';
 import gsap from "gsap";
 import { AdminTemplates } from './Templates';
 import EditableLabel from './components/EditableLabel';
@@ -46,8 +44,6 @@ interface MultiPhonePreviewProps {
   setSelected: (sel: { phoneIndex: number, componentIndex: number } | null) => void;
   setSelectedSpecial: (v: SelectedSpecial) => void;
   selectedSpecial: SelectedSpecial;
-  isAltPressed: boolean;
-  setIsAltPressed: React.Dispatch<React.SetStateAction<boolean>>;
   onCanvasClick?: () => void;
   onOpenInsertModal?: (phoneIndex: number, componentIndex: number, e: React.MouseEvent) => void;
   layoutPositions?: Record<number, { row: number, col: number }>;
@@ -72,27 +68,24 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     selected,
     setSelected,
     setSelectedSpecial,
-    selectedSpecial,
-    isAltPressed,
-    setIsAltPressed
+    selectedSpecial
   } = props;
-  const [multiLayoutState, dispatch] = useMultiLayoutContext();
+  const [layoutState, dispatch] = useAdminLayoutContext();
   const { index: activeIndex } = useActiveLayout();
-  const dragDrop = useMultiLayoutDragDrop();
   const adminTheme = useAdminTheme();
   
   // Per-phone selectedIdx state for prop editing
   const [selectedIdxs, setSelectedIdxs] = useState<(number | null)[]>(() =>
-    multiLayoutState.layouts.map(() => null)
+    layoutState.layouts.map(() => null)
   );
   useEffect(() => {
     setSelectedIdxs(idxs => {
-      if (idxs.length !== multiLayoutState.layouts.length) {
-        return multiLayoutState.layouts.map((_, i) => idxs[i] ?? null);
+      if (idxs.length !== layoutState.layouts.length) {
+        return layoutState.layouts.map((_, i) => idxs[i] ?? null);
       }
       return idxs;
     });
-  }, [multiLayoutState.layouts.length]);
+  }, [layoutState.layouts.length]);
   
   // Local state for multi-phone interactions
   const [selectedPhoneIndex, setSelectedPhoneIndex] = useState<number | null>(null);
@@ -110,15 +103,15 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
 
   // Initialize first layout position if none exists
   useEffect(() => {
-    if (multiLayoutState.layouts.length > 0 && Object.keys(multiLayoutState.layoutPositions).length === 0) {
+    if (layoutState.layouts.length > 0 && Object.keys(layoutState.layoutPositions).length === 0) {
       // dispatch({ type: 'SET_LAYOUT_POSITIONS', positions: new Map([[0, { row: 0, col: 0 }]]) });
     }
-  }, [multiLayoutState.layouts.length, Object.keys(multiLayoutState.layoutPositions).length]);
+  }, [layoutState.layouts.length, Object.keys(layoutState.layoutPositions).length]);
 
   // Effect to auto-size the input width
   useEffect(() => {
     // No longer needed as EditableLabel handles its own sizing
-  }, [multiLayoutState.layoutNames.length]);
+  }, [layoutState.layoutNames.length]);
 
   // Select all text in rename input when it appears
   useEffect(() => {
@@ -231,11 +224,11 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
 
   const handleFitToScreen = () => {
     // Use the calculated grid dimensions
-    if (multiLayoutState.gridRows === 0 || multiLayoutState.gridCols === 0) return;
+    if (layoutState.gridRows === 0 || layoutState.gridCols === 0) return;
     
     // Calculate the grid size needed (including the extra row/column)
-    const gridWidth = multiLayoutState.gridCols * 300 + (multiLayoutState.gridCols - 1) * 80; // 300px width + 80px gap
-    const gridHeight = multiLayoutState.gridRows * 500 + (multiLayoutState.gridRows - 1) * 80; // 500px height + 80px gap
+    const gridWidth = layoutState.gridCols * 300 + (layoutState.gridCols - 1) * 80; // 300px width + 80px gap
+    const gridHeight = layoutState.gridRows * 500 + (layoutState.gridRows - 1) * 80; // 500px height + 80px gap
     
     // Get container dimensions
     const container = containerRef.current;
@@ -273,27 +266,27 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
    * Handle component actions within a phone
    */
   const handleComponentAction = (phoneIndex: number, action: string, componentIndex: number) => {
-    const layout = multiLayoutState.layouts[phoneIndex];
-    const newDropped = [...layout.dropped];
+    const layout = layoutState.layouts[phoneIndex];
+    const newComponents = [...layout.components];
     
     switch (action) {
       case 'delete':
-        newDropped.splice(componentIndex, 1);
+        newComponents.splice(componentIndex, 1);
         break;
       case 'duplicate':
-        const component = newDropped[componentIndex];
-        newDropped.splice(componentIndex + 1, 0, { ...component });
+        const component = newComponents[componentIndex];
+        newComponents.splice(componentIndex + 1, 0, { ...component });
         break;
       case 'moveUp':
         if (componentIndex > 0) {
-          [newDropped[componentIndex - 1], newDropped[componentIndex]] = 
-            [newDropped[componentIndex], newDropped[componentIndex - 1]];
+          [newComponents[componentIndex - 1], newComponents[componentIndex]] = 
+            [newComponents[componentIndex], newComponents[componentIndex - 1]];
         }
         break;
       case 'moveDown':
-        if (componentIndex < newDropped.length - 1) {
-          [newDropped[componentIndex], newDropped[componentIndex + 1]] = 
-            [newDropped[componentIndex + 1], newDropped[componentIndex]];
+        if (componentIndex < newComponents.length - 1) {
+          [newComponents[componentIndex], newComponents[componentIndex + 1]] = 
+            [newComponents[componentIndex + 1], newComponents[componentIndex]];
         }
         break;
     }
@@ -301,169 +294,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     dispatch({
       type: 'UPDATE_LAYOUT',
       index: phoneIndex,
-      payload: { dropped: newDropped }
+      payload: { components: newComponents }
     });
   };
 
-  // Add at the top of the component:
-  const [componentDrag, setComponentDrag] = useState<{
-    sourcePhoneIdx: number | null,
-    draggedIdx: number | null,
-    targetPhoneIdx: number | null,
-    dragOverIdx: number | null,
-    isAltPressed: boolean
-  }>({ sourcePhoneIdx: null, draggedIdx: null, targetPhoneIdx: null, dragOverIdx: null, isAltPressed: false });
-
-  // Replace per-phone drag state for components with this new state.
-
-  // Keep arrays in sync with layouts
-  useEffect(() => {
-    // setDraggedIdxArr(arr => arr.length === multiLayoutState.layouts.length ? arr : multiLayoutState.layouts.map((_, i) => arr[i] ?? null));
-    // setDragOverIdxArr(arr => arr.length === multiLayoutState.layouts.length ? arr : multiLayoutState.layouts.map((_, i) => arr[i] ?? null));
-  }, [multiLayoutState.layouts.length]);
-
-  // Global drag end listener to clear all drag over states
-  useEffect(() => {
-    const handleGlobalDragEnd = () => {
-      console.log('[MultiPhonePreview] Global dragend - clearing all dragOverIdxArr');
-      // setDragOverIdxArr(multiLayoutState.layouts.map(() => null));
-    };
-    window.addEventListener('dragend', handleGlobalDragEnd);
-    return () => {
-      window.removeEventListener('dragend', handleGlobalDragEnd);
-    };
-  }, [multiLayoutState.layouts.length]);
-
-  // Drag-and-drop handlers for reordering within a phone
-  const handleDragStart = (phoneIdx: number, idx: number, altKey: boolean) => {
-    // setDraggedIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = idx; return newArr; });
-    setIsAltPressed(altKey);
-  };
-  const handleDragOver = (phoneIdx: number, idx: number, altKey: boolean) => {
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = idx; return newArr; });
-    setIsAltPressed(altKey);
-  };
-  const handleDragLeave = (phoneIdx: number) => {
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-  };
-  const handleDragEnd = (phoneIdx: number) => {
-    // setDraggedIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-    setIsAltPressed(false);
-  };
-  const handleDrop = (phoneIdx: number, e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const draggedIdx = componentDrag.draggedIdx;
-    const dragOverIdx = componentDrag.dragOverIdx;
-    if (dragDrop.draggedName) {
-      // Pass the drop position to the multi-layout drag-and-drop system
-      dragDrop.handleDrop(phoneIdx, dragOverIdx, e);
-      return;
-    }
-    if (draggedIdx !== null && dragOverIdx !== null) {
-      const layout = multiLayoutState.layouts[phoneIdx];
-      let newDropped = [...layout.dropped];
-      if (isAltPressed) {
-        // Duplicate: always allow, even if dropping on same index
-        const componentToCopy = newDropped[draggedIdx];
-        newDropped.splice(dragOverIdx, 0, { ...componentToCopy });
-        dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-        setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-      } else if (draggedIdx !== dragOverIdx) {
-        // Move: only if different
-        const [removed] = newDropped.splice(draggedIdx, 1);
-        newDropped.splice(dragOverIdx, 0, removed);
-        dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-        const currSel = selected;
-        if (currSel && currSel.phoneIndex === phoneIdx) {
-          setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-        }
-      }
-    }
-    handleDragEnd(phoneIdx);
-  };
-
-  // Update drag handlers for components:
-  const handleComponentDragStart = (phoneIdx: number, idx: number, altKey: boolean) => {
-    setComponentDrag({
-      sourcePhoneIdx: phoneIdx,
-      draggedIdx: idx,
-      targetPhoneIdx: phoneIdx,
-      dragOverIdx: idx,
-      isAltPressed: altKey
-    });
-  };
-  const handleComponentDragOver = (phoneIdx: number, idx: number, altKey: boolean) => {
-    setComponentDrag(prev => ({
-      ...prev,
-      targetPhoneIdx: phoneIdx,
-      dragOverIdx: idx,
-      isAltPressed: altKey
-    }));
-  };
-  const handleComponentDragLeave = () => {
-    setComponentDrag(prev => ({ ...prev, dragOverIdx: null }));
-  };
-  const handleComponentDragEnd = () => {
-    setComponentDrag({ sourcePhoneIdx: null, draggedIdx: null, targetPhoneIdx: null, dragOverIdx: null, isAltPressed: false });
-  };
-
-  // Update drop handler for components to support cross-layout moves/copies:
-  const handleComponentDrop = (phoneIdx: number, e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (dragDrop.draggedName) {
-      // Handle palette drag-and-drop
-      dragDrop.handleDrop(phoneIdx, componentDrag.dragOverIdx, e);
-      handleComponentDragEnd();
-      return;
-    }
-    const { sourcePhoneIdx, draggedIdx, targetPhoneIdx, dragOverIdx, isAltPressed } = componentDrag;
-    if (
-      sourcePhoneIdx !== null &&
-      draggedIdx !== null &&
-      targetPhoneIdx !== null &&
-      dragOverIdx !== null
-    ) {
-      if (sourcePhoneIdx === targetPhoneIdx) {
-        // Intra-layout move/copy (same as before)
-        const layout = multiLayoutState.layouts[phoneIdx];
-        let newDropped = [...layout.dropped];
-        if (isAltPressed) {
-          const componentToCopy = newDropped[draggedIdx];
-          newDropped.splice(dragOverIdx, 0, { ...componentToCopy });
-          dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-          setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-        } else if (draggedIdx !== dragOverIdx) {
-          const [removed] = newDropped.splice(draggedIdx, 1);
-          newDropped.splice(dragOverIdx, 0, removed);
-          dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-          const currSel = selected;
-          if (currSel && currSel.phoneIndex === phoneIdx) {
-            setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-          }
-        }
-      } else {
-        // Cross-layout move/copy
-        const sourceLayout = multiLayoutState.layouts[sourcePhoneIdx];
-        const targetLayout = multiLayoutState.layouts[targetPhoneIdx];
-        let sourceDropped = [...sourceLayout.dropped];
-        let targetDropped = [...targetLayout.dropped];
-        const componentToMove = sourceDropped[draggedIdx];
-        if (isAltPressed) {
-          // Copy
-          targetDropped.splice(dragOverIdx, 0, { ...componentToMove });
-        } else {
-          // Move
-          sourceDropped.splice(draggedIdx, 1);
-          targetDropped.splice(dragOverIdx, 0, componentToMove);
-        }
-        dispatch({ type: 'UPDATE_LAYOUT', index: sourcePhoneIdx, payload: { dropped: sourceDropped } });
-        dispatch({ type: 'UPDATE_LAYOUT', index: targetPhoneIdx, payload: { dropped: targetDropped } });
-        setSelected({ phoneIndex: targetPhoneIdx, componentIndex: dragOverIdx });
-      }
-    }
-    handleComponentDragEnd();
-  };
 
   // Scroll selected or active phone into view when selection changes (with GSAP)
   useEffect(() => {
@@ -490,7 +324,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
         ease: "power4.Out"
       });
     }
-  }, [selected?.phoneIndex, activeIndex, multiLayoutState.layouts.length]);
+  }, [selected?.phoneIndex, activeIndex, layoutState.layouts.length]);
 
   /**
    * Handle clicking on empty grid space to add a new layout at the specific position
@@ -506,7 +340,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
       props.onAddLayoutAt(gridRow, gridCol, templateName);
     } else {
       // fallback (legacy, should not be used)
-      const nextIndex = multiLayoutState.layouts.length;
+      const nextIndex = layoutState.layouts.length;
       dispatch({ type: 'ADD_LAYOUT', name: templateName ?? `Layout ${nextIndex + 1}` });
     }
   };
@@ -551,7 +385,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     const layoutIndex = parseInt(e.dataTransfer.getData('text/plain'));
     console.log('[DROP] layoutIndex:', layoutIndex, 'to', gridRow, gridCol); // LOG
     
-    if (!isNaN(layoutIndex) && layoutIndex >= 0 && layoutIndex < multiLayoutState.layouts.length) {
+    if (!isNaN(layoutIndex) && layoutIndex >= 0 && layoutIndex < layoutState.layouts.length) {
       dispatch({ 
         type: 'MOVE_LAYOUT_TO_POSITION', 
         layoutIndex, 
@@ -578,13 +412,13 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     let minRow = 0, maxRow = 0;
     let minCol = 0, maxCol = 0;
     
-    if (Object.keys(multiLayoutState.layoutPositions).length > 0) {
+    if (Object.keys(layoutState.layoutPositions).length > 0) {
       minRow = Infinity;
       maxRow = -Infinity;
       minCol = Infinity;
       maxCol = -Infinity;
       
-      for (const pos of Object.values(multiLayoutState.layoutPositions)) {
+      for (const pos of Object.values(layoutState.layoutPositions)) {
         minRow = Math.min(minRow, pos.row);
         maxRow = Math.max(maxRow, pos.row);
         minCol = Math.min(minCol, pos.col);
@@ -605,11 +439,11 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
       for (let col = 0; col < finalCols; col++) {
         // Check if there's a layout at this position
         let layoutIndex = -1;
-        for (const [index, pos] of Object.entries(multiLayoutState.layoutPositions)) {
+        for (const [index, pos] of Object.entries(layoutState.layoutPositions)) {
           const idx = parseInt(index, 10);
           if (
             idx >= 0 &&
-            idx < multiLayoutState.layouts.length &&
+            idx < layoutState.layouts.length &&
             pos.row === row &&
             pos.col === col
           ) {
@@ -642,7 +476,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
       gridItems: items,
       gridDimensions: { rows: finalRows, cols: finalCols }
     };
-  }, [multiLayoutState.layouts.length, multiLayoutState.layoutPositions]);
+  }, [layoutState.layouts.length, layoutState.layoutPositions]);
 
   // Track which empty cell is hovered
   const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
@@ -666,7 +500,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   return (
     <>
       {/* Zoom Controls */}
-      <div className={multiStyles.ZoomControls}>
+      <div className={layoutsStyles.ZoomControls}>
         <ToolbarButton
           title="Zoom In (⌘ =)"
           onClick={handleZoomIn}
@@ -697,13 +531,13 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
           iconColor={ICON_ADMIN}
           position="left"
         />
-        <div className={multiStyles.ZoomLevel}>
+        <div className={layoutsStyles.ZoomLevel}>
           {Math.round(zoomLevel * 100)}%
         </div>
       </div>
 
       <div
-        className={multiStyles.MultiPhonePreview}
+        className={layoutsStyles.PhonePreview}
         ref={containerRef}
         onClick={e => {
           // Only trigger if the click is on the container itself, not a phone or child
@@ -713,7 +547,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
         }}
       >
         <div 
-          className={multiStyles.GridContent}
+          className={layoutsStyles.GridContent}
           style={{
             transform: `scale(${zoomLevel})`,
             gridTemplateColumns: `repeat(${gridDimensions.cols}, var(--view-width))`,
@@ -725,7 +559,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
             {gridItems.map((item) => {
             if (item.type === 'phone' && item.index !== undefined) {
               const index = item.index;
-              const layout = multiLayoutState.layouts[index];
+              const layout = layoutState.layouts[index];
               const isActive = index === activeIndex;
               
               return (
@@ -733,9 +567,9 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                   key={`phone-${index}`}
                   ref={el => phoneRefs.current[index] = el}
                   className={[
-                    multiStyles.MultiPhoneItem,
+                    layoutsStyles.PhoneItem,
                     // Only apply DraggedLayout if a layout is being dragged, not during component drags
-                    draggedLayoutIndex === index && draggedLayoutIndex !== null ? multiStyles.DraggedLayout : ''
+                    draggedLayoutIndex === index && draggedLayoutIndex !== null ? layoutsStyles.DraggedLayout : ''
                   ].filter(Boolean).join(' ')}
                   style={{
                     gridRow: item.row + 1,
@@ -758,7 +592,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                   {/* Phone Label */}
                   {showLabels && !isZoomedOut && (
                     <div
-                      className={multiStyles.PhoneLabel}
+                      className={layoutsStyles.PhoneLabel}
                       style={{
                         transform: `scale(${1 / zoomLevel})`,
                         transformOrigin: 'top left',
@@ -770,38 +604,25 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                       data-label="Drag to move layout"
                     >
                       <EditableLabel
-                        label={multiLayoutState.layoutNames[index]}
+                        label={layoutState.layoutNames[index]}
                         onRenameFinish={newName => dispatch({ type: 'RENAME_LAYOUT', index, name: newName })}
                         onRenameCancel={() => {}}
-                        className={isActive ? multiStyles.ActiveLabel : undefined}
+                        className={isActive ? layoutsStyles.ActiveLabel : undefined}
                       />
                     </div>
                   )}
                   <div
                     className={[
                       styles.PhonePreview,
-                      isActive ? multiStyles.ActivePhone : multiStyles.InactivePhone,
-                      (dragDrop.dragOverLayoutIndex === index || dragOverGridPosition?.row === item.row) ? styles.PhonePreviewDragOver : undefined
+                      isActive ? layoutsStyles.ActivePhone : layoutsStyles.InactivePhone
                     ].filter((v): v is string => Boolean(v)).join(' ')}
-                    style={{ boxShadow: adminTheme.phoneShadow }}
-                    onDrop={e => handleComponentDrop(index, e)}
-                    onDragOver={e => {
-                      if (dragDrop.draggedName) {
-                        dragDrop.handleDragOver(index, e);
-                      } else {
-                        e.preventDefault();
-                      }
-                    }}
-                    onDragLeave={e => {
-                      if (dragDrop.draggedName) {
-                        dragDrop.handleDragLeave();
-                      } else {
-                        handleDragLeave(index);
-                      }
+                    style={{ 
+                      boxShadow: adminTheme.phoneShadow,
+                      outline: adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : 'none'
                     }}
                   >
                     <PhonePreviewContent
-                      dropped={layout.dropped}
+                      components={layout.components}
                       selectedIdx={selected && selected.phoneIndex === index ? selected.componentIndex : null}
                       setSelectedIdx={componentIndex => {
                         if (componentIndex === null) {
@@ -810,25 +631,19 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                           setSelected({ phoneIndex: index, componentIndex });
                         }
                       }}
-                      draggedIdx={componentDrag.sourcePhoneIdx === index ? componentDrag.draggedIdx : null}
-                      setDraggedIdx={val => handleComponentDragStart(index, val as number, isAltPressed)}
-                      dragOverIdx={componentDrag.targetPhoneIdx === index ? componentDrag.dragOverIdx : null}
-                      setDragOverIdx={val => handleComponentDragOver(index, val as number, isAltPressed)}
-                      isAltPressed={componentDrag.isAltPressed}
-                      setIsAltPressed={setIsAltPressed}
                       showTopBar={layout.showTopBar}
                       topBarProps={layout.topBarProps}
                       setSelectedSpecial={v => setSelectedSpecial(v ? { phoneIndex: index, type: v } : null)}
                       showBottomButtons={layout.showBottomButtons}
                       bottomButtonsProps={layout.bottomButtonsProps}
-                      setDropped={(updater) => {
-                        const newDropped = typeof updater === 'function' 
-                          ? updater(layout.dropped) 
+                      setComponents={(updater) => {
+                        const newComponents = typeof updater === 'function' 
+                          ? updater(layout.components) 
                           : updater;
                         dispatch({
                           type: 'UPDATE_LAYOUT',
                           index,
-                          payload: { dropped: newDropped }
+                          payload: { components: newComponents }
                         });
                       }}
                       styles={styles}
@@ -848,7 +663,6 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                       }}
                       onDuplicate={(componentIndex) => handleComponentAction(index, 'duplicate', componentIndex)}
                       onDelete={(componentIndex) => handleComponentAction(index, 'delete', componentIndex)}
-                      onDragEnd={handleComponentDragEnd}
                       showToast={layout.showToast}
                       toastProps={layout.toastProps}
                       Toast={Toast}
@@ -859,8 +673,8 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                   {/* Phone Actions */}
                   {!isZoomedOut && (
                     <div className={[
-                      multiStyles.PhoneActions,
-                      isActive ? multiStyles.active : ''
+                      layoutsStyles.PhoneActions,
+                      isActive ? layoutsStyles.active : ''
                     ].filter(Boolean).join(' ')}
                     style={{
                       transform: `scale(${1 / zoomLevel})`,
@@ -899,12 +713,12 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                 <motion.div
                   key={`empty-${item.gridIndex}`}
                   className={[
-                    multiStyles.EmptyGridSpace,
+                    layoutsStyles.EmptyGridSpace,
                     draggedLayoutIndex !== null &&
                     dragOverGridPosition &&
                     dragOverGridPosition.row === item.row &&
                     dragOverGridPosition.col === item.col
-                      ? multiStyles.DropTarget
+                      ? layoutsStyles.DropTarget
                       : ''
                   ].filter(Boolean).join(' ')}
                   style={{
@@ -932,9 +746,9 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                 >
                   {!isZoomedOut && (
                     <>
-                      {/* <div className={multiStyles.EmptySpaceIcon}>+</div> */}
+                      {/* <div className={layoutsStyles.EmptySpaceIcon}>+</div> */}
                       {/* <div
-                        className={multiStyles.EmptySpaceText}
+                        className={layoutsStyles.EmptySpaceText}
                         style={{
                           transform: `scale(${1 / zoomLevel})`,
                           transformOrigin: 'center center',
@@ -944,7 +758,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                       </div> */}
                       {isHovered && (
                         <div
-                          className={multiStyles.templatePicker}
+                          className={layoutsStyles.templatePicker}
                           onClick={e => e.stopPropagation()}
                         >
                           {(() => {
@@ -958,7 +772,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                             return Object.entries(grouped).map(([group, templates]) => (
                               <div key={group}>
                                 <h4
-                                  className={multiStyles.templateGroupHeader}
+                                  className={layoutsStyles.templateGroupHeader}
                                   style={{
                                     transform: `scale(${1 / zoomLevel})`,
                                     marginBottom: 8/zoomLevel,
@@ -970,7 +784,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                                 {templates.map(tmpl => (
                                   <div
                                     key={tmpl.name}
-                                    className={multiStyles.templateRow}
+                                    className={layoutsStyles.templateRow}
                                     onClick={e => {
                                       e.stopPropagation();
                                       handleEmptySpaceClick(e, item.row, item.col, tmpl.name);

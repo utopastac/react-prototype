@@ -1,58 +1,81 @@
-// AdminView.tsx
-//
-// The main admin/editor interface for building and previewing UI layouts.
-// Handles layout state, drag-and-drop, prop editing, modals, keyboard shortcuts,
-// and integration with special UI elements (top bar, bottom buttons).
-// Highly modular and extensible for rapid prototyping and UI testing.
-
-import React, { useEffect, useState, useRef } from 'react';
-import { useTabBackgroundDispatch, WHITE } from 'src/containers/TabBackgroundContext';
-import { FormblockerComponents, ComponentPropMeta, initialComponentProps } from 'src/data/Components';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
+import PhonePreview from './PhonePreview';
+import LayoutTabs from './LayoutTabs';
+import { useHistoryManager } from './hooks/useHistoryManager';
+import { useLayoutData } from './hooks/useLayoutData';
 import styles from './index.module.sass';
-import IOSStatusBar from 'src/components/IOSStatusBar';
-import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
-import { ICON_24 } from 'src/components/Icon';
+import layoutsStyles from './layouts.module.sass';
+import ComponentPanel from './components/ComponentPanel';
+import SettingsPanel from './components/SettingsPanel';
+import AdminToast from './components/Toast';
+import ToolbarButton from './components/ToolbarButton';
+import Icon, { ICON_24, ICON_ADMIN } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
+import GenericPropEditor from './GenericPropEditor';
+import { ComponentPropMeta } from 'src/data/Components';
 import TopBar, { TopBarPropMeta } from 'src/components/TopBar';
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
-import StringInput from './LabeledInput/StringInput';
-import PhonePreviewContent from './PhonePreviewContent';
-import GenericPropEditor from './GenericPropEditor';
-import { motion, AnimatePresence } from 'framer-motion';
-import EditorToolbar from './components/EditorToolbar';
-import AdminToast from 'src/admin/components/Toast';
+import { ToastPropMeta } from 'src/components/Toast';
 import {
   handleDelete,
   handleDuplicate,
   handleMoveUp,
-  handleMoveDown
+  handleMoveDown,
+  handleSelectPrevious,
+  handleSelectNext
 } from './componentHandlers';
-import { AdminTemplate } from './Templates';
-import ToolbarButton from './components/ToolbarButton';
-import SettingsPanel from './components/SettingsPanel';
-import ComponentPanel from './components/ComponentPanel';
 import {
-  InsertModal,
-  SaveModal,
-  LoadModal,
-  ShortcutsModal,
-  ShareModal,
-  ClearModal,
-  WelcomeModal
-} from './Modals';
-import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
-import { useDragAndDrop } from './hooks/useDragAndDrop';
+  handleDeleteMulti,
+  handleMoveUpMulti,
+  handleMoveDownMulti,
+  handleDuplicateMulti,
+  handleSelectPreviousMulti,
+  handleSelectNextMulti
+} from './adminComponentHandlers';
+import { isEditingField } from 'src/helpers/Utils';
+import { AdminTemplate, AdminTemplates } from './Templates';
+import SaveModal from './Modals/SaveModal';
+import LoadModal from './Modals/LoadModal';
+import ShareModal from './Modals/ShareModal';
+import { WelcomeModal, ShortcutsModal, FlowLibraryModal } from './Modals';
+import ClearModal from './Modals/ClearModal';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useUrlSharing } from './hooks/useUrlSharing';
+import lzString from 'lz-string';
 import JsonPanel from './components/JsonPanel';
-import Toast, { ToastPropMeta } from 'src/components/Toast';
-import { useHistoryManager } from './hooks/useHistoryManager';
-import { useLayoutContext, INITIAL_TOAST_PROPS, INITIAL_STATUS_BAR_PROPS } from './LayoutContext';
-import HistoryModal from './Modals/HistoryModal';
+import GlobalSettingsPanel from './components/GlobalSettingsPanel';
+import PhoneSettingsPanel from './components/PhoneSettingsPanel';
+import InsertModal from './Modals/InsertModal';
+import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
+import SelectInput from './LabeledInput/SelectInput';
+import {
+  INITIAL_TOP_BAR_PROPS,
+  INITIAL_BOTTOM_BUTTONS_PROPS,
+  INITIAL_TOAST_PROPS,
+  INITIAL_STATUS_BAR_PROPS,
+} from './LayoutContext';
+import { IOSStatusBarPropMeta } from 'src/components/IOSStatusBar';
+import { AdminThemeProvider, useAdminTheme, useAdminThemeDispatch } from './AdminThemeContext';
+import { usePanelResize } from './hooks/usePanelResize';
 
-type ModalType = null | "insert" | "save" | "load" | "shortcuts" | "share" | "clear" | "welcome";
+/**
+ * AdminView
+ *
+ * The main admin interface for building and editing UI layouts.
+ * Features:
+ * 
+ * - Multiple phone previews in a grid layout
+ * - Tab navigation between layouts
+ * - Cross-layout drag-and-drop
+ * - Independent prop editing for each layout
+ * - Save/load functionality for layout state
+ * - History management with undo/redo
+ */
 
-interface AdminProps {
+interface AdminViewProps {
   theme: string;
   scale: string;
   device: string;
@@ -60,157 +83,334 @@ interface AdminProps {
   tabBackground: string;
 }
 
-/**
- * AdminView
- *
- * The root admin/editor interface for building UI layouts.
- * Manages all high-level state, drag-and-drop, prop editing, modals, and panels.
- * Integrates with custom hooks for keyboard shortcuts, persistence, and sharing.
- *
- * - dropped: array of components in the layout
- * - selectedIdx: which component is selected for editing
- * - selectedSpecial: which special UI element (top bar, bottom buttons) is selected
- * - openModal: which modal dialog is open
- * - showAdminPanel: whether the component palette/settings are visible
- * - showComponentNames, isAltPressed, etc.: various UI/UX flags
- */
-const AdminView: React.FC<AdminProps> = ({ theme, scale, device, font, tabBackground }) => {
-  const [layoutState, dispatch] = useLayoutContext();
+// Utility to update deeply nested state (dot/bracket notation, arrays, deep objects)
+function updateNestedState<T>(prev: T, fullKey: string, value: any): T {
+  const keys = fullKey.split(/\.|\[|\]/).filter(Boolean);
+  function setDeep(obj: any, keys: string[], value: any): any {
+    if (keys.length === 0) return value;
+    const [key, ...rest] = keys;
+    if (/^\d+$/.test(key)) {
+      const idx = parseInt(key, 10);
+      const arr = Array.isArray(obj) ? [...obj] : [];
+      arr[idx] = setDeep(arr[idx], rest, value);
+      return arr;
+    } else {
+      return {
+        ...obj,
+        [key]: setDeep(obj && obj[key], rest, value)
+      };
+    }
+  }
+  return setDeep(prev, keys, value);
+}
 
-  // Local UI state (modals, search, etc.)
-  const [openModal, setOpenModal] = useState<ModalType>(null);
-  const [search, setSearch] = useState('');
-  const [modalPos, setModalPos] = useState<{x: number, y: number}>({x: 0, y: 0});
-  const [insertIdx, setInsertIdx] = useState<number | null>(null);
-  const [selectedTemplate, setSelectedTemplate] = useState<AdminTemplate | null>(null);
+const AdminViewContent: React.FC<AdminViewProps> = ({
+  theme,
+  scale,
+  device,
+  font,
+  tabBackground
+}) => {
+  const [layoutState, dispatch] = useAdminLayoutContext();
+  const { layout: activeLayout, index: activeIndex } = useActiveLayout();
+  
+  // Local UI state
   const [showAdminPanel, setShowAdminPanel] = useState(true);
-  const phonePreviewRef = React.useRef<HTMLDivElement>(null);
-  const [showJsonPanel, setShowJsonPanel] = useState(false);
-  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
-  const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
-  const editorToolbarRef = useRef<HTMLDivElement>(null);
-  const [toast, setToast] = React.useState<string | null>(null);
-
-  // Ephemeral UI state (moved from LayoutContext)
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const [selectedSpecial, setSelectedSpecial] = useState<null | 'topbar' | 'bottombuttons' | 'toast'>(null);
-  const [isAltPressed, setIsAltPressed] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [selectedPhoneIndex, setSelectedPhoneIndex] = useState<number | null>(null);
+  // Add selectedTemplate state
+  const [selectedTemplate, setSelectedTemplate] = useState<AdminTemplate | null>(null);
+  // New: Prop editor visibility state
+  const [isPropEditorVisible, setIsPropEditorVisible] = useState(false);
+  // New: showComponentNames state (stub for now, can be implemented later)
   const [showComponentNames, setShowComponentNames] = useState(false);
 
-  // Derived state
-  const isPropEditorVisible = Boolean((selectedIdx !== null && layoutState.dropped[selectedIdx]) || selectedSpecial);
-  const isJsonPanelVisible = showJsonPanel && !isPropEditorVisible;
+  // Global selection: only one component selected at a time across all phones
+  const [selected, setSelected] = useState<{ phoneIndex: number, componentIndex: number } | null>(null);
 
-  const tabBackgroundDispatch = useTabBackgroundDispatch();
-  const adminPanelWidth = 360;
-  const rightPanelWidth = 280;
+  // Replace selectedSpecial state with per-phone structure
+  type SelectedSpecial = { phoneIndex: number, type: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar' } | null;
+  const [selectedSpecial, setSelectedSpecial] = useState<SelectedSpecial>(null);
 
-  useEffect(()=>{
-    tabBackgroundDispatch({type: WHITE});
-  }, []);
-
-  // Check if user has seen welcome modal before
+  // Effect: update isPropEditorVisible when selection changes
   useEffect(() => {
-    const hasSeenWelcome = window.localStorage.getItem('interventions-hub-welcome-seen');
-    if (!hasSeenWelcome) {
-      setShowWelcomeModal(true);
+    if (
+      (selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].components[selected.componentIndex]) ||
+      selectedSpecial
+    ) {
+      setIsPropEditorVisible(true);
+    } else {
+      setIsPropEditorVisible(false);
     }
-  }, []);
+  }, [selected, selectedSpecial, layoutState.layouts]);
 
-  // Close any open modals when admin panel is hidden
-  useEffect(() => {
-    if (!showAdminPanel) {
-      setOpenModal(null);
-      setShowWelcomeModal(false);
-    }
-  }, [showAdminPanel]);
+  // Refs
+  const phonePreviewRef = useRef<HTMLDivElement>(null);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
 
-  // Close modals when clicking outside of them
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      // Check if any modal is open
-      const isAnyModalOpen = openModal !== null || showWelcomeModal || showHistoryModal;
-      if (!isAnyModalOpen) return;
+  // Hooks
+  const historyManager = useHistoryManager({
+    setSelectedIdx: setSelectedPhoneIndex,
+    setSelectedSpecial: () => {} // Not used in this implementation
+  });
 
-      // Check if click is on a modal element
-      const modalElements = document.querySelectorAll('[data-modal-content]');
-      for (const modalEl of modalElements) {
-        if (modalEl.contains(e.target as Node)) {
-          return; // Click was inside a modal, don't close
-        }
-      }
+  const layoutData = useLayoutData();
 
-      // Click was outside all modals, close them
-      if (openModal !== null) {
-        setOpenModal(null);
-      }
-    };
+  // Panel dimensions (now in AdminThemeContext)
+  const adminTheme = useAdminTheme();
+  const setAdminTheme = useAdminThemeDispatch();
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [openModal, showWelcomeModal, showHistoryModal]);
+  // Panel dimensions (now in AdminThemeContext)
+  const adminPanelWidth = adminTheme.adminPanelWidth;
+  const rightPanelWidth = adminTheme.settingsPanelWidth;
+  const setAdminPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { adminPanelWidth: w } });
+  const setRightPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { settingsPanelWidth: w } });
 
-  // Reset function to restore all state to initial values
-  const handleReset = () => {
-    console.log('[DISPATCH] RESET');
-    dispatch({ type: 'RESET' });
+  // --- Prop Editor resizing logic ---
+  const [propEditorWidth, propEditorResizeHandle, propEditorIsResizing, , propEditorIsHoveringEdge] = usePanelResize({
+    initialWidth: 280,
+    minWidth: 220,
+    maxWidth: 480,
+    edge: 'left',
+    width: rightPanelWidth,
+    setWidth: setRightPanelWidth,
+  });
+  // --- End Prop Editor resizing logic ---
+  /**
+   * Handle phone selection
+   */
+  const handlePhoneSelect = (index: number) => {
+    setSelectedPhoneIndex(index);
+    dispatch({ type: 'SET_ACTIVE_LAYOUT', index });
   };
 
-  // Deselect on click outside the prop editor or toolbar
-  useEffect(() => {
-    if (selectedIdx === null && !selectedSpecial) return;
-    const handleClick = (e: MouseEvent) => {
-      const rightPanel = rightPanelRef.current;
-      const editorToolbar = editorToolbarRef.current;
-      if (rightPanel && rightPanel.contains(e.target as Node)) return;
-      if (editorToolbar && editorToolbar.contains(e.target as Node)) return;
-      // Check if click is on a dropped component or special component
-      const droppedEls = document.querySelectorAll('[data-dropped-component], [data-special-component]');
-      for (const el of droppedEls) {
-        if (el.contains(e.target as Node)) return;
+  /**
+   * Handle resetting all layouts
+   */
+  const handleReset = () => {
+    dispatch({ type: 'RESET_ALL' });
+    setSelectedPhoneIndex(null);
+    setToast('🔄 All layouts reset');
+  };
+
+  // --- GRID HELPERS ---
+  function getNextGridPosition(layoutPositions: Record<number, { row: number, col: number }>, gridRows: number, gridCols: number) {
+    // Find the first empty spot in the grid
+    const used = new Set(Object.values(layoutPositions).map(pos => `${pos.row},${pos.col}`));
+    for (let row = 0; row < gridRows; row++) {
+      for (let col = 0; col < gridCols; col++) {
+        if (!used.has(`${row},${col}`)) return { row, col };
       }
-      setSelectedIdx(null);
-      setSelectedSpecial(null);
+    }
+    // If full, add a new row
+    return { row: gridRows, col: 0 };
+  }
+  function recalcGridSize(layoutPositions: Record<number, { row: number, col: number }>) {
+    let maxRow = 0, maxCol = 0;
+    Object.values(layoutPositions).forEach(pos => {
+      if (pos.row > maxRow) maxRow = pos.row;
+      if (pos.col > maxCol) maxCol = pos.col;
+    });
+    return { gridRows: maxRow + 1, gridCols: maxCol + 1 };
+  }
+  // --- END GRID HELPERS ---
+
+  // State for floating template picker
+  const [templatePicker, setTemplatePicker] = useState<null | { row: number; col: number; pos: { x: number; y: number } }>(null);
+  const [templatePickerValue, setTemplatePickerValue] = useState('');
+
+  // Ref for the template picker panel
+  const templatePickerRef = useRef<HTMLDivElement>(null);
+
+  // Close template picker on outside click
+  useEffect(() => {
+    if (!templatePicker) return;
+    const handleClick = (e: MouseEvent) => {
+      if (templatePickerRef.current && !templatePickerRef.current.contains(e.target as Node)) {
+        setTemplatePicker(null);
+        setTemplatePickerValue('');
+      }
     };
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
-  }, [selectedIdx, selectedSpecial]);
+  }, [templatePicker]);
 
-  // ===== HISTORY MANAGEMENT =====
-  // 
-  // All history logic has been moved to useHistoryManager hook for better
-  // separation of concerns and reusability.
-  const historyManager = useHistoryManager({
-    setSelectedIdx,
-    setSelectedSpecial,
-  });
+  // Intercept add layout to show template picker
+  function handleAddLayoutAt(row: number, col: number, templateName?: string) {
+    if (templateName) {
+      const template = AdminTemplates.find(t => t.name === templateName);
+      if (template) {
+        handleAddLayoutWithTemplate(row, col, template);
+        return;
+      }
+    }
+    // Add blank layout
+    const newLayouts = [...layoutState.layouts, { ...layoutState.layouts[0], showStatusBar: true }];
+    const newNames = [...layoutState.layoutNames, `Layout ${layoutState.layouts.length + 1}`];
+    const newIndex = newLayouts.length - 1;
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: { row, col } };
+    const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
+    dispatch({
+      type: 'SET_ALL_LAYOUTS',
+      layouts: newLayouts,
+      names: newNames,
+      layoutPositions: newLayoutPositions,
+      gridRows,
+      gridCols,
+    });
+    dispatch({ type: 'SET_ACTIVE_LAYOUT', index: newIndex });
+    setToast('✅ Added blank layout');
+  }
 
-  // --- Prop change handlers (no manual history push) ---
-  const handleMetaPropChange = (fullKey: string, value: any) => {
-    if (selectedIdx === null) return;
-    const prevProps = layoutState.dropped[selectedIdx]?.props;
+  // Add layout with selected template
+  function handleAddLayoutWithTemplate(row: number, col: number, template: AdminTemplate) {
+    const newLayouts = [
+      ...layoutState.layouts,
+      {
+        ...layoutState.layouts[0],
+        components: template.components.map(c => ({ ...c, props: { ...c.props } })),
+        topBarProps: template.topBarProps ?? INITIAL_TOP_BAR_PROPS,
+        showTopBar: template.topBarProps !== undefined,
+        bottomButtonsProps: template.bottomButtonsProps ?? INITIAL_BOTTOM_BUTTONS_PROPS,
+        showBottomButtons: template.bottomButtonsProps !== undefined,
+        toastProps: template.toastProps ? { ...INITIAL_TOAST_PROPS, ...template.toastProps } : INITIAL_TOAST_PROPS,
+        statusBarProps: template.statusBarProps ? { ...INITIAL_STATUS_BAR_PROPS, ...template.statusBarProps } : INITIAL_STATUS_BAR_PROPS,
+        showToast: false,
+        showStatusBar: template.statusBarProps !== undefined ? true : layoutState.layouts[0].showStatusBar,
+      },
+    ];
+    const newNames = [...layoutState.layoutNames, template.name];
+    const newIndex = newLayouts.length - 1;
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: { row, col } };
+    const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
+    dispatch({
+      type: 'SET_ALL_LAYOUTS',
+      layouts: newLayouts,
+      names: newNames,
+      layoutPositions: newLayoutPositions,
+      gridRows,
+      gridCols,
+    });
+    dispatch({ type: 'SET_ACTIVE_LAYOUT', index: newIndex });
+    setTemplatePicker(null);
+    setTemplatePickerValue('');
+    setToast(`✅ Added layout: ${template.name}`);
+  }
+  // Example: Duplicate a layout to the right
+  function handleDuplicateLayoutAt(index: number) {
+    const layoutToDuplicate = layoutState.layouts[index];
+    const nameToDuplicate = layoutState.layoutNames[index];
+    const currentPos = layoutState.layoutPositions[index] || { row: 0, col: 0 };
+    // Find all occupied columns in the current row
+    const occupiedCols = new Set<number>();
+    Object.values(layoutState.layoutPositions).forEach(pos => {
+      if (pos.row === currentPos.row) occupiedCols.add(pos.col);
+    });
+    // Find the next available col in the same row
+    let nextCol = currentPos.col + 1;
+    while (occupiedCols.has(nextCol)) {
+      nextCol++;
+    }
+    let newRow = currentPos.row;
+    let newCol = nextCol;
+    // If nextCol exceeds gridCols, move to next row, col=0
+    const maxCol = Math.max(...Object.values(layoutState.layoutPositions).filter(pos => pos.row === currentPos.row).map(pos => pos.col), 0);
+    if (nextCol > maxCol + 1) {
+      // Find the first available col in the next row
+      newRow = currentPos.row + 1;
+      // Find all occupied cols in the new row
+      const nextRowOccupiedCols = new Set<number>();
+      Object.values(layoutState.layoutPositions).forEach(pos => {
+        if (pos.row === newRow) nextRowOccupiedCols.add(pos.col);
+      });
+      newCol = 0;
+      while (nextRowOccupiedCols.has(newCol)) {
+        newCol++;
+      }
+    }
+    const newLayouts = [...layoutState.layouts, { ...layoutToDuplicate }];
+    const newNames = [...layoutState.layoutNames, `${nameToDuplicate} (Copy)`];
+    const newIndex = newLayouts.length - 1;
+    const newPos = { row: newRow, col: newCol };
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: newPos };
+    const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
+    dispatch({
+      type: 'SET_ALL_LAYOUTS',
+      layouts: newLayouts,
+      names: newNames,
+      layoutPositions: newLayoutPositions,
+      gridRows,
+      gridCols,
+    });
+    dispatch({ type: 'SET_ACTIVE_LAYOUT', index: newIndex });
+  }
+
+  // Prop editor logic
+  // Render prop editor for selected component (for the selected phone)
+  const renderPropEditor = () => {
+    if (!selected || !layoutState.layouts[selected.phoneIndex]) return null;
+    const layout = layoutState.layouts[selected.phoneIndex];
+    const components = layout.components;
+    const comp = components[selected.componentIndex];
+    if (!comp) return null;
+    const meta = ComponentPropMeta[comp.name as keyof typeof ComponentPropMeta] as any;
+    return (
+      <div className={styles.Editor}>
+        <GenericPropEditor
+          title="Component Settings"
+          meta={meta}
+          values={comp.props}
+          onChange={(fullKey, value) => {
+            // Update nested props for the selected component
+            const prevProps = comp.props;
     const newProps = updateNestedState(prevProps, fullKey, value);
-    if (JSON.stringify(prevProps) === JSON.stringify(newProps)) return;
-    console.log('[DISPATCH] UPDATE dropped component props:', fullKey, value);
-    dispatch({ type: 'UPDATE', payload: { dropped: layoutState.dropped.map((item, idx) =>
-      idx === selectedIdx
-        ? { ...item, props: newProps }
-        : item
-    ) } });
+            const newComponents = components.map((item, idx) =>
+              idx === selected.componentIndex ? { ...item, props: newProps } : item
+            );
+            dispatch({
+              type: 'UPDATE_LAYOUT',
+              index: selected.phoneIndex,
+              payload: { components: newComponents }
+            });
+          }}
+          onDismiss={() => {
+            setSelected(null);
+            setIsPropEditorVisible(false);
+          }}
+        />
+      </div>
+    );
   };
-
-  const handleSpecialMetaPropChange = (which: 'topbar' | 'bottombuttons' | 'toast') => (fullKey: string, value: any) => {
+  // Special prop change handler for a given phone
+  const handleSpecialMetaPropChange = (which: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar', phoneIndex: number) => (fullKey: string, value: any) => {
+    const layout = layoutState.layouts[phoneIndex];
     if (which === 'topbar') {
-      dispatch({ type: 'UPDATE', payload: { topBarProps: updateNestedState(layoutState.topBarProps, fullKey, value) } });
+      dispatch({
+        type: 'UPDATE_LAYOUT',
+        index: phoneIndex,
+        payload: { topBarProps: updateNestedState(layout.topBarProps, fullKey, value) }
+      });
     } else if (which === 'bottombuttons') {
-      dispatch({ type: 'UPDATE', payload: { bottomButtonsProps: updateNestedState(layoutState.bottomButtonsProps, fullKey, value) } });
+      dispatch({
+        type: 'UPDATE_LAYOUT',
+        index: phoneIndex,
+        payload: { bottomButtonsProps: updateNestedState(layout.bottomButtonsProps, fullKey, value) }
+      });
     } else if (which === 'toast') {
-      dispatch({ type: 'UPDATE', payload: { toastProps: updateNestedState(layoutState.toastProps, fullKey, value) } });
+      dispatch({
+        type: 'UPDATE_LAYOUT',
+        index: phoneIndex,
+        payload: { toastProps: updateNestedState(layout.toastProps, fullKey, value) }
+      });
+    } else if (which === 'statusbar') {
+      dispatch({
+        type: 'UPDATE_LAYOUT',
+        index: phoneIndex,
+        payload: { statusBarProps: updateNestedState(layout.statusBarProps, fullKey, value) }
+      });
     }
   };
-
-  // Render a prop editor for a special component (top bar, bottom buttons)
+  // Render a prop editor for a special component (top bar, bottom buttons, toast)
   const renderSpecialPanel = (
     title: string,
     meta: any,
@@ -221,457 +421,363 @@ const AdminView: React.FC<AdminProps> = ({ theme, scale, device, font, tabBackgr
     <GenericPropEditor
       title={title}
       meta={meta}
-      values={values}
+      values={values || {}}
       onChange={onChange}
-      onDismiss={onDismiss}
+      onDismiss={() => {
+        onDismiss();
+        setIsPropEditorVisible(false);
+      }}
     />
-  );
-
-  // Render prop editor for selected dropped component
-  const renderPropEditor = () => {
-    if (selectedIdx === null || !layoutState.dropped[selectedIdx]) return null;
-    const { name, props } = layoutState.dropped[selectedIdx];
-    const meta = ComponentPropMeta[name as keyof typeof ComponentPropMeta] as any;
-    return (
-      <div className={styles.Editor}>
-        {/* Toolbar for component actions - REMOVED */}
-        {meta ? (
-          <GenericPropEditor title='Component Settings' meta={meta} values={props} onChange={handleMetaPropChange} onDismiss={() => setSelectedIdx(null)} />
-        ) : Object.entries(props).map(([key, value]) => (
-          <StringInput
-            key={key}
-            label={key}
-            value={value !== undefined ? String(value) : ''}
-            onChange={(val: string) => handleMetaPropChange(key, val)}
-          />
-        ))}
-      </div>
     );
-  };
-
-  // Render prop editor for TopBar or ButtonGroup (special components)
+  // Render prop editor for TopBar, ButtonGroup, or Toast for the selected phone
   const renderSpecialPropEditor = () => {
     if (!selectedSpecial) return null;
-    if (selectedSpecial === 'topbar') {
+    const layout = layoutState.layouts[selectedSpecial.phoneIndex];
+    if (selectedSpecial.type === 'topbar') {
       return renderSpecialPanel(
         'Top Bar Settings',
         TopBarPropMeta,
-        layoutState.topBarProps,
-        handleSpecialMetaPropChange('topbar'),
+        layout.topBarProps,
+        handleSpecialMetaPropChange('topbar', selectedSpecial.phoneIndex),
         () => setSelectedSpecial(null)
       );
-    } else if (selectedSpecial === 'bottombuttons') {
+    } else if (selectedSpecial.type === 'bottombuttons') {
       return renderSpecialPanel(
         'Bottom Buttons Settings',
         ButtonGroupPropMeta,
-        layoutState.bottomButtonsProps,
-        handleSpecialMetaPropChange('bottombuttons'),
+        layout.bottomButtonsProps,
+        handleSpecialMetaPropChange('bottombuttons', selectedSpecial.phoneIndex),
         () => setSelectedSpecial(null)
       );
-    } else if (selectedSpecial === 'toast') {
+    } else if (selectedSpecial.type === 'toast') {
       return renderSpecialPanel(
         'Toast Settings',
         ToastPropMeta,
-        layoutState.toastProps,
-        handleSpecialMetaPropChange('toast'),
+        layout.toastProps,
+        handleSpecialMetaPropChange('toast', selectedSpecial.phoneIndex),
+        () => setSelectedSpecial(null)
+      );
+    } else if (selectedSpecial.type === 'statusbar') {
+      return renderSpecialPanel(
+        'Status Bar Settings',
+        IOSStatusBarPropMeta,
+        layout.statusBarProps,
+        handleSpecialMetaPropChange('statusbar', selectedSpecial.phoneIndex),
         () => setSelectedSpecial(null)
       );
     }
     return null;
   };
 
-  // Apply a template (predefined layout)
+  // Handler to apply a template to the selected phone (or active if none selected)
   const handleApplyTemplate = (template: AdminTemplate) => {
-    const payload = {
-      dropped: template.dropped.map(c => ({ ...c, props: { ...c.props } })),
-      topBarProps: template.topBarProps ?? layoutState.topBarProps,
+    const targetIndex = selected?.phoneIndex ?? activeIndex;
+    dispatch({
+      type: 'UPDATE_LAYOUT',
+      index: targetIndex,
+      payload: {
+        components: template.components.map((c: { name: string; Component: React.ComponentType<any>; props: any }) => ({ ...c, props: { ...c.props } })),
+        topBarProps: template.topBarProps ?? layoutState.layouts[targetIndex].topBarProps,
       showTopBar: !!template.topBarProps,
-      bottomButtonsProps: template.bottomButtonsProps ?? layoutState.bottomButtonsProps,
+        bottomButtonsProps: template.bottomButtonsProps ?? layoutState.layouts[targetIndex].bottomButtonsProps,
+        statusBarProps: template.statusBarProps,
       showBottomButtons: !!template.bottomButtonsProps,
-      showStatusBar: template.statusBarProps !== undefined ? true : layoutState.showStatusBar,
-      toastProps: template.toastProps ? { ...INITIAL_TOAST_PROPS, ...template.toastProps } : layoutState.toastProps,
-      statusBarProps: template.statusBarProps ? { ...INITIAL_STATUS_BAR_PROPS, ...template.statusBarProps } : layoutState.statusBarProps,
-    };
-    console.log('[DISPATCH] UPDATE (apply template):', payload);
-    dispatch({ type: 'UPDATE', payload });
-    setSelectedIdx(null);
-    setSelectedSpecial(null);
+        showStatusBar: template.statusBarProps !== undefined ? true : layoutState.layouts[targetIndex].showStatusBar,
+      }
+    });
     setSelectedTemplate(template);
+    setToast(`✅ Applied template: ${template.name}`);
   };
 
-  // ===== MODAL HANDLERS =====
-  // Open Insert modal
-  const handleOpenInsertModal = (e: React.MouseEvent, idx: number) => {
-    e.stopPropagation();
-    setModalPos({ x: e.pageX, y: e.pageY });
-    setInsertIdx(idx + 1);
-    setOpenModal("insert");
-  };
-  // Open Save modal
-  const handleOpenSave = () => {
-    localStorage.setSaveName('');
-    setOpenModal("save");
-  };
-  // Open Load modal
-  const handleOpenLoad = () => {
-    localStorage.setLoadList(localStorage.getLoadList());
-    setOpenModal("load");
-    localStorage.setLoadError('');
-  };
-  // Show keyboard shortcuts modal
-  const handleShowKeyboardShortcuts = () => {
-    setOpenModal("shortcuts");
-  };
-  // Share handler (HashRouter version)
-  const handleShare = () => {
-    urlSharing.handleShare();
-    setOpenModal("share");
-  };
+  // Modal state for save/load/share/templates
+  const [openModal, setOpenModal] = useState<null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates'>(null);
+  // Welcome modal state
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
 
-  // Welcome modal handler
+  // Show welcome modal if not seen
+  useEffect(() => {
+    const hasSeenWelcome = window.localStorage.getItem('interventions-hub-welcome-seen');
+    if (!hasSeenWelcome) {
+      setShowWelcomeModal(true);
+    }
+  }, []);
+
+  // Handler to close welcome modal
   const handleCloseWelcomeModal = () => {
     window.localStorage.setItem('interventions-hub-welcome-seen', 'true');
     setShowWelcomeModal(false);
   };
 
-  // Reset welcome modal for testing
+  // Handler to reset welcome modal for testing
   const handleResetWelcomeModal = () => {
     window.localStorage.removeItem('interventions-hub-welcome-seen');
     setShowWelcomeModal(true);
   };
 
-  // --- Context-based setter wrappers ---
-  const setSelectedIdxCompat: React.Dispatch<React.SetStateAction<number | null>> = (value) => {
-    const resolved = typeof value === 'function' ? value(selectedIdx) : value;
-    setSelectedIdx(resolved);
-  };
-  const setIsAltPressedCompat: React.Dispatch<React.SetStateAction<boolean>> = (value) => {
-    const resolved = typeof value === 'function' ? value(isAltPressed) : value;
-    setIsAltPressed(resolved);
-  };
-
-  // Keyboard shortcuts for navigation, duplication, deletion, etc.
-  useKeyboardShortcuts({
-    selectedIdx: selectedIdx,
-    dropped: layoutState.dropped,
-    dispatch,
-    setSelectedIdx: setSelectedIdxCompat,
-    setIsAltPressed: setIsAltPressedCompat,
-    setShowComponentNames: (val) => {
-      const newVal = typeof val === 'function' ? val(showComponentNames) : val;
-      setShowComponentNames(newVal);
-    },
-    setShowAdminPanel: (val) => {
-      const newVal = typeof val === 'function' ? val(showAdminPanel) : val;
-      setShowAdminPanel(newVal);
-    },
-    handleReset: ()=>{
-      setOpenModal("clear");
-    },
-    handleSave: ()=>{
-      setOpenModal("save");
-    },
-    handleUndo: historyManager.handleUndo, // pass undo
-    handleRedo: historyManager.handleRedo, // pass redo
-    canUndo: historyManager.canUndo,
-    canRedo: historyManager.canRedo,
-  });
-
-  // Drag-and-drop logic for rearranging components
-  const dragAndDrop = useDragAndDrop({
-    dropped: layoutState.dropped,
-    dispatch,
-  });
-
-  // Local storage persistence for saving/loading layouts
+  // Local storage and sharing hooks
   const localStorage = useLocalStorage();
-
-  // URL sharing logic for sharing layouts via URL
   const urlSharing = useUrlSharing();
 
-  // Handler to add a dropped component (for drag-and-drop from palette)
-  const handleDroppedComponentAdd = (
-    newComponent: { name: string; Component: React.ComponentType<any>; props: any },
-    idx?: number | null
-  ) => {
-    console.log('[DROPPED COMPONENT ADD]', newComponent, idx);
-    const newDropped = [...layoutState.dropped];
-    let newSelectedIdx: number;
-    if (typeof idx === 'number' && idx >= 0 && idx <= newDropped.length) {
-      newDropped.splice(idx, 0, newComponent);
-      newSelectedIdx = idx;
-    } else {
-      newDropped.push(newComponent);
-      newSelectedIdx = newDropped.length - 1;
-    }
-    console.log('[DISPATCH] UPDATE (add component):', { dropped: newDropped });
-    dispatch({ type: 'UPDATE', payload: { dropped: newDropped } });
-    setSelectedIdx(newSelectedIdx);
-  };
+  // Ref to prevent auto-save immediately after restore
+  const justRestored = useRef(false);
 
-  // Insert component from modal (batch update: dropped + selectedIdx)
-  const handleInsertComponent = (name: string) => {
-    if (insertIdx == null) return;
-    const Component = (FormblockerComponents as any)[name];
-    if (!Component) return;
-    const newDropped = [...layoutState.dropped];
-    newDropped.splice(insertIdx, 0, {
-      name,
-      Component,
-      props: initialComponentProps[name] || {}
-    });
-    console.log('[DISPATCH] UPDATE (insert component):', { dropped: newDropped });
-    dispatch({ type: 'UPDATE', payload: { dropped: newDropped } });
-    setSelectedIdx(insertIdx);
-    setOpenModal(null);
-    setInsertIdx(null);
-  };
-  // Save current state
-  const handleSave = () => {
+  // Auto-restore from 'current' on mount, but only if not arriving from a shared URL
+  useEffect(() => {
+    const hash = window.location.hash;
+    const queryIndex = hash.indexOf('?');
+    let hasSharedLayout = false;
+    if (queryIndex !== -1) {
+      const params = new URLSearchParams(hash.substring(queryIndex + 1));
+      if (params.get('layout')) {
+        hasSharedLayout = true;
+    }
+    }
+    if (!hasSharedLayout) {
+      localStorage.loadCurrent();
+      justRestored.current = true;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Auto-save to 'current' on any layout state change, but skip immediately after restore
+  useEffect(() => {
+    if (justRestored.current) {
+      justRestored.current = false;
+      return;
+    }
+    localStorage.saveCurrent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [layoutState]);
+
+  // Save handler for modal
+  const handleSaveModal = () => {
     const success = localStorage.handleSave();
     if (success) {
       setOpenModal(null);
       setToast('✅ Saved successfully');
+      localStorage.setSaveName('');
+      localStorage.setLoadList(localStorage.getLoadList());
     }
   };
-  // Load a saved state
-  const handleLoad = (name: string) => {
+  // Load handler for modal
+  const handleLoadModal = (name: string) => {
     const success = localStorage.handleLoad(name);
     if (success) {
       setOpenModal(null);
       setToast('✅ Loaded successfully');
     }
   };
-  // Delete a save
-  const handleDeleteSave = (name: string) => {
+  // Delete save handler
+  const handleDeleteSaveModal = (name: string) => {
     localStorage.handleDeleteSave(name);
+    localStorage.setLoadList(localStorage.getLoadList());
+  };
+  // Share handler for modal
+  const handleShareModal = () => {
+    urlSharing.handleShare();
+    setOpenModal('share');
   };
 
-  /**
-   * updateNestedState
-   *
-   * Helper to update deeply nested state (dot/bracket notation, arrays, deep objects)
-   * Used for prop editing in GenericPropEditor and special panels.
-   */
-  function updateNestedState<T>(prev: T, fullKey: string, value: any): T {
-    const keys = fullKey.split(/\.|\[|\]/).filter(Boolean);
-    // Recursively walk the keys
-    function setDeep(obj: any, keys: string[], value: any): any {
-      if (keys.length === 0) return value;
-      const [key, ...rest] = keys;
-      // If key is an array index
-      if (/^\d+$/.test(key)) {
-        const idx = parseInt(key, 10);
-        const arr = Array.isArray(obj) ? [...obj] : [];
-        arr[idx] = setDeep(arr[idx], rest, value);
-        return arr;
-      } else {
-        return {
-          ...obj,
-          [key]: setDeep(obj && obj[key], rest, value)
-        };
-      }
-    }
-    return setDeep(prev, keys, value);
-  }
+  // JSON panel state
+  const [showJsonPanel, setShowJsonPanel] = useState(false);
 
-  // Main render: admin panel, phone preview, prop editor, modals, etc.
+  // Insert modal state: { phoneIndex, componentIndex, modalPos } | null
+  const [insertModal, setInsertModal] = useState<{
+    phoneIndex: number;
+    componentIndex: number;
+    modalPos: { x: number; y: number };
+  } | null>(null);
+
+  // Handler to open the insert modal for a given phone/component
+  const handleOpenInsertModal = (
+    phoneIndex: number,
+    componentIndex: number,
+    e: React.MouseEvent
+  ) => {
+    // Position modal near the button
+    const rect = (e.target as HTMLElement).getBoundingClientRect();
+    setInsertModal({
+      phoneIndex,
+      componentIndex,
+      modalPos: { x: rect.right + 8, y: rect.top },
+    });
+  };
+
+  // Handler to insert a component into the correct phone at the correct index
+  const handleInsertComponent = (name: string) => {
+    if (insertModal) {
+      const { phoneIndex, componentIndex } = insertModal;
+      const layout = layoutState.layouts[phoneIndex];
+      const Component = (FormblockerComponents as any)[name];
+      const newComponents = [...layout.components];
+      newComponents.splice(componentIndex + 1, 0, {
+        name,
+        Component,
+        props: { ...(initialComponentProps as any)[name] },
+      });
+      dispatch({
+        type: 'UPDATE_LAYOUT',
+        index: phoneIndex,
+        payload: { components: newComponents },
+      });
+      setInsertModal(null);
+      setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
+    }
+  };
+
+  // Handler to close the insert modal
+  const handleCloseInsertModal = () => setInsertModal(null);
+
+  // Deselect on click outside the prop editor
+  useEffect(() => {
+    if (!selected && !selectedSpecial) return;
+    const handleClick = (e: MouseEvent) => {
+      const rightPanel = rightPanelRef.current;
+      if (rightPanel && rightPanel.contains(e.target as Node)) return;
+      // Check if click is on a component or special component
+      const droppedEls = document.querySelectorAll('[data-component], [data-special-component]');
+      for (const el of droppedEls) {
+        if (el.contains(e.target as Node)) return;
+      }
+      setSelected(null);
+      setSelectedSpecial(null);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [selected, selectedSpecial]);
+
+  // Helper to pass setOpenModal with correct type for keyboard shortcut hook
+  const setOpenModalString = (modal: string) => {
+    setOpenModal(modal as any);
+  };
+
+  useKeyboardShortcuts({
+    selected,
+    layoutState,
+    dispatch,
+    setSelected,
+    handleReset: () => setOpenModal('clearAll'),
+    handleSave: () => setOpenModal('save'),
+    handleUndo: historyManager.handleUndo,
+    handleRedo: historyManager.handleRedo,
+    canUndo: historyManager.canUndo,
+    canRedo: historyManager.canRedo,
+    setShowAdminPanel,
+    setShowComponentNames,
+    // New handlers for keyboard shortcuts:
+    handleLoad: () => {
+      localStorage.setLoadList(localStorage.getLoadList());
+      setOpenModal('load');
+    },
+    handleShowShortcuts: () => setOpenModal('shortcuts'),
+    handleShareModal: handleShareModal,
+    setOpenModal: setOpenModalString,
+    handleShowTemplates: () => setOpenModal('templates'),
+  });
+
   return (
     <div className={styles.Main}>
-      {/* Tools Panel (toggleable, animated) */}
+      {/* Floating Template Picker */}
+      {templatePicker && (
+        <div
+          ref={templatePickerRef}
+          style={{
+            position: 'fixed',
+            left: templatePicker.pos.x,
+            top: templatePicker.pos.y,
+            zIndex: 1000,
+            background: '#fff',
+            border: '1px solid #ddd',
+            borderRadius: 8,
+            boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
+            padding: 16,
+            minWidth: 220,
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <SelectInput
+            label="Choose a template"
+            value={templatePickerValue}
+            options={[{ value: '', label: 'Choose a template' }, ...AdminTemplates.map(t => ({ value: t.name, label: t.name }))]}
+            onChange={val => {
+              setTemplatePickerValue(val);
+              const t = AdminTemplates.find(t => t.name === val);
+              if (t) {
+                handleAddLayoutAt(templatePicker.row, templatePicker.col, t.name);
+              }
+            }}
+          />
+        </div>
+      )}
+      {/* Component Panel */}
       <AnimatePresence>
         {showAdminPanel && (
           <ComponentPanel
+            key="component-panel"
             showAdminPanel={showAdminPanel}
             adminPanelWidth={adminPanelWidth}
-            search={search}
-            onSearchChange={setSearch}
+            setAdminPanelWidth={setAdminPanelWidth}
             onHideAdminPanel={() => setShowAdminPanel(false)}
-            onShowKeyboardShortcuts={handleShowKeyboardShortcuts}
-            onOpenSave={handleOpenSave}
-            onOpenLoad={handleOpenLoad}
-            onShare={handleShare}
-            onDragStart={dragAndDrop.setDraggedName}
-            onDragEnd={() => dragAndDrop.setDraggedName(null)}
-            onComponentClick={(name, Component) => {
-              dispatch({ type: 'UPDATE', payload: {
-                dropped: [...layoutState.dropped, { name, Component, props: { ...initialComponentProps[name] } }]
-              }});
-              setSelectedIdx(layoutState.dropped.length);
+            onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
+            onOpenSave={() => setOpenModal('save')}
+            onOpenLoad={() => {
+              localStorage.setLoadList(localStorage.getLoadList());
+              setOpenModal('load');
             }}
-            droppedLength={layoutState.dropped.length}
-            selectedTemplate={selectedTemplate}
-            onApplyTemplate={handleApplyTemplate}
-            onShowHistory={() => setShowHistoryModal(true)}
+            onShare={handleShareModal}
+            onOpenTemplates={() => setOpenModal('templates')}
+            onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
+            selected={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
           />
         )}
       </AnimatePresence>
 
-      <div
-        className={styles.CenterContainer}
-        data-theme={theme}
-        data-text-scale={scale}
-        data-device={device}
-        data-font={font}
-        data-tab-bg={tabBackground}
-      >
-          
-        <div
-          className={[
-            styles.PhonePreview,
-            dragAndDrop.isPhoneDragOver ? styles.PhonePreviewDragOver : ''
-          ].filter(Boolean).join(' ')}
-          ref={phonePreviewRef}
-          onDrop={dragAndDrop.handleDrop}
-          onDragOver={dragAndDrop.handleDragOver}
-          onDragEnter={dragAndDrop.handleDragEnter}
-          onDragLeave={dragAndDrop.handleDragLeave}
-          onDragEnd={dragAndDrop.handleDragEnd}
-        >
-          <PhonePreviewContent
-            dropped={layoutState.dropped}
-            selectedIdx={selectedIdx}
-            setSelectedIdx={setSelectedIdxCompat}
-            draggedIdx={dragAndDrop.draggedIdx}
-            setDraggedIdx={dragAndDrop.setDraggedIdx}
-            dragOverIdx={dragAndDrop.dragOverIdx}
-            setDragOverIdx={dragAndDrop.setDragOverIdx}
-            isAltPressed={isAltPressed}
-            setIsAltPressed={setIsAltPressed}
-            showTopBar={layoutState.showTopBar}
-            topBarProps={layoutState.topBarProps}
-            setSelectedSpecial={setSelectedSpecial}
-            showBottomButtons={layoutState.showBottomButtons}
-            bottomButtonsProps={layoutState.bottomButtonsProps}
-            showToast={layoutState.showToast}
-            toastProps={layoutState.toastProps}
-            setDropped={(updater) => {
-              const newDropped = typeof updater === 'function' ? updater(layoutState.dropped) : updater;
-              dispatch({ type: 'UPDATE', payload: { dropped: newDropped } });
-            }}
-            styles={styles}
-            TopBar={TopBar}
-            ButtonGroup={ButtonGroup}
-            Toast={Toast}
-            IOSStatusBar={IOSStatusBar}
-            IOSHomeIndicator={IOSHomeIndicator}
-            showComponentNames={showComponentNames}
-            selectedSpecial={selectedSpecial}
-            onOpenInsertModal={handleOpenInsertModal}
-            onDuplicate={idx => handleDuplicate({ dispatch, selectedIdx: idx, dropped: layoutState.dropped, setSelectedIdx })}
-            onDelete={idx => handleDelete({ dispatch, selectedIdx: idx, dropped: layoutState.dropped, setSelectedIdx })}
-            onDragEnd={dragAndDrop.handleDragEnd}
-            onDroppedComponentAdd={handleDroppedComponentAdd}
-          />
-        </div>
-        {/* EditorToolbar fixed next to PhonePreview */}
-        {selectedIdx !== null && layoutState.dropped[selectedIdx] && (
-          <EditorToolbar
-            ref={editorToolbarRef}
-            onDelete={() => handleDelete({ dispatch, selectedIdx: selectedIdx, dropped: layoutState.dropped, setSelectedIdx })}
-            onDuplicate={() => handleDuplicate({ dispatch, selectedIdx: selectedIdx, dropped: layoutState.dropped, setSelectedIdx })}
-            onMoveUp={() => handleMoveUp({ dispatch, selectedIdx: selectedIdx, dropped: layoutState.dropped, setSelectedIdx })}
-            onMoveDown={() => handleMoveDown({ dispatch, selectedIdx: selectedIdx, dropped: layoutState.dropped, setSelectedIdx })}
-            disableUp={selectedIdx === 0}
-            disableDown={selectedIdx === layoutState.dropped.length - 1}
-          />
-        )}
-      </div>
-
-      {/* Insert Component Modal */}
-      {openModal === "insert" && (
-        <InsertModal
-          modalPos={modalPos}
-          onInsertComponent={handleInsertComponent}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-
-      {/* Toggle button for admin panel (top left, only when hidden) */}
-      {!showAdminPanel && (
-        <div className={styles.AdminToggle}>
-          <ToolbarButton
-            onClick={() => setShowAdminPanel(true)}
-            title="Show admin panel (⌘.)"
-            icon={Icons.Wallet24}
-            iconSize={ICON_24}
-          />
-        </div>
-      )}
-
-      <AnimatePresence>
-        {showAdminPanel && (
-          <SettingsPanel
-            showAdminPanel={showAdminPanel}
-            isPropEditorVisible={isPropEditorVisible}
-            rightPanelWidth={rightPanelWidth}
-            showTopBar={layoutState.showTopBar}
-            showBottomButtons={layoutState.showBottomButtons}
-            showToast={layoutState.showToast}
-            onShowTopBarChange={() => dispatch({ type: 'UPDATE', payload: { showTopBar: !layoutState.showTopBar } })}
-            onShowBottomButtonsChange={() => dispatch({ type: 'UPDATE', payload: { showBottomButtons: !layoutState.showBottomButtons } })}
-            onShowToastChange={() => dispatch({ type: 'UPDATE', payload: { showToast: !layoutState.showToast } })}
-            onClearLayout={() => setOpenModal("clear")}
-            onShowJsonPanel={() => setShowJsonPanel(v => !v)}
-            showJsonPanel={showJsonPanel}
-            onResetWelcomeModal={handleResetWelcomeModal}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Prop Editor Panel (only shown if needed) */}
-      <AnimatePresence>
-        {isPropEditorVisible && showAdminPanel && (
-          <motion.div
-            className={`${styles.AdminPanel} ${styles.propEditor}`}
-            ref={rightPanelRef}
-            initial={{ x: '100%'}}
-            animate={{ x: 0}}
-            exit={{ x: '100%'}}
-            transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-          >
-            {selectedIdx !== null && layoutState.dropped[selectedIdx]
-              ? renderPropEditor()
-              : renderSpecialPropEditor()}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <JsonPanel
-        visible={isJsonPanelVisible && showAdminPanel}
-        onClose={() => setShowJsonPanel(false)}
-        getLayoutData={urlSharing.getLayoutData}
-        showToast={setToast}
-      />
-
-      {/* Save Modal */}
-      {openModal === "save" && (
-        <SaveModal
-          saveName={localStorage.saveName}
-          onSaveNameChange={localStorage.setSaveName}
-          onSave={handleSave}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-
-      {/* Load Modal */}
-      {openModal === "load" && (
-        <LoadModal
-          loadList={localStorage.loadList}
-          loadError={localStorage.loadError}
-          onLoad={handleLoad}
-          onDeleteSave={handleDeleteSave}
+      {/* Template Modal */}
+      {openModal === 'templates' && (
+        <FlowLibraryModal
+          onLoadComplete={data => {
+            console.log('AdminView received data:', data);
+            dispatch({
+              type: 'SET_ALL_LAYOUTS',
+              layouts: data.layouts,
+              names: data.names,
+              layoutPositions: data.layoutPositions,
+              gridRows: data.gridRows,
+              gridCols: data.gridCols,
+            });
+            setOpenModal(null);
+            setToast('✅ Loaded flow');
+          }}
           onClose={() => setOpenModal(null)}
         />
       )}
 
       {/* Keyboard Shortcuts Modal */}
-      {openModal === "shortcuts" && (
+      {openModal === 'shortcuts' && (
         <ShortcutsModal onClose={() => setOpenModal(null)} />
       )}
 
+          {/* Save Modal */}
+      {openModal === 'save' && (
+        <SaveModal
+          saveName={localStorage.saveName}
+          onSaveNameChange={localStorage.setSaveName}
+          onSave={handleSaveModal}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
+      {/* Load Modal */}
+      {openModal === 'load' && (
+        <LoadModal
+          loadList={localStorage.loadList}
+          loadError={localStorage.loadError}
+          onLoad={handleLoadModal}
+          onDeleteSave={handleDeleteSaveModal}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
       {/* Share Modal */}
-      {openModal === "share" && (
+      {openModal === 'share' && (
         <ShareModal
           shareUrl={urlSharing.shareUrl}
           layoutData={urlSharing.getLayoutData()}
@@ -680,34 +786,211 @@ const AdminView: React.FC<AdminProps> = ({ theme, scale, device, font, tabBackgr
         />
       )}
 
-      {/* Clear Confirmation Modal */}
-      {openModal === "clear" && (
+      {/* Clear All Layouts Modal */}
+      {openModal === 'clearAll' && (
         <ClearModal
-          onClear={() => { setOpenModal(null); handleReset(); }}
+          onClear={() => {
+            setOpenModal(null);
+            handleReset();
+          }}
           onClose={() => setOpenModal(null)}
         />
       )}
+
+      {/* Main Content Area */}
+      <div
+        className={layoutsStyles.CenterContainer}
+        data-theme={theme}
+        data-text-scale={scale}
+        data-device={device}
+        data-font={font}
+        data-tab-bg={tabBackground}
+        style={{ background: adminTheme.backgroundColor }}
+      >
+        {/* Phone Preview Grid */}
+        <div
+          className={layoutsStyles.PhonePreviewContainer}
+          ref={phonePreviewRef}
+        >
+          <PhonePreview
+            showLabels={true}
+            onPhoneSelect={handlePhoneSelect}
+            selected={selected}
+            setSelected={setSelected}
+            setSelectedSpecial={setSelectedSpecial}
+            selectedSpecial={selectedSpecial}
+            onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+            onOpenInsertModal={handleOpenInsertModal}
+            layoutPositions={layoutState.layoutPositions}
+            gridRows={layoutState.gridRows}
+            gridCols={layoutState.gridCols}
+            onAddLayoutAt={handleAddLayoutAt}
+            onDuplicateLayoutAt={handleDuplicateLayoutAt}
+          />
+        </div>
+      </div>
+      {/* Insert Modal for adding components to a phone */}
+      {insertModal && (
+        <InsertModal
+          modalPos={insertModal.modalPos}
+          onInsertComponent={handleInsertComponent}
+          onClose={handleCloseInsertModal}
+        />
+      )}
+
+      {/* Toggle button for admin panel (top left, only when hidden) */}
+      {!showAdminPanel && (
+        <div className={styles.AdminToggle}>
+          <ToolbarButton
+            onClick={() => setShowAdminPanel(true)}
+            title="Show admin panel"
+            icon={Icons.Wallet24}
+            iconSize={ICON_24}
+          />
+        </div>
+      )}
+
+      {/* Global Settings Panel */}
+      <AnimatePresence>
+        {showAdminPanel && (
+          <GlobalSettingsPanel
+            showAdminPanel={showAdminPanel}
+            isPropEditorVisible={isPropEditorVisible}
+            rightPanelWidth={rightPanelWidth}
+            setRightPanelWidth={setRightPanelWidth}
+            onShowJsonPanel={() => setShowJsonPanel(v => !v)}
+            showJsonPanel={showJsonPanel}
+            onResetWelcomeModal={handleResetWelcomeModal}
+            onOpenClearAllLayoutsModal={() => setOpenModal('clearAll')}
+            isPhoneSettingsVisible={activeIndex >= 0 && activeLayout !== null}
+            onClosePhoneSettings={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Phone Settings Panel */}
+      <AnimatePresence>
+        {showAdminPanel && activeIndex >= 0 && activeLayout && (
+          <PhoneSettingsPanel
+            showAdminPanel={showAdminPanel}
+            isPropEditorVisible={isPropEditorVisible}
+            rightPanelWidth={rightPanelWidth}
+            setRightPanelWidth={setRightPanelWidth}
+            showTopBar={!!activeLayout.showTopBar}
+            showBottomButtons={!!activeLayout.showBottomButtons}
+            showToast={!!activeLayout.showToast}
+            onShowTopBarChange={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({
+                  type: 'UPDATE_LAYOUT',
+                  index: activeIndex,
+                  payload: { showTopBar: !activeLayout.showTopBar }
+                });
+              }
+            }}
+            onShowBottomButtonsChange={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({
+                  type: 'UPDATE_LAYOUT',
+                  index: activeIndex,
+                  payload: { showBottomButtons: !activeLayout.showBottomButtons }
+                });
+              }
+            }}
+            onShowToastChange={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({
+                  type: 'UPDATE_LAYOUT',
+                  index: activeIndex,
+                  payload: { showToast: !activeLayout.showToast }
+                });
+              }
+            }}
+            onClearLayout={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({ type: 'RESET_LAYOUT', index: activeIndex });
+              }
+            }}
+            onDeselectPhone={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+            selectedTemplate={selectedTemplate}
+            onApplyTemplate={handleApplyTemplate}
+            showStatusBar={!!activeLayout.showStatusBar}
+            onShowStatusBarChange={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({
+                  type: 'UPDATE_LAYOUT',
+                  index: activeIndex,
+                  payload: { showStatusBar: !activeLayout.showStatusBar }
+                });
+              }
+            }}
+            phoneName={layoutState.layoutNames[activeIndex]}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* JSON Panel */}
+      <JsonPanel
+        visible={showJsonPanel && showAdminPanel}
+        onClose={() => setShowJsonPanel(false)}
+        getLayoutData={layoutData.getLayoutData}
+        showToast={setToast}
+      />
+
+      {/* Prop Editor Panel (only shown if needed) */}
+      <AnimatePresence>
+        {isPropEditorVisible && (
+          <motion.div
+            className={`${styles.AdminPanel} ${styles.propEditor}${propEditorIsHoveringEdge || propEditorIsResizing ? ' ' + styles.resizing : ''}`}
+            ref={rightPanelRef}
+            style={{ width: propEditorWidth, borderLeftColor: (propEditorIsHoveringEdge || propEditorIsResizing) ? '#00C244' : undefined }}
+            initial={{ x: '100%'}}
+            animate={{ x: 0}}
+            exit={{ x: '100%'}}
+            transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+          >
+            {/* Draggable left edge for resizing */}
+            {propEditorResizeHandle}
+            {selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].components[selected.componentIndex]
+              ? renderPropEditor()
+              : renderSpecialPropEditor()}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Toggle button for admin panel */}
+      {!showAdminPanel && (
+        <div className={styles.AdminToggle}>
+          <ToolbarButton
+            onClick={() => setShowAdminPanel(true)}
+            title="Show admin panel"
+            icon={Icons.Wallet24}
+            iconSize={ICON_24}
+          />
+        </div>
+      )}
+
+      {/* Toast notifications */}
+      {toast && <AdminToast message={toast} onDone={() => setToast(null)} />}
 
       {/* Welcome Modal (shows on first visit) */}
       {showWelcomeModal && (
         <WelcomeModal onClose={handleCloseWelcomeModal} />
       )}
-
-      {/* History Modal - shows history stack for debugging */}
-      {showHistoryModal && (
-        <HistoryModal
-          history={historyManager.history}
-          onClose={() => setShowHistoryModal(false)}
-          onJumpTo={idx => {
-            // Jump to specific history entry and restore layout
-            historyManager.jumpToHistory(idx);
-            setShowHistoryModal(false);
-          }}
-        />
-      )}
-
-      {toast && <AdminToast message={toast} onDone={() => setToast(null)} />}
     </div>
+  );
+};
+
+/**
+ * Wrapper component that provides the AdminLayoutProvider
+ */
+const AdminView: React.FC<AdminViewProps> = (props) => {
+  return (
+    <AdminLayoutProvider>
+      <AdminThemeProvider>
+        <AdminViewContent {...props} />
+      </AdminThemeProvider>
+    </AdminLayoutProvider>
   );
 };
 

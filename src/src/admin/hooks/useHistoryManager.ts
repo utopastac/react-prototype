@@ -1,15 +1,27 @@
 import { useEffect, useRef } from 'react';
 import useHistoryStack from './useHistoryStack';
-import { useLayoutData } from './useLayoutData';
+import { useLayoutData, LayoutsData } from './useLayoutData';
 
 /**
- * useHistoryManager
+ * LayoutHistory Interface
  * 
- * Custom hook that encapsulates all history management logic for the admin interface.
- * Handles automatic history capture, undo/redo operations, and state restoration.
+ * Defines the structure of history data for layouts.
+ * Each layout has its own history stack, plus we track the overall layout state.
+ */
+export interface LayoutHistory {
+  /** History stacks for each layout */
+  layoutHistories: LayoutsData[][];
+  /** Names for each layout */
+  layoutNames: string[];
+  /** Active layout index */
+  activeLayoutIndex: number;
+}
+
+/**
+ * useHistoryManager Hook
  * 
- * This hook moves all the complex history logic out of AdminView for better
- * separation of concerns and reusability.
+ * Custom hook that encapsulates all history management logic for the layout interface.
+ * Handles automatic history capture, undo/redo operations, and state restoration for layouts.
  */
 interface UseHistoryManagerProps {
   setSelectedIdx?: (idx: number | null) => void;
@@ -17,7 +29,7 @@ interface UseHistoryManagerProps {
 }
 
 export const useHistoryManager = (props?: UseHistoryManagerProps) => {
-  const { getLayoutData, restoreLayout } = useLayoutData();
+  const { getLayoutData, restoreLayouts } = useLayoutData();
   
   // Initialize history stack with current layout data
   const history = useHistoryStack(getLayoutData());
@@ -61,7 +73,7 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
       return;
     }
     
-    // Add current state to history stack (no metadata needed)
+    // Add current state to history stack
     history.set(currentData);
     
     // Update our reference to prevent duplicate entries
@@ -69,10 +81,9 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
   }, [getLayoutData, history]);
 
   /**
-   * Handle undo operation
+   * Handle undo operation for layout
    * 
-   * FIXED: Uses the returned state from history.undo() to avoid React's async state updates.
-   * This prevents timing issues where history.present hasn't updated yet when checked.
+   * Restores the previous layout state from the history stack.
    */
   const handleUndo = () => {
     // Prevent multiple rapid undo calls
@@ -91,11 +102,10 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
         return;
       }
       
-      // Apply the restored state to the layout
-      restoreLayout(restoredState);
+      // Apply the restored state to the multi-layout
+      restoreLayouts(restoredState);
       
       // Reset selection state since the layout has changed
-      // This prevents issues where a selected component no longer exists
       if (props?.setSelectedIdx) {
         props.setSelectedIdx(null);
       }
@@ -109,10 +119,9 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
   };
 
   /**
-   * Handle redo operation
+   * Handle redo operation for layout
    * 
-   * FIXED: Uses the returned state from history.redo() to avoid React's async state updates.
-   * This prevents timing issues where history.present hasn't updated yet when checked.
+   * Restores the next layout state from the history stack.
    */
   const handleRedo = () => {
     // Prevent multiple rapid redo calls
@@ -131,11 +140,10 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
         return;
       }
       
-      // Apply the restored state to the layout
-      restoreLayout(restoredState);
+      // Apply the restored state to the multi-layout
+      restoreLayouts(restoredState);
       
       // Reset selection state since the layout has changed
-      // This prevents issues where a selected component no longer exists
       if (props?.setSelectedIdx) {
         props.setSelectedIdx(null);
       }
@@ -153,7 +161,7 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
    */
   const jumpToHistory = (idx: number) => {
     history.jumpTo(idx);
-    restoreLayout(history.present);
+    restoreLayouts(history.present);
     
     // Reset selection state since the layout has changed
     if (props?.setSelectedIdx) {
@@ -171,6 +179,40 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
     history.clear();
   };
 
+  /**
+   * Get history statistics
+   */
+  const getHistoryStats = () => {
+    return {
+      totalEntries: history.past.length + 1 + history.future.length,
+      pastEntries: history.past.length,
+      futureEntries: history.future.length,
+      canUndo: history.canUndo,
+      canRedo: history.canRedo
+    };
+  };
+
+  /**
+   * Export history data for debugging or backup
+   */
+  const exportHistory = () => {
+    return {
+      past: history.past,
+      present: history.present,
+      future: history.future,
+      stats: getHistoryStats()
+    };
+  };
+
+  /**
+   * Import history data (for debugging or restoration)
+   */
+  const importHistory = (historyData: any) => {
+    if (historyData.present) {
+      restoreLayouts(historyData.present);
+    }
+  };
+
   return {
     // History state
     canUndo: history.canUndo,
@@ -184,6 +226,11 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
     handleRedo,
     jumpToHistory,
     clearHistory,
+    
+    // History utilities
+    getHistoryStats,
+    exportHistory,
+    importHistory,
     
     // History stack for advanced usage (like HistoryModal)
     history,

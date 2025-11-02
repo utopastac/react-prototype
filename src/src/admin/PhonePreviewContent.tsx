@@ -1,7 +1,7 @@
 // PhonePreviewContent.tsx
 //
 // Renders the live phone preview area in the admin interface.
-// Handles rendering of dropped components, top bar, bottom buttons,
+// Handles rendering of components, top bar, bottom buttons,
 // drag-and-drop reordering, selection, and component actions.
 // Used as the main interactive preview in AdminView.
 
@@ -15,21 +15,15 @@ import ToolbarButton from './components/ToolbarButton';
 // Update the props interface
 type SpecialType = 'topbar' | 'bottombuttons' | 'toast' | 'statusbar';
 interface PhonePreviewContentProps {
-  dropped: { name: string; Component: React.ComponentType<any>; props: any }[];
+  components: { name: string; Component: React.ComponentType<any>; props: any }[];
   selectedIdx: number | null;
   setSelectedIdx: (idx: number | null) => void;
-  draggedIdx: number | null;
-  setDraggedIdx: (idx: number | null) => void;
-  dragOverIdx: number | null;
-  setDragOverIdx: (idx: number | null) => void;
-  isAltPressed: boolean;
-  setIsAltPressed: (v: boolean) => void;
   showTopBar: boolean;
   topBarProps: any;
   setSelectedSpecial: (v: null | SpecialType) => void;
   showBottomButtons: boolean;
   bottomButtonsProps: any;
-  setDropped: React.Dispatch<React.SetStateAction<{ name: string; Component: React.ComponentType<any>; props: any }[]>>;
+  setComponents: React.Dispatch<React.SetStateAction<{ name: string; Component: React.ComponentType<any>; props: any }[]>>;
   styles: any;
   zoomLevel: number;
   isZoomedOut: boolean;
@@ -43,7 +37,6 @@ interface PhonePreviewContentProps {
   onOpenInsertModal: (e: React.MouseEvent, idx: number) => void;
   onDuplicate: (idx: number) => void;
   onDelete: (idx: number) => void;
-  onDragEnd: () => void;
   showToast: boolean;
   toastProps: any;
   Toast: React.ComponentType<any>;
@@ -56,29 +49,22 @@ interface PhonePreviewContentProps {
  * PhonePreviewContent
  *
  * Renders the phone preview area, including:
- * - Dropped components (with drag-and-drop and selection logic)
+ * - Dropped components (with selection logic)
  * - Special UI elements (top bar, bottom buttons)
- * - Visual feedback for drag-and-drop
  * - Action buttons for each component (add, duplicate, divider, delete)
  *
  * Props are passed from AdminView and include all state and handlers needed for interaction.
  */
 const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
-  dropped,
+  components,
   selectedIdx,
   setSelectedIdx,
-  draggedIdx,
-  setDraggedIdx,
-  dragOverIdx,
-  setDragOverIdx,
-  isAltPressed,
-  setIsAltPressed,
   showTopBar,
   topBarProps,
   setSelectedSpecial,
   showBottomButtons,
   bottomButtonsProps,
-  setDropped,
+  setComponents,
   styles,
   zoomLevel,
   isZoomedOut,
@@ -92,7 +78,6 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
   onOpenInsertModal,
   onDuplicate,
   onDelete,
-  onDragEnd,
   showToast,
   toastProps,
   Toast,
@@ -121,38 +106,14 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
         </div>
       )}
       <div className={`${styles.PagePreview} ${showTopBar && styles.offset}`}>
-        {/* Render each dropped component with drag-and-drop and action buttons */}
-        {dropped.map(({ name, Component, props }, idx) => [
-          // Show insert indicator when dragging over this index
-          dragOverIdx === idx ? (
-            <div key={"insert-indicator-" + idx} className={styles.InsertIndicator} />
-          ) : null,
+        {/* Render each component with action buttons */}
+        {components.map(({ name, Component, props }, idx) => (
           <div
             key={name + idx}
-            data-dropped-component
+            data-component
             onClick={() => {
               setSelectedSpecial(null);
               setSelectedIdx(idx);
-            }}
-            draggable
-            onDragStart={e => {
-              setDraggedIdx(idx);
-              setIsAltPressed(e.altKey);
-            }}
-            onDragOver={e => {
-              e.preventDefault();
-              setDragOverIdx(idx);
-              setIsAltPressed(e.altKey);
-            }}
-            onDragLeave={() => setDragOverIdx(null)}
-            onDrop={e => {
-              // REMOVE this entire handler. Drop logic is now handled by the parent PhonePreview drop zone using the useDragAndDrop hook.
-            }}
-            onDragEnd={() => {
-              setDraggedIdx(null);
-              setDragOverIdx(null);
-              setIsAltPressed(false);
-              onDragEnd();
             }}
             style={{ 
               position: 'relative'
@@ -160,10 +121,8 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
             className={[
               styles.DroppedComponent,
               selectedIdx === idx ? styles.Selected : '',
-              draggedIdx === idx ? styles.Dragged : '',
-              dragOverIdx === idx ? styles.DragOver : styles.DroppedCard,
-              showComponentNames ? styles.Highlighted : '',
-              (isAltPressed && draggedIdx !== null) ? styles.DuplicateCursor : ''
+              styles.DroppedCard,
+              showComponentNames ? styles.Highlighted : ''
             ].filter(Boolean).join(' ')}
 
           >
@@ -210,15 +169,15 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
                   title="Insert divider"
                   onClick={e => {
                     e.stopPropagation();
-                    setDropped(prev => {
-                      const newDropped = [...prev];
-                      newDropped.splice(idx + 1, 0, {
-                        name: "Divider",
-                        Component: Divider,
-                        props: initialComponentProps["Divider"]
+                      setComponents(prev => {
+                        const newComponents = [...prev];
+                        newComponents.splice(idx + 1, 0, {
+                          name: "Divider",
+                          Component: Divider,
+                          props: initialComponentProps["Divider"]
+                        });
+                        return newComponents;
                       });
-                      return newDropped;
-                    });
                     setSelectedIdx(idx + 1);
                   }}
                   icon={Icons.Limits24}
@@ -239,11 +198,7 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
               </div>
             )}
           </div>
-        ])}
-        {/* Show insert indicator at the end when dragging over the end of the list */}
-        {dragOverIdx === dropped.length ? (
-          <div key="insert-indicator-end" className={styles.InsertIndicator} />
-        ) : null}
+        ))}
       </div>
       
       {/* Render the bottom button group as a special selectable component */}

@@ -12,7 +12,7 @@
  * - This enables rapid prototyping and consistent UI patterns across the app
  * 
  * STRUCTURE:
- * - Each template has a name, array of dropped components, and optional special props
+ * - Each template has a name, array of components, and optional special props
  * - Components are defined with their initial props and can be customized
  * - Special props control the top navigation bar and bottom action buttons
  * - Templates use the same component system as the drag-and-drop interface
@@ -33,14 +33,14 @@ import { Images } from 'src/data/Images';
  * Defines the structure for a template that can be applied to the admin interface.
  * Templates consist of:
  * - name: Display name for the template selector
- * - dropped: Array of components with their props to render in the layout
+ * - components: Array of components with their props to render in the layout
  * - topBarProps: Optional configuration for the top navigation bar
  * - bottomButtonsProps: Optional configuration for bottom action buttons
  */
 export interface AdminTemplate {
   name: string;
   group?: string,
-  dropped: { name: string; Component: React.ComponentType<any>; props: any }[];
+  components: { name: string; Component: React.ComponentType<any>; props: any }[];
   topBarProps?: TopBarProps;
   bottomButtonsProps?: ButtonGroupProps;
   toastProps?: ToastProps;
@@ -71,7 +71,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Blank',
     group: 'Information',
-    dropped: [],
+    components: [],
     topBarProps: {
       title: '',
       left: undefined,
@@ -91,7 +91,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Loading',
     group: 'Information',
-    dropped: [
+    components: [
       {
         name: 'ProgressCircular',
         Component: (FormblockerComponents as any)['ProgressCircular'],
@@ -116,7 +116,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Simple List',
     group: 'Information',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -194,7 +194,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Promo Page',
     group: 'Information',
-    dropped: [
+    components: [
       {
         name: 'Header',
         Component: (FormblockerComponents as any)['Header'],
@@ -288,7 +288,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Radio options',
     group: 'Form',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -381,7 +381,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Checkbox options',
     group: 'Form',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -475,7 +475,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Input Fields',
     group: 'Form',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -548,7 +548,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Error Message',
     group: 'Information',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -602,7 +602,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Success Message',
     group: 'Information',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -654,7 +654,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Address Form',
     group: 'Form',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -734,7 +734,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Long Form Text',
     group: 'Form',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -794,7 +794,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'PIN Entry',
     group: 'Authentication',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -853,7 +853,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Code Verification',
     group: 'Authentication',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
@@ -907,7 +907,7 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Account Verification Options',
     group: 'Authentication',
-    dropped: [
+    components: [
       {
         name: 'Divider',
         Component: (FormblockerComponents as any)['Divider'],
