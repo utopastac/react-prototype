@@ -8,19 +8,19 @@ import { FormblockerComponents, initialComponentProps } from 'src/data/Component
 import * as Icons from 'src/data/Icons';
 import { ICON_24 } from 'src/components/Icon';
 import styles from 'src/admin/index.module.sass';
-import multiStyles from 'src/admin/multi.module.sass';
-import { useMultiLayoutData } from 'src/admin/hooks/useMultiLayoutData';
-import { useMultiLayoutContext } from 'src/admin/MultiLayoutContext';
+import layoutsStyles from 'src/admin/layouts.module.sass';
+import { useLayoutData } from 'src/admin/hooks/useLayoutData';
+import { useAdminLayoutContext } from 'src/admin/AdminLayoutContext';
 import { formatComponentName } from 'src/admin/formatComponentName';
 import EditableLabel from './EditableLabel';
 import { usePanelResize } from '../hooks/usePanelResize';
 import Tabs, { TabItem } from './Tabs';
 
 /**
- * Props interface for the MultiComponentPanel component
+ * Props interface for the ComponentPanel component
  * Defines all the callbacks and state needed for the admin panel functionality
  */
-interface MultiComponentPanelProps {
+interface ComponentPanelProps {
   showAdminPanel: boolean;
   adminPanelWidth: number;
   setAdminPanelWidth: (w: number) => void;
@@ -41,7 +41,7 @@ interface MultiComponentPanelProps {
   selected?: { layoutIdx: number, droppedIdx: number } | null; // NEW PROP
 }
 
-const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
+const ComponentPanel: React.FC<ComponentPanelProps> = ({
   showAdminPanel,
   adminPanelWidth,
   setAdminPanelWidth, // NEW PROP
@@ -63,8 +63,8 @@ const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
 }) => {
   // Tab state: 'layouts' or 'components'
   const [activeTab, setActiveTab] = useState<'layouts' | 'components'>('layouts');
-  const { layoutNames, activeLayoutIndex } = useMultiLayoutData();
-  const [multiLayoutState, dispatch] = useMultiLayoutContext();
+  const { layoutNames, activeLayoutIndex } = useLayoutData();
+  const [layoutState, dispatch] = useAdminLayoutContext();
 
   // Tab configuration
   const tabItems: TabItem[] = [
@@ -132,15 +132,15 @@ const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
           />
           {/* Layout List */}
           {activeTab === 'layouts' && (
-            <div className={multiStyles.LayoutList}>
+            <div className={layoutsStyles.LayoutList}>
               {layoutNames.map((name, idx) => {
                 const isActive = idx === activeLayoutIndex;
-                const dropped = multiLayoutState.layouts[idx]?.dropped || [];
+                const dropped = layoutState.layouts[idx]?.dropped || [];
                 const selectedComponentIdx = selected && selected.layoutIdx === idx ? selected.droppedIdx : null;
                 return (
                   <div
                     key={name + idx}
-                    className={`${multiStyles.LayoutListItem} ${isActive ? multiStyles.active : ''}`}
+                    className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
                     onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
                   >
                     <h4>
@@ -148,8 +148,8 @@ const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
                         label={name}
                         onRenameFinish={newName => handleRenameLayout(idx, newName)}
                         onRenameCancel={() => {}}
-                        className={multiStyles.LayoutName}
-                        inputClassName={multiStyles.LayoutName}
+                        className={layoutsStyles.LayoutName}
+                        inputClassName={layoutsStyles.LayoutName}
                       />
                     </h4>
                     {/* Show dropped components if this layout is active */}
@@ -158,7 +158,7 @@ const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
                         {dropped.map((item, cidx) => (
                           <li
                             key={item.name + cidx}
-                            className={selectedComponentIdx === cidx ? multiStyles.active : ''}
+                            className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
                             onClick={e => {
                               e.stopPropagation();
                               if (onDroppedComponentClick) {
@@ -219,4 +219,4 @@ const MultiComponentPanel: React.FC<MultiComponentPanelProps> = ({
   );
 };
 
-export default MultiComponentPanel; 
+export default ComponentPanel; 

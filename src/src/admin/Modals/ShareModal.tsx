@@ -5,11 +5,11 @@ import * as Icons from 'src/data/Icons';
 import styles from './index.module.sass';
 import { downloadAsFile } from 'src/helpers/Utils';
 import { LayoutData } from '../LayoutContext';
-import { MultiLayoutData } from '../hooks/useMultiLayoutData';
+import { LayoutsData } from '../hooks/useLayoutData';
 
 interface ShareModalProps {
   shareUrl: string;
-  layoutData: LayoutData | MultiLayoutData;
+  layoutData: LayoutData | LayoutsData;
   onClose: () => void;
   showToast?: (message: string) => void;
 }

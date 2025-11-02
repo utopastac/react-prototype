@@ -1,15 +1,15 @@
-import { useMultiLayoutContext } from '../MultiLayoutContext';
+import { useAdminLayoutContext } from '../AdminLayoutContext';
 import { LayoutData } from '../LayoutContext';
 import { FormblockerComponents } from 'src/data/Components';
 import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
 /**
- * MultiLayoutData Interface
+ * LayoutsData Interface
  * 
- * Defines the structure of serializable multi-layout data.
+ * Defines the structure of serializable layout data for multiple layouts.
  * This is used for saving/loading layouts, URL sharing, and history management.
  */
-export interface MultiLayoutData {
+export interface LayoutsData {
   /** Array of layout data, one per phone preview */
   layouts: LayoutData[];
   /** Names for each layout for display and identification */
@@ -22,21 +22,19 @@ export interface MultiLayoutData {
 }
 
 /**
- * useMultiLayoutData Hook
- * 
- * Provides serialization and restoration of multi-layout state for sharing and persistence.
+ * useLayoutData Hook
+ *
+ * Provides serialization and restoration of layout state for sharing and persistence.
  * Converts between runtime state (with component references) and serializable data.
- * Uses MultiLayoutContext for state and dispatch.
- * 
- * This hook extends the single-layout useLayoutData to handle multiple layouts.
+ * Uses AdminLayoutContext for state and dispatch.
  */
-export const useMultiLayoutData = () => {
-  const [state, dispatch] = useMultiLayoutContext();
+export const useLayoutData = () => {
+  const [state, dispatch] = useAdminLayoutContext();
 
   /**
-   * Get current multi-layout data for sharing/downloading
+   * Get current layout data for sharing/downloading
    * 
-   * This function serializes the current multi-layout state into a format that can be:
+   * This function serializes the current layout state into a format that can be:
    * - Stored in localStorage
    * - Shared via URL
    * - Saved to history stack
@@ -45,9 +43,9 @@ export const useMultiLayoutData = () => {
    * It strips out non-serializable data like component references and keeps
    * only the essential layout configuration for all layouts.
    * 
-   * @returns MultiLayoutData object with serializable multi-layout configuration
+   * @returns LayoutsData object with serializable layout configuration
    */
-  const getMultiLayoutData = (): MultiLayoutData => {
+  const getLayoutData = (): LayoutsData => {
     const layouts = state.layouts.map(layout => ({
       dropped: layout.dropped.map(c => ({ name: c.name, props: { ...c.props } })),
       topBarProps: layout.topBarProps,
@@ -75,10 +73,10 @@ export const useMultiLayoutData = () => {
   };
 
   /**
-   * Restore multi-layout from serialized data
+   * Restore layouts from serialized data
    * 
-   * This function takes a MultiLayoutData object (from getMultiLayoutData, localStorage,
-   * URL sharing, or history stack) and restores it to the runtime multi-layout state.
+   * This function takes a LayoutsData object (from getLayoutData, localStorage,
+   * URL sharing, or history stack) and restores it to the runtime layout state.
    * 
    * It converts the serialized data back into runtime state by:
    * - Mapping component names back to component references for all layouts
@@ -88,9 +86,9 @@ export const useMultiLayoutData = () => {
    * NOTE: Selection state (selectedIdx, selectedSpecial) is managed separately
    * in the parent component as local state, so we don't restore it here.
    * 
-   * @param data - MultiLayoutData object to restore from
+   * @param data - LayoutsData object to restore from
    */
-  const restoreMultiLayout = (data: MultiLayoutData) => {
+  const restoreLayouts = (data: LayoutsData) => {
     const restoredLayouts = (data.layouts || []).map((layoutData: any) => ({
       dropped: (layoutData.dropped || []).map((item: any) => ({
         name: item.name,
@@ -139,27 +137,27 @@ export const useMultiLayoutData = () => {
   };
 
   /**
-   * Export multi-layout data as JSON string
+   * Export layout data as JSON string
    * 
-   * @returns JSON string representation of the multi-layout data
+   * @returns JSON string representation of the layout data
    */
-  const exportMultiLayout = (): string => {
-    return JSON.stringify(getMultiLayoutData(), null, 2);
+  const exportLayout = (): string => {
+    return JSON.stringify(getLayoutData(), null, 2);
   };
 
   /**
-   * Import multi-layout data from JSON string
+   * Import layout data from JSON string
    * 
    * @param jsonString - JSON string to import from
    * @returns true if import was successful, false otherwise
    */
-  const importMultiLayout = (jsonString: string): boolean => {
+  const importLayout = (jsonString: string): boolean => {
     try {
-      const data = JSON.parse(jsonString) as MultiLayoutData;
-      restoreMultiLayout(data);
+      const data = JSON.parse(jsonString) as LayoutsData;
+      restoreLayouts(data);
       return true;
     } catch (error) {
-      console.error('Failed to import multi-layout data:', error);
+      console.error('Failed to import layout data:', error);
       return false;
     }
   };
@@ -170,7 +168,7 @@ export const useMultiLayoutData = () => {
    * @param index - Index of the layout to get data for
    * @returns LayoutData for the specified layout, or null if index is invalid
    */
-  const getLayoutData = (index: number): LayoutData | null => {
+  const getLayoutDataByIndex = (index: number): LayoutData | null => {
     if (index < 0 || index >= state.layouts.length) return null;
     
     const layout = state.layouts[index];
@@ -194,15 +192,15 @@ export const useMultiLayoutData = () => {
    * @param index - Index of the layout to restore
    * @param layoutData - LayoutData to restore
    */
-  const restoreLayout = (index: number, layoutData: LayoutData) => {
+  const restoreLayoutByIndex = (index: number, layoutData: LayoutData) => {
     if (index < 0 || index >= state.layouts.length) return;
     
     const restoredLayout = {
       dropped: (layoutData.dropped || []).map((item: any) => ({
-        name: item.name,
-        Component: (FormblockerComponents as any)[item.name],
-        props: item.props || {}
-      })),
+          name: item.name,
+          Component: (FormblockerComponents as any)[item.name],
+          props: item.props || {}
+        })),
       topBarProps: layoutData.topBarProps,
       showTopBar: !!layoutData.showTopBar,
       bottomButtonsProps: layoutData.bottomButtonsProps,
@@ -222,15 +220,15 @@ export const useMultiLayoutData = () => {
   };
 
   return {
-    // Multi-layout operations
-    getMultiLayoutData,
-    restoreMultiLayout,
-    exportMultiLayout,
-    importMultiLayout,
-    
-    // Single layout operations
+    // Layout operations
     getLayoutData,
-    restoreLayout,
+    restoreLayouts,
+    exportLayout,
+    importLayout,
+    
+    // Single layout operations (by index)
+    getLayoutDataByIndex,
+    restoreLayoutByIndex,
     
     // Current state
     layouts: state.layouts,

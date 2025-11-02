@@ -1,16 +1,16 @@
 import { useEffect, useRef } from 'react';
 import useHistoryStack from './useHistoryStack';
-import { useMultiLayoutData, MultiLayoutData } from './useMultiLayoutData';
+import { useLayoutData, LayoutsData } from './useLayoutData';
 
 /**
- * MultiLayoutHistory Interface
+ * LayoutHistory Interface
  * 
- * Defines the structure of history data for multiple layouts.
- * Each layout has its own history stack, plus we track the overall multi-layout state.
+ * Defines the structure of history data for layouts.
+ * Each layout has its own history stack, plus we track the overall layout state.
  */
-export interface MultiLayoutHistory {
+export interface LayoutHistory {
   /** History stacks for each layout */
-  layoutHistories: MultiLayoutData[][];
+  layoutHistories: LayoutsData[][];
   /** Names for each layout */
   layoutNames: string[];
   /** Active layout index */
@@ -18,24 +18,21 @@ export interface MultiLayoutHistory {
 }
 
 /**
- * useMultiLayoutHistory Hook
+ * useHistoryManager Hook
  * 
- * Custom hook that encapsulates all history management logic for the multi-layout interface.
- * Handles automatic history capture, undo/redo operations, and state restoration for multiple layouts.
- * 
- * This hook extends the single-layout useHistoryManager to handle multiple layouts with
- * independent history stacks for each layout.
+ * Custom hook that encapsulates all history management logic for the layout interface.
+ * Handles automatic history capture, undo/redo operations, and state restoration for layouts.
  */
-interface UseMultiLayoutHistoryProps {
+interface UseHistoryManagerProps {
   setSelectedIdx?: (idx: number | null) => void;
   setSelectedSpecial?: (special: null | 'topbar' | 'bottombuttons' | 'toast') => void;
 }
 
-export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
-  const { getMultiLayoutData, restoreMultiLayout } = useMultiLayoutData();
+export const useHistoryManager = (props?: UseHistoryManagerProps) => {
+  const { getLayoutData, restoreLayouts } = useLayoutData();
   
-  // Initialize history stack with current multi-layout data
-  const history = useHistoryStack(getMultiLayoutData());
+  // Initialize history stack with current layout data
+  const history = useHistoryStack(getLayoutData());
   
   // Track the last serialized state to detect changes
   const lastJsonRef = useRef<string | null>(null);
@@ -48,13 +45,13 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
 
   // On mount, push the initial state to history
   useEffect(() => {
-    history.set(getMultiLayoutData());
-    lastJsonRef.current = JSON.stringify(getMultiLayoutData());
+    history.set(getLayoutData());
+    lastJsonRef.current = JSON.stringify(getLayoutData());
     hasInitialized.current = true;
     // eslint-disable-next-line
   }, []);
 
-  // Auto-history effect: track all multi-layout state changes
+  // Auto-history effect: track all layout state changes
   useEffect(() => {
     // Don't capture history before initialization
     if (!hasInitialized.current) return;
@@ -63,7 +60,7 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
     if (isRestoringFromHistory.current) return;
     
     // Immediate capture without debouncing for more responsive undo/redo
-    const currentData = getMultiLayoutData();
+    const currentData = getLayoutData();
     const currentJson = JSON.stringify(currentData);
     
     // Only create history entry if state actually changed
@@ -81,12 +78,12 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
     
     // Update our reference to prevent duplicate entries
     lastJsonRef.current = currentJson;
-  }, [getMultiLayoutData, history]);
+  }, [getLayoutData, history]);
 
   /**
-   * Handle undo operation for multi-layout
+   * Handle undo operation for layout
    * 
-   * Restores the previous multi-layout state from the history stack.
+   * Restores the previous layout state from the history stack.
    */
   const handleUndo = () => {
     // Prevent multiple rapid undo calls
@@ -106,7 +103,7 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
       }
       
       // Apply the restored state to the multi-layout
-      restoreMultiLayout(restoredState);
+      restoreLayouts(restoredState);
       
       // Reset selection state since the layout has changed
       if (props?.setSelectedIdx) {
@@ -122,9 +119,9 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
   };
 
   /**
-   * Handle redo operation for multi-layout
+   * Handle redo operation for layout
    * 
-   * Restores the next multi-layout state from the history stack.
+   * Restores the next layout state from the history stack.
    */
   const handleRedo = () => {
     // Prevent multiple rapid redo calls
@@ -144,7 +141,7 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
       }
       
       // Apply the restored state to the multi-layout
-      restoreMultiLayout(restoredState);
+      restoreLayouts(restoredState);
       
       // Reset selection state since the layout has changed
       if (props?.setSelectedIdx) {
@@ -164,7 +161,7 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
    */
   const jumpToHistory = (idx: number) => {
     history.jumpTo(idx);
-    restoreMultiLayout(history.present);
+    restoreLayouts(history.present);
     
     // Reset selection state since the layout has changed
     if (props?.setSelectedIdx) {
@@ -212,7 +209,7 @@ export const useMultiLayoutHistory = (props?: UseMultiLayoutHistoryProps) => {
    */
   const importHistory = (historyData: any) => {
     if (historyData.present) {
-      restoreMultiLayout(historyData.present);
+      restoreLayouts(historyData.present);
     }
   };
 

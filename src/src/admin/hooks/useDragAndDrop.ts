@@ -2,15 +2,15 @@
 let globalDraggedName: string | null = null;
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { useMultiLayoutContext } from '../MultiLayoutContext';
+import { useAdminLayoutContext } from '../AdminLayoutContext';
 import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
 
 /**
- * MultiLayoutDragDropState Interface
+ * DragDropState Interface
  * 
- * Defines the state for multi-layout drag-and-drop operations.
+ * Defines the state for layout drag-and-drop operations.
  */
-export interface MultiLayoutDragDropState {
+export interface DragDropState {
   /** Index of the layout being dragged from */
   draggedLayoutIndex: number | null;
   /** Index of the component being dragged */
@@ -26,19 +26,19 @@ export interface MultiLayoutDragDropState {
 }
 
 /**
- * useMultiLayoutDragDrop Hook
- * 
+ * useDragAndDrop Hook
+ *
  * Custom hook that handles drag-and-drop operations across multiple phone layouts.
  * Supports moving and copying components between different layouts.
- * 
+ *
  * Features:
  * - Cross-layout component movement
  * - Alt+drag for copying components
  * - Visual feedback for drag operations
  * - Validation of drop targets
  */
-export const useMultiLayoutDragDrop = () => {
-  const [multiLayoutState, dispatch] = useMultiLayoutContext();
+export const useDragAndDrop = () => {
+  const [layoutState, dispatch] = useAdminLayoutContext();
   // Remove local draggedName state and ref
   // For visual feedback (optional)
   const [dragOverLayoutIndex, setDragOverLayoutIndex] = useState<number | null>(null);
@@ -69,7 +69,7 @@ export const useMultiLayoutDragDrop = () => {
    */
   const handleDrop = (layoutIndex: number, dropPosition: number | null, e: React.DragEvent) => {
     e.preventDefault();
-    const name = multiLayoutState.draggedName;
+    const name = layoutState.draggedName;
     console.log('[DND] handleDrop called. draggedName:', name, 'layoutIndex:', layoutIndex, 'dropPosition:', dropPosition);
     if (!name) return;
     const Component = (FormblockerComponents as any)[name];
@@ -78,7 +78,7 @@ export const useMultiLayoutDragDrop = () => {
       console.log('[DND] No component found for', name);
       return;
     }
-    const layout = multiLayoutState.layouts[layoutIndex];
+    const layout = layoutState.layouts[layoutIndex];
     const newDropped = [...layout.dropped];
     
     // Insert at the specified position, or at the end if no position specified
@@ -108,7 +108,7 @@ export const useMultiLayoutDragDrop = () => {
   };
 
   return {
-    draggedName: multiLayoutState.draggedName,
+    draggedName: layoutState.draggedName,
     setDraggedName: setDraggedNameWithLog,
     dragOverLayoutIndex,
     handleDrop,

@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MultiLayoutProvider, useMultiLayoutContext, useActiveLayout } from './MultiLayoutContext';
-import MultiPhonePreview from './MultiPhonePreview';
+import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
+import PhonePreview from './PhonePreview';
 import LayoutTabs from './LayoutTabs';
-import { useMultiLayoutHistory } from './hooks/useMultiLayoutHistory';
-import { useMultiLayoutData } from './hooks/useMultiLayoutData';
-import { useMultiLayoutDragDrop } from './hooks/useMultiLayoutDragDrop';
+import { useHistoryManager } from './hooks/useHistoryManager';
+import { useLayoutData } from './hooks/useLayoutData';
+import { useDragAndDrop } from './hooks/useDragAndDrop';
 import styles from './index.module.sass';
-import multiStyles from './multi.module.sass';
-import MultiComponentPanel from './components/MultiComponentPanel';
+import layoutsStyles from './layouts.module.sass';
+import ComponentPanel from './components/ComponentPanel';
 import SettingsPanel from './components/SettingsPanel';
 import AdminToast from './components/Toast';
 import ToolbarButton from './components/ToolbarButton';
@@ -34,7 +34,7 @@ import {
   handleDuplicateMulti,
   handleSelectPreviousMulti,
   handleSelectNextMulti
-} from './multiComponentHandlers';
+} from './adminComponentHandlers';
 import { isEditingField } from 'src/helpers/Utils';
 import { AdminTemplate, AdminTemplates } from './Templates';
 import SaveModal from './Modals/SaveModal';
@@ -42,15 +42,15 @@ import LoadModal from './Modals/LoadModal';
 import ShareModal from './Modals/ShareModal';
 import { WelcomeModal, ShortcutsModal, FlowLibraryModal } from './Modals';
 import ClearModal from './Modals/ClearModal';
-import { useMultiLocalStorage } from './hooks/useMultiLocalStorage';
-import { useMultiUrlSharing } from './hooks/useMultiUrlSharing';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { useUrlSharing } from './hooks/useUrlSharing';
 import lzString from 'lz-string';
-import MultiJsonPanel from './components/MultiJsonPanel';
+import JsonPanel from './components/JsonPanel';
 import GlobalSettingsPanel from './components/GlobalSettingsPanel';
 import PhoneSettingsPanel from './components/PhoneSettingsPanel';
 import InsertModal from './Modals/InsertModal';
 import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
-import { useMultiKeyboardShortcuts } from './hooks/useMultiKeyboardShortcuts';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import SelectInput from './LabeledInput/SelectInput';
 import {
   INITIAL_TOP_BAR_PROPS,
@@ -63,23 +63,20 @@ import { AdminThemeProvider, useAdminTheme, useAdminThemeDispatch } from './Admi
 import { usePanelResize } from './hooks/usePanelResize';
 
 /**
- * MultiLayoutAdminView
+ * AdminView
  *
- * A sample implementation showing how to integrate the multi-layout system
- * into a working admin interface. This demonstrates:
+ * The main admin interface for building and editing UI layouts.
+ * Features:
  * 
  * - Multiple phone previews in a grid layout
  * - Tab navigation between layouts
- * - Cross-phone drag-and-drop
+ * - Cross-layout drag-and-drop
  * - Independent prop editing for each layout
- * - Save/load functionality for the entire multi-layout state
+ * - Save/load functionality for layout state
  * - History management with undo/redo
- * 
- * This is a reference implementation that can be used as a starting point
- * for integrating multi-layout functionality into the existing AdminView.
  */
 
-interface MultiLayoutAdminViewProps {
+interface AdminViewProps {
   theme: string;
   scale: string;
   device: string;
@@ -108,14 +105,14 @@ function updateNestedState<T>(prev: T, fullKey: string, value: any): T {
   return setDeep(prev, keys, value);
 }
 
-const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
+const AdminViewContent: React.FC<AdminViewProps> = ({
   theme,
   scale,
   device,
   font,
   tabBackground
 }) => {
-  const [multiLayoutState, dispatch] = useMultiLayoutContext();
+  const [layoutState, dispatch] = useAdminLayoutContext();
   const { layout: activeLayout, index: activeIndex } = useActiveLayout();
   
   // Local UI state
@@ -130,7 +127,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   const [isPropEditorVisible, setIsPropEditorVisible] = useState(false);
   // New: showComponentNames state (stub for now, can be implemented later)
   const [showComponentNames, setShowComponentNames] = useState(false);
-  
+
   // Global selection: only one component selected at a time across all phones
   const [selected, setSelected] = useState<{ phoneIndex: number, componentIndex: number } | null>(null);
 
@@ -141,27 +138,27 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   // Effect: update isPropEditorVisible when selection changes
   useEffect(() => {
     if (
-      (selected && multiLayoutState.layouts[selected.phoneIndex] && multiLayoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]) ||
+      (selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]) ||
       selectedSpecial
     ) {
       setIsPropEditorVisible(true);
     } else {
       setIsPropEditorVisible(false);
     }
-  }, [selected, selectedSpecial, multiLayoutState.layouts]);
+  }, [selected, selectedSpecial, layoutState.layouts]);
 
   // Refs
   const phonePreviewRef = useRef<HTMLDivElement>(null);
   const rightPanelRef = useRef<HTMLDivElement>(null);
 
   // Hooks
-  const historyManager = useMultiLayoutHistory({
+  const historyManager = useHistoryManager({
     setSelectedIdx: setSelectedPhoneIndex,
     setSelectedSpecial: () => {} // Not used in this implementation
   });
 
-  const multiLayoutData = useMultiLayoutData();
-  const dragDrop = useMultiLayoutDragDrop();
+  const layoutData = useLayoutData();
+  const dragDrop = useDragAndDrop();
 
   // Panel dimensions (now in AdminThemeContext)
   const adminTheme = useAdminTheme();
@@ -252,10 +249,10 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       }
     }
     // Add blank layout
-    const newLayouts = [...multiLayoutState.layouts, { ...multiLayoutState.layouts[0], showStatusBar: true }];
-    const newNames = [...multiLayoutState.layoutNames, `Layout ${multiLayoutState.layouts.length + 1}`];
+    const newLayouts = [...layoutState.layouts, { ...layoutState.layouts[0], showStatusBar: true }];
+    const newNames = [...layoutState.layoutNames, `Layout ${layoutState.layouts.length + 1}`];
     const newIndex = newLayouts.length - 1;
-    const newLayoutPositions = { ...multiLayoutState.layoutPositions, [newIndex]: { row, col } };
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: { row, col } };
     const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
     dispatch({
       type: 'SET_ALL_LAYOUTS',
@@ -272,9 +269,9 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   // Add layout with selected template
   function handleAddLayoutWithTemplate(row: number, col: number, template: AdminTemplate) {
     const newLayouts = [
-      ...multiLayoutState.layouts,
+      ...layoutState.layouts,
       {
-        ...multiLayoutState.layouts[0],
+        ...layoutState.layouts[0],
         dropped: template.dropped.map(c => ({ ...c, props: { ...c.props } })),
         topBarProps: template.topBarProps ?? INITIAL_TOP_BAR_PROPS,
         showTopBar: template.topBarProps !== undefined,
@@ -283,12 +280,12 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
         toastProps: template.toastProps ? { ...INITIAL_TOAST_PROPS, ...template.toastProps } : INITIAL_TOAST_PROPS,
         statusBarProps: template.statusBarProps ? { ...INITIAL_STATUS_BAR_PROPS, ...template.statusBarProps } : INITIAL_STATUS_BAR_PROPS,
         showToast: false,
-        showStatusBar: template.statusBarProps !== undefined ? true : multiLayoutState.layouts[0].showStatusBar,
+        showStatusBar: template.statusBarProps !== undefined ? true : layoutState.layouts[0].showStatusBar,
       },
     ];
-    const newNames = [...multiLayoutState.layoutNames, template.name];
+    const newNames = [...layoutState.layoutNames, template.name];
     const newIndex = newLayouts.length - 1;
-    const newLayoutPositions = { ...multiLayoutState.layoutPositions, [newIndex]: { row, col } };
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: { row, col } };
     const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
     dispatch({
       type: 'SET_ALL_LAYOUTS',
@@ -305,12 +302,12 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   }
   // Example: Duplicate a layout to the right
   function handleDuplicateLayoutAt(index: number) {
-    const layoutToDuplicate = multiLayoutState.layouts[index];
-    const nameToDuplicate = multiLayoutState.layoutNames[index];
-    const currentPos = multiLayoutState.layoutPositions[index] || { row: 0, col: 0 };
+    const layoutToDuplicate = layoutState.layouts[index];
+    const nameToDuplicate = layoutState.layoutNames[index];
+    const currentPos = layoutState.layoutPositions[index] || { row: 0, col: 0 };
     // Find all occupied columns in the current row
     const occupiedCols = new Set<number>();
-    Object.values(multiLayoutState.layoutPositions).forEach(pos => {
+    Object.values(layoutState.layoutPositions).forEach(pos => {
       if (pos.row === currentPos.row) occupiedCols.add(pos.col);
     });
     // Find the next available col in the same row
@@ -321,13 +318,13 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
     let newRow = currentPos.row;
     let newCol = nextCol;
     // If nextCol exceeds gridCols, move to next row, col=0
-    const maxCol = Math.max(...Object.values(multiLayoutState.layoutPositions).filter(pos => pos.row === currentPos.row).map(pos => pos.col), 0);
+    const maxCol = Math.max(...Object.values(layoutState.layoutPositions).filter(pos => pos.row === currentPos.row).map(pos => pos.col), 0);
     if (nextCol > maxCol + 1) {
       // Find the first available col in the next row
       newRow = currentPos.row + 1;
       // Find all occupied cols in the new row
       const nextRowOccupiedCols = new Set<number>();
-      Object.values(multiLayoutState.layoutPositions).forEach(pos => {
+      Object.values(layoutState.layoutPositions).forEach(pos => {
         if (pos.row === newRow) nextRowOccupiedCols.add(pos.col);
       });
       newCol = 0;
@@ -335,11 +332,11 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
         newCol++;
       }
     }
-    const newLayouts = [...multiLayoutState.layouts, { ...layoutToDuplicate }];
-    const newNames = [...multiLayoutState.layoutNames, `${nameToDuplicate} (Copy)`];
+    const newLayouts = [...layoutState.layouts, { ...layoutToDuplicate }];
+    const newNames = [...layoutState.layoutNames, `${nameToDuplicate} (Copy)`];
     const newIndex = newLayouts.length - 1;
     const newPos = { row: newRow, col: newCol };
-    const newLayoutPositions = { ...multiLayoutState.layoutPositions, [newIndex]: newPos };
+    const newLayoutPositions = { ...layoutState.layoutPositions, [newIndex]: newPos };
     const { gridRows, gridCols } = recalcGridSize(newLayoutPositions);
     dispatch({
       type: 'SET_ALL_LAYOUTS',
@@ -355,8 +352,8 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   // Prop editor logic
   // Render prop editor for selected dropped component (for the selected phone)
   const renderPropEditor = () => {
-    if (!selected || !multiLayoutState.layouts[selected.phoneIndex]) return null;
-    const layout = multiLayoutState.layouts[selected.phoneIndex];
+    if (!selected || !layoutState.layouts[selected.phoneIndex]) return null;
+    const layout = layoutState.layouts[selected.phoneIndex];
     const dropped = layout.dropped;
     const comp = dropped[selected.componentIndex];
     if (!comp) return null;
@@ -370,7 +367,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
           onChange={(fullKey, value) => {
             // Update nested props for the selected component
             const prevProps = comp.props;
-            const newProps = updateNestedState(prevProps, fullKey, value);
+    const newProps = updateNestedState(prevProps, fullKey, value);
             const newDropped = dropped.map((item, idx) =>
               idx === selected.componentIndex ? { ...item, props: newProps } : item
             );
@@ -390,7 +387,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   };
   // Special prop change handler for a given phone
   const handleSpecialMetaPropChange = (which: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar', phoneIndex: number) => (fullKey: string, value: any) => {
-    const layout = multiLayoutState.layouts[phoneIndex];
+    const layout = layoutState.layouts[phoneIndex];
     if (which === 'topbar') {
       dispatch({
         type: 'UPDATE_LAYOUT',
@@ -435,11 +432,11 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
         setIsPropEditorVisible(false);
       }}
     />
-  );
+    );
   // Render prop editor for TopBar, ButtonGroup, or Toast for the selected phone
   const renderSpecialPropEditor = () => {
     if (!selectedSpecial) return null;
-    const layout = multiLayoutState.layouts[selectedSpecial.phoneIndex];
+    const layout = layoutState.layouts[selectedSpecial.phoneIndex];
     if (selectedSpecial.type === 'topbar') {
       return renderSpecialPanel(
         'Top Bar Settings',
@@ -484,12 +481,12 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       index: targetIndex,
       payload: {
         dropped: template.dropped.map((c: { name: string; Component: React.ComponentType<any>; props: any }) => ({ ...c, props: { ...c.props } })),
-        topBarProps: template.topBarProps ?? multiLayoutState.layouts[targetIndex].topBarProps,
-        showTopBar: !!template.topBarProps,
-        bottomButtonsProps: template.bottomButtonsProps ?? multiLayoutState.layouts[targetIndex].bottomButtonsProps,
+        topBarProps: template.topBarProps ?? layoutState.layouts[targetIndex].topBarProps,
+      showTopBar: !!template.topBarProps,
+        bottomButtonsProps: template.bottomButtonsProps ?? layoutState.layouts[targetIndex].bottomButtonsProps,
         statusBarProps: template.statusBarProps,
-        showBottomButtons: !!template.bottomButtonsProps,
-        showStatusBar: template.statusBarProps !== undefined ? true : multiLayoutState.layouts[targetIndex].showStatusBar,
+      showBottomButtons: !!template.bottomButtonsProps,
+        showStatusBar: template.statusBarProps !== undefined ? true : layoutState.layouts[targetIndex].showStatusBar,
       }
     });
     setSelectedTemplate(template);
@@ -521,9 +518,9 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
     setShowWelcomeModal(true);
   };
 
-  // Multi-layout local storage and sharing hooks
-  const multiLocalStorage = useMultiLocalStorage();
-  const multiUrlSharing = useMultiUrlSharing();
+  // Local storage and sharing hooks
+  const localStorage = useLocalStorage();
+  const urlSharing = useUrlSharing();
 
   // Ref to prevent auto-save immediately after restore
   const justRestored = useRef(false);
@@ -532,43 +529,43 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   useEffect(() => {
     const hash = window.location.hash;
     const queryIndex = hash.indexOf('?');
-    let hasSharedMultiLayout = false;
+    let hasSharedLayout = false;
     if (queryIndex !== -1) {
       const params = new URLSearchParams(hash.substring(queryIndex + 1));
-      if (params.get('multiLayout')) {
-        hasSharedMultiLayout = true;
-      }
+      if (params.get('layout')) {
+        hasSharedLayout = true;
     }
-    if (!hasSharedMultiLayout) {
-      multiLocalStorage.loadCurrent();
+    }
+    if (!hasSharedLayout) {
+      localStorage.loadCurrent();
       justRestored.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Auto-save to 'current' on any multi-layout state change, but skip immediately after restore
+  // Auto-save to 'current' on any layout state change, but skip immediately after restore
   useEffect(() => {
     if (justRestored.current) {
       justRestored.current = false;
       return;
     }
-    multiLocalStorage.saveCurrent();
+    localStorage.saveCurrent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [multiLayoutState]);
+  }, [layoutState]);
 
   // Save handler for modal
   const handleSaveModal = () => {
-    const success = multiLocalStorage.handleSave();
+    const success = localStorage.handleSave();
     if (success) {
       setOpenModal(null);
       setToast('✅ Saved successfully');
-      multiLocalStorage.setSaveName('');
-      multiLocalStorage.setLoadList(multiLocalStorage.getLoadList());
+      localStorage.setSaveName('');
+      localStorage.setLoadList(localStorage.getLoadList());
     }
   };
   // Load handler for modal
   const handleLoadModal = (name: string) => {
-    const success = multiLocalStorage.handleLoad(name);
+    const success = localStorage.handleLoad(name);
     if (success) {
       setOpenModal(null);
       setToast('✅ Loaded successfully');
@@ -576,12 +573,12 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   };
   // Delete save handler
   const handleDeleteSaveModal = (name: string) => {
-    multiLocalStorage.handleDeleteSave(name);
-    multiLocalStorage.setLoadList(multiLocalStorage.getLoadList());
+    localStorage.handleDeleteSave(name);
+    localStorage.setLoadList(localStorage.getLoadList());
   };
   // Share handler for modal
   const handleShareModal = () => {
-    multiUrlSharing.handleShare();
+    urlSharing.handleShare();
     setOpenModal('share');
   };
 
@@ -614,7 +611,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
   const handleInsertComponent = (name: string) => {
     if (insertModal) {
       const { phoneIndex, componentIndex } = insertModal;
-      const layout = multiLayoutState.layouts[phoneIndex];
+      const layout = layoutState.layouts[phoneIndex];
       const Component = (FormblockerComponents as any)[name];
       const newDropped = [...layout.dropped];
       newDropped.splice(componentIndex + 1, 0, {
@@ -658,9 +655,9 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
     setOpenModal(modal as any);
   };
 
-  useMultiKeyboardShortcuts({
+  useKeyboardShortcuts({
     selected,
-    multiLayoutState,
+    layoutState,
     dispatch,
     setSelected,
     setIsAltPressed,
@@ -674,7 +671,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
     setShowComponentNames,
     // New handlers for keyboard shortcuts:
     handleLoad: () => {
-      multiLocalStorage.setLoadList(multiLocalStorage.getLoadList());
+      localStorage.setLoadList(localStorage.getLoadList());
       setOpenModal('load');
     },
     handleShowShortcuts: () => setOpenModal('shortcuts'),
@@ -720,7 +717,8 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       {/* Component Panel */}
       <AnimatePresence>
         {showAdminPanel && (
-          <MultiComponentPanel
+          <ComponentPanel
+            key="component-panel"
             showAdminPanel={showAdminPanel}
             adminPanelWidth={adminPanelWidth}
             setAdminPanelWidth={setAdminPanelWidth}
@@ -730,7 +728,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
             onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
             onOpenSave={() => setOpenModal('save')}
             onOpenLoad={() => {
-              multiLocalStorage.setLoadList(multiLocalStorage.getLoadList());
+              localStorage.setLoadList(localStorage.getLoadList());
               setOpenModal('load');
             }}
             onShare={handleShareModal}
@@ -767,7 +765,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       {openModal === 'templates' && (
         <FlowLibraryModal
           onLoadComplete={data => {
-            console.log('MultiLayoutAdminView received data:', data);
+            console.log('AdminView received data:', data);
             dispatch({
               type: 'SET_ALL_LAYOUTS',
               layouts: data.layouts,
@@ -788,11 +786,11 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
         <ShortcutsModal onClose={() => setOpenModal(null)} />
       )}
 
-      {/* Save Modal */}
+          {/* Save Modal */}
       {openModal === 'save' && (
         <SaveModal
-          saveName={multiLocalStorage.saveName}
-          onSaveNameChange={multiLocalStorage.setSaveName}
+          saveName={localStorage.saveName}
+          onSaveNameChange={localStorage.setSaveName}
           onSave={handleSaveModal}
           onClose={() => setOpenModal(null)}
         />
@@ -800,8 +798,8 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       {/* Load Modal */}
       {openModal === 'load' && (
         <LoadModal
-          loadList={multiLocalStorage.loadList}
-          loadError={multiLocalStorage.loadError}
+          loadList={localStorage.loadList}
+          loadError={localStorage.loadError}
           onLoad={handleLoadModal}
           onDeleteSave={handleDeleteSaveModal}
           onClose={() => setOpenModal(null)}
@@ -810,8 +808,8 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
       {/* Share Modal */}
       {openModal === 'share' && (
         <ShareModal
-          shareUrl={multiUrlSharing.shareUrl}
-          layoutData={multiUrlSharing.getMultiLayoutData()}
+          shareUrl={urlSharing.shareUrl}
+          layoutData={urlSharing.getLayoutData()}
           onClose={() => setOpenModal(null)}
           showToast={setToast}
         />
@@ -830,7 +828,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
 
       {/* Main Content Area */}
       <div
-        className={multiStyles.MultiCenterContainer}
+        className={layoutsStyles.CenterContainer}
         data-theme={theme}
         data-text-scale={scale}
         data-device={device}
@@ -838,12 +836,12 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
         data-tab-bg={tabBackground}
         style={{ background: adminTheme.backgroundColor }}
       >
-        {/* Multi-Phone Preview */}
+        {/* Phone Preview Grid */}
         <div
-          className={multiStyles.MultiPhonePreviewContainer}
+          className={layoutsStyles.PhonePreviewContainer}
           ref={phonePreviewRef}
         >
-          <MultiPhonePreview
+          <PhonePreview
             showLabels={true}
             onPhoneSelect={handlePhoneSelect}
             selected={selected}
@@ -854,9 +852,9 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
             setIsAltPressed={setIsAltPressed}
             onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
             onOpenInsertModal={handleOpenInsertModal}
-            layoutPositions={multiLayoutState.layoutPositions}
-            gridRows={multiLayoutState.gridRows}
-            gridCols={multiLayoutState.gridCols}
+            layoutPositions={layoutState.layoutPositions}
+            gridRows={layoutState.gridRows}
+            gridCols={layoutState.gridCols}
             onAddLayoutAt={handleAddLayoutAt}
             onDuplicateLayoutAt={handleDuplicateLayoutAt}
           />
@@ -957,16 +955,16 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
                 });
               }
             }}
-            phoneName={multiLayoutState.layoutNames[activeIndex]}
+            phoneName={layoutState.layoutNames[activeIndex]}
           />
         )}
       </AnimatePresence>
 
-      {/* Multi-Layout JSON Panel */}
-      <MultiJsonPanel
+      {/* JSON Panel */}
+      <JsonPanel
         visible={showJsonPanel && showAdminPanel}
         onClose={() => setShowJsonPanel(false)}
-        getMultiLayoutData={multiLayoutData.getMultiLayoutData}
+        getLayoutData={layoutData.getLayoutData}
         showToast={setToast}
       />
 
@@ -984,7 +982,7 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
           >
             {/* Draggable left edge for resizing */}
             {propEditorResizeHandle}
-            {selected && multiLayoutState.layouts[selected.phoneIndex] && multiLayoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]
+            {selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]
               ? renderPropEditor()
               : renderSpecialPropEditor()}
           </motion.div>
@@ -1015,16 +1013,16 @@ const MultiLayoutAdminViewContent: React.FC<MultiLayoutAdminViewProps> = ({
 };
 
 /**
- * Wrapper component that provides the MultiLayoutProvider
+ * Wrapper component that provides the AdminLayoutProvider
  */
-const MultiLayoutAdminView: React.FC<MultiLayoutAdminViewProps> = (props) => {
+const AdminView: React.FC<AdminViewProps> = (props) => {
   return (
-    <MultiLayoutProvider>
+    <AdminLayoutProvider>
       <AdminThemeProvider>
-        <MultiLayoutAdminViewContent {...props} />
+        <AdminViewContent {...props} />
       </AdminThemeProvider>
-    </MultiLayoutProvider>
+    </AdminLayoutProvider>
   );
 };
 
-export default MultiLayoutAdminView; 
+export default AdminView;

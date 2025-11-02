@@ -9,11 +9,11 @@ import {
   handleSelectNextMulti,
   handleCopyMultiComponent,
   handlePasteMultiComponent
-} from '../multiComponentHandlers';
+} from '../adminComponentHandlers';
 
-interface MultiKeyboardShortcutsProps {
+interface KeyboardShortcutsProps {
   selected: { phoneIndex: number, componentIndex: number } | null;
-  multiLayoutState: any;
+  layoutState: any;
   dispatch: any;
   setSelected: any;
   setIsAltPressed: any;
@@ -32,9 +32,9 @@ interface MultiKeyboardShortcutsProps {
   handleShowTemplates?: () => void;
 }
 
-export function useMultiKeyboardShortcuts({
+export function useKeyboardShortcuts({
   selected,
-  multiLayoutState,
+  layoutState,
   dispatch,
   setSelected,
   setIsAltPressed,
@@ -51,7 +51,7 @@ export function useMultiKeyboardShortcuts({
   handleShareModal,
   setOpenModal,
   handleShowTemplates,
-}: MultiKeyboardShortcutsProps) {
+}: KeyboardShortcutsProps) {
   const clipboardRef = useRef<{ type: 'component' | 'layout', data: any } | null>(null);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export function useMultiKeyboardShortcuts({
     const getCurrent = () => {
       if (!selected) return { dropped: [], phoneIndex: 0, componentIndex: null };
       const { phoneIndex, componentIndex } = selected;
-      const layout = multiLayoutState.layouts[phoneIndex];
+      const layout = layoutState.layouts[phoneIndex];
       return { dropped: layout.dropped, phoneIndex, componentIndex };
     };
 
@@ -281,7 +281,7 @@ export function useMultiKeyboardShortcuts({
         action: () => {
           return handleCopyMultiComponent({
             selected,
-            multiLayoutState,
+            layoutState,
             clipboardRef,
             deepClone
           });
@@ -294,7 +294,7 @@ export function useMultiKeyboardShortcuts({
         action: () => {
           return handlePasteMultiComponent({
             selected,
-            multiLayoutState,
+            layoutState,
             dispatch,
             setSelected,
             clipboardRef,
@@ -325,5 +325,5 @@ export function useMultiKeyboardShortcuts({
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [selected, multiLayoutState, dispatch, setSelected, setIsAltPressed, setShowAdminPanel, setShowComponentNames, handleReset, handleSave, handleLoad, handleShowShortcuts, handleShareModal, setOpenModal, handleShowTemplates]);
+  }, [selected, layoutState, dispatch, setSelected, setIsAltPressed, setShowAdminPanel, setShowComponentNames, handleReset, handleSave, handleLoad, handleShowShortcuts, handleShareModal, setOpenModal, handleShowTemplates]);
 } 

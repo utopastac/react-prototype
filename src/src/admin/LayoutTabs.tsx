@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useMultiLayoutContext } from './MultiLayoutContext';
+import { useAdminLayoutContext } from './AdminLayoutContext';
 import styles from './index.module.sass';
 import Icon, { ICON_16, ICON_ADMIN } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
@@ -47,7 +47,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
   onLayoutDelete,
   onLayoutRename
 }) => {
-  const [multiLayoutState, dispatch] = useMultiLayoutContext();
+  const [layoutState, dispatch] = useAdminLayoutContext();
   const [editingTabIndex, setEditingTabIndex] = useState<number | null>(null);
   const [editingName, setEditingName] = useState<string>('');
   const [draggedTabIndex, setDraggedTabIndex] = useState<number | null>(null);
@@ -64,7 +64,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
    * Handle adding a new layout
    */
   const handleAddLayout = () => {
-    const newName = `Layout ${multiLayoutState.layouts.length + 1}`;
+    const newName = `Layout ${layoutState.layouts.length + 1}`;
     dispatch({ type: 'ADD_LAYOUT', name: newName });
     onLayoutAdd?.(newName);
   };
@@ -73,7 +73,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
    * Handle deleting a layout
    */
   const handleDeleteLayout = (index: number) => {
-    if (multiLayoutState.layouts.length <= 1) return; // Don't delete last layout
+    if (layoutState.layouts.length <= 1) return; // Don't delete last layout
     
     dispatch({ type: 'REMOVE_LAYOUT', index });
     onLayoutDelete?.(index);
@@ -86,7 +86,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
     if (!allowRenaming) return;
     
     setEditingTabIndex(index);
-    setEditingName(multiLayoutState.layoutNames[index]);
+    setEditingName(layoutState.layoutNames[index]);
   };
 
   /**
@@ -153,8 +153,8 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
     <div className={styles.LayoutTabs}>
       <div className={styles.TabContainer}>
         <AnimatePresence>
-          {multiLayoutState.layouts.map((layout, index) => {
-            const isActive = index === multiLayoutState.activeLayoutIndex;
+          {layoutState.layouts.map((layout, index) => {
+            const isActive = index === layoutState.activeLayoutIndex;
             const isEditing = index === editingTabIndex;
             const isDragged = index === draggedTabIndex;
             
@@ -198,7 +198,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
                     />
                   ) : (
                     <span className={styles.TabName}>
-                      {multiLayoutState.layoutNames[index]}
+                      {layoutState.layoutNames[index]}
                     </span>
                   )}
                   
@@ -209,7 +209,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
                 </div>
 
                 {/* Delete button */}
-                {showDeleteButtons && multiLayoutState.layouts.length > 1 && (
+                {showDeleteButtons && layoutState.layouts.length > 1 && (
                   <ToolbarButton
                     title="Delete layout"
                     onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

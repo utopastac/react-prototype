@@ -10,7 +10,7 @@ import './index.sass';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import MultiLayoutAdminView from 'src/admin/MultiLayoutAdminView.tsx';
+import AdminView from 'src/admin/AdminView';
 import { useTheme } from './containers/ThemeContext';
 import { useTabBackground } from './containers/TabBackgroundContext';
 
@@ -31,11 +31,11 @@ function AppWrapper() {
   return (
     <div>
       <Routes>
-        {/* Multi Admin panel route - accessible at /multi-admin */}
+        {/* Admin panel route - accessible at /admin */}
         <Route
-          path="/multi-admin"
+          path="/admin"
           element={
-            <WithThemeProps Component={MultiLayoutAdminView} />
+              <WithThemeProps Component={AdminView} />
           }
         />
         

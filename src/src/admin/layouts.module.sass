@@ -3,7 +3,7 @@
 
 $zoom-transition: transform 0s ease
 
-.MultiCenterContainer
+.CenterContainer
   position: relative
   flex: 1
   display: flex
@@ -13,14 +13,14 @@ $zoom-transition: transform 0s ease
   gap: size(24)
   background-color: $gray-f4
 
-.MultiPhonePreviewContainer
+.PhonePreviewContainer
   position: absolute
   top: 0
   left: 0
   bottom: 0
   right: 0
 
-.MultiPhonePreview
+.PhonePreview
   overflow: auto
   width: 100%
   height: 100%
@@ -59,7 +59,7 @@ $zoom-transition: transform 0s ease
   color: $dev-tools-text-light
   margin: size(4) 0
 
-.MultiPhoneItem
+.PhoneItem
   position: relative
   display: flex
   flex-direction: column
@@ -298,5 +298,5 @@ $zoom-transition: transform 0s ease
   &:active
     cursor: grabbing
 
-.MultiPhoneItem:hover .LayoutDragHandle
+.PhoneItem:hover .LayoutDragHandle
   opacity: 1

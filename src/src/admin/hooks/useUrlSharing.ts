@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import lzString from 'lz-string';
-import { useMultiLayoutData } from './useMultiLayoutData';
+import { useLayoutData } from './useLayoutData';
 import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
-export const useMultiUrlSharing = () => {
+export const useUrlSharing = () => {
   const [shareUrl, setShareUrl] = useState('');
-  const multiLayoutData = useMultiLayoutData();
+  const layoutData = useLayoutData();
 
   const handleShare = () => {
-    const layout = multiLayoutData.getMultiLayoutData();
+    const layout = layoutData.getLayoutData();
     // Transform image URLs before sharing to ensure they work in production
     const transformedLayout = {
       ...layout,
@@ -17,25 +17,25 @@ export const useMultiUrlSharing = () => {
     const json = JSON.stringify(transformedLayout);
     const compressed = lzString.compressToEncodedURIComponent(json);
     const base = `${window.location.origin}${window.location.pathname}${window.location.hash.split('?')[0]}`;
-    const url = `${base}?multiLayout=${compressed}`;
+    const url = `${base}?layout=${compressed}`;
     setShareUrl(url);
     return url;
   };
 
-  // On mount, check for a multiLayout param in the URL and restore if present
+  // On mount, check for a layout param in the URL and restore if present
   useEffect(() => {
-    // Example hash: "#/admin?multiLayout=ENCODED_STRING"
+    // Example hash: "#/admin?layout=ENCODED_STRING"
     const hash = window.location.hash;
     const queryIndex = hash.indexOf('?');
     if (queryIndex !== -1) {
       const params = new URLSearchParams(hash.substring(queryIndex + 1));
-      const multiLayoutParam = params.get('multiLayout');
-      if (multiLayoutParam) {
+      const layoutParam = params.get('layout');
+      if (layoutParam) {
         try {
-          const json = lzString.decompressFromEncodedURIComponent(multiLayoutParam);
+          const json = lzString.decompressFromEncodedURIComponent(layoutParam);
           if (json) {
             const data = JSON.parse(json);
-            multiLayoutData.restoreMultiLayout(data);
+            layoutData.restoreLayouts(data);
           }
         } catch (e) {
           // ignore
@@ -47,7 +47,7 @@ export const useMultiUrlSharing = () => {
   return {
     shareUrl,
     setShareUrl,
-    getMultiLayoutData: multiLayoutData.getMultiLayoutData,
+    getLayoutData: layoutData.getLayoutData,
     handleShare
   };
 }; 

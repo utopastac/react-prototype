@@ -1,4 +1,4 @@
-// Multi-layout-aware component handlers for use in MultiLayoutAdminView and similar contexts
+// Layout-aware component handlers for use in AdminView and similar contexts
 
 export function handleDeleteMulti({
   dispatch,
@@ -124,18 +124,18 @@ export function handleSelectNextMulti({
 // Copy the selected component to clipboardRef
 export function handleCopyMultiComponent({
   selected,
-  multiLayoutState,
+  layoutState,
   clipboardRef,
   deepClone = (obj: any) => JSON.parse(JSON.stringify(obj)),
 }: {
   selected: { phoneIndex: number, componentIndex: number } | null;
-  multiLayoutState: any;
+  layoutState: any;
   clipboardRef: React.MutableRefObject<any>;
   deepClone?: (obj: any) => any;
 }) {
   if (selected) {
     const { phoneIndex, componentIndex } = selected;
-    const layout = multiLayoutState.layouts[phoneIndex];
+    const layout = layoutState.layouts[phoneIndex];
     if (componentIndex !== null && layout.dropped[componentIndex]) {
       clipboardRef.current = {
         type: 'component',
@@ -153,14 +153,14 @@ export function handleCopyMultiComponent({
 import { FormblockerComponents } from 'src/data/Components';
 export function handlePasteMultiComponent({
   selected,
-  multiLayoutState,
+  layoutState,
   dispatch,
   setSelected,
   clipboardRef,
   deepClone = (obj: any) => JSON.parse(JSON.stringify(obj)),
 }: {
   selected: { phoneIndex: number, componentIndex: number } | null;
-  multiLayoutState: any;
+  layoutState: any;
   dispatch: any;
   setSelected: any;
   clipboardRef: React.MutableRefObject<any>;
@@ -173,7 +173,7 @@ export function handlePasteMultiComponent({
   }
   if (selected) {
     const { phoneIndex, componentIndex } = selected;
-    const layout = multiLayoutState.layouts[phoneIndex];
+    const layout = layoutState.layouts[phoneIndex];
     if (layout) {
       const newComponent = {
         ...deepClone(clipboard.data),

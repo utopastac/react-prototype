@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useMultiLayoutData, MultiLayoutData } from './useMultiLayoutData';
+import { useLayoutData, LayoutsData } from './useLayoutData';
 
-export const useMultiLocalStorage = () => {
+export const useLocalStorage = () => {
   const [saveName, setSaveName] = useState('');
   const [loadList, setLoadList] = useState<string[]>([]);
   const [loadError, setLoadError] = useState('');
 
-  const multiLayoutData = useMultiLayoutData();
+  const layoutData = useLayoutData();
 
   // Helper: get all saves from localStorage
   const getAllSaves = () => {
-    const raw = localStorage.getItem('funblocker_multi_saves');
+    const raw = localStorage.getItem('funblocker_layout_saves');
     if (!raw) return {};
     try {
       return JSON.parse(raw);
@@ -21,22 +21,22 @@ export const useMultiLocalStorage = () => {
 
   // Helper: update saves in localStorage
   const setAllSaves = (saves: Record<string, any>) => {
-    localStorage.setItem('funblocker_multi_saves', JSON.stringify(saves));
+    localStorage.setItem('funblocker_layout_saves', JSON.stringify(saves));
   };
 
   // Reserved key for auto-save
   const CURRENT_KEY = '__current__';
 
-  // Save current multi-layout
+  // Save current layout
   const handleSave = () => {
     if (!saveName.trim()) return false;
     const saves = getAllSaves();
-    saves[saveName] = multiLayoutData.getMultiLayoutData();
+    saves[saveName] = layoutData.getLayoutData();
     setAllSaves(saves);
     return true;
   };
 
-  // Load a saved multi-layout
+  // Load a saved layout
   const handleLoad = (name: string) => {
     const saves = getAllSaves();
     const data = saves[name];
@@ -44,24 +44,24 @@ export const useMultiLocalStorage = () => {
       setLoadError('Save not found.');
       return false;
     }
-    multiLayoutData.restoreMultiLayout(data);
+    layoutData.restoreLayouts(data);
     setLoadError('');
     return true;
   };
 
-  // Save current multi-layout as 'current' (auto-save)
+  // Save current layout as 'current' (auto-save)
   const saveCurrent = () => {
     const saves = getAllSaves();
-    saves[CURRENT_KEY] = multiLayoutData.getMultiLayoutData();
+    saves[CURRENT_KEY] = layoutData.getLayoutData();
     setAllSaves(saves);
   };
 
-  // Restore multi-layout from 'current' (auto-restore)
+  // Restore layout from 'current' (auto-restore)
   const loadCurrent = () => {
     const saves = getAllSaves();
     const data = saves[CURRENT_KEY];
     if (data) {
-      multiLayoutData.restoreMultiLayout(data);
+      layoutData.restoreLayouts(data);
       return true;
     }
     return false;
