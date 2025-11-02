@@ -1,4 +1,3 @@
-export { default as InsertModal } from './InsertModal';
 export { default as SaveModal } from './SaveModal';
 export { default as LoadModal } from './LoadModal';
 export { default as ShortcutsModal } from './ShortcutsModal';

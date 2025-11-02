@@ -2,39 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
 import PhonePreview from './PhonePreview';
-import LayoutTabs from './LayoutTabs';
 import { useHistoryManager } from './hooks/useHistoryManager';
 import { useLayoutData } from './hooks/useLayoutData';
 import styles from './index.module.sass';
 import layoutsStyles from './layouts.module.sass';
 import ComponentPanel from './components/ComponentPanel';
-import SettingsPanel from './components/SettingsPanel';
 import AdminToast from './components/Toast';
 import ToolbarButton from './components/ToolbarButton';
-import Icon, { ICON_24, ICON_ADMIN } from 'src/components/Icon';
+import { ICON_24 } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import GenericPropEditor from './GenericPropEditor';
 import { ComponentPropMeta } from 'src/data/Components';
-import TopBar, { TopBarPropMeta } from 'src/components/TopBar';
-import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
+import { TopBarPropMeta } from 'src/components/TopBar';
+import { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import { ToastPropMeta } from 'src/components/Toast';
-import {
-  handleDelete,
-  handleDuplicate,
-  handleMoveUp,
-  handleMoveDown,
-  handleSelectPrevious,
-  handleSelectNext
-} from './componentHandlers';
-import {
-  handleDeleteMulti,
-  handleMoveUpMulti,
-  handleMoveDownMulti,
-  handleDuplicateMulti,
-  handleSelectPreviousMulti,
-  handleSelectNextMulti
-} from './adminComponentHandlers';
-import { isEditingField } from 'src/helpers/Utils';
 import { AdminTemplate, AdminTemplates } from './Templates';
 import SaveModal from './Modals/SaveModal';
 import LoadModal from './Modals/LoadModal';
@@ -43,12 +24,9 @@ import { WelcomeModal, ShortcutsModal, FlowLibraryModal } from './Modals';
 import ClearModal from './Modals/ClearModal';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useUrlSharing } from './hooks/useUrlSharing';
-import lzString from 'lz-string';
 import JsonPanel from './components/JsonPanel';
 import GlobalSettingsPanel from './components/GlobalSettingsPanel';
 import PhoneSettingsPanel from './components/PhoneSettingsPanel';
-import InsertModal from './Modals/InsertModal';
-import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import SelectInput from './LabeledInput/SelectInput';
 import {
@@ -194,17 +172,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   };
 
   // --- GRID HELPERS ---
-  function getNextGridPosition(layoutPositions: Record<number, { row: number, col: number }>, gridRows: number, gridCols: number) {
-    // Find the first empty spot in the grid
-    const used = new Set(Object.values(layoutPositions).map(pos => `${pos.row},${pos.col}`));
-    for (let row = 0; row < gridRows; row++) {
-      for (let col = 0; col < gridCols; col++) {
-        if (!used.has(`${row},${col}`)) return { row, col };
-      }
-    }
-    // If full, add a new row
-    return { row: gridRows, col: 0 };
-  }
   function recalcGridSize(layoutPositions: Record<number, { row: number, col: number }>) {
     let maxRow = 0, maxCol = 0;
     Object.values(layoutPositions).forEach(pos => {
@@ -581,52 +548,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   // JSON panel state
   const [showJsonPanel, setShowJsonPanel] = useState(false);
 
-  // Insert modal state: { phoneIndex, componentIndex, modalPos } | null
-  const [insertModal, setInsertModal] = useState<{
-    phoneIndex: number;
-    componentIndex: number;
-    modalPos: { x: number; y: number };
-  } | null>(null);
-
-  // Handler to open the insert modal for a given phone/component
-  const handleOpenInsertModal = (
-    phoneIndex: number,
-    componentIndex: number,
-    e: React.MouseEvent
-  ) => {
-    // Position modal near the button
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
-    setInsertModal({
-      phoneIndex,
-      componentIndex,
-      modalPos: { x: rect.right + 8, y: rect.top },
-    });
-  };
-
-  // Handler to insert a component into the correct phone at the correct index
-  const handleInsertComponent = (name: string) => {
-    if (insertModal) {
-      const { phoneIndex, componentIndex } = insertModal;
-      const layout = layoutState.layouts[phoneIndex];
-      const Component = (FormblockerComponents as any)[name];
-      const newComponents = [...layout.components];
-      newComponents.splice(componentIndex + 1, 0, {
-        name,
-        Component,
-        props: { ...(initialComponentProps as any)[name] },
-      });
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { components: newComponents },
-      });
-      setInsertModal(null);
-      setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
-    }
-  };
-
-  // Handler to close the insert modal
-  const handleCloseInsertModal = () => setInsertModal(null);
 
   // Deselect on click outside the prop editor
   useEffect(() => {
@@ -820,7 +741,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             setSelectedSpecial={setSelectedSpecial}
             selectedSpecial={selectedSpecial}
             onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
-            onOpenInsertModal={handleOpenInsertModal}
             layoutPositions={layoutState.layoutPositions}
             gridRows={layoutState.gridRows}
             gridCols={layoutState.gridCols}
@@ -829,14 +749,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
           />
         </div>
       </div>
-      {/* Insert Modal for adding components to a phone */}
-      {insertModal && (
-        <InsertModal
-          modalPos={insertModal.modalPos}
-          onInsertComponent={handleInsertComponent}
-          onClose={handleCloseInsertModal}
-        />
-      )}
 
       {/* Toggle button for admin panel (top left, only when hidden) */}
       {!showAdminPanel && (

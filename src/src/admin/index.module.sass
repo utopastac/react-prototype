@@ -178,8 +178,6 @@
   &:hover
     &::after
       display: block
-    .ComponentButtons
-      display: flex
 .DroppedStack > div
   cursor: grab
 .DroppedStack > div:active
@@ -199,19 +197,6 @@
     display: block !important
     border: 2px dashed $admin-brand-highlight
     z-index: 10000
-.ComponentButtons
-  position: absolute
-  display: none
-  left: 50%
-  gap: size(2)
-  transform: translateX(-50%)
-  bottom: -size(16)
-  padding: size(2)
-  z-index: 2
-  @extend %admin-panel
-  border-radius: $dev-tools-wrapper-border-radius
-  box-shadow: $elevation-2
-  @extend %admin-panel
 .PanelBox
   border-top: 1px solid $dev-tools-section-border
   h4

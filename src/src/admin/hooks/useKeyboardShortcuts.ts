@@ -1,15 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { isEditingField } from 'src/helpers/Utils';
-import { FormblockerComponents } from 'src/data/Components';
-import {
-  handleDeleteMulti,
-  handleMoveUpMulti,
-  handleMoveDownMulti,
-  handleSelectPreviousMulti,
-  handleSelectNextMulti,
-  handleCopyMultiComponent,
-  handlePasteMultiComponent
-} from '../adminComponentHandlers';
 
 interface KeyboardShortcutsProps {
   selected: { phoneIndex: number, componentIndex: number } | null;
@@ -50,12 +40,7 @@ export function useKeyboardShortcuts({
   setOpenModal,
   handleShowTemplates,
 }: KeyboardShortcutsProps) {
-  const clipboardRef = useRef<{ type: 'component' | 'layout', data: any } | null>(null);
-
   useEffect(() => {
-    // Helper for deep cloning
-    const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
-
     const getCurrent = () => {
       if (!selected) return { components: [], phoneIndex: 0, componentIndex: null };
       const { phoneIndex, componentIndex } = selected;
@@ -63,38 +48,20 @@ export function useKeyboardShortcuts({
       return { components: layout.components, phoneIndex, componentIndex };
     };
 
-    const setSelectedIdx = (idx: number | null) => {
-      if (!selected) return;
-      setSelected(idx === null ? null : { phoneIndex: selected.phoneIndex, componentIndex: idx });
-    };
-
     const shortcuts = [
-      {
-        key: 'Backspace',
-        condition: () => selected && !isEditingField(),
-        action: () => {
-          const { components, phoneIndex, componentIndex } = getCurrent();
-          handleDeleteMulti({
-            dispatch,
-            phoneIndex,
-            componentIndex,
-            components,
-            setSelected
-          });
-          return true;
-        }
-      },
       {
         key: 'ArrowLeft',
         condition: () => !isEditingField(),
         action: () => {
           const { components, phoneIndex, componentIndex } = getCurrent();
-          handleSelectPreviousMulti({
-            phoneIndex,
-            componentIndex,
-            components,
-            setSelected
-          });
+          // Navigate to previous component
+          if (componentIndex === null) {
+            if (components.length > 0) {
+              setSelected({ phoneIndex, componentIndex: components.length - 1 });
+            }
+          } else if (componentIndex > 0) {
+            setSelected({ phoneIndex, componentIndex: componentIndex - 1 });
+          }
           return true;
         }
       },
@@ -103,42 +70,14 @@ export function useKeyboardShortcuts({
         condition: () => !isEditingField(),
         action: () => {
           const { components, phoneIndex, componentIndex } = getCurrent();
-          handleSelectNextMulti({
-            phoneIndex,
-            componentIndex,
-            components,
-            setSelected
-          });
-          return true;
-        }
-      },
-      {
-        key: 'ArrowUp',
-        condition: () => selected && !isEditingField(),
-        action: () => {
-          const { components, phoneIndex, componentIndex } = getCurrent();
-          handleMoveUpMulti({
-            dispatch,
-            phoneIndex,
-            componentIndex,
-            components,
-            setSelected
-          });
-          return true;
-        }
-      },
-      {
-        key: 'ArrowDown',
-        condition: () => selected && !isEditingField(),
-        action: () => {
-          const { components, phoneIndex, componentIndex } = getCurrent();
-          handleMoveDownMulti({
-            dispatch,
-            phoneIndex,
-            componentIndex,
-            components,
-            setSelected
-          });
+          // Navigate to next component
+          if (componentIndex === null) {
+            if (components.length > 0) {
+              setSelected({ phoneIndex, componentIndex: 0 });
+            }
+          } else if (componentIndex < components.length - 1) {
+            setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
+          }
           return true;
         }
       },
@@ -270,34 +209,6 @@ export function useKeyboardShortcuts({
             return true;
           }
           return false;
-        }
-      },
-      {
-        key: 'c',
-        // Cmd/Ctrl+C: Copy component or layout
-        condition: (e?: KeyboardEvent) => (e?.metaKey || e?.ctrlKey) && !isEditingField(),
-        action: () => {
-          return handleCopyMultiComponent({
-            selected,
-            layoutState,
-            clipboardRef,
-            deepClone
-          });
-        }
-      },
-      {
-        key: 'v',
-        // Cmd/Ctrl+V: Paste component or layout
-        condition: (e?: KeyboardEvent) => (e?.metaKey || e?.ctrlKey) && !isEditingField(),
-        action: () => {
-          return handlePasteMultiComponent({
-            selected,
-            layoutState,
-            dispatch,
-            setSelected,
-            clipboardRef,
-            deepClone
-          });
         }
       },
     ];

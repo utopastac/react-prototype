@@ -2,15 +2,11 @@
 //
 // Renders the live phone preview area in the admin interface.
 // Handles rendering of components, top bar, bottom buttons,
-// drag-and-drop reordering, selection, and component actions.
+// selection, and prop editing.
 // Used as the main interactive preview in AdminView.
 
 import React from 'react';
-import Divider from 'src/components/Divider';
 import Icon, { ICON_24, ICON_16, ICON_STANDARD, ICON_ADMIN } from 'src/components/Icon';
-import * as Icons from 'src/data/Icons';
-import { initialComponentProps } from 'src/data/Components';
-import ToolbarButton from './components/ToolbarButton';
 
 // Update the props interface
 type SpecialType = 'topbar' | 'bottombuttons' | 'toast' | 'statusbar';
@@ -34,13 +30,9 @@ interface PhonePreviewContentProps {
   IOSHomeIndicator: React.ComponentType<any>;
   showComponentNames: boolean;
   selectedSpecial: null | SpecialType;
-  onOpenInsertModal: (e: React.MouseEvent, idx: number) => void;
-  onDuplicate: (idx: number) => void;
-  onDelete: (idx: number) => void;
   showToast: boolean;
   toastProps: any;
   Toast: React.ComponentType<any>;
-  onDroppedComponentAdd?: (newComponent: { name: string; Component: React.ComponentType<any>; props: any }, idx?: number | null) => void;
   showStatusBar: boolean;
   statusBarProps: any;
 }
@@ -75,13 +67,9 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
   IOSHomeIndicator,
   showComponentNames,
   selectedSpecial,
-  onOpenInsertModal,
-  onDuplicate,
-  onDelete,
   showToast,
   toastProps,
   Toast,
-  onDroppedComponentAdd,
   showStatusBar,
   statusBarProps
 }) => {
@@ -139,64 +127,6 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
               </div>
             )}
 
-            {/* Action buttons for this component (add, duplicate, divider, delete) */}
-            {!isZoomedOut && (
-              <div
-                className={styles.ComponentButtons}
-                style={{
-                  transform: `scale(${1 / zoomLevel}) translateX(-${50 * zoomLevel}%)`,
-                  transformOrigin: 'center center',
-                }}
-              >
-                <ToolbarButton
-                  title="Add component"
-                  onClick={e => onOpenInsertModal(e, idx)}
-                  icon={Icons.Add24}
-                  iconColor={ICON_ADMIN}
-                  position="top"
-                />
-                <ToolbarButton
-                  title="Duplicate component"
-                  onClick={e => {
-                    e.stopPropagation();
-                    onDuplicate(idx);
-                  }}
-                  icon={Icons.Copy16 || Icons.Add24}
-                  iconColor={ICON_ADMIN}
-                  position="top"
-                />
-                <ToolbarButton
-                  title="Insert divider"
-                  onClick={e => {
-                    e.stopPropagation();
-                      setComponents(prev => {
-                        const newComponents = [...prev];
-                        newComponents.splice(idx + 1, 0, {
-                          name: "Divider",
-                          Component: Divider,
-                          props: initialComponentProps["Divider"]
-                        });
-                        return newComponents;
-                      });
-                    setSelectedIdx(idx + 1);
-                  }}
-                  icon={Icons.Limits24}
-                  iconColor={ICON_ADMIN}
-                  position="top"
-                />
-                <ToolbarButton
-                  title="Delete"
-                  onClick={e => {
-                    e.stopPropagation();
-                    onDelete(idx);
-                    if (selectedIdx === idx) setSelectedIdx(null);
-                  }}
-                  icon={Icons.Clear16}
-                  iconColor={ICON_ADMIN}
-                  position="top"
-                />
-              </div>
-            )}
           </div>
         ))}
       </div>
