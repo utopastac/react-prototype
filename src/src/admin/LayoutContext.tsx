@@ -100,6 +100,37 @@ export interface LayoutState {
 }
 
 /**
+ * LayoutData Interface
+ * 
+ * Defines the structure of serializable layout data (without Component references).
+ * This is used for saving/loading layouts, URL sharing, and history management.
+ * 
+ * Similar to LayoutState but with serializable component data (name and props only).
+ */
+export interface LayoutData {
+  /** Array of component data (name and props only, no Component references) */
+  dropped: Array<{ name: string; props: any }>;
+  /** Configuration properties for the top bar */
+  topBarProps: TopBarProps;
+  /** Whether the top bar is visible in the layout */
+  showTopBar: boolean;
+  /** Configuration properties for the bottom button group */
+  bottomButtonsProps: ButtonGroupProps;
+  /** Whether the bottom button group is visible in the layout */
+  showBottomButtons: boolean;
+  /** Whether the toast notification is visible in the layout */
+  showToast: boolean;
+  /** Configuration properties for the toast notification */
+  toastProps: typeof INITIAL_TOAST_PROPS;
+  /** Whether the iOS status bar is visible in the layout */
+  showStatusBar: boolean;
+  /** Configuration properties for the iOS status bar */
+  statusBarProps: { showNotch?: boolean; transparent?: boolean };
+  /** Optional description for the layout */
+  description?: string;
+}
+
+/**
  * Initial layout state
  * 
  * Provides the default values for a new layout.

@@ -1,5 +1,5 @@
 import { useMultiLayoutContext } from '../MultiLayoutContext';
-import { LayoutData } from './useLayoutData';
+import { LayoutData } from '../LayoutContext';
 import { FormblockerComponents } from 'src/data/Components';
 import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 

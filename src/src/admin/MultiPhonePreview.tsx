@@ -13,7 +13,6 @@ import Icon, { ICON_16, ICON_24, ICON_ADMIN, ICON_SUBTLE } from 'src/components/
 import * as Icons from 'src/data/Icons';
 import ToolbarButton from './components/ToolbarButton';
 import { useMultiLayoutDragDrop } from './hooks/useMultiLayoutDragDrop';
-import { useDragAndDrop } from './hooks/useDragAndDrop';
 import gsap from "gsap";
 import { AdminTemplates } from './Templates';
 import EditableLabel from './components/EditableLabel';

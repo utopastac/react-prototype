@@ -4,7 +4,7 @@ import ToolbarButton from '../components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
 import styles from './index.module.sass';
 import { downloadAsFile } from 'src/helpers/Utils';
-import { LayoutData } from '../hooks/useLayoutData';
+import { LayoutData } from '../LayoutContext';
 import { MultiLayoutData } from '../hooks/useMultiLayoutData';
 
 interface ShareModalProps {
