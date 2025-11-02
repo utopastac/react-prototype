@@ -8,7 +8,7 @@ import React, { createContext, useContext, useReducer, Dispatch, ReactNode } fro
  * the visual appearance of the app's background based on the current view or user interaction.
  * 
  * USAGE PATTERNS:
- * - Views set their preferred background color on mount (e.g., CashView uses BRAND, ActivityView uses WHITE)
+ * - Views set their preferred background color on mount (e.g., ActivityView uses WHITE)
  * - Components like IOSStatusBar read the current background to adjust their styling
  * - Formblocker container can override background based on configuration data
  * - Navigation components can respond to background changes for visual consistency

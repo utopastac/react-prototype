@@ -37,7 +37,7 @@ export const reportFlowData = [
           {
             title: 'Cancel',
             type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/money', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Report',
@@ -210,7 +210,7 @@ export const reportFlowData = [
           {
             title: 'Done',
             type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/money', type: ComponentData.BUTTON_ACTION_PATH },
+            action: { path: '/discover', type: ComponentData.BUTTON_ACTION_PATH },
           }
         ]
       }

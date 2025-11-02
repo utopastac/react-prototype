@@ -69,7 +69,7 @@ export const disputeFlowData = [
           {
             title: 'Cancel',
             type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/money', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Dispute',
@@ -686,7 +686,7 @@ export const disputeFlowData = [
           {
             title: 'Done',
             type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/money', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
           }
         ]
       }

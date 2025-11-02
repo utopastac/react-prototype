@@ -151,14 +151,14 @@ const App: React.FC<AppProps> = ({ theme, scale, device, tabBackground }) => {
       data-device={device}
       data-tab-bg={tabBackground}
     >
-      {/* Home Button - Navigates to the main money view */}
+      {/* Home Button - Navigates to the main discover view */}
       <button
         className={styles.homeButton}
-        onClick={() => navigate('/money')}
+        onClick={() => navigate('/discover')}
         aria-label="Go to home"
         type="button"
       >
-        <Icon icon={Icons.LogoUsd} size={ICON_24} color={ICON_PROMINENT} className={styles.homeIcon} />
+        <Icon icon={Icons.Discover} size={ICON_24} color={ICON_PROMINENT} className={styles.homeIcon} />
       </button>
       
       <div className={styles.RootWrapper}>

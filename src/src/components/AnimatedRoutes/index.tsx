@@ -3,9 +3,6 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 // All views
 import ComponentsView from "src/views/ComponentsView";
-import MoneyTabView from "src/views/MoneyTabView";
-import CardView from "src/views/CardView";
-import CashView from "src/views/CashView";
 import DiscoverView from "src/views/DiscoverView";
 import ActivityView from "src/views/ActivityView";
 import AccountView from "src/views/AccountView";
@@ -70,13 +67,10 @@ const AnimatedRoutes = () => {
     <div className={styles.routesWrapper}>
       <AnimatePresence initial={false}>
         <Routes location={location} key={location.pathname}>
-          {/* Default route - redirect to money */}
-          <Route path="/" element={<Navigate to="/money" replace />} />
+          {/* Default route - redirect to discover */}
+          <Route path="/" element={<Navigate to="/discover" replace />} />
           
           <Route path="/components" element={withRouteContainer(ComponentsView)} />
-          <Route path="/money" element={withRouteContainer(MoneyTabView)} />
-          <Route path="/card" element={withRouteContainer(CardView)} />
-          <Route path="/cash" element={withRouteContainer(CashView)} />
           <Route path="/discover" element={withRouteContainer(DiscoverView)} />
           <Route path="/activity" element={withRouteContainer(ActivityView)} />
           <Route path="/account" element={withRouteContainer(AccountView)} />

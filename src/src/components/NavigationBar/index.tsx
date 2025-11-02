@@ -16,9 +16,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   const inverse = tabBackground === BRAND;
 
   const tabData = [
-    {icon: Icons.Money, url: "/money"},
-    {icon: Icons.Card, url: "/card"},
-    {icon: Icons.LogoUsd, url: "/cash"},
     {icon: Icons.Discover, url: "/discover"},
     {icon: Icons.Activity, url: "/activity"}
   ];

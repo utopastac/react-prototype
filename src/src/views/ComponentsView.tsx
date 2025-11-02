@@ -124,7 +124,7 @@ const ComponentsView = () => {
           left={{
             icon: Icons.Close,
             onClick: ()=>{
-              navigate("/money")
+              navigate("/discover")
             }
           }}
           right={{

@@ -10,7 +10,7 @@ A modern, interactive React application that recreates the Interventions Hub exp
 ## 🚀 Features
 
 ### Core Functionality
-- **Complete Interventions Hub Interface**: Faithful recreation of Interventions Hub's main screens including Money, Card, Cash, Discover, Activity, and Account views
+- **Complete Interventions Hub Interface**: Faithful recreation of Interventions Hub's main screens including Discover, Activity, and Account views
 - **Interactive Navigation**: Smooth animated transitions between screens with Framer Motion
 - **Mobile-First Design**: Responsive design optimized for mobile devices with iOS-style status bars and home indicators
 - **Real-time Balance Display**: Dynamic balance and transaction management
@@ -65,7 +65,6 @@ A modern, interactive React application that recreates the Interventions Hub exp
 
 ### Navigation
 - Use the bottom navigation bar to switch between main app sections
-- Click the home button (💰) to return to the Money tab
 - Navigate through different flows like Account Linking, Reporting, and Disputes
 
 ### Dev Tools
@@ -101,8 +100,6 @@ src/
 │   ├── ActivityContext.tsx # Activity/transaction data
 │   └── ...
 ├── views/              # Main application screens
-│   ├── MoneyTabView.tsx    # Main money interface
-│   ├── CardView.tsx        # Card management
 │   ├── ActivityView.tsx    # Transaction history
 │   ├── AccountView.tsx     # User profile
 │   └── ...

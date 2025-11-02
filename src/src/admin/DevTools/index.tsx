@@ -76,7 +76,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
   // Navigation routes data for the Flows section
   const routeData = [
     {title:"Components", path:"/components", description:"All UI components"},
-    {title:"App", path:"/money", description:"Main app interface"},
+    {title:"App", path:"/discover", description:"Main app interface"},
     {title:"Account", path:"/account", description:"User profile settings"},
     {title:"Account linking", path:"/account-linking", description:"Account linking flow"},
     {title:"Reporting", path:"/report", description:"User reporting flow"},
