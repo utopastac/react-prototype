@@ -1,0 +1,49 @@
+@import 'src/styles/site'
+
+.Main
+  padding: size(6) $margin-default
+  label
+    @extend %body-label-m
+    color: var(--semantic-text-standard)
+    margin-bottom: size(4)
+    display: block
+
+  input
+    outline: none
+    width: 100%
+    border: var(--size-border-width-standard) solid var(--semantic-border-standard)
+    border-radius: $radius-s
+    padding: size(12) size(16)
+    @extend %component-input
+    background: var(--semantic-background-app)
+    color: var(--semantic-text-standard)
+    &:placeholder
+      color: var(--semantic-text-disabled)
+    &:focus
+      border-color: var(--semantic-border-prominent)
+      border-width: var(--size-border-width-selected)
+  .helpText
+    display: flex
+    align-items: center
+    margin-top: size(4)
+    gap: size(4)
+    p
+      @extend %body-body-s
+      color: var(--semantic-text-standard)
+
+  .inputWrapper
+    position: relative
+    .trailingIcon
+      position: absolute
+      right: size(12)
+      top: 50%
+      transform: translateY(-50%)
+
+.Wrapper
+  display: flex
+  gap: size(12)
+  padding: size(6) $margin-default
+
+  > *
+    flex: 1
+    padding: 0 !important

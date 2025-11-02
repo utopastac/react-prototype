@@ -1,0 +1,54 @@
+@import 'src/styles/site'
+
+.Main
+  .icon
+    width: 100%
+    height: 100%
+    mask-repeat: no-repeat
+    mask-size: 100%
+    mask-position: center
+    -webkit-mask-repeat: no-repeat
+    -webkit-mask-size: 100%
+    -webkit-mask-position: center
+  &.default
+    .icon
+      background: var(--semantic-icon-standard)
+  &.brand
+    .icon
+      background: var(--semantic-icon-brand)
+  &.prominent
+    .icon
+      background: var(--semantic-icon-standard)
+  &.subtle
+    .icon
+      background: var(--semantic-icon-subtle)
+  &.extraSubtle
+    .icon
+      background: var(--semantic-icon-extra-subtle)
+  &.inverse
+    .icon
+      background: var(--semantic-icon-inverse)
+  &.white
+    .icon
+      background: var(--base-constant-white)
+  &.success
+    .icon
+      background: var(--text-success)
+  &.failure
+    .icon
+      background: var(--text-warning)
+  &.admin
+    .icon
+      background: #141414
+  &.disabled
+    .icon
+      background: var(--semantic-icon-disabled)
+  &.i_32
+    width: size(32)
+    height: size(32)
+  &.i_24
+    width: size(24)
+    height: size(24)
+  &.i_16
+    width: size(16)
+    height: size(16)

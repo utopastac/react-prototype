@@ -1,0 +1,13 @@
+@import 'src/styles/site'
+
+.Main
+  margin: 0 $margin-default
+  padding: size(16) 0
+  display: flex
+  align-items: center
+  justify-content: space-between
+  border-bottom: 1px solid var(--semantic-border-prominent)
+  &.first
+    border-top: 1px solid var(--semantic-border-prominent)
+  h3
+    @extend %heading-l

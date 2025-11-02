@@ -1,0 +1,16 @@
+@import 'src/styles/site'
+
+.Main
+  width: 100%
+  height: size(52)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 $margin-default
+  &.inverse
+    h4
+      color: var(--base-constant-white)
+  h4
+    @extend %display-page-title
+  .avatar
+    cursor: pointer

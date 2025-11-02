@@ -1,0 +1,56 @@
+@import 'src/styles/site'
+
+.Main
+  margin: 0 $margin-default
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: size(16)
+  
+  &.subtle
+    background: none
+    .title
+      color: var(--semantic-text-standard)      
+    .body
+      display: none
+    .index
+      background-color: var(--semantic-background-subtle)
+      color: var(--semantic-text-standard)
+  &.standard
+    background: none
+    .title
+      color: var(--semantic-text-standard)
+    .index
+      background-color: var(--semantic-icon-standard)
+      color: var(--semantic-background-app)
+
+.item
+  display: flex
+  align-items: flex-start
+  gap: size(8)
+
+.index
+  display: flex
+  align-items: center
+  justify-content: center
+  width: size(24)
+  height: size(24)
+  border-radius: $radius-pill
+  @extend %component-button-compact
+
+.content
+  flex: 1
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.title
+  @extend %body-body-m
+  color: var(--semantic-text-standard)
+  &.showBody
+    @extend %body-label-m
+
+.body
+  @extend %body-body-s
+  color: var(--semantic-text-standard)

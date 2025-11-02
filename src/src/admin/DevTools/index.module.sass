@@ -1,0 +1,204 @@
+@import 'src/styles/site'
+@import 'src/admin/admin.sass'
+
+.Main
+  //position: fixed
+  font-family: $font-dev
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+  letter-spacing: -0.2px
+  .toolsWrapper
+    //background: rgba(0, 0, 0, 0.25)
+    position: relative
+    background: white
+    height: 100vh
+    //position: fixed
+    //top: 0
+    //right: 0
+    width: $dev-tools-width
+    display: flex
+    flex-direction: column
+    border-left: 1px solid $dev-tools-section-border
+    > header
+      display: flex
+      align-items: center
+      justify-content: space-between
+      padding: size(12) $dev-tools-padding size(10) $dev-tools-padding
+      height: size(48)
+      cursor: pointer
+      color: $dev-tools-text-medium
+      border-bottom: 1px solid $dev-tools-section-border
+      h2
+        font-size: $dev-tools-font-size-s
+        @extend %medium
+        letter-spacing: 0.02rem
+        text-transform: uppercase
+    &.closed
+      width: size(48)
+      height: size(40)
+      > header h2
+        display: none
+  .tools
+    flex: 1
+    overflow-y: scroll
+  .input
+    display: flex
+    align-items: center
+    gap: size(4)
+  .columns
+    display: flex
+    align-items: center
+    gap: size(4)
+    &.add
+      &::after
+        content: "+"
+  .dropdown
+    @extend %input-field
+    @extend %dev-tools-select
+    display: flex
+    align-items: center
+    width: 100%
+    span
+      margin-left: size(8)
+  .inputSection
+    margin-bottom: size(8)
+  .avatarList
+    white-space: nowrap
+    overflow-x: scroll
+    width: 100%
+    height: size(32)
+    &::-webkit-scrollbar
+      display: none
+  .avatarSelector
+    vertical-align: top
+    display: inline-flex
+    margin-right: size(4)
+    border-radius: $radius-pill
+    opacity: 0.5
+    width: size(32)
+    height: size(32)
+    cursor: pointer
+    //overflow: hidden
+    &:hover
+      opacity: 1
+    &.active
+      cursor: default
+      outline: 4px solid $dev-tools-button-bg
+      outline-offset: -4px
+      opacity: 1
+  h5
+    padding: 0 $dev-tools-padding
+    font-size: $dev-tools-font-size-m
+    color: $dev-tools-text-medium
+    @extend %medium
+    margin-bottom: size(6)
+  h3, h4, h5, h6, p
+    letter-spacing: -0.008rem
+  ul.inputSection
+    padding: 0 $dev-tools-padding
+    white-space: nowrap
+    overflow-x: scroll
+    width: 100%
+    &::-webkit-scrollbar
+      display: none
+    li
+      display: inline-flex
+      align-items: center
+      justify-content: center
+      height: size(28)
+      padding: 0 size(14)
+      margin-right: size(4)
+      border-radius: 500px
+      border: 1px solid $dev-tools-chip-border
+      font-size: $dev-tools-font-size-s
+      cursor: pointer
+      background: transparent
+      color: $dev-tools-text-dark
+      &:hover
+        background: $dev-tools-chip-hover
+      &.active
+        background: $dev-tools-button-bg
+        color: $dev-tools-text-button
+        border-color: $dev-tools-button-bg
+        cursor: default
+.activityRows
+  height: size(248)
+  overflow-y: scroll
+  padding: size(8) 0
+.activityRow
+  padding: 0 $dev-tools-padding
+  display: flex
+  align-items: center
+  justify-content: space-between
+  height: $dev-tools-input-size
+  font-size: $dev-tools-input-font-size
+  position: relative
+  cursor: pointer
+  color: $dev-tools-text-medium
+  &:hover
+    background: $dev-tools-input-bg
+    p
+      opacity: 0
+    &::after
+      content: "Delete"
+      position: absolute
+      top: size(4)
+      right: size(4)
+      height: size(20)
+      padding: 0 size(8)
+      border-radius: $dev-tools-border-radius
+      display: flex
+      @extend %medium
+      background: #ff4f64
+      color: white
+      justify-content: center
+      align-items: center
+  h4
+    @extend %medium
+  p
+    color: $dev-tools-text-light
+.addActivity
+  padding: size(8) $dev-tools-padding
+  .avatarInput
+    display: flex
+    align-items: center
+    justify-content: space-between
+    img
+      margin-left: size(4)
+      border-radius: $radius-pill
+      width: size(32)
+      height: size(32)
+      cursor: pointer
+  .row
+    padding: size(8) 0
+  button
+    width: 100%
+.routeLinks
+  display: flex
+  flex-direction: column
+  margin: 0 -size(8)
+  gap: 0px
+  padding-bottom: size(8)
+.EffectInfo
+  padding: $dev-tools-padding
+.Shortcuts
+  max-height: 1000px
+  opacity: 1
+  pointer-events: auto
+  padding: size(12) 0
+  .shortcutGroup
+    border-top: 1px solid $dev-tools-section-border
+    display: flex
+    flex-direction: column
+    gap: size(8)
+    padding: size(12)
+    &:first-child
+      border: none
+      padding-top: 0
+.showTools
+  position: fixed
+  z-index: 10000
+  top: size(8)
+  right: size(8)
+  background: $gray-f4

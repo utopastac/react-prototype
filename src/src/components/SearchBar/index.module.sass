@@ -1,0 +1,23 @@
+@import 'src/styles/site'
+
+.Main
+  margin: size(8) $margin-default
+  position: relative
+  input
+    outline: none
+    width: 100%
+    border: none
+    border-radius: $radius-pill
+    padding: size(6) size(16) size(6) size(40)
+    @extend %component-input
+    background: var(--semantic-background-subtle)
+    color: var(--semantic-text-standard)
+    &:placeholder
+      color: var(--semantic-text-disabled)
+    &:focus
+      border-color: var(--semantic-text-brand)
+  .icon
+    position: absolute
+    left: size(8)
+    top: 50%
+    transform: translateY(-50%)

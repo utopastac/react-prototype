@@ -1,0 +1,59 @@
+@import 'src/styles/site'
+
+$nav-bottom-border: 3px
+.Main
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+  @include animate(0.1s)
+  // background: var(--text-standard)
+  // color: var(--semantic-text-inverse)
+  border-radius: $radius-pill
+  padding: 0 size(16)
+
+  &.disabled
+    cursor: not-allowed
+
+  .icon
+    width: 20px
+    height: 20px
+    background: green
+  &.prominent
+    background: var(--component-button-background-prominent)
+    color: var(--component-button-text-prominent)
+    &.disabled
+      color: var(--semantic-background-app)
+      opacity: 0.11
+
+  &.destructive
+    background: var(--semantic-background-standard)
+    color: var(--semantic-text-danger)
+  &.inverse
+    background: var(--base-constant-white)
+    color: var(--semantic-text-standard)
+  &.standard
+    background: var(--component-button-background-standard)
+    color: var(--component-button-text-standard)
+    &.disabled
+      background: var(--semantic-background-subtle)
+      color: var(--semantic-text-disabled)
+  &.subtle
+    background: var(--component-button-background-subtle)
+    color: var(--component-button-text-subtle)
+    text-decoration: underline
+    &.disabled
+      color: var(--semantic-text-disabled)
+  &.brand
+    background: var(--component-button-background-brand)
+    color: var(--component-button-text-brand)
+  &.compact
+    height: size(32)
+    display: inline-flex
+    @extend %component-button-compact
+  &.cta
+    height: size(52)
+    @extend %component-button
+  &.default
+    height: size(44)
+    @extend %component-button

@@ -1,0 +1,43 @@
+@import 'src/styles/site'
+
+.Main
+  padding: size(16) $margin-default
+  display: flex
+  align-items: center
+  position: relative
+  &.search
+    padding: size(16) $margin-search
+  &.disabled
+    h5, p
+      color: var(--semantic-text-disabled)
+  &.centerAlign
+    align-items: center
+  h5
+    @extend %body-label-m
+    color: var(--semantic-text-standard)
+  p
+    @extend %body-body-s
+    color: var(--semantic-text-standard)
+
+  .content
+    flex: 1
+    align-items: center
+    display: flex
+    position: relative
+  .textContent
+    flex: 1
+    padding-right: size(16)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    &.padding
+      padding-left: size(16)
+  .push
+    position: absolute
+    top: 0
+    right: 0
+  .labelPush
+    display: flex
+    align-items: top
+    p
+      @extend %body-body-m

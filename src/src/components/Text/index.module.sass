@@ -1,0 +1,31 @@
+@import 'src/styles/site'
+
+.Main
+  padding: 0 $margin-default
+  
+  h1
+    @extend %display-hero
+
+  h2
+    @extend %display-page-title
+
+  h4
+    @extend %display-section-title
+
+  p
+    @extend %body-body-m
+
+    &.description
+      @extend %component-help-text
+
+  &.prominent
+    h1, h2, h4, p
+      color: var(--semantic-text-standard)
+
+  &.standard
+    h1, h2, h4, p
+      color: var(--semantic-text-standard)
+
+  &.subtle
+    h1, h2, h4, p
+      color: var(--semantic-text-subtle)

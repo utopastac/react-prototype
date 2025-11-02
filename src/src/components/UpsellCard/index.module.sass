@@ -1,0 +1,44 @@
+@import 'src/styles/site'
+
+.Main
+  margin: 0 $margin-default
+  border-radius: $radius-m
+  border: 1px solid var(--semantic-border-subtle)
+  position: relative
+  display: flex
+  padding: size(16)
+  gap: size(16)
+  
+  &.small
+    // Small variant styles
+    
+  &.large
+    // Large variant styles
+    text-align: center
+    flex-direction: column-reverse
+    align-items: center
+    justify-content: center
+
+    .image
+      width: auto
+      height: size(120)
+  
+  .image
+    width: size(104)
+  header
+    flex: 1
+  p
+    @extend %body-body-s
+    color: var(--semantic-text-standard)
+  h5
+    @extend %component-card-title-s
+    color: var(--semantic-text-standard)
+    margin-bottom: size(4)
+  a
+    @extend %body-label-s
+    display: block
+    color: var(--semantic-text-standard)
+    margin-top: size(16)
+    &::after
+      content: '→'
+      margin-left: size(8)

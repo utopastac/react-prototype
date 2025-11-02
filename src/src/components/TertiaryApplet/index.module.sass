@@ -1,0 +1,15 @@
+@import 'src/styles/site'
+
+.Main
+  .content
+    height: size(150)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    > div
+      display: flex
+      flex-direction: column
+      gap: size(6)
+    p
+      @extend %body-body-m
+      color: var(--semantic-text-subtle)

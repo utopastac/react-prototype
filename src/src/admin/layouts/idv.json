@@ -1,0 +1,305 @@
+{
+  "layouts": [
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "What are the last 4 of your Social Security Number?",
+            "body": "We won’t check your credit. This helps us verify your identity.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "Last 4 of SSN",
+            "body": "Secured with 256-bit encryption "
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Skip",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "By selecting Next, you are signing the eCBSV Agreement to disclose your SSN Verification to Interventions Hub (Block, Inc.). Your e-signature has the same legal validity as a handwritten signature.",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "What's your legal name?",
+            "body": "We need to collect some info to confirm that you are really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "First name"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "Last name"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "What’s your date of birth?",
+            "body": "interventions hub is available to ages 13+",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "MM / DD / YYYY"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter your full Social Security number",
+            "body": "We won’t check your credit. This helps us verify your identity.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "9-digit SSN",
+            "body": "Secured with 256-bit encryption "
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    }
+  ],
+  "layoutNames": [
+    "Layout 1",
+    "Input Fields",
+    "Input Fields (Copy)",
+    "Input Fields"
+  ],
+  "activeLayoutIndex": -1,
+  "layoutPositions": {
+    "0": {
+      "row": 0,
+      "col": 0
+    },
+    "1": {
+      "row": 0,
+      "col": 1
+    },
+    "2": {
+      "row": 0,
+      "col": 2
+    },
+    "3": {
+      "row": 0,
+      "col": 3
+    }
+  },
+  "gridRows": 2,
+  "gridCols": 2
+}

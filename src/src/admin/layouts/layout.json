@@ -1,0 +1,190 @@
+{
+  "layouts": [
+    {
+      "dropped": [],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Header",
+          "props": {
+            "title": "Header",
+            "body": "Body copy",
+            "size": "HEADER_PAGE"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    }
+  ],
+  "layoutNames": [
+    "Layout 1",
+    "Layout 2",
+    "Layout 3",
+    "Layout 4",
+    "Layout 5"
+  ],
+  "activeLayoutIndex": -1,
+  "layoutPositions": {
+    "0": {
+      "row": 0,
+      "col": 0
+    },
+    "1": {
+      "row": 0,
+      "col": 1
+    },
+    "2": {
+      "row": 0,
+      "col": 2
+    },
+    "3": {
+      "row": 1,
+      "col": 1
+    },
+    "4": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  "gridRows": 3,
+  "gridCols": 3
+}

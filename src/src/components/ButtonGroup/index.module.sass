@@ -1,0 +1,23 @@
+@import 'src/styles/site'
+
+.Main
+  padding: size(16) $margin-default size(32) $margin-default
+  width: 100%
+  // background: var(--semantic-background-app)
+  .buttons
+    display: grid
+    grid-gap: size(8)
+  &.horizontal
+    .buttons
+      grid-template-columns: 1fr 1fr 
+  &.inComponent
+    padding: 0
+    margin-bottom: none,
+    background: none
+  &.showHairline
+    border-top: 1px solid var(--semantic-border-subtle)
+  p.disclaimer
+    @extend %detail-body-xs
+    margin-bottom: size(16)
+    text-align: center
+    color: var(--semantic-text-subtle)

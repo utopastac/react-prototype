@@ -1,0 +1,52 @@
+:root {
+  /* Breakpoints */
+  --screen-s: 400px;
+  --screen-m: 700px;
+  --screen-l: 1080px;
+  --screen-xl: 1400px;
+
+  /* Z-indexes */
+  --z-navigation: 1000;
+  --z-pickers: 5000;
+  --z-overlay: 10000;
+
+  /* Border radius */
+  --radius-xs: 6px;
+  --radius-s: 8px;
+  --radius-m: 16px;
+  --radius-l: 24px;
+  --radius-xl: 40px;
+  --radius-pill: 500px;
+
+  /* Borders and overlays */
+  --semantic-border-light: 1px solid rgba(0, 0, 0, 0.3);
+  --overlay-bg: rgba(0, 0, 0, 0.2);
+
+  /* Elevations */
+  --elevation-1: 0px 40px 50px -40px rgba(0, 0, 0, 0.08);
+  --elevation-2: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  --elevation-3: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 64px;
+  --space-xxl: 94px;
+
+  /* Margins */
+  --margin-default: 16px;
+  --margin-search: 16px;
+
+  /* Border width */
+  --size-border-width: 1px;
+  --size-border-width-standard: 1px;
+  --size-border-width-selected: 2px;
+
+  /* View dimensions */
+  --view-width: 375px;
+  --view-height: 812px;
+  --view-offset-top: 47px;
+  --view-offset-base: 34px;
+} 

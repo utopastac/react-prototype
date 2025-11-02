@@ -1,0 +1,35 @@
+@import 'src/styles/site'
+
+.Main
+  position: relative
+  margin: 0 $margin-default
+  &:after
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    top: size(15)
+    height: size(1)
+    background: var(--semantic-border-subtle)
+  &.onBackground
+    &:after
+      background: var(--semantic-border-on-background)
+  &.small
+    height: var(--space-s)
+  &.medium
+    height: var(--space-m)
+  &.large
+    height: var(--space-l)
+  &.extraLarge
+    height: size(48)
+    // &:after
+    //   content: ""
+    //   top: size(32)
+    //   height: size(1)
+  &.extraLargeCell
+    height: size(48)
+    // &:after
+    //   content: ""
+    //   top: size(15)
+    //   height: size(1)  

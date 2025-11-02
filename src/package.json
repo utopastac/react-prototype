@@ -1,0 +1,46 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:check": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "generate-assets": "node scripts/generateAssetMapping.js",
+    "setup-llm": "node scripts/setup-llm.js",
+    "setup-goose": "node scripts/setup-goose-integration.js"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@types/matter-js": "^0.19.8",
+    "framer-motion": "^11.0.8",
+    "gsap": "^3.12.5",
+    "html2canvas": "^1.4.1",
+    "lodash": "^4.17.21",
+    "lottie-react": "^2.4.1",
+    "lz-string": "^1.5.0",
+    "matter-js": "^0.20.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/lodash": "^4.17.20",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "sass": "^1.78.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1",
+    "vite-plugin-svgr": "^4.3.0"
+  }
+}

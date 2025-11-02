@@ -1,0 +1,62 @@
+@import 'src/styles/site'
+
+.scrim
+  position: relative
+  background: var(--scrim-background)
+  display: flex
+  align-items: center
+  justify-content: center
+  width: var(--view-width)
+  height: var(--view-height)
+  padding: size(32)
+  margin-top: -47px
+
+.modal
+  background: var(--semantic-background-app)
+  border-radius: $radius-l
+  display: flex
+  width: 100%
+  flex-direction: column
+  align-items: center
+  position: relative
+
+.content
+  padding: size(32) size(24)
+  text-align: center
+
+.icon
+  margin-bottom: size(12)
+  display: flex
+  align-items: center
+  justify-content: center
+
+.title
+  @extend %body-label-m
+  color: var(--semantic-text-standard)
+
+.description
+  @extend %body-body-m
+  color: var(--semantic-text-standard)
+
+.buttons
+  width: 100%
+  display: flex
+  flex-direction: column
+
+.modalButton
+  padding: size(16) size(24)
+  flex: 1
+  appearance: none
+  outline: none
+  border: none
+  background: none
+  border-top: 1px solid var(--semantic-border-subtle)
+  @extend %component-button
+
+.primaryButton
+  @extend .modalButton
+  color: var(--semantic-text-standard)
+
+.secondaryButton
+  @extend .modalButton
+  color: var(--semantic-text-subtle)

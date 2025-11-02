@@ -1,0 +1,69 @@
+@import 'src/styles/site'
+
+.fillContainer
+  flex: 1
+  display: flex
+  flex-direction: column
+.separatedContainer
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+.buttonRow
+  display: flex
+  padding: 0 $margin-default
+  gap: size(8)
+.bigText
+  margin: size(16) $margin-default 0 $margin-default
+  color: var(--semantic-text-standard)
+  @extend %display-hero-numerics
+.marginContainer
+  padding: 0 $margin-default
+.cashCard
+  padding: 0 $margin-default
+  img
+    width: 100%
+    box-shadow: rgba(50, 50, 93, 0.16) 0px 50px 100px -20px, rgba(0, 0, 0, 0.08) 0px 30px 60px -30px
+.grid2
+  padding: 0 $margin-search
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: size(8)
+.chavezHolder
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 
+.chavez
+  width: 100%
+  height: auto
+.buttons
+  position: absolute
+  bottom: size(32)
+  left: 0
+  right: 0
+  height: size(80)
+  padding: size(8) size(16)
+  background: var(--semantic-background-app)
+  z-index: 10000
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: size(16)
+  div
+    width: size(32)
+    height: size(32)
+    border-radius: $radius-pill
+    background: var(--semantic-background-subtle)
+    cursor: pointer
+    display: flex
+    align-items: center
+    justify-content: center
+    @extend %body-label-m
+    color: var(--semantic-text-standard)
+.verificationSection
+  padding: 0 $margin-default
+  margin-bottom: size(24)
+.buttonContainer
+  padding: 0 $margin-default
+  display: flex
+  gap: size(8)
+  flex-direction: column

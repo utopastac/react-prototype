@@ -1,0 +1,2175 @@
+{
+  "layouts": [
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Verify this account belongs to you",
+            "body": "Select an option to verify this account is yours.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter your Interventions Hub PIN for $diogomartinez",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "PINCheck",
+          "props": {
+            "value": "",
+            "length": 4
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "right": {
+          "icon": "/sites/interventions-hub/src/assets/24/help.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have this info",
+            "type": "BUTTON_SUBTLE"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "ProgressCircular",
+          "props": {
+            "fullHeight": true,
+            "width": 56,
+            "height": 56,
+            "label": "Confirming Cash PIN"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": false,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Where should we send your login code?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "•••-•••-4567",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "•••-•••-4321",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Back",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter the code sent to •••-•••-4321",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "--- ---"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "right": {
+          "icon": "/sites/interventions-hub/src/assets/24/help.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT",
+            "disabled": true
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter the code sent to d••••••z@gmail.com",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "--- ---"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "right": {
+          "icon": "/sites/interventions-hub/src/assets/24/help.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT",
+            "disabled": true
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "ProgressCircular",
+          "props": {
+            "fullHeight": true,
+            "width": 56,
+            "height": 56,
+            "label": "Verifying code"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": false,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Let’s check your contacts",
+            "body": "We need permission to access your device’s contacts. We’ll only use it to confirm that this is your account.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/32/avatar-fill.svg",
+              "theme": "ICON_BG_BRAND"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "ProgressCircular",
+          "props": {
+            "fullHeight": true,
+            "width": 56,
+            "height": 56,
+            "label": "Checking contacts"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": false,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter your linked debit card number starting with 1421",
+            "body": "We’ll check to make sure it matches what’s on file.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "Debit card number"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "ProgressCircular",
+          "props": {
+            "fullHeight": true,
+            "width": 56,
+            "height": 56,
+            "label": "Confirming card number"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": false,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Enter your Cash Card number",
+            "body": "We’ll check to make sure it matches what’s on file.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Input",
+          "props": {
+            "placeholder": "Cash card number"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Next",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "ProgressCircular",
+          "props": {
+            "fullHeight": true,
+            "width": 56,
+            "height": 56,
+            "label": "Confirming card number"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "Funblocker",
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": false,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Button"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": false,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Almost done—select 1 more way to verify",
+            "body": "For extra security, we want to make sure it's really you.",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Email",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Phone number",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Interventions Hub PIN",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Synced contacts",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Linked debit card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Cash Card",
+            "left": {
+              "type": "CELL_ICON",
+              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
+            },
+            "right": {
+              "type": "CELL_PUSH"
+            },
+            "disabled": true,
+            "body": "Already verified"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": true
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "I don't have any of these",
+            "type": "BUTTON_STANARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Card numbers don't match",
+            "body": "The card number you entered doesn't match what's on file.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Try again",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Card numbers don't match",
+            "body": "The card number you entered doesn't match what's on file.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Try again",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Contacts don’t match",
+            "body": "Your device’s contacts don’t match what’s synced with Interventions Hub.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Your email address couldn't be verified.",
+            "body": "The code was not correct. Please verify another way.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Your phone number couldn't be verified.",
+            "body": "The code was not correct. Please verify another way.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Try again",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "You’ve entered your PIN incorrectly too many times",
+            "body": "Please verify another way.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_ERROR"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Confirm another way",
+            "type": "BUTTON_STANDARD"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      },
+      "showStatusBar": true,
+      "statusBarProps": {
+        "showNotch": false,
+        "transparent": false
+      }
+    }
+  ],
+  "layoutNames": [
+    "Layout 1",
+    "PIN Entry",
+    "Loading",
+    "Account Verification Options",
+    "Radio options",
+    "Code Verification",
+    "Account Verification Options",
+    "Code Verification",
+    "Loading",
+    "Account Verification Options",
+    "Success Message",
+    "Loading",
+    "Account Verification Options",
+    "Input Fields",
+    "Loading",
+    "Account Verification Options",
+    "Input Fields",
+    "Loading",
+    "Account Verification Options",
+    "Error Message",
+    "Error Message",
+    "Error Message",
+    "Error Message",
+    "Error Message",
+    "Error Message"
+  ],
+  "activeLayoutIndex": 23,
+  "layoutPositions": {
+    "0": {
+      "row": 0,
+      "col": 0
+    },
+    "1": {
+      "row": 0,
+      "col": 1
+    },
+    "2": {
+      "row": 0,
+      "col": 2
+    },
+    "3": {
+      "row": 0,
+      "col": 3
+    },
+    "4": {
+      "row": 1,
+      "col": 1
+    },
+    "5": {
+      "row": 1,
+      "col": 2
+    },
+    "6": {
+      "row": 1,
+      "col": 3
+    },
+    "7": {
+      "row": 2,
+      "col": 1
+    },
+    "8": {
+      "row": 2,
+      "col": 2
+    },
+    "9": {
+      "row": 2,
+      "col": 3
+    },
+    "10": {
+      "row": 3,
+      "col": 1
+    },
+    "11": {
+      "row": 3,
+      "col": 2
+    },
+    "12": {
+      "row": 3,
+      "col": 3
+    },
+    "13": {
+      "row": 4,
+      "col": 1
+    },
+    "14": {
+      "row": 4,
+      "col": 2
+    },
+    "15": {
+      "row": 4,
+      "col": 3
+    },
+    "16": {
+      "row": 5,
+      "col": 1
+    },
+    "17": {
+      "row": 5,
+      "col": 2
+    },
+    "18": {
+      "row": 5,
+      "col": 3
+    },
+    "19": {
+      "row": 5,
+      "col": 4
+    },
+    "20": {
+      "row": 4,
+      "col": 4
+    },
+    "21": {
+      "row": 3,
+      "col": 4
+    },
+    "22": {
+      "row": 2,
+      "col": 4
+    },
+    "23": {
+      "row": 1,
+      "col": 4
+    },
+    "24": {
+      "row": 0,
+      "col": 4
+    }
+  },
+  "gridRows": 2,
+  "gridCols": 2
+}

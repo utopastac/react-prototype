@@ -1,0 +1,19 @@
+@import 'src/styles/site'
+
+.Main
+  // background: var(--home-indicator-background)
+  height: size(34)
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  &:after
+    content: ""
+    position: absolute
+    bottom: size(8)
+    left: 50%
+    transform: translateX(-50%)
+    background: var(--home-indicator)
+    width: size(134)
+    height: size(5)
+    border-radius: $radius-pill

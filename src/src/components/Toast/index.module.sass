@@ -1,0 +1,24 @@
+@import 'src/styles/site'
+
+.Main
+  padding: size(8)
+  > div
+    background: var(--component-toast-background)
+    display: flex
+    align-items: center
+    border-radius: $radius-s
+    padding: size(8)
+  .content
+    flex: 1
+    padding: size(8)
+  .icon
+    padding: size(8)
+  h4, p, h5
+    color: var(--component-toast-text)
+  h4
+    @extend %body-label-m
+  p
+    @extend %body-body-m
+  h5
+    @extend %component-button-compact
+    margin: size(8)

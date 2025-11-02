@@ -1,0 +1,19 @@
+@import 'src/styles/site'
+
+.Main
+  width: size(24)
+  height: size(24)
+  border: var(--size-border-width-standard) solid var(--semantic-border-standard)
+  border-radius: $radius-s
+  position: relative
+  &.checked
+    background: var(--semantic-icon-standard)
+    border: none
+  .checkmark
+    position: absolute
+    width: size(16)
+    height: size(16)
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    pointer-events: none

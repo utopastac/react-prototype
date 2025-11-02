@@ -1,0 +1,61 @@
+@import 'src/styles/site'
+
+.Main
+  margin: 0 $margin-default
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  &.subtle
+    background: none
+    .title, .value
+      color: var(--semantic-text-standard)
+    .title
+      @extend %body-body-m
+    .body
+      display: none
+  &.standard
+    background: none
+    .title, .value
+      color: var(--semantic-text-standard)
+    .icon
+      margin-right: size(8)
+  &.compact
+    gap: size(8)
+    .body
+      margin-bottom: size(8)
+  &.large
+    gap: size(32)
+    padding: size(16) 0
+
+.item
+  display: flex
+  align-items: flex-start
+  gap: size(8)
+
+.icon
+  display: flex
+  align-items: center
+  justify-content: center
+  width: size(24)
+  height: size(24)
+
+.content
+  flex: 1
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.title
+  @extend %body-label-m
+  color: var(--semantic-text-standard)
+
+.body
+  @extend %body-body-s
+  color: var(--semantic-text-standard)
+  margin-top: size(2)
+
+.value
+  @extend %body-label-m
+  color: var(--semantic-text-standard)
+  margin-left: size(12) 

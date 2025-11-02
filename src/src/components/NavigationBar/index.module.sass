@@ -1,0 +1,22 @@
+@import 'src/styles/site'
+
+.Main
+  height: calc(size(52) + $view-offset-base)
+  background: var(--component-bottom-navigation-background)
+  &.brand
+    background: var(--component-bottom-navigation-keypad)
+    > div
+      border-top: none
+    .Tab
+      opacity: 0.45
+      &.active
+        opacity: 1 !important
+  > div
+    height: size(52)
+    display: flex
+    justify-content: space-around
+    align-items: center
+    padding: 0 $margin-default
+    border-top: 1px solid var(--semantic-border-subtle)
+.Tab
+  cursor: pointer

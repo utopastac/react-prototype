@@ -1,0 +1,7 @@
+const VIEW_HEIGHT = 812;
+const VIEW_OFFSET_TOP = 56;
+
+export {
+  VIEW_HEIGHT,
+  VIEW_OFFSET_TOP
+}

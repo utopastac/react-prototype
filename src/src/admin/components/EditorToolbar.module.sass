@@ -1,0 +1,15 @@
+@import 'src/styles/site'
+@import 'src/admin/admin.sass'
+
+.Main
+  display: flex
+  gap: size(4)
+  padding: size(8)
+  position: absolute
+  z-index: 1000
+  top: size(12)
+  left: 50%
+  transform: translateX(-50%)
+  @extend %admin-panel
+  border-radius: $dev-tools-wrapper-border-radius
+  box-shadow: $elevation-2

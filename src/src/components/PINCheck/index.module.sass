@@ -1,0 +1,33 @@
+@import 'src/styles/site'
+
+.Main
+  padding: size(16) $margin-default
+
+.HiddenInput
+  position: absolute
+  opacity: 0
+  pointer-events: none
+  width: 1px
+  height: 1px
+
+.Circles
+  display: flex
+  flex-direction: row
+  gap: size(32)
+  align-items: center
+  cursor: pointer
+
+.Circle
+  width: size(24)
+  height: size(24)
+  border-radius: $radius-pill
+  box-sizing: border-box
+  transition: border-color 0.2s, background 0.2s
+
+  &.empty
+    border: var(--size-border-width-standard) solid var(--semantic-border-standard)
+    background: transparent
+
+  &.filled
+    background: var(--semantic-background-brand)
+    border-color: var(--semantic-background-brand)

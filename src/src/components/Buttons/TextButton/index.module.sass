@@ -1,0 +1,11 @@
+@import 'src/styles/site'
+
+$nav-bottom-border: 3px
+.Main
+  cursor: pointer
+  @extend %button-m
+  display: flex
+  align-items: center
+  @include animate(0.1s)
+  &.small
+    @extend %button-s

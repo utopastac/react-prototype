@@ -1,0 +1,88 @@
+@import 'src/styles/site'
+
+@import 'src/admin/admin.sass'
+.ToolbarButton
+  position: relative
+  background: none
+  border: none
+  width: size(30)
+  height: size(30)
+  border-radius: size(8)
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  transition: background 0.15s
+  outline: none
+  @include tooltip(attr(data-label))
+  > *
+    opacity: 0.7
+  &.inverse
+    &:hover
+      background: rgba(white, 0.1)
+  &:hover
+    background: $gray-e4
+    > *
+      opacity: 1
+    &[data-position="top"]::after
+      transform: translateX(-50%) translateY(-8px)
+    &[data-position="left"]::after
+      transform: translateX(-8px) translateY(-50%)
+    &[data-position="right"]::after
+      transform: translateX(8px) translateY(-50%)
+    &[data-position="bottom"]::after
+      transform: translateX(-50%) translateY(8px)
+    &[data-position="top-right"]::after
+      transform: translateX(-100%) translateY(-8px)
+    &[data-position="top-left"]::after
+      transform: translateX(100%) translateY(-8px)
+    &[data-position="bottom-right"]::after
+      transform: translateX(-100%) translateY(8px)
+    &[data-position="bottom-left"]::after
+      transform: translateX(100%) translateY(8px)
+  &:active
+    background: rgba(0,0,0,0.15)
+  &:focus
+    box-shadow: 0 0 0 2px #007aff33 
+  &[data-position="right"]::after
+    left: 100%
+    top: 50%
+    transform: translateY(-50%)
+  &[data-position="top"]::after
+    left: 50%
+    bottom: 100%
+    top: auto
+    transform: translateX(-50%)
+  &[data-position="left"]::after
+    right: 100%
+    top: 50%
+    left: auto
+    transform: translateY(-50%)
+  &[data-position="bottom"]::after
+    left: 50%
+    top: 100%
+    transform: translateX(-50%)
+  &[data-position="top-right"]::after
+    left: 100%
+    bottom: 100%
+    top: auto
+    transform: translateX(0) translateY(0)
+  &[data-position="top-left"]::after
+    right: 100%
+    bottom: 100%
+    left: auto
+    top: auto
+    transform: translateX(0) translateY(0)
+  &[data-position="bottom-right"]::after
+    left: 100%
+    top: 100%
+    transform: translateX(-100%) translateY(0)
+  &[data-position="bottom-left"]::after
+    right: 100%
+    top: 100%
+    left: auto
+    transform: translateX(100%) translateY(0)
+  &:disabled
+    opacity: 0.5
+    cursor: not-allowed
+    pointer-events: none

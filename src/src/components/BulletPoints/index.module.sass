@@ -1,0 +1,17 @@
+@import 'src/styles/site'
+
+@import 'styles/site.sass'
+
+.Main
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  background: $grey-100
+  padding: $space-l $space-s
+
+.bulletPoint
+  max-width: bigUnits(10)
+  padding: 0 units(10)
+  p
+    @extend %body-l
+    color: $black

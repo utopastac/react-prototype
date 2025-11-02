@@ -1,0 +1,16 @@
+@import 'src/styles/site'
+
+.Main
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: size(12)
+  width: 100%
+  h4
+    @extend %body-label-m
+    color: var(--semantic-text-standard)
+  .labelPush
+    display: flex
+    align-items: top
+    p
+      @extend %body-body-m

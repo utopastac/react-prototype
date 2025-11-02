@@ -1,0 +1,360 @@
+@import "theme.sass"
+  
+//
+// FONTS //
+//
+//
+// "Cash Sans Wide", "Helvetica Neue", helvetica, sans-serif
+$font-dev: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+$font-display: var(--font-display)
+$font-heading: var(--font-heading)
+$font-paragraph: var(--font-standard)
+$font-paragraph-bold: var(--font-standard)
+$font-paragraph-extra-bold: var(--font-standard)
+$font-meta: var(--font-meta)
+//
+//
+$font-regular-weight: var(--font-regular-weight)
+$font-medium-weight: var(--font-medium-weight)
+$font-bold-weight: var(--font-bold-weight)
+$font-extra-bold-weight: var(--font-extra-bold-weight)
+//
+$font-heading-weight: var(--font-heading-weight)
+//
+// TYPOGRAPHY
+//
+%heading
+  font-family: $font-heading
+  font-weight: $font-regular-weight
+  color: var(--semantic-text-standard)
+
+%paragraph
+  font-family: $font-paragraph
+  font-weight: $font-regular-weight
+  color: var(--semantic-text-standard)
+
+%meta
+  font-family: $font-meta
+  font-weight: $font-regular-weight
+  color: var(--semantic-text-standard)
+//
+//
+//
+%regular
+  font-weight: $font-regular-weight
+
+%medium
+  font-weight: $font-medium-weight
+
+%bold
+  font-weight: $font-bold-weight
+
+%extra-bold
+  font-weight: $font-extra-bold-weight
+
+%body-bold
+  font-family: $font-paragraph-extra-bold
+  @extend %bold
+//
+//
+//
+//
+@mixin fontSize($size, $line, $spacing)
+  font-size: calc($size * var(--text-scale)) //calc(var(--text-size-#{$size}) * )//
+  line-height: calc($line * var(--text-scale))
+  letter-spacing: $spacing
+//
+//
+//
+%display-hero-numerics
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-display-hero-numerics), var(--text-line-height-display-hero-numerics), var(--text-letter-spacing-display-hero-numerics))
+
+%display-hero
+  @extend %heading
+  @include fontSize(var(--text-size-display-hero), var(--text-line-height-display-hero), var(--text-letter-spacing-display-hero))
+
+%display-headline-l
+  @extend %heading
+  @include fontSize(var(--text-size-display-headline-l), var(--text-line-height-display-headline-l), var(--text-letter-spacing-display-headline-l))
+
+%display-headline-s
+  @extend %heading
+  @include fontSize(var(--text-size-display-headline-s), var(--text-line-height-display-headline-s), var(--text-letter-spacing-display-headline-s))
+
+%display-numeral-s
+  @extend %heading
+  @include fontSize(var(--text-size-display-numeral-s), var(--text-line-height-display-numeral-s), var(--text-letter-spacing-display-numeral-s))
+
+%display-section-title
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-display-section-title), var(--text-line-height-display-section-title), var(--text-letter-spacing-display-section-title))
+
+%display-page-title
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-display-page-title), var(--text-line-height-display-page-title), var(--text-letter-spacing-display-page-title))
+
+////////
+
+%body-label-m
+  @extend %paragraph
+  @extend %medium
+  @include fontSize(var(--text-size-body-label-m), var(--text-line-height-body-label-m), var(--text-letter-spacing-body-label-m))
+
+%body-body-m
+  @extend %paragraph
+  @extend %regular
+  @include fontSize(var(--text-size-body-body-m), var(--text-line-height-body-body-m), var(--text-letter-spacing-body-body-m))
+
+%body-body-m-link
+  @extend %paragraph
+  @extend %medium
+  text-decoration: underline
+  @include fontSize(var(--text-size-body-link-m), var(--text-line-height-body-link-m), var(--text-letter-spacing-body-link-m))
+
+////////
+
+%body-label-s
+  @extend %paragraph
+  @extend %medium
+  @include fontSize(var(--text-size-body-label-s), var(--text-line-height-body-label-s), var(--text-letter-spacing-body-label-s))
+
+%body-body-s
+  @extend %paragraph
+  @extend %regular
+  @include fontSize(var(--text-size-body-body-s), var(--text-line-height-body-body-s), var(--text-letter-spacing-body-body-s))
+
+%body-body-s-link
+  @extend %paragraph
+  @extend %medium
+  text-decoration: underline
+  @include fontSize(var(--text-size-body-link-s), var(--text-line-height-body-link-s), var(--text-letter-spacing-body-link-s))
+
+////////
+
+%detail-label-xs
+  @extend %meta
+  @extend %regular
+  @include fontSize(var(--text-size-detail-label-xs), var(--text-line-height-detail-label-xs), var(--text-letter-spacing-detail-label-xs))
+
+%detail-body-xs
+  @extend %meta
+  @extend %regular
+  @include fontSize(var(--text-size-detail-body-xs), var(--text-line-height-detail-body-xs), var(--text-letter-spacing-detail-body-xs))
+
+%detail-link-xs
+  @extend %meta
+  @extend %medium
+  text-decoration: underline
+  @include fontSize(var(--text-size-detail-link-xs), var(--text-line-height-detail-link-xs), var(--text-letter-spacing-detail-link-xs))
+
+////////
+
+%component-keypad-total
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-component-keypad-total), var(--text-line-height-component-keypad-total), var(--text-letter-spacing-component-keypad-total))
+
+%component-keypad-numbers
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-component-keypad-numbers), var(--text-line-height-component-keypad-numbers), var(--text-letter-spacing-component-keypad-numbers))
+
+%component-title-bar-page-title
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-component-title-bar-page-title), var(--text-line-height-component-title-bar-page-title), var(--text-letter-spacing-component-title-bar-page-title))
+
+%component-input
+  @extend %paragraph
+  @extend %regular
+  @include fontSize(var(--text-size-component-input), var(--text-line-height-component-input), var(--text-letter-spacing-component-input))
+
+%component-button
+  @extend %paragraph
+  @extend %medium
+  @include fontSize(var(--text-size-component-button), var(--text-line-height-component-button), var(--text-letter-spacing-component-button))
+
+%component-button-compact
+  @extend %paragraph
+  @extend %medium
+  @include fontSize(var(--text-size-component-button-compact), var(--text-line-height-component-button-compact), var(--text-letter-spacing-component-button-compact))
+
+%component-help-text
+  @extend %paragraph
+  @extend %regular
+  @include fontSize(var(--text-size-component-help-text), var(--text-line-height-component-help-text), var(--text-letter-spacing-component-help-text))
+
+%component-card-title-l
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-component-card-title-l), var(--text-line-height-component-card-title-l), var(--text-letter-spacing-component-card-title-l))
+
+%component-card-title-s
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-component-card-title-s), var(--text-line-height-component-card-title-s), var(--text-letter-spacing-component-card-title-s))
+
+////////
+
+%avatar-96
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-96), var(--text-size-avatar-96), 0)
+
+%avatar-64
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-64), var(--text-size-avatar-64), 0)
+
+%avatar-48
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-48), var(--text-size-avatar-48), 0)
+
+%avatar-32
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-32), var(--text-size-avatar-32), 0)
+
+%avatar-28
+  @extend %heading
+  @extend %medium 
+  @include fontSize(var(--text-size-avatar-28), var(--text-size-avatar-28), 0)
+
+%avatar-24
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-24), var(--text-size-avatar-24), 0)  
+
+%avatar-20
+  @extend %heading
+  @extend %medium
+  @include fontSize(var(--text-size-avatar-20), var(--text-size-avatar-20), 0)
+  
+////////
+//
+//
+
+
+////////
+//
+//
+////////
+// Font styles for article headings
+////////
+%heading-xl
+  @extend %heading
+  @extend %medium
+  @include fontSize(56, 56, -0.002em)
+
+%heading-l
+  @extend %heading
+  @extend %medium
+  @include fontSize(26, 30, -0.002em)
+
+%heading-m
+  @extend %heading
+  @include fontSize(24, 24, -0.002em)
+    
+%heading-s
+  @extend %heading
+  @include fontSize(20, 26, -0.002em)
+    
+%heading-xs
+  @extend %heading
+  @include fontSize(14, 20, -0.002em)
+//
+//
+//  
+%body-l
+  @extend %regular
+  @extend %paragraph
+  @include fontSize(18, 24, 0.002em)
+
+%body-m
+  @extend %regular
+  @extend %paragraph
+  @include fontSize(16, 22, 0.002em)
+
+%body-s
+  @extend %regular
+  @extend %paragraph
+  @include fontSize(14, 18, 0.002em)
+
+%body-xs
+  @extend %regular
+  @extend %paragraph
+  @include fontSize(11, 16, 0.002em)
+//
+//
+//
+%button-l
+  @extend %body-m
+  @extend %bold
+%button-m
+  @extend %body-s
+  @extend %bold
+%button-s
+  @extend %body-s
+  @extend %bold
+//
+//
+//
+%typography-hierarchy
+  p
+    @extend %body-body-m
+    
+  a
+    text-decoration: underline
+
+  p, ul
+    + h2, + h3
+      margin-top: units(4)
+    + h4, + h5
+      margin-top: units(3)
+
+  blockquote
+    margin-top: units(3)
+    padding: units(3) 0 0 0
+
+  .body-0
+    @extend %body-body-m
+  .body-1
+    @extend %component-help-text
+  .body-2
+    @extend %detail-body-xs
+  .button-text
+    @extend %component-button
+    
+  strong, b
+    @extend %bold
+
+
+  h1, .heading-l
+    @extend %display-page-title
+    margin-bottom: units(4)
+  h2, .heading-m
+    @extend %display-page-title
+    margin-bottom: units(1)
+  h3, .heading-s
+    @extend %display-section-title
+    margin-bottom: units(1)
+  h4
+    @extend %display-page-title
+    margin-bottom: units(1)
+  h5
+    @extend %body-label-m
+  h6
+    @extend %component-button-compact
+    margin-bottom: units(1)
+  ul
+    @extend %standard-list
+  hr
+    height: 1
+    border: none
+    background: var(--semantic-background-subtle)
+    margin: units(4) 0 units(3) 0

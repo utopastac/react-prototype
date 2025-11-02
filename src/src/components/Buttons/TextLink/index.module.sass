@@ -1,0 +1,18 @@
+@import 'src/styles/site'
+
+$nav-bottom-border: 3px
+.Main
+  padding: 0 0 0 units(6)
+  cursor: pointer
+  @extend %button-m
+  @extend %link-hover
+  position: relative
+  &:after
+    content: ""
+    position: absolute
+    top: 50%
+    left: 0
+    width: units(5)
+    height: size(2)
+    background: $black
+    z-index: 0

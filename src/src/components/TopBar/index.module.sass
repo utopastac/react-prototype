@@ -1,0 +1,27 @@
+@import 'src/styles/site'
+
+.Main
+  width: 100%
+  background: var(--semantic-background-app)
+  height: size(52)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 $margin-default
+  position: relative
+
+  &.transparent
+    background: none
+    
+  .left
+    cursor: pointer
+  &.inverse
+    h4
+      color: var(--base-constant-white)
+  h4
+    @extend %component-title-bar-page-title
+    text-align: center
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)

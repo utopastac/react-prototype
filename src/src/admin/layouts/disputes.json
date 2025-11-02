@@ -1,0 +1,930 @@
+{
+  "layouts": [
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Disputing a transaction",
+            "body": "A dispute can take up to 60 days to resolve and may be viewed by the merchant. It may also not resolve in your favor.",
+            "size": "HEADER_PAGE"
+          }
+        }
+      ],
+      "topBarProps": {
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "Fraudulent dispute claims violate our terms of service and may result in account closure",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Why are you disputing this transaction?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I was charged the wrong amount",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I paid for this transaction another way",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "My Interventions Hub Card was charged twice",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I cancelled a subscription that renewed",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I never received the goods or services I paid forash App Card was charged twice",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "The goods or services I received weren’t as described",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "The gooI was supposed to receive a refundds or services I received weren’t as described",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I was supposed to receive a refund",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "I didn’t make this transaction",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "There was an ATM withdrawal error",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Have you contacted the merchant about this problem?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "Yes",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "No",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "How did you pay for this transaction?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "Yes",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "No",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Share any emails or other supporting documentation",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "Cell",
+          "props": {
+            "title": "Upload documentation",
+            "body": "Add emails, screenshots, photos of receipts",
+            "right": {
+              "type": "CELL_PUSH"
+            }
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Share any emails or other supporting documentation",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "TextArea",
+          "props": {}
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "How did you pay for this transaction?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "Yes",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "No",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "What’s the best email to reach you?",
+            "body": "",
+            "size": "HEADER_PAGE"
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "namesuranme@test.com",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "peterwright@squareup.com",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        },
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "InputCard",
+          "props": {
+            "title": "A different email",
+            "body": "",
+            "right": {
+              "type": "CELL_RADIO"
+            },
+            "checked": false
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Back",
+            "type": "BUTTON_STANDARD"
+          },
+          {
+            "title": "Continue",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Review submission",
+            "body": "Submitting this dispute does not guarantee a resolution in your favor and you may be asked to provide more information at a later time.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/16/alert.svg",
+              "theme": "ICON_BG_BRAND"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/back.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Submit",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "By submitting, I agree that all of the information provided is accurate and complete",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    },
+    {
+      "dropped": [
+        {
+          "name": "Divider",
+          "props": {
+            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+          }
+        },
+        {
+          "name": "Header",
+          "props": {
+            "title": "Dispute under review",
+            "body": "Your dispute is being processed. You can expect a response within 10 business days.",
+            "size": "HEADER_PAGE",
+            "accessory": {
+              "type": "HEADER_ICON",
+              "icon": "/sites/interventions-hub/src/assets/navigation/more.svg",
+              "theme": "ICON_BG_BRAND"
+            }
+          }
+        }
+      ],
+      "topBarProps": {
+        "title": "",
+        "left": {
+          "icon": "/sites/interventions-hub/src/assets/navigation/close.svg"
+        },
+        "inverse": false,
+        "isBackNavigation": false
+      },
+      "showTopBar": true,
+      "bottomButtonsProps": {
+        "buttons": [
+          {
+            "title": "Done",
+            "type": "BUTTON_PROMINENT"
+          }
+        ],
+        "horizontal": false,
+        "inComponent": false,
+        "showHairline": false,
+        "disclaimer": "",
+        "size": "BUTTON_CTA_SIZE"
+      },
+      "showBottomButtons": true,
+      "showToast": false,
+      "toastProps": {
+        "headline": "This is a toast!",
+        "body": "Toast body",
+        "button": "OK",
+        "icon": ""
+      }
+    }
+  ],
+  "layoutNames": [
+    "Home",
+    "Multi Select",
+    "Multi Select",
+    "Multi Select (Copy)",
+    "Multi Select (Copy) (Copy)",
+    "Multi Select (Copy) (Copy) (Copy)",
+    "Multi Select (Copy) (Copy)",
+    "Multi Select",
+    "Multi Select (Copy)",
+    "Error Message"
+  ],
+  "activeLayoutIndex": -1,
+  "layoutPositions": {
+    "0": {
+      "row": 0,
+      "col": 0
+    },
+    "1": {
+      "row": 0,
+      "col": 1
+    },
+    "2": {
+      "row": 0,
+      "col": 2
+    },
+    "3": {
+      "row": 0,
+      "col": 3
+    },
+    "4": {
+      "row": 0,
+      "col": 4
+    },
+    "5": {
+      "row": 0,
+      "col": 5
+    },
+    "6": {
+      "row": 0,
+      "col": 4
+    },
+    "7": {
+      "row": 0,
+      "col": 6
+    },
+    "8": {
+      "row": 0,
+      "col": 7
+    },
+    "9": {
+      "row": 0,
+      "col": 8
+    }
+  },
+  "gridRows": 2,
+  "gridCols": 2
+}

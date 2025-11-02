@@ -1,0 +1,21 @@
+@import 'src/styles/site'
+
+.routesWrapper
+  position: relative
+  width: 100%
+  height: 100%
+  overflow: hidden
+
+.routeContainer
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: flex
+  flex-direction: column
+
+  // This ensures that direct children of routeContainer take up full height
+  > *
+    flex: 1
+    min-height: 0 // This is important for Firefox

@@ -1,0 +1,50 @@
+@import 'src/styles/site'
+
+.Main
+  background: var(--semantic-background-standard)
+  border-radius: $radius-pill
+  overflow: hidden
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+  > div
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    @extend %avatar-64
+    color: var(--component-avatar-text) !important
+  &.a_96
+    width: size(96)
+    height: size(96)
+    > div
+      @extend %avatar-96
+  &.a_64
+    width: size(64)
+    height: size(64)
+    > div
+      @extend %avatar-64
+  &.a_48
+    width: size(48)
+    height: size(48)
+    > div
+      @extend %avatar-48
+  &.a_32
+    width: size(32)
+    height: size(32)
+    > div
+      @extend %avatar-32
+  &.a_28
+    width: size(28)
+    height: size(28)
+    > div
+      @extend %avatar-28
+  &.a_24
+    width: size(24)
+    height: size(24)
+    > div
+      @extend %avatar-24
+  &.border
+    outline: 2px solid var(--base-constant-black)

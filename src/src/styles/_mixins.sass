@@ -1,0 +1,90 @@
+//
+$screen-xs: 350px
+$screen-s: 550px
+$screen-m: 770px
+$screen-l: 1080px
+$screen-xl: 1200px
+$screen-xxl: 1400px
+//
+
+@mixin contain-background($image)
+  background-size: contain
+  background-repeat: no-repeat
+  background-image: $image
+  background-position-y: center
+
+@mixin size-background($image, $size)
+  background-size: $size $size
+  background-repeat: no-repeat
+  background-image: $image
+  background-position: center center
+
+@mixin cover-background($image)
+  background-size: cover
+  background-repeat: no-repeat
+  background-image: $image
+  background-position: center center
+
+@mixin icon($icon, $color: black, $size: contain, $position: center center)
+  background: $color
+  mask-image: $icon
+  mask-repeat: no-repeat
+  mask-size: $size
+  mask-position: $position
+  -webkit-mask-image: $icon
+  -webkit-mask-repeat: no-repeat
+  -webkit-mask-size: $size
+  -webkit-mask-position: $position
+
+@mixin icon-image($icon)
+  -webkit-mask-image: $icon
+  mask-image: $icon
+
+@function size($size)
+  @return #{(calc($size / 10))}rem
+
+@function -size($size)
+  @return -#{(calc($size / 10))}rem
+
+// fixed spacing variables - subject to change LOL
+$units: 8
+
+@function units($num)
+  @return #{calc(($num * $units) / 10)}rem
+
+@function -units($num)
+  @return -#{calc(($num * $units) / 10)}rem
+
+%link-hover
+  cursor: pointer
+  &:not(.active)
+    &:hover
+      color: black
+      text-decoration: underline
+      &:after
+        background-color: black
+
+%standard-list
+  padding-left: units(4)
+  li
+    @extend %heading-xl
+    list-style-type: circle
+
+%patterned-background
+  background-color: #F4F4F4
+  background-image: url("data:image/svg+xml;utf8,<svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='8' y1='24' x2='24' y2='8' stroke='rgba(0,0,0,0.12)' stroke-width='2' stroke-linecap='round'/></svg>")
+  // background-image: url("data:image/svg+xml;utf8,<svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='5' cy='5' r='2' fill='rgba(0,0,0,0.3)'/></svg>")
+  background-repeat: repeat
+  background-size: 20px 20px
+
+%patterned-background-plus
+  background-color: #F4F4F4
+  background-image: url("data:image/svg+xml;utf8,<svg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='5' y1='2' x2='5' y2='8' stroke='rgba(0,0,0,0.08)' stroke-width='1' stroke-linecap='round'/><line x1='2' y1='5' x2='8' y2='5' stroke='rgba(0,0,0,0.08)' stroke-width='1' stroke-linecap='round'/></svg>")
+  background-repeat: repeat
+  background-size: 20px 20px
+
+%patterned-background-shapes
+  background-color: #F4F4F4
+  background-image: url("data:image/svg+xml;utf8,<svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='4' y='4' width='9' height='9' stroke='rgba(0,0,0,0.12)' stroke-width='1' fill='none'/><circle cx='30' cy='10' r='4.5' stroke='rgba(0,0,0,0.12)' stroke-width='1' fill='none'/><polygon points='10,22 5.304,30 14.696,30' stroke='rgba(0,0,0,0.12)' stroke-width='1' fill='none'/><g stroke='rgba(0,0,0,0.12)' stroke-width='1'><line x1='24' y1='24' x2='32' y2='32'/><line x1='32' y1='24' x2='24' y2='32'/></g></svg>")
+  background-repeat: repeat
+  background-size: 40px 40px

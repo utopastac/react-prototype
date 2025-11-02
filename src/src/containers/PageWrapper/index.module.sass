@@ -1,0 +1,14 @@
+@import 'src/styles/site'
+
+.Main
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  height: 100%//calc(100% - $view-offset-base)
+  //bottom: $view-offset-base
+  padding-top: $view-offset-top
+  display: flex
+  flex-direction: column
+  &.background
+    background: var(--semantic-background-app)

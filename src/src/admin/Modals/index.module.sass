@@ -1,0 +1,240 @@
+@import 'src/styles/site'
+
+@import '../admin.sass'
+.InsertModal
+  max-height: size(400)
+  overflow-y: auto
+  padding: size(8)
+.InsertComponentItem
+  cursor: pointer
+  padding: size(8) size(12)
+  border-radius: $dev-tools-border-radius
+  @extend %medium
+  font-size: $dev-tools-font-size-m
+  transition: background 0.15s
+  &:hover
+    background: $gray-e4
+.SaveModal
+  padding: size(16)
+  input
+    @extend %input-field
+    width: 100%
+.LoadModal
+  padding: size(8)
+  p
+    color: $dev-tools-text-medium
+    font-size: $dev-tools-font-size-m
+    padding: size(8)
+  li
+    @extend %button-base
+    h4
+      flex: 1
+      height: size(32)
+      @extend %button-base
+      justify-content: flex-start
+      color: $dev-tools-text-medium
+      font-size: $dev-tools-font-size-m
+      padding: size(4) size(12)
+      &:hover
+        background: $gray-e4
+.ShareModal
+  padding: size(16)
+  input
+    @extend %input-field
+  > div
+    display: flex
+    gap: size(8)
+    align-items: center
+  p
+    color: $dev-tools-text-medium
+    font-size: $dev-tools-font-size-m
+.ConfirmModal
+  padding: size(16)
+  > div
+    display: flex
+    gap: size(8)
+    margin-top: size(16)
+  p
+    color: $dev-tools-text-medium
+    font-size: $dev-tools-font-size-m
+.WelcomeModal
+  width: size(500)
+.WelcomeContent
+  padding: size(16)
+.WelcomeSection
+  margin-bottom: size(24)
+  h4
+    color: $dev-tools-text-dark
+    font-size: $dev-tools-font-size-l
+    font-weight: 600
+    margin-bottom: size(8)
+  p
+    color: $dev-tools-text-medium
+    font-size: $dev-tools-font-size-m
+    line-height: 1.5
+    margin-bottom: size(12)
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+  li
+    color: $dev-tools-text-medium
+    font-size: $dev-tools-font-size-m
+    line-height: 1.6
+    margin-bottom: size(6)
+    padding-left: size(16)
+    position: relative
+    &:before
+      content: "•"
+      position: absolute
+      left: 0
+      color: $dev-tools-text-light
+.WelcomeFooter
+  text-align: center
+  margin-top: size(8)
+.WelcomeButton 
+.HistoryModal
+  padding: size(16)
+  max-height: size(400)
+  overflow-y: auto
+  min-width: size(320)
+  .HistoryList
+    padding: 0
+    margin: 0
+    list-style: none
+  .HistoryEntry
+    display: flex
+    align-items: center
+    padding: size(4) size(8)
+    border-radius: 4px
+    margin-bottom: 2px
+    font-size: $dev-tools-font-size-m
+    transition: background 0.1s
+    cursor: pointer
+    border: 1px solid transparent
+    background: none
+    font-weight: normal
+    opacity: 1
+    &:hover
+      background: $gray-e4
+  .HistoryEntryCurrent
+    background: #e0ffe0
+    font-weight: bold
+    border: 1px solid #b2e5b2
+    cursor: default
+  .HistoryEntryFuture
+    opacity: 0.5
+  .HistoryLabel
+    flex: 1
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+  .HistoryTimestamp
+    font-family: monospace
+    font-size: 12px
+    margin-left: 12px
+    color: #888
+    min-width: 70px
+    text-align: right
+  .HistoryModalActions
+    display: flex
+    gap: 8px
+    margin-top: 12px
+
+.FlowLibraryModal
+  // Templates Tab
+  ul
+    padding: size(8)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
+    li
+      border-radius: $dev-tools-border-radius
+      cursor: pointer
+      display: flex
+      align-items: center
+      gap: size(4)
+      
+      &:hover
+        background: $gray-f4
+
+      .image
+        width: size(100)
+        height: size(56)
+        background: $gray-f4
+
+        img
+          width: 100%
+          border-radius: $dev-tools-border-radius
+
+      .content
+        flex: 1
+        padding: size(8)
+
+        h4
+          @extend %medium
+          font-size: $dev-tools-font-size-m
+          margin-bottom: size(4)
+        
+        p
+          font-size: $dev-tools-font-size-s
+
+  // Generate Flow Tab
+  .generateSection
+    padding: size(8)
+    background: white
+
+    p
+      color: $dev-tools-text-medium
+      font-size: $dev-tools-font-size-m
+      margin-bottom: size(16)
+
+    .loading
+      color: $dev-tools-text-medium
+      font-size: $dev-tools-font-size-s
+      margin-top: size(4)
+      margin-bottom: 0
+      padding: size(8)
+      background: var(--base-grey-10)
+      border-radius: $dev-tools-border-radius
+      border: 1px solid var(--base-grey-30)
+
+    .error
+      color: var(--base-red-60)
+      border: 1px solid var(--base-red-20)
+      background: #fbe6e7
+      border-radius: $dev-tools-border-radius
+      font-size: $dev-tools-font-size-s
+      margin-top: size(4)
+      margin-bottom: 0
+      padding: size(8)
+
+  .availableComponents
+    margin-bottom: size(16)
+
+    h4
+      color: $dev-tools-text-dark
+      font-size: $dev-tools-font-size-m
+      font-weight: 600
+      margin-bottom: size(8)
+
+  .componentList
+    display: flex
+    flex-wrap: wrap
+    gap: size(4)
+
+  .componentTag
+    background: $gray-f4
+    color: $dev-tools-text-medium
+    padding: size(2) size(6)
+    border-radius: size(4)
+    font-size: $dev-tools-font-size-s
+    font-family: monospace
+
+  .inputSection
+    margin-bottom: size(16)
+
+  .llmSection
+
+  .llmConfig

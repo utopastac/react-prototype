@@ -1,0 +1,22 @@
+@import 'src/styles/site'
+
+.Main
+  background: var(--semantic-background-standard)
+  border-radius: $radius-pill
+  // width: size(48)
+  // height: size(48)
+  display: flex
+  justify-content: center
+  align-items: center
+  &.i_64
+    width: size(64)
+    height: size(64)
+  &.i_48, &.defaultSize
+    width: size(48)
+    height: size(48)
+  &.default
+    background: var(--semantic-background-subtle)
+  &.branded
+    background: var(--semantic-icon-brand)
+  &.error
+    background: var(--semantic-icon-error)
