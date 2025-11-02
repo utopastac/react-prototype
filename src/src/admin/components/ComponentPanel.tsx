@@ -1,10 +1,6 @@
-import React, { useState, useRef, useState as useReactState, useCallback, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import ComponentCard from 'src/admin/components/ComponentCard';
 import ToolbarButton from './ToolbarButton';
-import TextButton from './TextButton';
-import { SearchInput } from 'src/admin/LabeledInput';
-import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
 import * as Icons from 'src/data/Icons';
 import { ICON_24 } from 'src/components/Icon';
 import styles from 'src/admin/index.module.sass';
@@ -14,7 +10,6 @@ import { useAdminLayoutContext } from 'src/admin/AdminLayoutContext';
 import { formatComponentName } from 'src/admin/formatComponentName';
 import EditableLabel from './EditableLabel';
 import { usePanelResize } from '../hooks/usePanelResize';
-import Tabs, { TabItem } from './Tabs';
 
 /**
  * Props interface for the ComponentPanel component
@@ -24,53 +19,31 @@ interface ComponentPanelProps {
   showAdminPanel: boolean;
   adminPanelWidth: number;
   setAdminPanelWidth: (w: number) => void;
-  search: string;
-  onSearchChange: (value: string) => void;
   onHideAdminPanel: () => void;
   onShowKeyboardShortcuts: () => void;
   onOpenSave: () => void;
   onOpenLoad: () => void;
   onShare: () => void;
-  onDragStart: ((e: React.DragEvent, name: string) => void) | ((name: string) => void);
-  onDragEnd: () => void;
-  onComponentClick: (name: string, Component: React.ComponentType<any>) => void;
-  droppedLength: number;
-  onShowHistory: () => void;
-  onOpenTemplates: () => void; // NEW PROP
-  onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void; // NEW PROP
-  selected?: { layoutIdx: number, droppedIdx: number } | null; // NEW PROP
+  onOpenTemplates: () => void;
+  onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void;
+  selected?: { layoutIdx: number, droppedIdx: number } | null;
 }
 
 const ComponentPanel: React.FC<ComponentPanelProps> = ({
   showAdminPanel,
   adminPanelWidth,
-  setAdminPanelWidth, // NEW PROP
-  search,
-  onSearchChange,
+  setAdminPanelWidth,
   onHideAdminPanel,
   onShowKeyboardShortcuts,
   onOpenSave,
   onOpenLoad,
   onShare,
-  onDragStart,
-  onDragEnd,
-  onComponentClick,
-  droppedLength,
-  onShowHistory,
-  onOpenTemplates, // NEW PROP
-  onDroppedComponentClick, // NEW PROP
-  selected // NEW PROP
+  onOpenTemplates,
+  onDroppedComponentClick,
+  selected
 }) => {
-  // Tab state: 'layouts' or 'components'
-  const [activeTab, setActiveTab] = useState<'layouts' | 'components'>('layouts');
   const { layoutNames, activeLayoutIndex } = useLayoutData();
   const [layoutState, dispatch] = useAdminLayoutContext();
-
-  // Tab configuration
-  const tabItems: TabItem[] = [
-    { id: 'layouts', label: 'Layouts' },
-    { id: 'components', label: 'Components' }
-  ];
 
   // Handler for renaming a layout
   const handleRenameLayout = (idx: number, newName: string) => {
@@ -119,100 +92,54 @@ const ComponentPanel: React.FC<ComponentPanelProps> = ({
               <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts (⌘k)" icon={Icons.Keyboard24} position="bottom-left" />
               <ToolbarButton onClick={onOpenTemplates} title="Flow library (⌘/)" icon={Icons.DocumentW224} position="bottom" />
               <ToolbarButton onClick={onOpenSave} title="Save (⌘s)" icon={Icons.Download16} position="bottom" />
-              {/* <ToolbarButton onClick={onShowHistory} title="History" icon={Icons.Time24} position="bottom" /> */}
               <ToolbarButton onClick={onOpenLoad} title="Load (⌘l)" icon={Icons.Load24} position="bottom" />
               <ToolbarButton onClick={onShare} title="Share (⌘p)" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom-right" />
             </div>
           </div>
-          {/* Tabs */}
-          <Tabs
-            tabs={tabItems}
-            activeTab={activeTab}
-            onTabChange={(tabId) => setActiveTab(tabId as 'layouts' | 'components')}
-          />
           {/* Layout List */}
-          {activeTab === 'layouts' && (
-            <div className={layoutsStyles.LayoutList}>
-              {layoutNames.map((name, idx) => {
-                const isActive = idx === activeLayoutIndex;
-                const dropped = layoutState.layouts[idx]?.dropped || [];
+          <div className={layoutsStyles.LayoutList}>
+            {layoutNames.map((name, idx) => {
+              const isActive = idx === activeLayoutIndex;
+              const components = layoutState.layouts[idx]?.components || [];
                 const selectedComponentIdx = selected && selected.layoutIdx === idx ? selected.droppedIdx : null;
-                return (
-                  <div
-                    key={name + idx}
-                    className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
-                    onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
-                  >
-                    <h4>
-                      <EditableLabel
-                        label={name}
-                        onRenameFinish={newName => handleRenameLayout(idx, newName)}
-                        onRenameCancel={() => {}}
-                        className={layoutsStyles.LayoutName}
-                        inputClassName={layoutsStyles.LayoutName}
-                      />
-                    </h4>
-                    {/* Show dropped components if this layout is active */}
-                    {isActive && dropped.length > 0 && (
-                      <ul>
-                        {dropped.map((item, cidx) => (
-                          <li
-                            key={item.name + cidx}
-                            className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
-                            onClick={e => {
-                              e.stopPropagation();
-                              if (onDroppedComponentClick) {
-                                onDroppedComponentClick(idx, cidx);
-                              }
-                            }}
-                          >
-                            {formatComponentName(item.name)}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          {/* Available Components */}
-          {activeTab === 'components' && (
-            <div className={styles.AvailableComponents}>
-              <div className={styles.SearchTemplate}>
-                <SearchInput
-                  placeholder="Search components..."
-                  value={search}
-                  onChange={onSearchChange}
-                />
-              </div>
-              <div className={styles.ComponentStack}>
-                <div className={styles.grid}>
-                  {Object.entries(FormblockerComponents)
-                    .filter(([name]) => name.toLowerCase().includes(search.toLowerCase()))
-                    .sort(([a], [b]) => a.localeCompare(b))
-                    .map(([name, Component]) => (
-                      <ComponentCard
-                        key={name}
-                        name={name}
-                        Component={Component}
-                        componentProps={initialComponentProps}
-                        draggable
-                        onDragStart={e => {
-                          if (onDragStart.length === 2) {
-                            (onDragStart as (e: React.DragEvent, name: string) => void)(e, name);
-                          } else {
-                            (onDragStart as (name: string) => void)(name);
-                          }
-                        }}
-                        onDragEnd={onDragEnd}
-                        onClick={() => onComponentClick(name, Component)}
-                      />
-                    ))}
+              return (
+                <div
+                  key={name + idx}
+                  className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
+                  onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
+                >
+                  <h4>
+                    <EditableLabel
+                      label={name}
+                      onRenameFinish={newName => handleRenameLayout(idx, newName)}
+                      onRenameCancel={() => {}}
+                      className={layoutsStyles.LayoutName}
+                      inputClassName={layoutsStyles.LayoutName}
+                    />
+                  </h4>
+                  {/* Show components if this layout is active */}
+                  {isActive && components.length > 0 && (
+                    <ul>
+                      {components.map((item, cidx) => (
+                        <li
+                          key={item.name + cidx}
+                          className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
+                          onClick={e => {
+                            e.stopPropagation();
+                            if (onDroppedComponentClick) {
+                              onDroppedComponentClick(idx, cidx);
+                            }
+                          }}
+                        >
+                          {formatComponentName(item.name)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-              </div>
-            </div>
-          )}
+              );
+            })}
+          </div>
         </div>
       </div>
     </motion.div>

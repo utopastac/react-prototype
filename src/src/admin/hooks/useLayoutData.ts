@@ -47,7 +47,7 @@ export const useLayoutData = () => {
    */
   const getLayoutData = (): LayoutsData => {
     const layouts = state.layouts.map(layout => ({
-      dropped: layout.dropped.map(c => ({ name: c.name, props: { ...c.props } })),
+      components: layout.components.map(c => ({ name: c.name, props: { ...c.props } })),
       topBarProps: layout.topBarProps,
       showTopBar: layout.showTopBar,
       bottomButtonsProps: layout.bottomButtonsProps,
@@ -90,7 +90,7 @@ export const useLayoutData = () => {
    */
   const restoreLayouts = (data: LayoutsData) => {
     const restoredLayouts = (data.layouts || []).map((layoutData: any) => ({
-      dropped: (layoutData.dropped || []).map((item: any) => ({
+      components: (layoutData.components || []).map((item: any) => ({
         name: item.name,
         Component: (FormblockerComponents as any)[item.name],
         props: item.props || {}
@@ -173,7 +173,7 @@ export const useLayoutData = () => {
     
     const layout = state.layouts[index];
     return {
-      dropped: layout.dropped.map(c => ({ name: c.name, props: { ...c.props } })),
+      components: layout.components.map(c => ({ name: c.name, props: { ...c.props } })),
       topBarProps: layout.topBarProps,
       showTopBar: layout.showTopBar,
       bottomButtonsProps: layout.bottomButtonsProps,
@@ -196,7 +196,7 @@ export const useLayoutData = () => {
     if (index < 0 || index >= state.layouts.length) return;
     
     const restoredLayout = {
-      dropped: (layoutData.dropped || []).map((item: any) => ({
+      components: (layoutData.components || []).map((item: any) => ({
           name: item.name,
           Component: (FormblockerComponents as any)[item.name],
           props: item.props || {}

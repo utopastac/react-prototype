@@ -16,7 +16,6 @@ interface KeyboardShortcutsProps {
   layoutState: any;
   dispatch: any;
   setSelected: any;
-  setIsAltPressed: any;
   handleReset: any;
   handleSave: any;
   handleUndo?: any;
@@ -37,7 +36,6 @@ export function useKeyboardShortcuts({
   layoutState,
   dispatch,
   setSelected,
-  setIsAltPressed,
   handleReset,
   handleSave,
   handleUndo,
@@ -59,10 +57,10 @@ export function useKeyboardShortcuts({
     const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
 
     const getCurrent = () => {
-      if (!selected) return { dropped: [], phoneIndex: 0, componentIndex: null };
+      if (!selected) return { components: [], phoneIndex: 0, componentIndex: null };
       const { phoneIndex, componentIndex } = selected;
       const layout = layoutState.layouts[phoneIndex];
-      return { dropped: layout.dropped, phoneIndex, componentIndex };
+      return { components: layout.components, phoneIndex, componentIndex };
     };
 
     const setSelectedIdx = (idx: number | null) => {
@@ -75,12 +73,12 @@ export function useKeyboardShortcuts({
         key: 'Backspace',
         condition: () => selected && !isEditingField(),
         action: () => {
-          const { dropped, phoneIndex, componentIndex } = getCurrent();
+          const { components, phoneIndex, componentIndex } = getCurrent();
           handleDeleteMulti({
             dispatch,
             phoneIndex,
             componentIndex,
-            dropped,
+            components,
             setSelected
           });
           return true;
@@ -90,11 +88,11 @@ export function useKeyboardShortcuts({
         key: 'ArrowLeft',
         condition: () => !isEditingField(),
         action: () => {
-          const { dropped, phoneIndex, componentIndex } = getCurrent();
+          const { components, phoneIndex, componentIndex } = getCurrent();
           handleSelectPreviousMulti({
             phoneIndex,
             componentIndex,
-            dropped,
+            components,
             setSelected
           });
           return true;
@@ -104,11 +102,11 @@ export function useKeyboardShortcuts({
         key: 'ArrowRight',
         condition: () => !isEditingField(),
         action: () => {
-          const { dropped, phoneIndex, componentIndex } = getCurrent();
+          const { components, phoneIndex, componentIndex } = getCurrent();
           handleSelectNextMulti({
             phoneIndex,
             componentIndex,
-            dropped,
+            components,
             setSelected
           });
           return true;
@@ -118,12 +116,12 @@ export function useKeyboardShortcuts({
         key: 'ArrowUp',
         condition: () => selected && !isEditingField(),
         action: () => {
-          const { dropped, phoneIndex, componentIndex } = getCurrent();
+          const { components, phoneIndex, componentIndex } = getCurrent();
           handleMoveUpMulti({
             dispatch,
             phoneIndex,
             componentIndex,
-            dropped,
+            components,
             setSelected
           });
           return true;
@@ -133,12 +131,12 @@ export function useKeyboardShortcuts({
         key: 'ArrowDown',
         condition: () => selected && !isEditingField(),
         action: () => {
-          const { dropped, phoneIndex, componentIndex } = getCurrent();
+          const { components, phoneIndex, componentIndex } = getCurrent();
           handleMoveDownMulti({
             dispatch,
             phoneIndex,
             componentIndex,
-            dropped,
+            components,
             setSelected
           });
           return true;
@@ -305,7 +303,6 @@ export function useKeyboardShortcuts({
     ];
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.altKey) setIsAltPressed(true);
       const shortcut = shortcuts.find(s => s.key === e.key && (!s.condition || s.condition(e)));
       if (shortcut && shortcut.condition && shortcut.condition(e)) {
         const shouldPreventDefault = shortcut.action(e);
@@ -315,15 +312,9 @@ export function useKeyboardShortcuts({
       }
     };
 
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (!e.altKey) setIsAltPressed(false);
-    };
-
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [selected, layoutState, dispatch, setSelected, setIsAltPressed, setShowAdminPanel, setShowComponentNames, handleReset, handleSave, handleLoad, handleShowShortcuts, handleShareModal, setOpenModal, handleShowTemplates]);
+  }, [selected, layoutState, dispatch, setSelected, setShowAdminPanel, setShowComponentNames, handleReset, handleSave, handleLoad, handleShowShortcuts, handleShareModal, setOpenModal, handleShowTemplates]);
 } 

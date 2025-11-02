@@ -12,7 +12,6 @@ import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
 import Icon, { ICON_16, ICON_24, ICON_ADMIN, ICON_SUBTLE } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import ToolbarButton from './components/ToolbarButton';
-import { useDragAndDrop } from './hooks/useDragAndDrop';
 import gsap from "gsap";
 import { AdminTemplates } from './Templates';
 import EditableLabel from './components/EditableLabel';
@@ -45,8 +44,6 @@ interface MultiPhonePreviewProps {
   setSelected: (sel: { phoneIndex: number, componentIndex: number } | null) => void;
   setSelectedSpecial: (v: SelectedSpecial) => void;
   selectedSpecial: SelectedSpecial;
-  isAltPressed: boolean;
-  setIsAltPressed: React.Dispatch<React.SetStateAction<boolean>>;
   onCanvasClick?: () => void;
   onOpenInsertModal?: (phoneIndex: number, componentIndex: number, e: React.MouseEvent) => void;
   layoutPositions?: Record<number, { row: number, col: number }>;
@@ -71,13 +68,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     selected,
     setSelected,
     setSelectedSpecial,
-    selectedSpecial,
-    isAltPressed,
-    setIsAltPressed
+    selectedSpecial
   } = props;
   const [layoutState, dispatch] = useAdminLayoutContext();
   const { index: activeIndex } = useActiveLayout();
-  const dragDrop = useDragAndDrop();
   const adminTheme = useAdminTheme();
   
   // Per-phone selectedIdx state for prop editing
@@ -273,26 +267,26 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
    */
   const handleComponentAction = (phoneIndex: number, action: string, componentIndex: number) => {
     const layout = layoutState.layouts[phoneIndex];
-    const newDropped = [...layout.dropped];
+    const newComponents = [...layout.components];
     
     switch (action) {
       case 'delete':
-        newDropped.splice(componentIndex, 1);
+        newComponents.splice(componentIndex, 1);
         break;
       case 'duplicate':
-        const component = newDropped[componentIndex];
-        newDropped.splice(componentIndex + 1, 0, { ...component });
+        const component = newComponents[componentIndex];
+        newComponents.splice(componentIndex + 1, 0, { ...component });
         break;
       case 'moveUp':
         if (componentIndex > 0) {
-          [newDropped[componentIndex - 1], newDropped[componentIndex]] = 
-            [newDropped[componentIndex], newDropped[componentIndex - 1]];
+          [newComponents[componentIndex - 1], newComponents[componentIndex]] = 
+            [newComponents[componentIndex], newComponents[componentIndex - 1]];
         }
         break;
       case 'moveDown':
-        if (componentIndex < newDropped.length - 1) {
-          [newDropped[componentIndex], newDropped[componentIndex + 1]] = 
-            [newDropped[componentIndex + 1], newDropped[componentIndex]];
+        if (componentIndex < newComponents.length - 1) {
+          [newComponents[componentIndex], newComponents[componentIndex + 1]] = 
+            [newComponents[componentIndex + 1], newComponents[componentIndex]];
         }
         break;
     }
@@ -300,169 +294,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     dispatch({
       type: 'UPDATE_LAYOUT',
       index: phoneIndex,
-      payload: { dropped: newDropped }
+      payload: { components: newComponents }
     });
   };
 
-  // Add at the top of the component:
-  const [componentDrag, setComponentDrag] = useState<{
-    sourcePhoneIdx: number | null,
-    draggedIdx: number | null,
-    targetPhoneIdx: number | null,
-    dragOverIdx: number | null,
-    isAltPressed: boolean
-  }>({ sourcePhoneIdx: null, draggedIdx: null, targetPhoneIdx: null, dragOverIdx: null, isAltPressed: false });
-
-  // Replace per-phone drag state for components with this new state.
-
-  // Keep arrays in sync with layouts
-  useEffect(() => {
-    // setDraggedIdxArr(arr => arr.length === layoutState.layouts.length ? arr : layoutState.layouts.map((_, i) => arr[i] ?? null));
-    // setDragOverIdxArr(arr => arr.length === layoutState.layouts.length ? arr : layoutState.layouts.map((_, i) => arr[i] ?? null));
-  }, [layoutState.layouts.length]);
-
-  // Global drag end listener to clear all drag over states
-  useEffect(() => {
-    const handleGlobalDragEnd = () => {
-      console.log('[MultiPhonePreview] Global dragend - clearing all dragOverIdxArr');
-      // setDragOverIdxArr(layoutState.layouts.map(() => null));
-    };
-    window.addEventListener('dragend', handleGlobalDragEnd);
-    return () => {
-      window.removeEventListener('dragend', handleGlobalDragEnd);
-    };
-  }, [layoutState.layouts.length]);
-
-  // Drag-and-drop handlers for reordering within a phone
-  const handleDragStart = (phoneIdx: number, idx: number, altKey: boolean) => {
-    // setDraggedIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = idx; return newArr; });
-    setIsAltPressed(altKey);
-  };
-  const handleDragOver = (phoneIdx: number, idx: number, altKey: boolean) => {
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = idx; return newArr; });
-    setIsAltPressed(altKey);
-  };
-  const handleDragLeave = (phoneIdx: number) => {
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-  };
-  const handleDragEnd = (phoneIdx: number) => {
-    // setDraggedIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-    // setDragOverIdxArr(arr => { const newArr = [...arr]; newArr[phoneIdx] = null; return newArr; });
-    setIsAltPressed(false);
-  };
-  const handleDrop = (phoneIdx: number, e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const draggedIdx = componentDrag.draggedIdx;
-    const dragOverIdx = componentDrag.dragOverIdx;
-    if (dragDrop.draggedName) {
-      // Pass the drop position to the multi-layout drag-and-drop system
-      dragDrop.handleDrop(phoneIdx, dragOverIdx, e);
-      return;
-    }
-    if (draggedIdx !== null && dragOverIdx !== null) {
-      const layout = layoutState.layouts[phoneIdx];
-      let newDropped = [...layout.dropped];
-      if (isAltPressed) {
-        // Duplicate: always allow, even if dropping on same index
-        const componentToCopy = newDropped[draggedIdx];
-        newDropped.splice(dragOverIdx, 0, { ...componentToCopy });
-        dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-        setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-      } else if (draggedIdx !== dragOverIdx) {
-        // Move: only if different
-        const [removed] = newDropped.splice(draggedIdx, 1);
-        newDropped.splice(dragOverIdx, 0, removed);
-        dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-        const currSel = selected;
-        if (currSel && currSel.phoneIndex === phoneIdx) {
-          setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-        }
-      }
-    }
-    handleDragEnd(phoneIdx);
-  };
-
-  // Update drag handlers for components:
-  const handleComponentDragStart = (phoneIdx: number, idx: number, altKey: boolean) => {
-    setComponentDrag({
-      sourcePhoneIdx: phoneIdx,
-      draggedIdx: idx,
-      targetPhoneIdx: phoneIdx,
-      dragOverIdx: idx,
-      isAltPressed: altKey
-    });
-  };
-  const handleComponentDragOver = (phoneIdx: number, idx: number, altKey: boolean) => {
-    setComponentDrag(prev => ({
-      ...prev,
-      targetPhoneIdx: phoneIdx,
-      dragOverIdx: idx,
-      isAltPressed: altKey
-    }));
-  };
-  const handleComponentDragLeave = () => {
-    setComponentDrag(prev => ({ ...prev, dragOverIdx: null }));
-  };
-  const handleComponentDragEnd = () => {
-    setComponentDrag({ sourcePhoneIdx: null, draggedIdx: null, targetPhoneIdx: null, dragOverIdx: null, isAltPressed: false });
-  };
-
-  // Update drop handler for components to support cross-layout moves/copies:
-  const handleComponentDrop = (phoneIdx: number, e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (dragDrop.draggedName) {
-      // Handle palette drag-and-drop
-      dragDrop.handleDrop(phoneIdx, componentDrag.dragOverIdx, e);
-      handleComponentDragEnd();
-      return;
-    }
-    const { sourcePhoneIdx, draggedIdx, targetPhoneIdx, dragOverIdx, isAltPressed } = componentDrag;
-    if (
-      sourcePhoneIdx !== null &&
-      draggedIdx !== null &&
-      targetPhoneIdx !== null &&
-      dragOverIdx !== null
-    ) {
-      if (sourcePhoneIdx === targetPhoneIdx) {
-        // Intra-layout move/copy (same as before)
-        const layout = layoutState.layouts[phoneIdx];
-        let newDropped = [...layout.dropped];
-        if (isAltPressed) {
-          const componentToCopy = newDropped[draggedIdx];
-          newDropped.splice(dragOverIdx, 0, { ...componentToCopy });
-          dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-          setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-        } else if (draggedIdx !== dragOverIdx) {
-          const [removed] = newDropped.splice(draggedIdx, 1);
-          newDropped.splice(dragOverIdx, 0, removed);
-          dispatch({ type: 'UPDATE_LAYOUT', index: phoneIdx, payload: { dropped: newDropped } });
-          const currSel = selected;
-          if (currSel && currSel.phoneIndex === phoneIdx) {
-            setSelected({ phoneIndex: phoneIdx, componentIndex: dragOverIdx });
-          }
-        }
-      } else {
-        // Cross-layout move/copy
-        const sourceLayout = layoutState.layouts[sourcePhoneIdx];
-        const targetLayout = layoutState.layouts[targetPhoneIdx];
-        let sourceDropped = [...sourceLayout.dropped];
-        let targetDropped = [...targetLayout.dropped];
-        const componentToMove = sourceDropped[draggedIdx];
-        if (isAltPressed) {
-          // Copy
-          targetDropped.splice(dragOverIdx, 0, { ...componentToMove });
-        } else {
-          // Move
-          sourceDropped.splice(draggedIdx, 1);
-          targetDropped.splice(dragOverIdx, 0, componentToMove);
-        }
-        dispatch({ type: 'UPDATE_LAYOUT', index: sourcePhoneIdx, payload: { dropped: sourceDropped } });
-        dispatch({ type: 'UPDATE_LAYOUT', index: targetPhoneIdx, payload: { dropped: targetDropped } });
-        setSelected({ phoneIndex: targetPhoneIdx, componentIndex: dragOverIdx });
-      }
-    }
-    handleComponentDragEnd();
-  };
 
   // Scroll selected or active phone into view when selection changes (with GSAP)
   useEffect(() => {
@@ -779,28 +614,15 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                   <div
                     className={[
                       styles.PhonePreview,
-                      isActive ? layoutsStyles.ActivePhone : layoutsStyles.InactivePhone,
-                      (dragDrop.dragOverLayoutIndex === index || dragOverGridPosition?.row === item.row) ? styles.PhonePreviewDragOver : undefined
+                      isActive ? layoutsStyles.ActivePhone : layoutsStyles.InactivePhone
                     ].filter((v): v is string => Boolean(v)).join(' ')}
-                    style={{ boxShadow: adminTheme.phoneShadow }}
-                    onDrop={e => handleComponentDrop(index, e)}
-                    onDragOver={e => {
-                      if (dragDrop.draggedName) {
-                        dragDrop.handleDragOver(index, e);
-                      } else {
-                        e.preventDefault();
-                      }
-                    }}
-                    onDragLeave={e => {
-                      if (dragDrop.draggedName) {
-                        dragDrop.handleDragLeave();
-                      } else {
-                        handleDragLeave(index);
-                      }
+                    style={{ 
+                      boxShadow: adminTheme.phoneShadow,
+                      outline: adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : 'none'
                     }}
                   >
                     <PhonePreviewContent
-                      dropped={layout.dropped}
+                      components={layout.components}
                       selectedIdx={selected && selected.phoneIndex === index ? selected.componentIndex : null}
                       setSelectedIdx={componentIndex => {
                         if (componentIndex === null) {
@@ -809,25 +631,19 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                           setSelected({ phoneIndex: index, componentIndex });
                         }
                       }}
-                      draggedIdx={componentDrag.sourcePhoneIdx === index ? componentDrag.draggedIdx : null}
-                      setDraggedIdx={val => handleComponentDragStart(index, val as number, isAltPressed)}
-                      dragOverIdx={componentDrag.targetPhoneIdx === index ? componentDrag.dragOverIdx : null}
-                      setDragOverIdx={val => handleComponentDragOver(index, val as number, isAltPressed)}
-                      isAltPressed={componentDrag.isAltPressed}
-                      setIsAltPressed={setIsAltPressed}
                       showTopBar={layout.showTopBar}
                       topBarProps={layout.topBarProps}
                       setSelectedSpecial={v => setSelectedSpecial(v ? { phoneIndex: index, type: v } : null)}
                       showBottomButtons={layout.showBottomButtons}
                       bottomButtonsProps={layout.bottomButtonsProps}
-                      setDropped={(updater) => {
-                        const newDropped = typeof updater === 'function' 
-                          ? updater(layout.dropped) 
+                      setComponents={(updater) => {
+                        const newComponents = typeof updater === 'function' 
+                          ? updater(layout.components) 
                           : updater;
                         dispatch({
                           type: 'UPDATE_LAYOUT',
                           index,
-                          payload: { dropped: newDropped }
+                          payload: { components: newComponents }
                         });
                       }}
                       styles={styles}
@@ -847,7 +663,6 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                       }}
                       onDuplicate={(componentIndex) => handleComponentAction(index, 'duplicate', componentIndex)}
                       onDelete={(componentIndex) => handleComponentAction(index, 'delete', componentIndex)}
-                      onDragEnd={handleComponentDragEnd}
                       showToast={layout.showToast}
                       toastProps={layout.toastProps}
                       Toast={Toast}

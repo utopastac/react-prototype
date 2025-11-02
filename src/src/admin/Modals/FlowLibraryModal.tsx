@@ -45,10 +45,10 @@ const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onC
       // Transform image URLs in the layouts to work in both dev and production
       const transformedLayouts = transformLayoutsImageUrls(data.layouts);
       
-      // Patch dropped array to add Component property
+      // Patch components array to add Component property
       const layoutsWithComponents = transformedLayouts.map((layout: any) => ({
         ...layout,
-        dropped: (layout.dropped || []).map((item: any) => ({
+        components: (layout.components || []).map((item: any) => ({
           ...item,
           Component: (FormblockerComponents as any)[item.name],
         })),

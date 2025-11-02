@@ -5,7 +5,6 @@ import PhonePreview from './PhonePreview';
 import LayoutTabs from './LayoutTabs';
 import { useHistoryManager } from './hooks/useHistoryManager';
 import { useLayoutData } from './hooks/useLayoutData';
-import { useDragAndDrop } from './hooks/useDragAndDrop';
 import styles from './index.module.sass';
 import layoutsStyles from './layouts.module.sass';
 import ComponentPanel from './components/ComponentPanel';
@@ -117,10 +116,8 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   
   // Local UI state
   const [showAdminPanel, setShowAdminPanel] = useState(true);
-  const [search, setSearch] = useState('');
   const [toast, setToast] = useState<string | null>(null);
   const [selectedPhoneIndex, setSelectedPhoneIndex] = useState<number | null>(null);
-  const [isAltPressed, setIsAltPressed] = useState(false);
   // Add selectedTemplate state
   const [selectedTemplate, setSelectedTemplate] = useState<AdminTemplate | null>(null);
   // New: Prop editor visibility state
@@ -138,7 +135,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   // Effect: update isPropEditorVisible when selection changes
   useEffect(() => {
     if (
-      (selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]) ||
+      (selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].components[selected.componentIndex]) ||
       selectedSpecial
     ) {
       setIsPropEditorVisible(true);
@@ -158,7 +155,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   });
 
   const layoutData = useLayoutData();
-  const dragDrop = useDragAndDrop();
 
   // Panel dimensions (now in AdminThemeContext)
   const adminTheme = useAdminTheme();
@@ -272,7 +268,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       ...layoutState.layouts,
       {
         ...layoutState.layouts[0],
-        dropped: template.dropped.map(c => ({ ...c, props: { ...c.props } })),
+        components: template.components.map(c => ({ ...c, props: { ...c.props } })),
         topBarProps: template.topBarProps ?? INITIAL_TOP_BAR_PROPS,
         showTopBar: template.topBarProps !== undefined,
         bottomButtonsProps: template.bottomButtonsProps ?? INITIAL_BOTTOM_BUTTONS_PROPS,
@@ -350,12 +346,12 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   }
 
   // Prop editor logic
-  // Render prop editor for selected dropped component (for the selected phone)
+  // Render prop editor for selected component (for the selected phone)
   const renderPropEditor = () => {
     if (!selected || !layoutState.layouts[selected.phoneIndex]) return null;
     const layout = layoutState.layouts[selected.phoneIndex];
-    const dropped = layout.dropped;
-    const comp = dropped[selected.componentIndex];
+    const components = layout.components;
+    const comp = components[selected.componentIndex];
     if (!comp) return null;
     const meta = ComponentPropMeta[comp.name as keyof typeof ComponentPropMeta] as any;
     return (
@@ -368,13 +364,13 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             // Update nested props for the selected component
             const prevProps = comp.props;
     const newProps = updateNestedState(prevProps, fullKey, value);
-            const newDropped = dropped.map((item, idx) =>
+            const newComponents = components.map((item, idx) =>
               idx === selected.componentIndex ? { ...item, props: newProps } : item
             );
             dispatch({
               type: 'UPDATE_LAYOUT',
               index: selected.phoneIndex,
-              payload: { dropped: newDropped }
+              payload: { components: newComponents }
             });
           }}
           onDismiss={() => {
@@ -480,7 +476,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       type: 'UPDATE_LAYOUT',
       index: targetIndex,
       payload: {
-        dropped: template.dropped.map((c: { name: string; Component: React.ComponentType<any>; props: any }) => ({ ...c, props: { ...c.props } })),
+        components: template.components.map((c: { name: string; Component: React.ComponentType<any>; props: any }) => ({ ...c, props: { ...c.props } })),
         topBarProps: template.topBarProps ?? layoutState.layouts[targetIndex].topBarProps,
       showTopBar: !!template.topBarProps,
         bottomButtonsProps: template.bottomButtonsProps ?? layoutState.layouts[targetIndex].bottomButtonsProps,
@@ -613,8 +609,8 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       const { phoneIndex, componentIndex } = insertModal;
       const layout = layoutState.layouts[phoneIndex];
       const Component = (FormblockerComponents as any)[name];
-      const newDropped = [...layout.dropped];
-      newDropped.splice(componentIndex + 1, 0, {
+      const newComponents = [...layout.components];
+      newComponents.splice(componentIndex + 1, 0, {
         name,
         Component,
         props: { ...(initialComponentProps as any)[name] },
@@ -622,7 +618,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       dispatch({
         type: 'UPDATE_LAYOUT',
         index: phoneIndex,
-        payload: { dropped: newDropped },
+        payload: { components: newComponents },
       });
       setInsertModal(null);
       setSelected({ phoneIndex, componentIndex: componentIndex + 1 });
@@ -638,8 +634,8 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     const handleClick = (e: MouseEvent) => {
       const rightPanel = rightPanelRef.current;
       if (rightPanel && rightPanel.contains(e.target as Node)) return;
-      // Check if click is on a dropped component or special component
-      const droppedEls = document.querySelectorAll('[data-dropped-component], [data-special-component]');
+      // Check if click is on a component or special component
+      const droppedEls = document.querySelectorAll('[data-component], [data-special-component]');
       for (const el of droppedEls) {
         if (el.contains(e.target as Node)) return;
       }
@@ -660,7 +656,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     layoutState,
     dispatch,
     setSelected,
-    setIsAltPressed,
     handleReset: () => setOpenModal('clearAll'),
     handleSave: () => setOpenModal('save'),
     handleUndo: historyManager.handleUndo,
@@ -722,8 +717,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             showAdminPanel={showAdminPanel}
             adminPanelWidth={adminPanelWidth}
             setAdminPanelWidth={setAdminPanelWidth}
-            search={search}
-            onSearchChange={setSearch}
             onHideAdminPanel={() => setShowAdminPanel(false)}
             onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
             onOpenSave={() => setOpenModal('save')}
@@ -732,28 +725,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
               setOpenModal('load');
             }}
             onShare={handleShareModal}
-            onDragStart={(e, name) => {
-              dragDrop.setDraggedName(name);
-              try { e.dataTransfer.setData('text/plain', name); } catch {}
-            }}
-            onDragEnd={() => dragDrop.setDraggedName(null)}
-            onComponentClick={(name, Component) => {
-              // Only add if a layout is selected
-              if (activeLayout && activeIndex >= 0) {
-                const newDropped = [...activeLayout.dropped, {
-                  name,
-                  Component,
-                  props: { ...(initialComponentProps as any)[name] }
-                }];
-                dispatch({
-                  type: 'UPDATE_LAYOUT',
-                  index: activeIndex,
-                  payload: { dropped: newDropped }
-                });
-              }
-            }}
-            droppedLength={activeLayout ? activeLayout.dropped.length : 0}
-            onShowHistory={() => setToast('📜 History modal')}
             onOpenTemplates={() => setOpenModal('templates')}
             onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
             selected={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
@@ -848,8 +819,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             setSelected={setSelected}
             setSelectedSpecial={setSelectedSpecial}
             selectedSpecial={selectedSpecial}
-            isAltPressed={isAltPressed}
-            setIsAltPressed={setIsAltPressed}
             onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
             onOpenInsertModal={handleOpenInsertModal}
             layoutPositions={layoutState.layoutPositions}
@@ -982,7 +951,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
           >
             {/* Draggable left edge for resizing */}
             {propEditorResizeHandle}
-            {selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].dropped[selected.componentIndex]
+            {selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].components[selected.componentIndex]
               ? renderPropEditor()
               : renderSpecialPropEditor()}
           </motion.div>

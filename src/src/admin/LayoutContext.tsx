@@ -14,7 +14,7 @@ import { ButtonGroupProps } from 'src/components/ButtonGroup';
  * - Local State: Ephemeral UI state (selectedIdx, selectedSpecial, isAltPressed, etc.)
  * 
  * The layout state includes:
- * - Component composition (dropped components with their props)
+ * - Component composition (components with their props)
  * - Special UI elements (top bar, bottom buttons, toast)
  * - Visibility toggles for layout elements
  */
@@ -22,8 +22,8 @@ import { ButtonGroupProps } from 'src/components/ButtonGroup';
 // ===== INITIAL VALUES =====
 // These define the default state for a new layout
 
-/** Empty array of dropped components for initial state */
-const INITIAL_DROPPED: { name: string; Component: React.ComponentType<any>; props: any }[] = [];
+/** Empty array of components for initial state */
+const INITIAL_COMPONENTS: { name: string; Component: React.ComponentType<any>; props: any }[] = [];
 
 /** Default top bar visibility */
 const INITIAL_SHOW_TOP_BAR = true;
@@ -77,8 +77,8 @@ export const INITIAL_STATUS_BAR_PROPS = {
  * and should persist across sessions, navigation, and sharing.
  */
 export interface LayoutState {
-  /** Array of components that have been dropped into the layout */
-  dropped: { name: string; Component: React.ComponentType<any>; props: any }[];
+  /** Array of components in the layout */
+  components: { name: string; Component: React.ComponentType<any>; props: any }[];
   /** Whether the top bar is visible in the layout */
   showTopBar: boolean;
   /** Configuration properties for the top bar */
@@ -109,7 +109,7 @@ export interface LayoutState {
  */
 export interface LayoutData {
   /** Array of component data (name and props only, no Component references) */
-  dropped: Array<{ name: string; props: any }>;
+  components: Array<{ name: string; props: any }>;
   /** Configuration properties for the top bar */
   topBarProps: TopBarProps;
   /** Whether the top bar is visible in the layout */
@@ -137,7 +137,7 @@ export interface LayoutData {
  * This is used when creating a new layout or resetting to initial state.
  */
 const INITIAL_LAYOUT_STATE: LayoutState = {
-  dropped: INITIAL_DROPPED,
+  components: INITIAL_COMPONENTS,
   showTopBar: INITIAL_SHOW_TOP_BAR,
   topBarProps: INITIAL_TOP_BAR_PROPS,
   showBottomButtons: INITIAL_SHOW_BOTTOM_BUTTONS,

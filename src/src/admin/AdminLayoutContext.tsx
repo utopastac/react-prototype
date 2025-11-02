@@ -32,7 +32,7 @@ const DEFAULT_LAYOUT_NAME = (index: number) => `Layout ${index + 1}`;
 /** Initial layout state with one default layout */
 const INITIAL_LAYOUT_STATE = {
   layouts: [{
-    dropped: [],
+    components: [],
     showTopBar: true,
     topBarProps: INITIAL_TOP_BAR_PROPS,
     showBottomButtons: true,
@@ -41,12 +41,10 @@ const INITIAL_LAYOUT_STATE = {
     toastProps: INITIAL_TOAST_PROPS,
     showStatusBar: true,
     statusBarProps: INITIAL_STATUS_BAR_PROPS,
-    draggedName: null,
-    description: '', // <-- add here
+    description: '',
   }],
   activeLayoutIndex: 0, // -1 means no selection
   layoutNames: ['Layout 1'],
-  draggedName: null,
   layoutPositions: { 0: { row: 0, col: 0 } },
   gridRows: 2,
   gridCols: 2,
@@ -66,8 +64,6 @@ export interface AdminLayoutState {
   activeLayoutIndex: number;
   /** Names for each layout for display and identification */
   layoutNames: string[];
-  /** Name of the layout currently being dragged */
-  draggedName: string | null;
   layoutPositions: Record<number, { row: number, col: number }>;
   gridRows: number;
   gridCols: number;
@@ -92,7 +88,6 @@ type AdminLayoutAction =
   | { type: 'RESET_ALL' }
   | { type: 'RESET_LAYOUT', index: number }
   | { type: 'SET_ALL_LAYOUTS', layouts: LayoutState[], names: string[], layoutPositions?: Record<number, { row: number, col: number }>, gridRows?: number, gridCols?: number }
-  | { type: 'SET_DRAGGED_NAME', name: string | null }
   | { type: 'MOVE_LAYOUT_TO_POSITION', layoutIndex: number, newPosition: { row: number, col: number } }
   | { type: 'SWAP_LAYOUT_POSITIONS', layoutIndex1: number, layoutIndex2: number };
 
@@ -308,9 +303,6 @@ function adminLayoutReducer(state: AdminLayoutState, action: AdminLayoutAction):
       console.log('[REDUCER] SET_ALL_LAYOUTS new state:', newState);
       return newState;
     }
-
-    case 'SET_DRAGGED_NAME':
-      return { ...state, draggedName: action.name };
 
     case 'MOVE_LAYOUT_TO_POSITION': {
       const { layoutIndex, newPosition } = action;

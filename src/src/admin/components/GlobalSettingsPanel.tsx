@@ -90,6 +90,23 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     return `${px}px`;
   }
 
+  const outlineMin = '0px';
+  const outlineMax = '12px';
+  function outlineToSlider(val: string): number {
+    const min = parseInt(outlineMin, 10);
+    const max = parseInt(outlineMax, 10);
+    const v = parseInt(val, 10);
+    if (isNaN(v)) return 0; // fallback
+    return (v - min) / (max - min);
+  }
+
+  function sliderToOutline(t: number): string {
+    const min = parseInt(outlineMin, 10);
+    const max = parseInt(outlineMax, 10);
+    const px = Math.round(min + (max - min) * t);
+    return `${px}px`;
+  }
+
   const handleBackgroundChange = useCallback((t: number) => {
     setAdminTheme({ type: 'Update', payload: { backgroundColor: sliderToBackground(t) } });
   }, [setAdminTheme]);
@@ -98,6 +115,9 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   }, [setAdminTheme]);
   const handleSpacingChange = useCallback((t: number) => {
     setAdminTheme({ type: 'Update', payload: { layoutSpacing: sliderToSpacing(t) } });
+  }, [setAdminTheme]);
+  const handleOutlineChange = useCallback((t: number) => {
+    setAdminTheme({ type: 'Update', payload: { layoutOutline: sliderToOutline(t) } });
   }, [setAdminTheme]);
 
   // --- Resizing logic ---
@@ -165,6 +185,11 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
                 label="Spacing"
                 value={spacingToSlider(adminTheme.layoutSpacing)}
                 onChange={handleSpacingChange}
+              />
+              <SliderInput
+                label="Outline"
+                value={outlineToSlider(adminTheme.layoutOutline)}
+                onChange={handleOutlineChange}
               />
             </ToolsSection>
             <ToolsSection>
