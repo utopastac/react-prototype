@@ -27,9 +27,7 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
         <div className={styles.WelcomeSection}>
           <h4>🚀 Getting Started</h4>
           <ul>
-            <li><strong>Drag & Drop:</strong> Add components from the left panel to your phone preview</li>
             <li><strong>Edit Properties:</strong> Click on any component to edit its properties</li>
-            <li><strong>Rearrange:</strong> Drag components to reorder them in the layout</li>
             <li><strong>Save & Share:</strong> Save your layouts and share them via URL</li>
           </ul>
         </div>

@@ -19,7 +19,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, layoutData, onClose, 
 
   const handleDownloadJson = () => {
     const json = JSON.stringify(layoutData, null, 2);
-    downloadAsFile(json, 'funblocker-layout.json', 'application/json');
+    downloadAsFile(json, 'intervention-layout.json', 'application/json');
   };
 
   return (

@@ -40,8 +40,7 @@ The multi-layout system allows users to create, edit, and manage multiple phone 
 - **Purpose**: Renders multiple phone previews in a grid layout
 - **Key Features**:
   - Dynamic grid layout (grows as needed)
-  - Individual phone selection and editing
-  - Cross-phone drag-and-drop
+- Individual phone selection and editing
   - Visual feedback for active/selected phones
   - Action buttons for each phone
   - **Grid-aware add/duplicate**: UI actions use grid-aware handlers
@@ -73,13 +72,6 @@ The multi-layout system allows users to create, edit, and manage multiple phone 
   - History statistics
   - Export/import history data
 
-#### 3. useMultiLayoutDragDrop (`src/admin/hooks/useMultiLayoutDragDrop.ts`)
-- **Purpose**: Cross-layout drag-and-drop functionality
-- **Key Features**:
-  - Move components between layouts
-  - Copy components with Alt+drag
-  - Visual feedback for drag operations
-  - Validation of drop targets
 
 ## Usage
 
@@ -251,17 +243,6 @@ interface MultiLayoutData {
 - UI actions for adding/duplicating layouts must use the new parent handlers (`handleAddLayoutAt`, `handleDuplicateLayoutAt`).
 - Legacy actions (`ADD_LAYOUT`, `DUPLICATE_LAYOUT`) are still present for backward compatibility but do not update the grid.
 
-## Drag-and-Drop
-
-### Cross-Layout Operations
-- **Move**: Drag a component from one layout to another
-- **Copy**: Alt+drag to copy a component between layouts
-- **Reorder**: Drag components within the same layout
-
-### Visual Feedback
-- Dragged components show a visual indicator
-- Drop targets highlight when dragging over
-- Invalid drop targets show different styling
 
 ## Keyboard Shortcuts
 
@@ -311,8 +292,7 @@ src/admin/
 ├── MultiLayoutAdminView.tsx        # Sample integration
 ├── hooks/
 │   ├── useMultiLayoutData.ts       # Multi-layout serialization
-│   ├── useMultiLayoutHistory.ts    # Multi-layout history management
-│   └── useMultiLayoutDragDrop.ts   # Multi-layout drag-and-drop
+│   └── useMultiLayoutHistory.ts    # Multi-layout history management
 └── MULTI_LAYOUT_README.md          # This documentation
 ```
 
@@ -340,10 +320,6 @@ src/admin/
    - Ensure the dispatch action is correct
    - Verify the component is wrapped in MultiLayoutProvider
 
-2. **Drag-and-Drop Not Working**
-   - Check if drag events are properly handled
-   - Verify drop target validation
-   - Ensure drag data is properly formatted
 
 3. **History Not Working**
    - Check if history manager is properly initialized

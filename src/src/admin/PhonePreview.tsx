@@ -45,7 +45,6 @@ interface MultiPhonePreviewProps {
   setSelectedSpecial: (v: SelectedSpecial) => void;
   selectedSpecial: SelectedSpecial;
   onCanvasClick?: () => void;
-  onOpenInsertModal?: (phoneIndex: number, componentIndex: number, e: React.MouseEvent) => void;
   layoutPositions?: Record<number, { row: number, col: number }>;
   gridRows?: number;
   gridCols?: number;
@@ -262,41 +261,6 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     // (Removed unused onPhoneDoubleClick reference)
   };
 
-  /**
-   * Handle component actions within a phone
-   */
-  const handleComponentAction = (phoneIndex: number, action: string, componentIndex: number) => {
-    const layout = layoutState.layouts[phoneIndex];
-    const newComponents = [...layout.components];
-    
-    switch (action) {
-      case 'delete':
-        newComponents.splice(componentIndex, 1);
-        break;
-      case 'duplicate':
-        const component = newComponents[componentIndex];
-        newComponents.splice(componentIndex + 1, 0, { ...component });
-        break;
-      case 'moveUp':
-        if (componentIndex > 0) {
-          [newComponents[componentIndex - 1], newComponents[componentIndex]] = 
-            [newComponents[componentIndex], newComponents[componentIndex - 1]];
-        }
-        break;
-      case 'moveDown':
-        if (componentIndex < newComponents.length - 1) {
-          [newComponents[componentIndex], newComponents[componentIndex + 1]] = 
-            [newComponents[componentIndex + 1], newComponents[componentIndex]];
-        }
-        break;
-    }
-    
-    dispatch({
-      type: 'UPDATE_LAYOUT',
-      index: phoneIndex,
-      payload: { components: newComponents }
-    });
-  };
 
 
   // Scroll selected or active phone into view when selection changes (with GSAP)
@@ -656,13 +620,6 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                       IOSHomeIndicator={IOSHomeIndicator}
                       showComponentNames={false}
                       selectedSpecial={selectedSpecial?.phoneIndex === index ? selectedSpecial.type : null}
-                      onOpenInsertModal={(e, componentIndex) => {
-                        if (props.onOpenInsertModal) {
-                          props.onOpenInsertModal(index, componentIndex, e);
-                        }
-                      }}
-                      onDuplicate={(componentIndex) => handleComponentAction(index, 'duplicate', componentIndex)}
-                      onDelete={(componentIndex) => handleComponentAction(index, 'delete', componentIndex)}
                       showToast={layout.showToast}
                       toastProps={layout.toastProps}
                       Toast={Toast}
