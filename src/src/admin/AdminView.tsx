@@ -8,21 +8,19 @@ import styles from './index.module.sass';
 import layoutsStyles from './layouts.module.sass';
 import ComponentPanel from './components/ComponentPanel';
 import AdminToast from './components/Toast';
-import ToolbarButton from './components/ToolbarButton';
-import { ICON_24 } from 'src/components/Icon';
-import * as Icons from 'src/data/Icons';
+// ToolbarButton and icons moved into AdminPanelToggle component
 import { AdminTemplate, AdminTemplates } from './Templates';
-import SaveModal from './Modals/SaveModal';
-import LoadModal from './Modals/LoadModal';
-import ShareModal from './Modals/ShareModal';
-import { WelcomeModal, ShortcutsModal, FlowLibraryModal } from './Modals';
-import ClearModal from './Modals/ClearModal';
+import { WelcomeModal } from './Modals';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useUrlSharing } from './hooks/useUrlSharing';
 import JsonPanel from './components/JsonPanel';
 import GlobalSettingsPanel from './components/GlobalSettingsPanel';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
-import SelectInput from './LabeledInput/SelectInput';
+// SelectInput no longer used here; TemplatePicker encapsulates selection
+import TemplatePicker from './components/TemplatePicker/TemplatePicker';
+import AdminPanelToggle from './components/AdminPanelToggle/AdminPanelToggle';
+import ModalsManager from './components/ModalsManager/ModalsManager';
+import updateNestedState from './utils/updateNestedState';
 import {
   INITIAL_TOP_BAR_PROPS,
   INITIAL_BOTTOM_BUTTONS_PROPS,
@@ -53,26 +51,7 @@ interface AdminViewProps {
   tabBackground: string;
 }
 
-// Utility to update deeply nested state (dot/bracket notation, arrays, deep objects)
-function updateNestedState<T>(prev: T, fullKey: string, value: any): T {
-  const keys = fullKey.split(/\.|\[|\]/).filter(Boolean);
-  function setDeep(obj: any, keys: string[], value: any): any {
-    if (keys.length === 0) return value;
-    const [key, ...rest] = keys;
-    if (/^\d+$/.test(key)) {
-      const idx = parseInt(key, 10);
-      const arr = Array.isArray(obj) ? [...obj] : [];
-      arr[idx] = setDeep(arr[idx], rest, value);
-      return arr;
-    } else {
-      return {
-        ...obj,
-        [key]: setDeep(obj && obj[key], rest, value)
-      };
-    }
-  }
-  return setDeep(prev, keys, value);
-}
+// updateNestedState moved to ./utils/updateNestedState
 
 const AdminViewContent: React.FC<AdminViewProps> = ({
   theme,
@@ -159,23 +138,9 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
 
   // State for floating template picker
   const [templatePicker, setTemplatePicker] = useState<null | { row: number; col: number; pos: { x: number; y: number } }>(null);
-  const [templatePickerValue, setTemplatePickerValue] = useState('');
+  // internal value handled inside TemplatePicker component
 
-  // Ref for the template picker panel
-  const templatePickerRef = useRef<HTMLDivElement>(null);
-
-  // Close template picker on outside click
-  useEffect(() => {
-    if (!templatePicker) return;
-    const handleClick = (e: MouseEvent) => {
-      if (templatePickerRef.current && !templatePickerRef.current.contains(e.target as Node)) {
-        setTemplatePicker(null);
-        setTemplatePickerValue('');
-      }
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [templatePicker]);
+  // TemplatePicker outside-click is now handled inside TemplatePicker component
 
   // Intercept add layout to show template picker
   function handleAddLayoutAt(row: number, col: number, templateName?: string) {
@@ -235,7 +200,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     });
     dispatch({ type: 'SET_ACTIVE_LAYOUT', index: newIndex });
     setTemplatePicker(null);
-    setTemplatePickerValue('');
     setToast(`✅ Added layout: ${template.name}`);
   }
   // Example: Duplicate a layout to the right
@@ -452,35 +416,13 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     <div className={styles.Main}>
       {/* Floating Template Picker */}
       {templatePicker && (
-        <div
-          ref={templatePickerRef}
-          style={{
-            position: 'fixed',
-            left: templatePicker.pos.x,
-            top: templatePicker.pos.y,
-            zIndex: 1000,
-            background: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: 8,
-            boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
-            padding: 16,
-            minWidth: 220,
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          <SelectInput
-            label="Choose a template"
-            value={templatePickerValue}
-            options={[{ value: '', label: 'Choose a template' }, ...AdminTemplates.map(t => ({ value: t.name, label: t.name }))]}
-            onChange={val => {
-              setTemplatePickerValue(val);
-              const t = AdminTemplates.find(t => t.name === val);
-              if (t) {
-                handleAddLayoutAt(templatePicker.row, templatePicker.col, t.name);
-              }
+        <TemplatePicker
+          picker={templatePicker}
+          onClose={() => setTemplatePicker(null)}
+          onSelectTemplate={(row, col, template) => {
+            handleAddLayoutWithTemplate(row, col, template);
             }}
           />
-        </div>
       )}
       {/* Component Panel */}
       <AnimatePresence>
@@ -506,10 +448,20 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       </AnimatePresence>
 
       {/* Template Modal */}
-      {openModal === 'templates' && (
-        <FlowLibraryModal
-          onLoadComplete={data => {
-            console.log('AdminView received data:', data);
+      <ModalsManager
+        openModal={openModal}
+        onClose={() => setOpenModal(null)}
+        saveName={localStorage.saveName}
+        onSaveNameChange={localStorage.setSaveName}
+        onSave={handleSaveModal}
+        loadList={localStorage.loadList}
+        loadError={localStorage.loadError}
+        onLoad={handleLoadModal}
+        onDeleteSave={handleDeleteSaveModal}
+        shareUrl={urlSharing.shareUrl}
+        layoutDataForShare={urlSharing.getLayoutData()}
+        setToast={setToast}
+        onTemplatesLoadComplete={data => {
             dispatch({
               type: 'SET_ALL_LAYOUTS',
               layouts: data.layouts,
@@ -519,56 +471,9 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
               gridCols: data.gridCols,
             });
             setOpenModal(null);
-            setToast('✅ Loaded flow');
-          }}
-          onClose={() => setOpenModal(null)}
+        }}
+        onClearAllConfirm={handleReset}
         />
-      )}
-
-      {/* Keyboard Shortcuts Modal */}
-      {openModal === 'shortcuts' && (
-        <ShortcutsModal onClose={() => setOpenModal(null)} />
-      )}
-
-          {/* Save Modal */}
-      {openModal === 'save' && (
-        <SaveModal
-          saveName={localStorage.saveName}
-          onSaveNameChange={localStorage.setSaveName}
-          onSave={handleSaveModal}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-      {/* Load Modal */}
-      {openModal === 'load' && (
-        <LoadModal
-          loadList={localStorage.loadList}
-          loadError={localStorage.loadError}
-          onLoad={handleLoadModal}
-          onDeleteSave={handleDeleteSaveModal}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-      {/* Share Modal */}
-      {openModal === 'share' && (
-        <ShareModal
-          shareUrl={urlSharing.shareUrl}
-          layoutData={urlSharing.getLayoutData()}
-          onClose={() => setOpenModal(null)}
-          showToast={setToast}
-        />
-      )}
-
-      {/* Clear All Layouts Modal */}
-      {openModal === 'clearAll' && (
-        <ClearModal
-          onClear={() => {
-            setOpenModal(null);
-            handleReset();
-          }}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
 
       {/* Main Content Area */}
       <div
@@ -604,14 +509,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
 
       {/* Toggle button for admin panel (top left, only when hidden) */}
       {!showAdminPanel && (
-        <div className={styles.AdminToggle}>
-          <ToolbarButton
-            onClick={() => setShowAdminPanel(true)}
-            title="Show admin panel"
-            icon={Icons.Wallet24}
-            iconSize={ICON_24}
-          />
-        </div>
+        <AdminPanelToggle onShow={() => setShowAdminPanel(true)} />
       )}
 
       {/* Global Settings Panel */}
@@ -698,14 +596,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
 
       {/* Toggle button for admin panel */}
       {!showAdminPanel && (
-        <div className={styles.AdminToggle}>
-          <ToolbarButton
-            onClick={() => setShowAdminPanel(true)}
-            title="Show admin panel"
-            icon={Icons.Wallet24}
-            iconSize={ICON_24}
-          />
-        </div>
+        <AdminPanelToggle onShow={() => setShowAdminPanel(true)} />
       )}
 
       {/* Toast notifications */}

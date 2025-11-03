@@ -10,7 +10,16 @@ import { ICON_24 } from 'src/components/Icon';
 import styles from '../index.module.sass';
 import SliderInput from '../LabeledInput/SliderInput';
 import { useAdminTheme, useAdminThemeDispatch } from '../AdminThemeContext';
-import { lerpColor, hexToRgb } from 'src/helpers/Utils';
+import {
+  backgroundToSlider,
+  sliderToBackground,
+  shadowToSlider,
+  sliderToShadow,
+  spacingToSlider,
+  sliderToSpacing,
+  outlineToSlider,
+  sliderToOutline,
+} from '../utils/themeSliders';
 import { usePanelResize } from '../hooks/usePanelResize';
 import { useActiveLayout } from '../AdminLayoutContext';
 import { AdminTemplates, AdminTemplate } from '../Templates';
@@ -95,71 +104,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   const setAdminTheme = useAdminThemeDispatch();
   const { layout, index: activeIndex } = useActiveLayout();
 
-  // Map context value to slider (0-1) and vice versa
-  const bgMin = '#1A1A1A';
-  const bgMax = '#F4F4F4';
-  const bgMinRgb = hexToRgb(bgMin);
-  const bgMaxRgb = hexToRgb(bgMax);
-  function backgroundToSlider(val: string) {
-    // crude: 0 if min, 1 if max, else guess
-    if (val.toLowerCase() === bgMin.toLowerCase() || val.toLowerCase() === bgMinRgb.toLowerCase()) return 0;
-    if (val.toLowerCase() === bgMax.toLowerCase() || val.toLowerCase() === bgMaxRgb.toLowerCase()) return 1;
-    return 0.5; // fallback
-  }
-  function sliderToBackground(t: number) {
-    return lerpColor(bgMinRgb, bgMaxRgb, t);
-  }
-
-  const shadowMin = 'none';
-  const shadowMax = '0 40px 56px rgba(0,0,0,0.32)';
-  function shadowToSlider(val: string) {
-    if (val === shadowMin) return 0;
-    if (val === shadowMax) return 1;
-    return 0.5;
-  }
-  function sliderToShadow(t: number) {
-    if (t <= 0.01) return shadowMin;
-    if (t >= 0.99) return shadowMax;
-    // interpolate blur and alpha
-    const blur = 8 + (56 - 8) * t;
-    const alpha = 0.12 + (0.32 - 0.12) * t;
-    const yOffset = 40 * t
-    return `0 ${yOffset}px ${blur.toFixed(0)}px rgba(0,0,0,${alpha.toFixed(2)})`;
-  }
-
-  const spacingMin = '40px';
-  const spacingMax = '560px';
-  function spacingToSlider(val: string): number {
-    const min = parseInt(spacingMin, 10);
-    const max = parseInt(spacingMax, 10);
-    const v = parseInt(val, 10);
-    if (isNaN(v)) return 0.5; // fallback
-    return (v - min) / (max - min);
-  }
-
-  function sliderToSpacing(t: number): string {
-    const min = parseInt(spacingMin, 10);
-    const max = parseInt(spacingMax, 10);
-    const px = Math.round(min + (max - min) * t);
-    return `${px}px`;
-  }
-
-  const outlineMin = '0px';
-  const outlineMax = '12px';
-  function outlineToSlider(val: string): number {
-    const min = parseInt(outlineMin, 10);
-    const max = parseInt(outlineMax, 10);
-    const v = parseInt(val, 10);
-    if (isNaN(v)) return 0; // fallback
-    return (v - min) / (max - min);
-  }
-
-  function sliderToOutline(t: number): string {
-    const min = parseInt(outlineMin, 10);
-    const max = parseInt(outlineMax, 10);
-    const px = Math.round(min + (max - min) * t);
-    return `${px}px`;
-  }
+  // Slider/value mapping now in ../utils/themeSliders
 
   const handleBackgroundChange = useCallback((t: number) => {
     setAdminTheme({ type: 'Update', payload: { backgroundColor: sliderToBackground(t) } });
@@ -218,92 +163,56 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     );
   };
 
-  const handleSpecialMetaPropChange = (which: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar', phoneIndex: number) => (fullKey: string, value: any) => {
+  const handleSpecialMetaPropChange = (
+    which: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar',
+    phoneIndex: number
+  ) => (fullKey: string, value: any) => {
     const selectedLayout = layoutState.layouts[phoneIndex];
-    if (which === 'topbar') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { topBarProps: updateNestedState(selectedLayout.topBarProps, fullKey, value) }
-      });
-    } else if (which === 'bottombuttons') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { bottomButtonsProps: updateNestedState(selectedLayout.bottomButtonsProps, fullKey, value) }
-      });
-    } else if (which === 'toast') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { toastProps: updateNestedState(selectedLayout.toastProps, fullKey, value) }
-      });
-    } else if (which === 'statusbar') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { statusBarProps: updateNestedState(selectedLayout.statusBarProps, fullKey, value) }
-      });
-    }
+    const propKeyMap: Record<typeof which, keyof typeof selectedLayout> = {
+      topbar: 'topBarProps',
+      bottombuttons: 'bottomButtonsProps',
+      toast: 'toastProps',
+      statusbar: 'statusBarProps'
+    } as const;
+
+    const propKey = propKeyMap[which];
+    const previousProps = selectedLayout[propKey] || {};
+    const updatedProps = updateNestedState(previousProps, fullKey, value);
+
+    dispatch({
+      type: 'UPDATE_LAYOUT',
+      index: phoneIndex,
+      payload: { [propKey]: updatedProps }
+    });
   };
 
   const renderSpecialPropEditor = () => {
     if (!selectedSpecial) return null;
     const selectedLayout = layoutState.layouts[selectedSpecial.phoneIndex];
-    if (selectedSpecial.type === 'topbar') {
-      return (
-        <GenericPropEditor
-          title="Top Bar Settings"
-          meta={TopBarPropMeta}
-          values={selectedLayout.topBarProps || {}}
-          onChange={handleSpecialMetaPropChange('topbar', selectedSpecial.phoneIndex)}
-          onDismiss={() => {
-            onSetSelectedSpecial(null);
-            onSetIsPropEditorVisible(false);
-          }}
-        />
-      );
-    } else if (selectedSpecial.type === 'bottombuttons') {
-      return (
-        <GenericPropEditor
-          title="Bottom Buttons Settings"
-          meta={ButtonGroupPropMeta}
-          values={selectedLayout.bottomButtonsProps || {}}
-          onChange={handleSpecialMetaPropChange('bottombuttons', selectedSpecial.phoneIndex)}
-          onDismiss={() => {
-            onSetSelectedSpecial(null);
-            onSetIsPropEditorVisible(false);
-          }}
-        />
-      );
-    } else if (selectedSpecial.type === 'toast') {
-      return (
-        <GenericPropEditor
-          title="Toast Settings"
-          meta={ToastPropMeta}
-          values={selectedLayout.toastProps || {}}
-          onChange={handleSpecialMetaPropChange('toast', selectedSpecial.phoneIndex)}
-          onDismiss={() => {
-            onSetSelectedSpecial(null);
-            onSetIsPropEditorVisible(false);
-          }}
-        />
-      );
-    } else if (selectedSpecial.type === 'statusbar') {
-      return (
-        <GenericPropEditor
-          title="Status Bar Settings"
-          meta={IOSStatusBarPropMeta}
-          values={selectedLayout.statusBarProps || {}}
-          onChange={handleSpecialMetaPropChange('statusbar', selectedSpecial.phoneIndex)}
-          onDismiss={() => {
-            onSetSelectedSpecial(null);
-            onSetIsPropEditorVisible(false);
-          }}
-        />
-      );
-    }
-    return null;
+
+    const configMap: Record<
+      'topbar' | 'bottombuttons' | 'toast' | 'statusbar',
+      { title: string; meta: any; valuesKey: 'topBarProps' | 'bottomButtonsProps' | 'toastProps' | 'statusBarProps' }
+    > = {
+      topbar: { title: 'Top Bar Settings', meta: TopBarPropMeta, valuesKey: 'topBarProps' },
+      bottombuttons: { title: 'Bottom Buttons Settings', meta: ButtonGroupPropMeta, valuesKey: 'bottomButtonsProps' },
+      toast: { title: 'Toast Settings', meta: ToastPropMeta, valuesKey: 'toastProps' },
+      statusbar: { title: 'Status Bar Settings', meta: IOSStatusBarPropMeta, valuesKey: 'statusBarProps' }
+    };
+
+    const cfg = configMap[selectedSpecial.type];
+    return (
+      <GenericPropEditor
+        title={cfg.title}
+        meta={cfg.meta}
+        values={selectedLayout[cfg.valuesKey] || {}}
+        onChange={handleSpecialMetaPropChange(selectedSpecial.type, selectedSpecial.phoneIndex)}
+        onDismiss={() => {
+          onSetSelectedSpecial(null);
+          onSetIsPropEditorVisible(false);
+        }}
+      />
+    );
   };
 
   // Determine which content to render
