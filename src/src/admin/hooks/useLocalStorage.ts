@@ -10,7 +10,7 @@ export const useLocalStorage = () => {
 
   // Helper: get all saves from localStorage
   const getAllSaves = () => {
-    const raw = localStorage.getItem('funblocker_layout_saves');
+    const raw = localStorage.getItem('intervention_layout_saves');
     if (!raw) return {};
     try {
       return JSON.parse(raw);
@@ -21,7 +21,7 @@ export const useLocalStorage = () => {
 
   // Helper: update saves in localStorage
   const setAllSaves = (saves: Record<string, any>) => {
-    localStorage.setItem('funblocker_layout_saves', JSON.stringify(saves));
+    localStorage.setItem('intervention_layout_saves', JSON.stringify(saves));
   };
 
   // Reserved key for auto-save

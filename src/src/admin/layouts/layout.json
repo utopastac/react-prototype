@@ -3,7 +3,7 @@
     {
       "components": [],
       "topBarProps": {
-        "title": "Funblocker",
+        "title": "Intervention",
         "inverse": false,
         "isBackNavigation": false
       },
@@ -41,7 +41,7 @@
         }
       ],
       "topBarProps": {
-        "title": "Funblocker",
+        "title": "Intervention",
         "inverse": false,
         "isBackNavigation": false
       },
@@ -70,7 +70,7 @@
     {
       "components": [],
       "topBarProps": {
-        "title": "Funblocker",
+        "title": "Intervention",
         "inverse": false,
         "isBackNavigation": false
       },
@@ -99,7 +99,7 @@
     {
       "components": [],
       "topBarProps": {
-        "title": "Funblocker",
+        "title": "Intervention",
         "inverse": false,
         "isBackNavigation": false
       },
@@ -128,7 +128,7 @@
     {
       "components": [],
       "topBarProps": {
-        "title": "Funblocker",
+        "title": "Intervention",
         "inverse": false,
         "isBackNavigation": false
       },

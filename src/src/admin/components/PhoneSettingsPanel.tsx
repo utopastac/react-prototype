@@ -72,13 +72,14 @@ const PhoneSettingsPanel: React.FC<PhoneSettingsPanelProps> = ({
       style={{ width: width, borderLeftColor: (isHoveringEdge || isResizing) ? '#00C244' : undefined }}
       initial={{ x: '100%' }}
       animate={{ 
-        x: isPropEditorVisible ? -32 : 0,
-        scale: isPropEditorVisible ? 0.97 : 1,
-        borderRadius: isPropEditorVisible ? 12 : 0,
+        x: 0,
+        scale: 1,
+        borderRadius: 0,
         boxShadow: '-8px 0 24px -8px rgba(0,0,0,0.12)'
       }}
       exit={{ x: '100%' }}
-      transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+      //transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+      transition={{ duration: 0 }}
     >
       {/* Draggable left edge */}
       {resizeHandle}

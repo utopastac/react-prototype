@@ -30,7 +30,7 @@ const INITIAL_SHOW_TOP_BAR = true;
 
 /** Default top bar configuration */
 export const INITIAL_TOP_BAR_PROPS: TopBarProps = {
-  title: 'Funblocker',
+  title: 'Intervention',
   left: undefined,
   right: undefined,
   inverse: false,

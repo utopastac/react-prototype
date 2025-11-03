@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
 import PhonePreview from './PhonePreview';
 import { useHistoryManager } from './hooks/useHistoryManager';
@@ -11,11 +11,6 @@ import AdminToast from './components/Toast';
 import ToolbarButton from './components/ToolbarButton';
 import { ICON_24 } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
-import GenericPropEditor from './GenericPropEditor';
-import { ComponentPropMeta } from 'src/data/Components';
-import { TopBarPropMeta } from 'src/components/TopBar';
-import { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
-import { ToastPropMeta } from 'src/components/Toast';
 import { AdminTemplate, AdminTemplates } from './Templates';
 import SaveModal from './Modals/SaveModal';
 import LoadModal from './Modals/LoadModal';
@@ -26,7 +21,6 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import { useUrlSharing } from './hooks/useUrlSharing';
 import JsonPanel from './components/JsonPanel';
 import GlobalSettingsPanel from './components/GlobalSettingsPanel';
-import PhoneSettingsPanel from './components/PhoneSettingsPanel';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import SelectInput from './LabeledInput/SelectInput';
 import {
@@ -35,9 +29,7 @@ import {
   INITIAL_TOAST_PROPS,
   INITIAL_STATUS_BAR_PROPS,
 } from './LayoutContext';
-import { IOSStatusBarPropMeta } from 'src/components/IOSStatusBar';
 import { AdminThemeProvider, useAdminTheme, useAdminThemeDispatch } from './AdminThemeContext';
-import { usePanelResize } from './hooks/usePanelResize';
 
 /**
  * AdminView
@@ -95,13 +87,10 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   // Local UI state
   const [showAdminPanel, setShowAdminPanel] = useState(true);
   const [toast, setToast] = useState<string | null>(null);
-  const [selectedPhoneIndex, setSelectedPhoneIndex] = useState<number | null>(null);
   // Add selectedTemplate state
   const [selectedTemplate, setSelectedTemplate] = useState<AdminTemplate | null>(null);
   // New: Prop editor visibility state
   const [isPropEditorVisible, setIsPropEditorVisible] = useState(false);
-  // New: showComponentNames state (stub for now, can be implemented later)
-  const [showComponentNames, setShowComponentNames] = useState(false);
 
   // Global selection: only one component selected at a time across all phones
   const [selected, setSelected] = useState<{ phoneIndex: number, componentIndex: number } | null>(null);
@@ -124,11 +113,10 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
 
   // Refs
   const phonePreviewRef = useRef<HTMLDivElement>(null);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
 
   // Hooks
   const historyManager = useHistoryManager({
-    setSelectedIdx: setSelectedPhoneIndex,
+    setSelectedIdx: () => {}, // Not used in this implementation
     setSelectedSpecial: () => {} // Not used in this implementation
   });
 
@@ -143,22 +131,10 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   const rightPanelWidth = adminTheme.settingsPanelWidth;
   const setAdminPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { adminPanelWidth: w } });
   const setRightPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { settingsPanelWidth: w } });
-
-  // --- Prop Editor resizing logic ---
-  const [propEditorWidth, propEditorResizeHandle, propEditorIsResizing, , propEditorIsHoveringEdge] = usePanelResize({
-    initialWidth: 280,
-    minWidth: 220,
-    maxWidth: 480,
-    edge: 'left',
-    width: rightPanelWidth,
-    setWidth: setRightPanelWidth,
-  });
-  // --- End Prop Editor resizing logic ---
   /**
    * Handle phone selection
    */
   const handlePhoneSelect = (index: number) => {
-    setSelectedPhoneIndex(index);
     dispatch({ type: 'SET_ACTIVE_LAYOUT', index });
   };
 
@@ -167,7 +143,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
    */
   const handleReset = () => {
     dispatch({ type: 'RESET_ALL' });
-    setSelectedPhoneIndex(null);
     setToast('🔄 All layouts reset');
   };
 
@@ -312,129 +287,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     dispatch({ type: 'SET_ACTIVE_LAYOUT', index: newIndex });
   }
 
-  // Prop editor logic
-  // Render prop editor for selected component (for the selected phone)
-  const renderPropEditor = () => {
-    if (!selected || !layoutState.layouts[selected.phoneIndex]) return null;
-    const layout = layoutState.layouts[selected.phoneIndex];
-    const components = layout.components;
-    const comp = components[selected.componentIndex];
-    if (!comp) return null;
-    const meta = ComponentPropMeta[comp.name as keyof typeof ComponentPropMeta] as any;
-    return (
-      <div className={styles.Editor}>
-        <GenericPropEditor
-          title="Component Settings"
-          meta={meta}
-          values={comp.props}
-          onChange={(fullKey, value) => {
-            // Update nested props for the selected component
-            const prevProps = comp.props;
-    const newProps = updateNestedState(prevProps, fullKey, value);
-            const newComponents = components.map((item, idx) =>
-              idx === selected.componentIndex ? { ...item, props: newProps } : item
-            );
-            dispatch({
-              type: 'UPDATE_LAYOUT',
-              index: selected.phoneIndex,
-              payload: { components: newComponents }
-            });
-          }}
-          onDismiss={() => {
-            setSelected(null);
-            setIsPropEditorVisible(false);
-          }}
-        />
-      </div>
-    );
-  };
-  // Special prop change handler for a given phone
-  const handleSpecialMetaPropChange = (which: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar', phoneIndex: number) => (fullKey: string, value: any) => {
-    const layout = layoutState.layouts[phoneIndex];
-    if (which === 'topbar') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { topBarProps: updateNestedState(layout.topBarProps, fullKey, value) }
-      });
-    } else if (which === 'bottombuttons') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { bottomButtonsProps: updateNestedState(layout.bottomButtonsProps, fullKey, value) }
-      });
-    } else if (which === 'toast') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { toastProps: updateNestedState(layout.toastProps, fullKey, value) }
-      });
-    } else if (which === 'statusbar') {
-      dispatch({
-        type: 'UPDATE_LAYOUT',
-        index: phoneIndex,
-        payload: { statusBarProps: updateNestedState(layout.statusBarProps, fullKey, value) }
-      });
-    }
-  };
-  // Render a prop editor for a special component (top bar, bottom buttons, toast)
-  const renderSpecialPanel = (
-    title: string,
-    meta: any,
-    values: any,
-    onChange: (fullKey: string, value: any) => void,
-    onDismiss: () => void
-  ) => (
-    <GenericPropEditor
-      title={title}
-      meta={meta}
-      values={values || {}}
-      onChange={onChange}
-      onDismiss={() => {
-        onDismiss();
-        setIsPropEditorVisible(false);
-      }}
-    />
-    );
-  // Render prop editor for TopBar, ButtonGroup, or Toast for the selected phone
-  const renderSpecialPropEditor = () => {
-    if (!selectedSpecial) return null;
-    const layout = layoutState.layouts[selectedSpecial.phoneIndex];
-    if (selectedSpecial.type === 'topbar') {
-      return renderSpecialPanel(
-        'Top Bar Settings',
-        TopBarPropMeta,
-        layout.topBarProps,
-        handleSpecialMetaPropChange('topbar', selectedSpecial.phoneIndex),
-        () => setSelectedSpecial(null)
-      );
-    } else if (selectedSpecial.type === 'bottombuttons') {
-      return renderSpecialPanel(
-        'Bottom Buttons Settings',
-        ButtonGroupPropMeta,
-        layout.bottomButtonsProps,
-        handleSpecialMetaPropChange('bottombuttons', selectedSpecial.phoneIndex),
-        () => setSelectedSpecial(null)
-      );
-    } else if (selectedSpecial.type === 'toast') {
-      return renderSpecialPanel(
-        'Toast Settings',
-        ToastPropMeta,
-        layout.toastProps,
-        handleSpecialMetaPropChange('toast', selectedSpecial.phoneIndex),
-        () => setSelectedSpecial(null)
-      );
-    } else if (selectedSpecial.type === 'statusbar') {
-      return renderSpecialPanel(
-        'Status Bar Settings',
-        IOSStatusBarPropMeta,
-        layout.statusBarProps,
-        handleSpecialMetaPropChange('statusbar', selectedSpecial.phoneIndex),
-        () => setSelectedSpecial(null)
-      );
-    }
-    return null;
-  };
 
   // Handler to apply a template to the selected phone (or active if none selected)
   const handleApplyTemplate = (template: AdminTemplate) => {
@@ -553,13 +405,14 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   useEffect(() => {
     if (!selected && !selectedSpecial) return;
     const handleClick = (e: MouseEvent) => {
-      const rightPanel = rightPanelRef.current;
-      if (rightPanel && rightPanel.contains(e.target as Node)) return;
       // Check if click is on a component or special component
       const droppedEls = document.querySelectorAll('[data-component], [data-special-component]');
       for (const el of droppedEls) {
         if (el.contains(e.target as Node)) return;
       }
+      // Check if click is on the GlobalSettingsPanel
+      const panel = document.querySelector(`.${styles.AdminPanel}.${styles.rightSide}`);
+      if (panel && panel.contains(e.target as Node)) return;
       setSelected(null);
       setSelectedSpecial(null);
     };
@@ -584,7 +437,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
     canUndo: historyManager.canUndo,
     canRedo: historyManager.canRedo,
     setShowAdminPanel,
-    setShowComponentNames,
     // New handlers for keyboard shortcuts:
     handleLoad: () => {
       localStorage.setLoadList(localStorage.getLoadList());
@@ -766,7 +618,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       <AnimatePresence>
         {showAdminPanel && (
           <GlobalSettingsPanel
-            showAdminPanel={showAdminPanel}
             isPropEditorVisible={isPropEditorVisible}
             rightPanelWidth={rightPanelWidth}
             setRightPanelWidth={setRightPanelWidth}
@@ -776,21 +627,21 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             onOpenClearAllLayoutsModal={() => setOpenModal('clearAll')}
             isPhoneSettingsVisible={activeIndex >= 0 && activeLayout !== null}
             onClosePhoneSettings={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Phone Settings Panel */}
-      <AnimatePresence>
-        {showAdminPanel && activeIndex >= 0 && activeLayout && (
-          <PhoneSettingsPanel
-            showAdminPanel={showAdminPanel}
-            isPropEditorVisible={isPropEditorVisible}
-            rightPanelWidth={rightPanelWidth}
-            setRightPanelWidth={setRightPanelWidth}
-            showTopBar={!!activeLayout.showTopBar}
-            showBottomButtons={!!activeLayout.showBottomButtons}
-            showToast={!!activeLayout.showToast}
+            selected={selected}
+            selectedSpecial={selectedSpecial}
+            layoutState={layoutState}
+            dispatch={dispatch}
+            onSetSelected={setSelected}
+            onSetSelectedSpecial={setSelectedSpecial}
+            onSetIsPropEditorVisible={setIsPropEditorVisible}
+            updateNestedState={updateNestedState}
+            phoneName={activeIndex >= 0 ? layoutState.layoutNames[activeIndex] : ''}
+            selectedTemplate={selectedTemplate}
+            onApplyTemplate={handleApplyTemplate}
+            showTopBar={activeIndex >= 0 && activeLayout ? !!activeLayout.showTopBar : false}
+            showBottomButtons={activeIndex >= 0 && activeLayout ? !!activeLayout.showBottomButtons : false}
+            showToast={activeIndex >= 0 && activeLayout ? !!activeLayout.showToast : false}
+            showStatusBar={activeIndex >= 0 && activeLayout ? !!activeLayout.showStatusBar : false}
             onShowTopBarChange={() => {
               if (activeIndex >= 0 && activeLayout) {
                 dispatch({
@@ -818,15 +669,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
                 });
               }
             }}
-            onClearLayout={() => {
-              if (activeIndex >= 0 && activeLayout) {
-                dispatch({ type: 'RESET_LAYOUT', index: activeIndex });
-              }
-            }}
-            onDeselectPhone={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
-            selectedTemplate={selectedTemplate}
-            onApplyTemplate={handleApplyTemplate}
-            showStatusBar={!!activeLayout.showStatusBar}
             onShowStatusBarChange={() => {
               if (activeIndex >= 0 && activeLayout) {
                 dispatch({
@@ -836,7 +678,12 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
                 });
               }
             }}
-            phoneName={layoutState.layoutNames[activeIndex]}
+            onClearLayout={() => {
+              if (activeIndex >= 0 && activeLayout) {
+                dispatch({ type: 'RESET_LAYOUT', index: activeIndex });
+              }
+            }}
+            onDeselectPhone={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
           />
         )}
       </AnimatePresence>
@@ -848,27 +695,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
         getLayoutData={layoutData.getLayoutData}
         showToast={setToast}
       />
-
-      {/* Prop Editor Panel (only shown if needed) */}
-      <AnimatePresence>
-        {isPropEditorVisible && (
-          <motion.div
-            className={`${styles.AdminPanel} ${styles.propEditor}${propEditorIsHoveringEdge || propEditorIsResizing ? ' ' + styles.resizing : ''}`}
-            ref={rightPanelRef}
-            style={{ width: propEditorWidth, borderLeftColor: (propEditorIsHoveringEdge || propEditorIsResizing) ? '#00C244' : undefined }}
-            initial={{ x: '100%'}}
-            animate={{ x: 0}}
-            exit={{ x: '100%'}}
-            transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-          >
-            {/* Draggable left edge for resizing */}
-            {propEditorResizeHandle}
-            {selected && layoutState.layouts[selected.phoneIndex] && layoutState.layouts[selected.phoneIndex].components[selected.componentIndex]
-              ? renderPropEditor()
-              : renderSpecialPropEditor()}
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Toggle button for admin panel */}
       {!showAdminPanel && (
