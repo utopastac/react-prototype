@@ -1,0 +1,89 @@
+@import 'src/styles/site'
+
+.buttonPrimary
+  position: relative
+  border: none
+  cursor: pointer
+  border-radius: var(--admin-radius-sm)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: opacity 0.2s
+  font-size: var(--admin-font-m)
+  @extend %bold
+  color: var(--admin-text-button)
+  background: var(--admin-color-text)
+  width: 100%
+  height: var(--admin-button-height)
+  &:hover, &:focus
+    filter: brightness(0.9)
+  &:active
+    filter: brightness(0.8)
+
+.buttonSecondary
+  position: relative
+  border: none
+  cursor: pointer
+  border-radius: var(--admin-radius-sm)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: opacity 0.2s
+  font-size: var(--admin-font-m)
+  @extend %bold
+  color: var(--admin-color-text-muted)
+  background: var(--admin-color-bg-muted)
+  width: 100%
+  height: var(--admin-button-height)
+  &:hover, &:focus
+    filter: brightness(0.98)
+  &:active
+    filter: brightness(0.95)
+
+.buttonTertiary
+  position: relative
+  border: 1px solid var(--admin-color-border)
+  cursor: pointer
+  border-radius: var(--admin-radius-sm)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: opacity 0.2s
+  font-size: var(--admin-font-m)
+  @extend %bold
+  color: var(--admin-color-text-muted)
+  background: var(--admin-color-bg)
+  width: 100%
+  height: var(--admin-button-height)
+  &:hover, &:focus
+    border-color: var(--admin-color-border-weak)
+  &:active
+    background: var(--admin-color-bg-muted)
+
+.inputField
+  border: none
+  outline: none
+  appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  background: var(--admin-color-bg-muted)
+  border-radius: var(--admin-radius-md)
+  height: var(--admin-input-height)
+  padding: 0 size(12)
+  font-size: var(--admin-font-s)
+  box-sizing: border-box
+  width: 100%
+  min-width: 0
+  box-sizing: border-box
+  &:focus
+    outline: none
+    box-shadow: var(--admin-shadow-focus)
+  &:active
+    background: var(--admin-color-bg-muted)
+
+.inputLabel
+  display: block
+  @extend %bold
+  font-size: var(--admin-font-s)
+
+

@@ -17,17 +17,17 @@ $inputWidth: size(160)
     display: none
   ::picker(select)
     border: none
-    background: white
+    background: var(--admin-color-bg-elevated)
     border-radius: size(12)
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
+    box-shadow: var(--admin-shadow-popover)
     padding: size(8)
   option
-    background: white
+    background: var(--admin-color-bg-elevated)
     padding: 10px
     transition: 0.1s
     border-radius: size(4)
     &:hover
-      background: #F4F4F4
+      background: var(--admin-color-bg-muted)
   label
     @extend %input-label
     max-width: size(150)
@@ -37,25 +37,30 @@ $inputWidth: size(160)
     flex: 1
   select
     @extend %dev-tools-select
+
 .Toggle
   display: block
   scale: 0.8
+
 .SearchInput
   flex: 1
   input
     padding-left: 32px
     width: 100%
+
 .ClearButton
   position: absolute !important
   right: 0
   top: 50%
   transform: translateY(-50%)
+
 .SearchIcon
   position: absolute
   left: 8px
   top: 50%
   transform: translateY(-50%)
   pointer-events: none
+
 .selectInput
   @extend %input-field
   @extend %dev-tools-select
@@ -64,14 +69,16 @@ $inputWidth: size(160)
   gap: 8px
   cursor: pointer
   user-select: none
+
 .avatarList
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(60px, 1fr))
-  background: white
+  background: var(--admin-color-bg-elevated)
   gap: size(8)
   padding: size(8)
   max-height: 300px
   overflow-y: auto
+
 .avatarSelector
   display: flex
   justify-content: center
@@ -81,10 +88,10 @@ $inputWidth: size(160)
   border-radius: 8px
   transition: background-color 0.2s
   &:hover
-    background: #F4F4F4
+    background: var(--admin-color-bg-muted)
   &.active
-    background: #E3F2FD
-    border: 2px solid #2196F3
+    background: var(--admin-info-bg)
+    border: 2px solid var(--admin-info-border)
 
 .TextAreaInput
   align-items: flex-start
@@ -128,7 +135,7 @@ $thumbSize: size(16)
     right: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: $gray-e4
+    background: var(--admin-color-bg-muted)
     transition: height 0.3s
 
   .track
@@ -138,7 +145,7 @@ $thumbSize: size(16)
     left: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: $dev-tools-text-dark
+    background: var(--admin-color-text)
     transition: height 0.3s
     
   .thumb
@@ -148,6 +155,6 @@ $thumbSize: size(16)
     height: $thumbSize
     width: $thumbSize
     border-radius: 500px
-    background: $dev-tools-text-dark
+    background: var(--admin-color-text)
     transform: translateY(-50%)
     cursor: pointer

@@ -2,8 +2,8 @@
 @import 'src/admin/admin.sass'
 
 .Main
-  color: $dev-tools-text-medium
-  font-size: $dev-tools-font-size-s
+  color: var(--admin-color-text-muted)
+  font-size: var(--admin-font-s)
   z-index: 1000
   padding: size(16) 0
 
@@ -19,7 +19,7 @@
   gap: size(8)
   
   kbd
-    border: 1px solid $dev-tools-chip-border
+    border: 1px solid var(--admin-chip-border)
     border-radius: size(4)
     padding: size(2) size(6)
     font-family: monospace
@@ -27,8 +27,8 @@
     font-weight: medium
     min-width: size(24)
     text-align: center
-    background: #f8f8f8
+    background: var(--admin-color-bg-muted)
     
   span
-    color: $dev-tools-text-medium
+    color: var(--admin-color-text-muted)
     font-size: 12px 

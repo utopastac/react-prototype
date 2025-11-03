@@ -4,6 +4,7 @@ import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from './A
 import PhonePreview from './PhonePreview';
 import { useHistoryManager } from './hooks/useHistoryManager';
 import { useLayoutData } from './hooks/useLayoutData';
+import './tokens.css';
 import styles from './index.module.sass';
 import layoutsStyles from './layouts.module.sass';
 import ComponentPanel from './components/ComponentPanel';
@@ -451,6 +452,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
       <ModalsManager
         openModal={openModal}
         onClose={() => setOpenModal(null)}
+        adminPanelWidth={adminPanelWidth}
         saveName={localStorage.saveName}
         onSaveNameChange={localStorage.setSaveName}
         onSave={handleSaveModal}

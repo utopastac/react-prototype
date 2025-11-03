@@ -10,11 +10,13 @@ import { LayoutsData } from '../hooks/useLayoutData';
 interface ShareModalProps {
   shareUrl: string;
   layoutData: LayoutData | LayoutsData;
+  x?: number;
+  y?: number;
   onClose: () => void;
   showToast?: (message: string) => void;
 }
 
-const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, layoutData, onClose, showToast }) => {
+const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, layoutData, x, y, onClose, showToast }) => {
   const shareInputRef = useRef<HTMLInputElement>(null);
 
   const handleDownloadJson = () => {
@@ -25,8 +27,8 @@ const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, layoutData, onClose, 
   return (
     <Modal
       title="Share Layout"
-      x={650}
-      y={40}
+      x={x}
+      y={y}
       close={onClose}
     >
       <div className={styles.ShareModal}>

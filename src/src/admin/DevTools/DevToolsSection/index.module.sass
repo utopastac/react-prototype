@@ -2,41 +2,44 @@
 @import 'src/admin/admin.sass'
 
 .section
-  border-bottom: 1px solid $dev-tools-section-border
+  border-bottom: 1px solid var(--admin-color-border)
   overflow: hidden
   &.open
     .header h4
-      color: $dev-tools-text-dark
+      color: var(--admin-color-text)
+
 .header
   display: flex
   justify-content: space-between
   align-items: center
   cursor: pointer
-  height: $dev-tools-section-header-height
-  padding: 0 $dev-tools-padding
+  height: var(--admin-section-header-height)
+  padding: 0 var(--admin-space-16)
   user-select: none
   h4
-    font-size: $dev-tools-font-size-l
+    font-size: var(--admin-font-l)
     @extend %medium
-    color: $dev-tools-text-medium
+    color: var(--admin-color-text-muted)
   &:hover
     //background: rgba(black, 0.18)
     h4
-      color: $dev-tools-text-dark
+      color: var(--admin-color-text)
     .arrow
       opacity: 1
+
 .arrow
-  font-size: $dev-tools-icon-font-size
+  font-size: var(--admin-icon-font-size)
   opacity: 0.4
   display: flex
   align-items: center
   justify-content: center
   width: 16px
   height: 16px
-  color: $dev-tools-text-medium
+  color: var(--admin-color-text-muted)
   transform-origin: center
+
 .content
   display: block
   overflow: hidden
   > div
-    padding: 0 $dev-tools-padding $dev-tools-padding $dev-tools-padding
+    padding: 0 var(--admin-space-16) var(--admin-space-16) var(--admin-space-16)

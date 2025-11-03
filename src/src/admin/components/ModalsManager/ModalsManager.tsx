@@ -8,6 +8,7 @@ import ClearModal from '../../Modals/ClearModal';
 interface ModalsManagerProps {
   openModal: null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates';
   onClose: () => void;
+  adminPanelWidth: number;
   // Save
   saveName: string;
   onSaveNameChange: (v: string) => void;
@@ -30,6 +31,7 @@ interface ModalsManagerProps {
 const ModalsManager: React.FC<ModalsManagerProps> = ({
   openModal,
   onClose,
+  adminPanelWidth,
   saveName,
   onSaveNameChange,
   onSave,
@@ -43,10 +45,14 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
   onTemplatesLoadComplete,
   onClearAllConfirm,
 }) => {
+  const modalX = adminPanelWidth + 330;
+  const modalY = 40;
   return (
     <>
       {openModal === 'templates' && (
         <FlowLibraryModal
+          x={modalX}
+          y={modalY}
           onLoadComplete={data => {
             onTemplatesLoadComplete(data);
             setToast('✅ Loaded flow');
@@ -56,7 +62,7 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
       )}
 
       {openModal === 'shortcuts' && (
-        <ShortcutsModal onClose={onClose} />
+        <ShortcutsModal onClose={onClose} x={modalX} y={modalY} />
       )}
 
       {openModal === 'save' && (
@@ -64,6 +70,8 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
           saveName={saveName}
           onSaveNameChange={onSaveNameChange}
           onSave={onSave}
+          x={modalX}
+          y={modalY}
           onClose={onClose}
         />
       )}
@@ -74,6 +82,8 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
           loadError={loadError}
           onLoad={onLoad}
           onDeleteSave={onDeleteSave}
+          x={modalX}
+          y={modalY}
           onClose={onClose}
         />
       )}
@@ -82,6 +92,8 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
         <ShareModal
           shareUrl={shareUrl}
           layoutData={layoutDataForShare}
+          x={modalX}
+          y={modalY}
           onClose={onClose}
           showToast={setToast}
         />

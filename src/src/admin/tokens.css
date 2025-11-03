@@ -1,0 +1,104 @@
+:root {
+  /* Colors */
+  --admin-color-bg: #ffffff;
+  --admin-color-bg-elevated: #ffffff;
+  --admin-color-bg-muted: #F4F4F4; /* was $gray-f4 */
+  --admin-color-bg-inset: #1A1A1A; /* JSON panel bg */
+  --admin-color-text: rgba(0, 0, 0, 0.9);
+  --admin-color-text-muted: rgba(0, 0, 0, 0.8);
+  --admin-color-text-subtle: rgba(0, 0, 0, 0.5);
+  --admin-color-text-subtlest: rgba(0, 0, 0, 0.35);
+  --admin-color-border: rgba(0, 0, 0, 0.1);
+  --admin-color-border-weak: rgba(0, 0, 0, 0.08);
+  --admin-accent-rgb: 0 90 192; /* shared RGB channels for accent */
+  --admin-color-accent: rgb(var(--admin-accent-rgb)); /* was $admin-brand-highlight */
+  --admin-highlight: rgb(var(--admin-accent-rgb) / 0.5); /* was $dev-tools-highlight */
+  /* Compat aliases to ease migration */
+  --component-highlight: var(--admin-highlight);
+
+  /* Typography */
+  --admin-font-xs: 1rem;   /* was $dev-tools-font-size-xs */
+  --admin-font-s: 1.1rem;  /* was $dev-tools-font-size-s */
+  --admin-font-m: 1.2rem;  /* was $dev-tools-font-size-m */
+  --admin-font-l: 1.4rem;  /* was $dev-tools-font-size-l */
+  --admin-font-xl: 1.5rem; /* was $dev-tools-font-size-xl */
+
+  /* Radii */
+  --admin-radius-sm: 4px;
+  --admin-radius-md: 8px;
+  --admin-radius-lg: 12px;
+
+  /* Component sizing (keep aligned with existing SASS where used) */
+  --admin-panel-width: 320px;
+  --admin-section-header-height: 56px;
+  --admin-input-height: 28px;
+  --admin-button-height: 40px;
+
+  /* Shadows */
+  --admin-shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --admin-shadow-focus: 0 0 0 2px #D2D2D2;
+  --admin-shadow-popover: 0 4px 24px rgba(0,0,0,0.12);
+
+  /* Spacing scale (for migration of SASS $dev-tools-* sizes) */
+  --admin-space-0: 0px;
+  --admin-space-2: 2px;
+  --admin-space-4: 4px;
+  --admin-space-8: 8px;
+  --admin-space-12: 12px;
+  --admin-space-14: 14px;
+  --admin-space-16: 16px;
+  --admin-space-24: 24px;
+  --admin-space-28: 28px;
+  --admin-space-32: 32px;
+  --admin-space-36: 36px;
+  --admin-space-40: 40px;
+  --admin-space-48: 48px;
+  --admin-space-56: 56px;
+  --admin-space-96: 96px;
+
+  /* Derived accent backgrounds */
+  --admin-accent-mid: rgb(var(--admin-accent-rgb) / 0.2);
+  --admin-accent-light: rgb(var(--admin-accent-rgb) / 0.07);
+  --admin-accent-subtle: rgb(var(--admin-accent-rgb) / 0.03);
+
+  /* Chips and icon sizing */
+  --admin-chip-border: rgba(0, 0, 0, 0.3);
+  --admin-chip-hover: rgba(0, 0, 0, 0.1);
+  --admin-text-button: #ffffff;
+  --admin-icon-font-size: 1.6rem;
+
+  /* Feedback & overlays */
+  --admin-color-danger: #ff4f64;
+  --admin-success-bg: #e0ffe0;
+  --admin-success-border: #b2e5b2;
+  --admin-info-bg: #E3F2FD;
+  --admin-info-border: #2196F3;
+  --admin-overlay-strong: rgba(0, 0, 0, 0.7);
+  --admin-overlay-weak: rgba(0, 0, 0, 0.1);
+  --admin-modal-backdrop: rgba(0, 0, 0, 0.2);
+  --admin-modal-surface-alpha: rgba(255, 255, 255, 1);
+}
+
+[data-theme="THEME_DARK"] {
+  /* --admin-color-bg: #111111;
+  --admin-color-bg-elevated: #1a1a1a;
+  --admin-color-bg-muted: rgba(255, 255, 255, 0.06);
+  --admin-color-bg-inset: #0f0f0f;
+  --admin-color-text: rgba(255, 255, 255, 0.92);
+  --admin-color-text-muted: rgba(255, 255, 255, 0.85);
+  --admin-color-text-subtle: rgba(255, 255, 255, 0.65);
+  --admin-color-text-subtlest: rgba(255, 255, 255, 0.5);
+  --admin-color-border: rgba(255, 255, 255, 0.1);
+  --admin-color-border-weak: rgba(255, 255, 255, 0.08);
+  --admin-color-accent: #00c026; */
+  --admin-highlight: rgba(255, 255, 255, 0.2);
+  /* Compat aliases to ease migration */
+  --component-highlight: var(--admin-highlight);
+  --admin-shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  /* Dark theme chip tones (optional tweak if needed) */
+  --admin-chip-border: rgba(255, 255, 255, 0.3);
+  --admin-chip-hover: rgba(255, 255, 255, 0.08);
+}
+
+

@@ -7,15 +7,17 @@ interface SaveModalProps {
   saveName: string;
   onSaveNameChange: (name: string) => void;
   onSave: () => void;
+  x?: number;
+  y?: number;
   onClose: () => void;
 }
 
-const SaveModal: React.FC<SaveModalProps> = ({ saveName, onSaveNameChange, onSave, onClose }) => {
+const SaveModal: React.FC<SaveModalProps> = ({ saveName, onSaveNameChange, onSave, x, y, onClose }) => {
   return (
     <Modal
       title="Save Layout"
-      x={650}
-      y={40}
+      x={x}
+      y={y}
       close={onClose}
     >
       <div className={styles.SaveModal}>

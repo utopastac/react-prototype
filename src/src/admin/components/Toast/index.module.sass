@@ -1,24 +1,27 @@
 @import 'src/styles/site'
 
 @import 'src/admin/admin.sass'
+
+
 .Main
   position: fixed
   left: size(32)
   bottom: size(32)
   max-width: size(320)
-  background: rgba(30, 30, 30, 0.7)
-  backdrop-filter: blur(2px)
-  color: white
+  background: var(--admin-overlay-strong)
+  color: var(--admin-text-button)
   padding: size(12) size(16)
-  border-radius: $dev-tools-border-radius
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18)
-  font-size: $dev-tools-font-size-l
+  border-radius: var(--admin-radius-sm)
+  box-shadow: var(--admin-shadow-elevated)
+  font-size: var(--admin-font-l)
   z-index: 9999
   transform: translateY(0)
   transition: opacity 0.3s, bottom 0.3s
+
 .toastVisible
   left: size(32)
   opacity: 1
+
 .toastHidden
   bottom: size(0)
   opacity: 0

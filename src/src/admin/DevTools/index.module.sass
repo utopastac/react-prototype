@@ -11,26 +11,26 @@
   .toolsWrapper
     //background: rgba(0, 0, 0, 0.25)
     position: relative
-    background: white
+    background: var(--admin-color-bg-elevated)
     height: 100vh
     //position: fixed
     //top: 0
     //right: 0
-    width: $dev-tools-width
+    width: var(--admin-panel-width)
     display: flex
     flex-direction: column
-    border-left: 1px solid $dev-tools-section-border
+    border-left: 1px solid var(--admin-color-border)
     > header
       display: flex
       align-items: center
       justify-content: space-between
-      padding: size(12) $dev-tools-padding size(10) $dev-tools-padding
+      padding: size(12) var(--admin-space-16) size(10) var(--admin-space-16)
       height: size(48)
       cursor: pointer
-      color: $dev-tools-text-medium
-      border-bottom: 1px solid $dev-tools-section-border
+      color: var(--admin-color-text-muted)
+      border-bottom: 1px solid var(--admin-color-border)
       h2
-        font-size: $dev-tools-font-size-s
+        font-size: var(--admin-font-s)
         @extend %medium
         letter-spacing: 0.02rem
         text-transform: uppercase
@@ -84,19 +84,19 @@
       opacity: 1
     &.active
       cursor: default
-      outline: 4px solid $dev-tools-button-bg
+      outline: 4px solid var(--admin-color-text)
       outline-offset: -4px
       opacity: 1
   h5
-    padding: 0 $dev-tools-padding
-    font-size: $dev-tools-font-size-m
-    color: $dev-tools-text-medium
+    padding: 0 var(--admin-space-16)
+    font-size: var(--admin-font-m)
+    color: var(--admin-color-text-muted)
     @extend %medium
     margin-bottom: size(6)
   h3, h4, h5, h6, p
     letter-spacing: -0.008rem
   ul.inputSection
-    padding: 0 $dev-tools-padding
+    padding: 0 var(--admin-space-16)
     white-space: nowrap
     overflow-x: scroll
     width: 100%
@@ -110,34 +110,36 @@
       padding: 0 size(14)
       margin-right: size(4)
       border-radius: 500px
-      border: 1px solid $dev-tools-chip-border
-      font-size: $dev-tools-font-size-s
+      border: 1px solid var(--admin-chip-border)
+      font-size: var(--admin-font-s)
       cursor: pointer
       background: transparent
-      color: $dev-tools-text-dark
+      color: var(--admin-color-text)
       &:hover
-        background: $dev-tools-chip-hover
+        background: var(--admin-chip-hover)
       &.active
-        background: $dev-tools-button-bg
-        color: $dev-tools-text-button
-        border-color: $dev-tools-button-bg
+        background: var(--admin-color-text)
+        color: var(--admin-text-button)
+        border-color: var(--admin-color-text)
         cursor: default
+
 .activityRows
   height: size(248)
   overflow-y: scroll
   padding: size(8) 0
+
 .activityRow
-  padding: 0 $dev-tools-padding
+  padding: 0 var(--admin-space-16)
   display: flex
   align-items: center
   justify-content: space-between
-  height: $dev-tools-input-size
-  font-size: $dev-tools-input-font-size
+  height: var(--admin-input-height)
+  font-size: var(--admin-font-s)
   position: relative
   cursor: pointer
-  color: $dev-tools-text-medium
+  color: var(--admin-color-text-muted)
   &:hover
-    background: $dev-tools-input-bg
+    background: var(--admin-color-bg-muted)
     p
       opacity: 0
     &::after
@@ -147,19 +149,20 @@
       right: size(4)
       height: size(20)
       padding: 0 size(8)
-      border-radius: $dev-tools-border-radius
+      border-radius: var(--admin-radius-sm)
       display: flex
       @extend %medium
-      background: #ff4f64
-      color: white
+      background: var(--admin-color-danger)
+      color: var(--admin-text-button)
       justify-content: center
       align-items: center
   h4
     @extend %medium
   p
-    color: $dev-tools-text-light
+    color: var(--admin-color-text-subtle)
+
 .addActivity
-  padding: size(8) $dev-tools-padding
+  padding: size(8) var(--admin-space-16)
   .avatarInput
     display: flex
     align-items: center
@@ -174,21 +177,24 @@
     padding: size(8) 0
   button
     width: 100%
+
 .routeLinks
   display: flex
   flex-direction: column
   margin: 0 -size(8)
   gap: 0px
   padding-bottom: size(8)
+
 .EffectInfo
-  padding: $dev-tools-padding
+  padding: var(--admin-space-16)
+
 .Shortcuts
   max-height: 1000px
   opacity: 1
   pointer-events: auto
   padding: size(12) 0
   .shortcutGroup
-    border-top: 1px solid $dev-tools-section-border
+    border-top: 1px solid var(--admin-color-border)
     display: flex
     flex-direction: column
     gap: size(8)
@@ -196,9 +202,10 @@
     &:first-child
       border: none
       padding-top: 0
+
 .showTools
   position: fixed
   z-index: 10000
   top: size(8)
   right: size(8)
-  background: $gray-f4
+  background: var(--admin-color-bg-muted)

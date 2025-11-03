@@ -4,72 +4,74 @@
 .Main
   display: flex
   flex-direction: row
+
 .ComponentPreview
   position: relative
   overflow: hidden
-  background: $gray-f4
+  background: var(--admin-color-bg-muted)
   padding: 8px
   border-radius: 4px
+
 .AdminPanel
   position: relative
   -webkit-user-select: none
   -ms-user-select: none
   user-select: none
-  width: $admin-panel-size
+  width: var(--admin-panel-width)
   height: 100vh//calc(100vh - size(32))
   overflow: hidden
   @extend %admin-panel
   z-index: 100
-  border-right: 1px solid $dev-tools-section-border
+  border-right: 1px solid var(--admin-color-border)
   &.rightSide
     width: size(320)
     border-right: none
-    border-left: 1px solid $dev-tools-section-border
+    border-left: 1px solid var(--admin-color-border)
   &.propEditor
     position: fixed
-    top: $dev-tools-side-offset
-    right: $dev-tools-side-offset
+    top: var(--admin-space-0)
+    right: var(--admin-space-0)
     width: size(296)
     border-right: none
-    border-left: 1px solid $dev-tools-section-border
+    border-left: 1px solid var(--admin-color-border)
     box-shadow: -12px 0 24px -8px rgba(0,0,0,0.12)
   &.globalSettings
     // position: fixed
-    top: $dev-tools-side-offset
-    right: $dev-tools-side-offset
+    top: var(--admin-space-0)
+    right: var(--admin-space-0)
     z-index: 90
   &.phoneSettings
     position: fixed
-    top: $dev-tools-side-offset
-    right: $dev-tools-side-offset
+    top: var(--admin-space-0)
+    right: var(--admin-space-0)
     z-index: 95
   &.JsonPanel
     display: flex
     flex-direction: column
-    background-color: #1A1A1A
-    color: white
+    background-color: var(--admin-color-bg-inset)
+    color: var(--admin-color-text)
     .PanelHeader
-      background-color: #1A1A1A
-      color: white
-      border-bottom: 1px solid rgba(white, 0.25)
+      background-color: var(--admin-color-bg-inset)
+      color: var(--admin-color-text)
+      border-bottom: 1px solid var(--admin-color-border)
       .actions
         display: flex
         gap: size(4)
     .layoutJson
       flex: 1
       overflow-y: scroll
-      padding: $dev-tools-padding
+      padding: var(--admin-space-16)
     pre
       font-family: monospace
-      font-size: $dev-tools-font-size-s
+      font-size: var(--admin-font-s)
   .PanelHeader
     display: flex
     align-items: center
     justify-content: space-between
-    padding: $dev-tools-padding
-    border-bottom: 1px solid $dev-tools-section-border
+    padding: var(--admin-space-16)
+    border-bottom: 1px solid var(--admin-color-border)
     height: size(48)
-    background: $white
+    background: var(--admin-color-bg-elevated)
     position: sticky
     z-index: 10000
     top: 0
@@ -81,18 +83,21 @@
       gap: size(8)
     h2
       @extend %medium
-      font-size: $dev-tools-font-size-xl
+      font-size: var(--admin-font-xl)
+
 .Tools
   display: flex
   flex-direction: column
   height: 100%
   width: 100%
+
 .AvailableComponents
   display: flex
   flex-direction: column
   flex: 1 1 0
   min-height: 0
   overflow: hidden
+
 .ComponentStack
   display: flex
   flex-direction: column
@@ -100,7 +105,7 @@
   min-height: 0
   overflow-y: auto
   overflow-x: hidden
-  padding: 0 $dev-tools-padding $dev-tools-padding $dev-tools-padding
+  padding: 0 var(--admin-space-16) var(--admin-space-16) var(--admin-space-16)
   gap: size(8)
   container-type: inline-size
 
@@ -128,13 +133,14 @@
   height: 100vh
   gap: size(24)
   @extend %patterned-background-shapes
-  background-color: $gray-f4
+  background-color: var(--admin-color-bg-muted)
+
 .PhonePreview
   position: relative
   width: var(--view-width)
   height: var(--view-height)
   background: var(--semantic-background-app)
-  border: 8px solid black
+  border: 8px solid var(--admin-color-text)
   border-radius: 40px
   overflow: hidden
   display: flex
@@ -143,9 +149,11 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
   transition: outline, transform 0.2s
   will-change: transform, box-shadow
+
 .PhonePreviewDragOver
-  outline: 8px solid $dev-tools-highlight
+  outline: 8px solid var(--admin-highlight)
   transform: scale(1.02)
+
 .PagePreview
   width: 100%
   height: 100%
@@ -157,6 +165,7 @@
   padding-top: size(47)
   &.offset
     padding-top: size(99)
+
 .DroppedCard
   border-radius: 8px
   //background: var(--semantic-background-app)
@@ -178,14 +187,17 @@
   &:hover
     &::after
       display: block
+
 .DroppedStack > div
   cursor: grab
+
 .DroppedStack > div:active
   cursor: grabbing
+
 .DragOver
   position: relative
   background: var(--component-highlight)
-  //border: 3px dashed $admin-brand-highlight
+  //border: 3px dashed var(--admin-color-accent)
   &:after
     content: ""
     position: absolute
@@ -195,19 +207,22 @@
     bottom: 0
     border-radius: size(8)
     display: block !important
-    border: 2px dashed $admin-brand-highlight
+    border: 2px dashed var(--admin-color-accent)
     z-index: 10000
+
 .PanelBox
-  border-top: 1px solid $dev-tools-section-border
+  border-top: 1px solid var(--admin-color-border)
   h4
     @extend %bold
-    font-size: $dev-tools-font-size-l
+    font-size: var(--admin-font-l)
     margin-bottom: size(24)
+
 .FlexRowSpaceBetween
   display: flex
   justify-content: space-between
   align-items: center
   margin-bottom: 12px
+
 .Input
   margin: size(8) 0
   width: 100%
@@ -215,6 +230,7 @@
     @extend %input-field
   label
     @extend %input-label
+
 .LabelRow
   display: flex
   width: 100%
@@ -223,38 +239,46 @@
   cursor: pointer
   label
     flex: 1
+
 .EmptyState
-  color: $gray-888
+  color: var(--admin-color-text-subtle)
   font-style: italic
   text-align: center
   padding: 16px
+
 .Selected
   &:after
-    border: 2px solid $admin-brand-highlight
+    border: 2px solid var(--admin-color-accent)
     display: block
+
 .Dragged
   opacity: 0.5
+
 .DuplicateCursor
   cursor: copy !important
+
 .ComponentNameOverlay
   position: absolute
   top: size(4)
   right: size(12)
-  background: rgba(0, 0, 0, 0.7)
-  color: $white
+  background: var(--admin-overlay-strong)
+  color: var(--admin-text-button)
   padding: size(4) size(8)
   border-radius: size(4)
-  font-size: $dev-tools-font-size-s
+  font-size: var(--admin-font-s)
   @extend %medium
   text-align: center
   z-index: 1000
+
 .PropEditor
   height: 100%
   overflow-y: scroll
   .Fields
-    padding: 0 $dev-tools-padding size(80) $dev-tools-padding
+    padding: 0 var(--admin-space-16) size(80) var(--admin-space-16)
+
 .Editor
   height: 100%
+
 .ArrayOptionsHeader
   display: flex
   align-items: center
@@ -262,19 +286,20 @@
   padding: size(16) 0 size(8) 0
   h3
     @extend %bold
-    font-size: $dev-tools-font-size-l
+    font-size: var(--admin-font-l)
 // ArrayEditor item box
+
 .ArrayItemBox
-  border: 1px solid $dev-tools-section-border
+  border: 1px solid var(--admin-color-border)
   border-radius: 8px
   margin-bottom: 16px
-  background: $white
+  background: var(--admin-color-bg-elevated)
   .content
     padding: size(8) size(16)
-    border-top: 1px solid $dev-tools-section-border
+    border-top: 1px solid var(--admin-color-border)
   &:not(&.Open)
     header:hover
-      background: $gray-f4
+      background: var(--admin-color-bg-muted)
   header
     display: flex
     align-items: center
@@ -292,43 +317,50 @@
       transform: rotate(0deg)
   h4
     @extend %bold
-    font-size: $dev-tools-font-size-m
+    font-size: var(--admin-font-m)
+
 .ToolBar
   display: flex
   justify-content: space-between
   align-items: center
   gap: size(4)
   padding: size(8)
-  border-bottom: 1px solid $dev-tools-section-border
+  border-bottom: 1px solid var(--admin-color-border)
   > div
     display: flex
     justify-content: space-between
     align-items: center
     gap: size(4)
+
 .AdminToggle
   position: fixed
   top: size(8)
   left: size(8)
-  background: $gray-f4
+  background: var(--admin-color-bg-muted)
   border-radius: size(8)
   z-index: 200
+
 .Controls
   flex: 1
+
 .SearchTemplate
-  padding: size(0) $dev-tools-padding
+  padding: size(0) var(--admin-space-16)
   display: flex
   align-items: center
   gap: size(8)
+
 .ToastContainer
   position: absolute
   bottom: size(32)
   left: 0
   right: 0
+
 .TopBar
   position: absolute
   top: 0
   left: 0
   right: 0
+
 .resizing
   // This class is added when hovering or dragging the resize edge
   // The border color is set inline, but you can add more feedback here if desired

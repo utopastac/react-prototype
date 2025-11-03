@@ -232,7 +232,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
               contact="Contact @peterwright"
               buttonTitle="Formblocker maker"
               buttonIcon={Icons.DocumentQuill24}
-              path={'/multi-admin'}
+              path={'/admin'}
               buttonIconSize={ICON_24}
             />
           </motion.div>

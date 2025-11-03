@@ -4,16 +4,16 @@
 .Tabs
   display: flex
   gap: size(4)
-  padding: size(8) $dev-tools-padding
-  border-bottom: 1px solid $dev-tools-section-border
+  padding: size(8) var(--admin-space-16)
+  border-bottom: 1px solid var(--admin-color-border)
 
 .Tab
-  background: white
+  background: var(--admin-color-bg-elevated)
   border: none
   border-radius: 500px
   padding: size(6) size(12)
-  font-size: $dev-tools-font-size-s
-  color: $dev-tools-text-light
+  font-size: var(--admin-font-s)
+  color: var(--admin-color-text-subtle)
   cursor: pointer
   flex: 0 0 auto
   // width: min-content
@@ -21,9 +21,9 @@
 
   &:hover
     &:not(&.active)
-      background: $gray-ef
+      background: var(--admin-color-bg-muted)
 
   &.active
-    background: $gray-ef
-    color: $dev-tools-text-dark
+    background: var(--admin-color-bg-muted)
+    color: var(--admin-color-text)
     @extend %medium

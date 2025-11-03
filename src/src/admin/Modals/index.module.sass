@@ -1,16 +1,19 @@
 @import 'src/styles/site'
 
 @import '../admin.sass'
+
+
 .SaveModal
   padding: size(16)
   input
     @extend %input-field
     width: 100%
+
 .LoadModal
   padding: size(8)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--admin-color-text-muted)
+    font-size: var(--admin-font-m)
     padding: size(8)
   li
     @extend %button-base
@@ -19,11 +22,12 @@
       height: size(32)
       @extend %button-base
       justify-content: flex-start
-      color: $dev-tools-text-medium
-      font-size: $dev-tools-font-size-m
+      color: var(--admin-color-text-muted)
+      font-size: var(--admin-font-m)
       padding: size(4) size(12)
       &:hover
-        background: $gray-e4
+        background: var(--admin-color-bg-muted)
+
 .ShareModal
   padding: size(16)
   input
@@ -33,8 +37,9 @@
     gap: size(8)
     align-items: center
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--admin-color-text-muted)
+    font-size: var(--admin-font-m)
+
 .ConfirmModal
   padding: size(16)
   > div
@@ -42,22 +47,25 @@
     gap: size(8)
     margin-top: size(16)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--admin-color-text-muted)
+    font-size: var(--admin-font-m)
+
 .WelcomeModal
   width: size(500)
+
 .WelcomeContent
   padding: size(16)
+
 .WelcomeSection
   margin-bottom: size(24)
   h4
-    color: $dev-tools-text-dark
-    font-size: $dev-tools-font-size-l
+    color: var(--admin-color-text)
+    font-size: var(--admin-font-l)
     font-weight: 600
     margin-bottom: size(8)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--admin-color-text-muted)
+    font-size: var(--admin-font-m)
     line-height: 1.5
     margin-bottom: size(12)
   ul
@@ -65,8 +73,8 @@
     padding: 0
     margin: 0
   li
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--admin-color-text-muted)
+    font-size: var(--admin-font-m)
     line-height: 1.6
     margin-bottom: size(6)
     padding-left: size(16)
@@ -75,11 +83,14 @@
       content: "•"
       position: absolute
       left: 0
-      color: $dev-tools-text-light
+      color: var(--admin-color-text-subtle)
+
 .WelcomeFooter
   text-align: center
   margin-top: size(8)
+
 .WelcomeButton 
+
 .HistoryModal
   padding: size(16)
   max-height: size(400)
@@ -95,7 +106,7 @@
     padding: size(4) size(8)
     border-radius: 4px
     margin-bottom: 2px
-    font-size: $dev-tools-font-size-m
+    font-size: var(--admin-font-m)
     transition: background 0.1s
     cursor: pointer
     border: 1px solid transparent
@@ -103,11 +114,11 @@
     font-weight: normal
     opacity: 1
     &:hover
-      background: $gray-e4
+      background: var(--admin-color-bg-muted)
   .HistoryEntryCurrent
-    background: #e0ffe0
+    background: var(--admin-success-bg)
     font-weight: bold
-    border: 1px solid #b2e5b2
+    border: 1px solid var(--admin-success-border)
     cursor: default
   .HistoryEntryFuture
     opacity: 0.5
@@ -120,7 +131,7 @@
     font-family: monospace
     font-size: 12px
     margin-left: 12px
-    color: #888
+    color: var(--admin-color-text-muted)
     min-width: 70px
     text-align: right
   .HistoryModalActions
@@ -137,23 +148,23 @@
     gap: size(8)
 
     li
-      border-radius: $dev-tools-border-radius
+      border-radius: var(--admin-radius-sm)
       cursor: pointer
       display: flex
       align-items: center
       gap: size(4)
       
       &:hover
-        background: $gray-f4
+        background: var(--admin-color-bg-muted)
 
       .image
         width: size(100)
         height: size(56)
-        background: $gray-f4
+        background: var(--admin-color-bg-muted)
 
         img
           width: 100%
-          border-radius: $dev-tools-border-radius
+          border-radius: var(--admin-radius-sm)
 
       .content
         flex: 1
@@ -161,8 +172,8 @@
 
         h4
           @extend %medium
-          font-size: $dev-tools-font-size-m
+          font-size: var(--admin-font-m)
           margin-bottom: size(4)
         
         p
-          font-size: $dev-tools-font-size-s
+          font-size: var(--admin-font-s)

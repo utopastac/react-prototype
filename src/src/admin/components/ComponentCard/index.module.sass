@@ -4,7 +4,7 @@
 .Main
   border-radius: size(8)
   align-items: center
-  background: #fff
+  background: var(--admin-color-bg-elevated)
   margin-bottom: 0
   padding: size(4)
   cursor: pointer
@@ -12,16 +12,18 @@
   width: 100%
 
   &:hover
-    background: #E4E4E4
+    background: var(--admin-color-bg-muted)
     //outline: size(8) solid #EFEFEF
   p
-    font-size: $dev-tools-font-size-s
+    font-size: var(--admin-font-s)
     margin-top: size(4)
+
 .ComponentName
-  font-size: $dev-tools-font-size-m
+  font-size: var(--admin-font-m)
   padding-bottom: size(4)
+
 .ComponentPreview
-  background: #F4F4F4
+  background: var(--admin-color-bg-muted)
   position: relative
   padding: size(8)
   border-radius: size(4)
@@ -31,12 +33,15 @@
   display: flex
   align-items: center
   justify-content: center
+
 .Component
+
 .PreviewContainer
   // width: 180px
   // height: 100px
   overflow: hidden
   position: relative
+
 .PreviewInner
   position: absolute
   top: 50%
