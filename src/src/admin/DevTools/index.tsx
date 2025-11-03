@@ -227,10 +227,10 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
               </DevToolsSection>
             </div>
             
-            {/* Developer signature and formblocker link */}
+            {/* Developer signature and interventionscreen link */}
             <Signature
               contact="Contact @peterwright"
-              buttonTitle="Formblocker maker"
+              buttonTitle="InterventionScreen maker"
               buttonIcon={Icons.DocumentQuill24}
               path={'/admin'}
               buttonIconSize={ICON_24}

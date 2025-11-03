@@ -18,7 +18,7 @@
  * - Templates use the same component system as the drag-and-drop interface
  */
 
-import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
+import { InterventionScreenComponents, initialComponentProps } from 'src/data/Components';
 import { TopBarProps } from 'src/components/TopBar';
 import { ButtonGroupProps } from 'src/components/ButtonGroup';
 import { ToastProps } from 'src/components/Toast';
@@ -94,7 +94,7 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'ProgressCircular',
-        Component: (FormblockerComponents as any)['ProgressCircular'],
+        Component: (InterventionScreenComponents as any)['ProgressCircular'],
         props: initialComponentProps['ProgressCircular']
       },
     ],
@@ -119,33 +119,33 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: { title: 'This is a simple list', body: '', size: ComponentData.HEADER_PAGE }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: initialComponentProps['Divider']
       },
       // ListUnordered replacing two Cell entries
       {
         name: 'ListUnordered',
-        Component: (FormblockerComponents as any)['ListUnordered'],
+        Component: (InterventionScreenComponents as any)['ListUnordered'],
         props: initialComponentProps['ListUnordered']
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Section Title',
           body: 'This is a section header for additional information.',
@@ -154,12 +154,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'UpsellCard',
-        Component: (FormblockerComponents as any)['UpsellCard'],
+        Component: (InterventionScreenComponents as any)['UpsellCard'],
         props: initialComponentProps['UpsellCard']
       },
     ],
@@ -197,7 +197,7 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "Get direct Deposit",
           body: 'We need to collect some info to confirm that you are really you.',
@@ -211,13 +211,13 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       // Informational Cell 1
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Your info is secure',
           body: 'We use bank-level encryption to protect your data.',
@@ -228,7 +228,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Informational Cell 2
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Why we ask',
           body: 'We need your legal name to verify your identity.',
@@ -239,7 +239,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Informational Cell 3
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Need help?',
           body: 'Contact support if you have questions about verification.',
@@ -291,22 +291,22 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: { title: 'When did you notice your phone was missing?', body: '', size: ComponentData.HEADER_PAGE }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Morning',
@@ -317,12 +317,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Afternoon',
@@ -333,12 +333,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Evening',
@@ -384,22 +384,22 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: { title: 'When did you notice your phone was missing?', body: '', size: ComponentData.HEADER_PAGE }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Morning',
@@ -410,12 +410,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Afternoon',
@@ -426,12 +426,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Evening',
@@ -478,12 +478,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "What's your legal name?",
           body: 'We need to collect some info to confirm that you are really you.',
@@ -492,12 +492,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: undefined,
@@ -506,7 +506,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: undefined,
@@ -551,12 +551,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "Card numbers don't match",
           body: "The card number you entered doesn't match what's on file.",
@@ -605,12 +605,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Success!',
           body: 'Your action was completed successfully.',
@@ -657,12 +657,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'What\'s your address?',
           size: ComponentData.HEADER_PAGE
@@ -670,12 +670,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: 'Address',
@@ -684,7 +684,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: 'City',
@@ -693,7 +693,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'InputStackedHorizontal',
-        Component: (FormblockerComponents as any)['InputStackedHorizontal'],
+        Component: (InterventionScreenComponents as any)['InputStackedHorizontal'],
         props: {
           ...initialComponentProps['InputStackedHorizontal'],
           label1: 'State',
@@ -737,12 +737,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Tell us more',
           body: 'Please provide additional details below.',
@@ -751,12 +751,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'TextArea',
-        Component: (FormblockerComponents as any)['TextArea'],
+        Component: (InterventionScreenComponents as any)['TextArea'],
         props: {
           ...initialComponentProps['TextArea'],
           label: undefined,
@@ -797,12 +797,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Enter your Interventions Hub PIN for $diogomartinez',
           body: '',
@@ -811,12 +811,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'PINCheck',
-        Component: (FormblockerComponents as any)['PINCheck'],
+        Component: (InterventionScreenComponents as any)['PINCheck'],
         props: {
           value: '', // Start empty; user will enter PIN
           length: 4
@@ -856,12 +856,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Enter the code sent to d••••••z@gmail.com',
           body: '',
@@ -870,12 +870,12 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           placeholder: '--- ---'
         }
@@ -910,12 +910,12 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Verify this account belongs to you',
           body: 'Select an option to verify this account is yours.',
@@ -924,13 +924,13 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
       },
       // Email
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Email',
           left: { type: ComponentData.CELL_ICON, icon: Icons.CommEmail24 },
@@ -940,7 +940,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Phone number
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Phone number',
           left: { type: ComponentData.CELL_ICON, icon: Icons.DeviceMobile24 },
@@ -950,7 +950,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Interventions Hub PIN
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Interventions Hub PIN',
           left: { type: ComponentData.CELL_ICON, icon: Icons.PasscodeFill24 },
@@ -960,7 +960,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Synced contacts
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Synced contacts',
           left: { type: ComponentData.CELL_ICON, icon: Icons.ContactTrue },
@@ -970,7 +970,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Linked debit card
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Linked debit card',
           left: { type: ComponentData.CELL_ICON, icon: Icons.BankLinked24 },
@@ -980,7 +980,7 @@ export const AdminTemplates: AdminTemplate[] = [
       // Cash Card
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Cash Card',
           left: { type: ComponentData.CELL_ICON, icon: Icons.CardBasic24 },

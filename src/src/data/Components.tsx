@@ -370,8 +370,8 @@ export const ComponentData = {
   UPSELL_LARGE,
 };
 
-// Formblocker Component Exports
-export const FormblockerComponents = {
+// InterventionScreen Component Exports
+export const InterventionScreenComponents = {
   // Header Components
   Header,
   FilterBar,
@@ -409,9 +409,9 @@ export const FormblockerComponents = {
   MarketingCardLarge
 };
 
-// Formblocker Component Exports
+// InterventionScreen Component Exports
 export const UiComponents = {
-  ...FormblockerComponents
+  ...InterventionScreenComponents
 };
 
 export const ComponentPropMeta = {
