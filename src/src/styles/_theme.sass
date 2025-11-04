@@ -1,133 +1,8 @@
 // Typography sizing
   
 :root
-  --text-scale: 1
-
-  --text-base-size-56: 56px
-  --text-base-size-44: 44px
-  --text-base-size-32: 32px
-  --text-base-size-24: 24px
-  --text-base-size-16: 16px
-  --text-base-size-14: 14px
-  --text-base-size-10: 10px
-
-  --text-size-display-hero-numerics: var(--text-base-size-56)
-  --text-line-height-display-hero-numerics: 56px
-  --text-letter-spacing-display-hero-numerics: 0em
-
-  --text-size-display-hero: var(--text-base-size-56)
-  --text-line-height-display-hero: 56px
-  --text-letter-spacing-display-hero: 0em
-
-  --text-size-display-headline-l: var(--text-base-size-44)
-  --text-line-height-display-headline-l: 44px
-  --text-letter-spacing-display-headline-l: 1.43px
-
-  --text-size-display-headline-s: var(--text-base-size-32)
-  --text-line-height-display-headline-s: 32px
-  --text-letter-spacing-display-headline-s: -0.8px
-
-  --text-size-display-numeral-s: var(--text-base-size-32)
-  --text-line-height-display-numeral-s: 32px
-  --text-letter-spacing-display-numeral-s: 0em
-
-  --text-size-display-page-title: var(--text-base-size-32)
-  --text-line-height-display-page-title: 32px
-  --text-letter-spacing-display-page-title: -0.48px
-
-  --text-size-display-section-title: var(--text-base-size-24)
-  --text-line-height-display-section-title: 24px
-  --text-letter-spacing-display-section-title: -0.18px
-
+  --text-scale: 1 
   ////////
-
-  --text-size-body-label-m: var(--text-base-size-16)
-  --text-line-height-body-label-m: 24px
-  --text-letter-spacing-body-label-m: 0
-
-  --text-size-body-body-m: var(--text-base-size-16)
-  --text-line-height-body-body-m: 24px
-  --text-letter-spacing-body-body-m: -0.08px
-
-  --text-size-body-link-m: var(--text-base-size-16)
-  --text-line-height-body-link-m: 24px
-  --text-letter-spacing-body-link-m: 0
-
-  --text-size-body-label-s: var(--text-base-size-14)
-  --text-line-height-body-label-s: 20px
-  --text-letter-spacing-body-label-s: 0.04px
-
-  --text-size-body-body-s: var(--text-base-size-14)
-  --text-line-height-body-body-s: 20px
-  --text-letter-spacing-body-body-s: -0.04px
-  
-  --text-size-body-link-s: var(--text-base-size-14)
-  --text-line-height-body-link-s: 20px
-  --text-letter-spacing-body-link-s: 0.04px
-
-  ////////
-
-  --text-size-detail-label-xs: var(--text-base-size-10)
-  --text-line-height-detail-label-xs: 16px
-  --text-letter-spacing-detail-label-xs: 0.6px
-
-  --text-size-detail-body-xs: var(--text-base-size-10)
-  --text-line-height-detail-body-xs: 16px
-  --text-letter-spacing-detail-body-xs: 0.3px
-  
-  --text-size-detail-link-xs: var(--text-base-size-10)
-  --text-line-height-detail-link-xs: 16px
-  --text-letter-spacing-detail-link-xs: 0.4px
-
-  ////////
-
-  --text-size-component-keypad-total: 96px
-  --text-line-height-component-keypad-total: 96px
-  --text-letter-spacing-component-keypad-total: 0
-
-  --text-size-component-keypad-numbers: var(--text-base-size-24)
-  --text-line-height-component-keypad-numbers: 28px
-  --text-letter-spacing-component-keypad-numbers: 0
-
-  --text-size-component-card-title-l: var(--text-base-size-24)
-  --text-line-height-component-card-title-l: 28px
-  --text-letter-spacing-component-card-title-l: -0.18px
-
-  --text-size-component-card-title-s: var(--text-size-body-label-m) 
-  --text-line-height-component-card-title-s: var(--text-line-height-body-label-m)
-  --text-letter-spacing-component-card-title-s: 0
-
-  --text-size-component-title-bar-page-title: var(--text-size-body-label-m) 
-  --text-line-height-component-title-bar-page-title: var(--text-line-height-body-label-m) 
-  --text-letter-spacing-component-title-bar-page-title: 0
-
-  --text-size-component-input: var(--text-size-body-body-m) 
-  --text-line-height-component-input: var(--text-line-height-body-body-m)
-  --text-letter-spacing-component-input: -0.08px
-
-  --text-size-component-button: var(--text-size-body-label-m) 
-  --text-line-height-component-button: var(--text-line-height-body-label-m)
-  --text-letter-spacing-component-button: 0
-
-  --text-size-component-button-compact: var(--text-size-body-label-s)
-  --text-line-height-component-button-compact: var(--text-line-height-body-label-s)
-  --text-letter-spacing-component-button-compact: 0.04px
-
-  --text-size-component-list-number: var(--text-size-body-label-s)
-  --text-line-height-component-list-number: var(--text-line-height-body-label-s)
-  --text-letter-spacing-component-list-number: 0.04px
-
-  --text-size-component-help-text: var(--text-size-body-body-s)
-  --text-line-height-component-help-text: var(--text-line-height-body-body-s)
-  --text-letter-spacing-component-help-text: -0.04px
-
-  --text-size-component-badge-large-inline: var(--text-size-body-body-s)
-  --text-line-height-component-badge-large-inline: var(--text-line-height-body-body-s)
-  --text-letter-spacing-component-badge-large-inline: -0.04px
-
-  --text-size-component-badge-large-asset: 11px
-  --text-line-height-component-badge-large-asset: 16px
-  --text-letter-spacing-component-badge-large-asset: -0.04px
 
   --text-size-avatar-96: 48px
   --text-size-avatar-64: 32px
@@ -136,10 +11,6 @@
   --text-size-avatar-28: 14px
   --text-size-avatar-24: 12px
   --text-size-avatar-20: 10px
-
-////////
-
-  
 
 ////////
 
@@ -154,9 +25,6 @@
 
 [data-text-scale="THEME_SCALE_1_POINT_5"]
   --text-scale: 1.5
-
-//
-[data-text-scale="THEME_NEW_TYPOGRAPHY"]
 
 // Device sizing
 
@@ -180,15 +48,15 @@
 
 // Font styling
 
-:root
-  --font-display: "Cash Sans Wide", "Helvetica Neue", helvetica, sans-serif
-  --font-heading: "Cash Sans", "Helvetica Neue", helvetica, sans-serif
-  --font-standard: "Cash Sans", "Helvetica Neue", helvetica, sans-serif
-  --font-meta: "Cash Sans Mono", "Helvetica Neue", helvetica, sans-serif
+::root
+  --font-display: var(--font-family-display)
+  --font-heading: var(--font-family-display)
+  --font-standard: var(--font-family-sans)
+  --font-meta: var(--font-family-sans)
 
-  --font-regular-weight: 400
+  --font-regular-weight: var(--font-weight-regular)
   --font-medium-weight: 500
-  --font-bold-weight: 600
+  --font-bold-weight: var(--font-weight-bold)
   --font-extra-bold-weight: 700
 
   --font-heading-weight: var(--font-medium-weight)
