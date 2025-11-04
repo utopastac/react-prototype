@@ -6,7 +6,7 @@ import ThemeSection from '../DevTools/ThemeSection';
 import TextButton from './TextButton';
 import Signature from './Signature';
 import * as Icons from 'src/data/Icons';
-import { ICON_24 } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 import styles from '../index.module.sass';
 import SliderInput from '../LabeledInput/SliderInput';
 import { useAdminTheme, useAdminThemeDispatch } from '../AdminThemeContext';
@@ -388,10 +388,10 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
             </ToolsSection>
           </div>
           <Signature
-            contact="Contact @peterwright"
+            contact="Contact @pwright"
             buttonTitle="App preview"
             buttonIcon={Icons.DeviceMobile24}
-            buttonIconSize={ICON_24}
+            buttonIconSize={"24" as IconSize}
           />
         </>
       );
@@ -449,10 +449,10 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
           </ToolsSection>
         </div>
         <Signature
-          contact="Contact @peterwright"
+          contact="Contact @pwright"
           buttonTitle="App preview"
           buttonIcon={Icons.DeviceMobile24}
-          buttonIconSize={ICON_24}
+          buttonIconSize={"24" as IconSize}
         />
       </>
     );

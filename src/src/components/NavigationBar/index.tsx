@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTransition, noTransition } from 'src/containers/TransitionContext';
 import styles from "./index.module.sass";
-import Icon, { ICON_EXTRA_SUBTLE } from "src/components/Icon";
+import Icon, { IconSize, IconColor } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
-import { ICON_24, ICON_WHITE, ICON_PROMINENT } from "src/components/Icon";
 
 export interface NavigationBarProps {
   activeIndex: number;
@@ -56,7 +55,7 @@ const Tab: React.FC<TabProps> = ({ icon, url, active, inverse }) => {
   return (
     <div onClick={() => handleNavigation(url)}>
       <div className={`${styles.Tab} ${active ? styles.active : ""}`}>
-        <Icon icon={icon} size={ICON_24} color={inverse ? ICON_PROMINENT : active ? ICON_PROMINENT : ICON_EXTRA_SUBTLE} />
+        <Icon icon={icon} size="24" color={inverse ? "prominent" : active ? "prominent" : "extraSubtle"} />
       </div>
     </div>
   );

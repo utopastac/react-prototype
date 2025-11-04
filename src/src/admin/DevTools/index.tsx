@@ -15,7 +15,7 @@ import {
 } from 'src/containers/FeedContext';
 
 import * as Icons from "src/data/Icons";
-import { ICON_16, ICON_PROMINENT, ICON_24 } from "src/components/Icon";
+import { IconSize, IconColor } from "src/components/Icon";
 import Modal from "./Modal";
 import DevToolsSection from "./DevToolsSection";
 import styles from "./index.module.sass";
@@ -41,7 +41,7 @@ interface DevToolsProps {
  * 
  * A comprehensive development tools panel that provides:
  * - Theme customization settings
- * - User profile editing (name, cashtag, avatar)
+ * - User profile editing (name, avatar)
  * - Activity management (view/add/remove activities)
  * - Navigation to different app flows
  * 
@@ -54,13 +54,13 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
   // Context hooks for managing user data and activities
   const userDispatch = useUserDispatch();
   const userObject: UserObject = useUser();
-  const { name, cashtag, avatar } = userObject;
+  const { name, headline, avatar } = userObject;
 
   const activityData = useFeed();
 
   // Local state for form inputs - synced with user context
   const [nameInputValue, setNameInputValue] = useState(name);
-  const [cashtagInputValue, setCashtagInputValue] = useState(cashtag);
+  const [headlineInputValue, setHeadlineInputValue] = useState(headline);
   
   // Modal state management
   const [showModalValue, setShowModalValue] = useState(false);
@@ -110,8 +110,8 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
       {/* Toggle button for opening/closing dev tools */}
       <ToolbarButton 
         icon={Icons.Wallet24} 
-        iconSize={ICON_16} 
-        iconColor={ICON_PROMINENT} 
+        iconSize={'16' as IconSize} 
+        iconColor={'prominent' as IconColor} 
         onClick={toggleTools} 
         title="Toggle Dev Tools"
         className={styles.showTools}
@@ -142,7 +142,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                 <ThemeSection />
               </DevToolsSection>
 
-              {/* User Settings Section - Name, Cashtag, Avatar */}
+              {/* User Settings Section - Name, Headline, Avatar */}
               <DevToolsSection 
                 title="User Settings"
                 isOpen={openSections.includes("User Settings")}
@@ -157,11 +157,11 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                   }}
                 />
                 <LabeledInput
-                  config={{ type: 'string', label: 'Cashtag' }}
-                  value={cashtagInputValue}
+                  config={{ type: 'string', label: 'Headline' }}
+                  value={headlineInputValue}
                   onChange={(value: string) => {
-                    setCashtagInputValue(value);
-                    userDispatch!({ type: UPDATE_USER, payload: { cashtag: value } });
+                    setHeadlineInputValue(value);
+                    userDispatch!({ type: UPDATE_USER, payload: { headline: value } });
                   }}
                 />
                 <LabeledInput
@@ -227,13 +227,13 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
               </DevToolsSection>
             </div>
             
-            {/* Developer signature and formblocker link */}
+            {/* Developer signature and intervention screen link */}
             <Signature
-              contact="Contact @peterwright"
-              buttonTitle="Formblocker maker"
+              contact="Contact @pwright"
+              buttonTitle="InterventionScreen maker"
               buttonIcon={Icons.DocumentQuill24}
               path={'/multi-admin'}
-              buttonIconSize={ICON_24}
+              buttonIconSize={'24' as IconSize}
             />
           </motion.div>
         )}

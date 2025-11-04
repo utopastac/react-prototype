@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.sass';
 import ToolbarButton from '../ToolbarButton';
-import { ICON_24, IconSize } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 
 interface SignatureProps {
   contact?: string;
@@ -20,7 +20,7 @@ const Signature: React.FC<SignatureProps> = ({
   buttonIcon,
   buttonOnClick,
   path,
-  buttonIconSize = ICON_24,
+  buttonIconSize = "24" as IconSize,
   children,
 }) => {
   const navigate = useNavigate();

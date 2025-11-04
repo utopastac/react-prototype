@@ -1,35 +1,24 @@
 import React from "react";
-import Icon, { IconSize, IconColor, ICON_16, ICON_24, ICON_32, ICON_BRAND, ICON_PROMINENT, ICON_STANDARD, ICON_SUBTLE, ICON_DISABLED, ICON_INVERSE, ICON_WHITE, ICON_SUCCESS, ICON_FAILURE, IconPropMeta } from "src/components/Icon";
+import Icon, { IconPropMeta } from "src/components/Icon";
 import styles from "./index.module.sass";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
-//
-export const BUTTON_STANDARD = "BUTTON_STANDARD";
-export const BUTTON_PROMINENT = "BUTTON_PROMINENT";
-export const BUTTON_DESTRUCTIVE = "BUTTON_DESTRUCTIVE";
-export const BUTTON_SUBTLE = "BUTTON_SUBTLE";
-export const BUTTON_INVERSE = "BUTTON_INVERSE";
-export const BUTTON_BRAND = "BUTTON_BRAND";
-//
-export const BUTTON_COMPACT_SIZE = "BUTTON_COMPACT_SIZE";
-export const BUTTON_DEFAULT_SIZE = "BUTTON_DEFAULT_SIZE";
-export const BUTTON_CTA_SIZE = "BUTTON_CTA_SIZE";
 //
 
 export interface ButtonProps {
   title: string;
   onClick?: () => void;
   action?: ButtonAction;
-  type?: string;
-  size?: string;
+  type?: 'standard' | 'prominent' | 'destructive' | 'subtle' | 'inverse' | 'brand';
+  size?: 'compact' | 'default' | 'cta';
   icon?: {
     type: string;
-    size: IconSize;
-    color: IconColor;
+    size: '32' | '24' | '16';
+    color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin';
   };
   disabled?: boolean;
 }
 
-export default function Button({ title, type=BUTTON_STANDARD, size, onClick, action, icon, disabled }: ButtonProps) {
+export default function Button({ title, type='standard', size, onClick, action, icon, disabled }: ButtonProps) {
 
   const buttonActionHandler = useButtonAction({ action, onClick });
 
@@ -40,17 +29,17 @@ export default function Button({ title, type=BUTTON_STANDARD, size, onClick, act
 
   const styleClass = () =>{
     switch(type){
-      case BUTTON_STANDARD:
+      case 'standard':
         return styles.standard;
-      case BUTTON_PROMINENT:
+      case 'prominent':
         return styles.prominent;
-      case BUTTON_DESTRUCTIVE:
+      case 'destructive':
         return styles.destructive;
-      case BUTTON_SUBTLE:
+      case 'subtle':
         return styles.subtle;
-      case BUTTON_INVERSE:
+      case 'inverse':
         return styles.inverse;
-      case BUTTON_BRAND:
+      case 'brand':
         return styles.brand;
       default:
         return styles.standard;
@@ -59,11 +48,11 @@ export default function Button({ title, type=BUTTON_STANDARD, size, onClick, act
 
   const sizeClass = () => {
     switch(size){
-      case BUTTON_COMPACT_SIZE:
+      case 'compact':
         return styles.compact;
-      case BUTTON_DEFAULT_SIZE:
+      case 'default':
         return styles.default;
-      case BUTTON_CTA_SIZE:
+      case 'cta':
         return styles.cta;
       default:
         return styles.default;
@@ -88,20 +77,20 @@ export const ButtonPropMeta = {
     type: 'select',
     label: 'Type',
     options: [
-      BUTTON_PROMINENT,
-      BUTTON_STANDARD,
-      BUTTON_DESTRUCTIVE,
-      BUTTON_SUBTLE,
-      BUTTON_BRAND,
+      'prominent',
+      'standard',
+      'destructive',
+      'subtle',
+      'brand',
     ],
   },
   size: {
     type: 'select',
     label: 'Size',
     options: [
-      BUTTON_COMPACT_SIZE,
-      BUTTON_CTA_SIZE,
-      BUTTON_DEFAULT_SIZE,
+      'compact',
+      'cta',
+      'default',
     ],
   },
   disabled: { type: 'boolean', label: 'Disabled' },

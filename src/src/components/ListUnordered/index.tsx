@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_16, ICON_24, ICON_STANDARD, ICON_SUBTLE, IconPropMeta } from "src/components/Icon";
+import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
 
 /**
  * ListUnordered displays a styled unordered list with optional icons, body, and value for each item.
@@ -43,7 +43,7 @@ const ListUnordered: React.FC<ListUnorderedProps> = ({
         <li className={styles.item} key={idx}>
           {item.icon && (
             <span className={styles.icon}>
-              <Icon icon={item.icon} size={prominence === "standard" ? ICON_24 : ICON_16} color={prominence === "standard" ? ICON_STANDARD : ICON_STANDARD} />
+              <Icon icon={item.icon} size={prominence === "standard" ? "24" : "16"} color="standard" />
             </span>
           )}
           <div className={styles.content}>

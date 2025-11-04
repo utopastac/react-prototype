@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps, AVATAR_64, AVATAR_48, AVATAR_32, AVATAR_28, AVATAR_24, AvatarPropMeta } from "src/components/Avatar";
+import Avatar, { AvatarProps, AvatarPropMeta } from "src/components/Avatar";
 
 export interface AvatarData {
   avatar: AvatarProps;
@@ -33,7 +33,7 @@ interface AvatarInstanceProps {
 const AvatarInstance: React.FC<AvatarInstanceProps> = ({ avatar, title }) => {
   return (
     <div className={styles.AvatarInstance}>
-      <Avatar {...avatar} size={AVATAR_64} />
+      <Avatar {...avatar} size='64' />
       {title}
     </div>
   );

@@ -9,7 +9,7 @@ import layoutsStyles from './layouts.module.sass';
 import ComponentPanel from './components/ComponentPanel';
 import AdminToast from './components/Toast';
 import ToolbarButton from './components/ToolbarButton';
-import { ICON_24 } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import { AdminTemplate, AdminTemplates } from './Templates';
 import SaveModal from './Modals/SaveModal';
@@ -606,7 +606,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
             icon={Icons.Wallet24}
-            iconSize={ICON_24}
+            iconSize={"24" as IconSize}
           />
         </div>
       )}
@@ -700,7 +700,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
             icon={Icons.Wallet24}
-            iconSize={ICON_24}
+            iconSize={"24" as IconSize}
           />
         </div>
       )}

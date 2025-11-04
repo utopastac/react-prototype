@@ -3,15 +3,12 @@ import styles from "./index.module.sass";
 import Radio from "src/components/Radio";
 import Checkbox from "src/components/Checkbox";
 //
-export const CARD_RADIO = "CELL_RADIO";
-export const CARD_CHECKBOX = "CELL_CHECKBOX";
-//
 export interface InputCardProps {
   title: string;
   body?: string;
   left?: Record<string, unknown>;
   right?: {
-    type: typeof CARD_RADIO | typeof CARD_CHECKBOX;
+    type: 'radio' | 'checkbox';
   };
   checked?: boolean;
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
@@ -29,11 +26,11 @@ const InputCard = ({ title, body, right, checked, onClick }: InputCardProps) => 
   const rightElement = () => {
     if (!right) return null;
     switch (right.type) {
-      case CARD_RADIO:
+      case 'radio':
         return (
           <Radio checked={checkedValue} onClick={() => {}} />
         );
-      case CARD_CHECKBOX:
+      case 'checkbox':
         return (
           <Checkbox checked={checkedValue} onClick={() => {}} />
         );
@@ -68,7 +65,7 @@ export const InputCardPropMeta = {
     type: 'object',
     label: 'Right',
     fields: {
-      type: { type: 'select', label: 'Right', options: [CARD_RADIO, CARD_CHECKBOX] }
+      type: { type: 'select', label: 'Right', options: ['radio', 'checkbox'] }
     }
   },
   checked: { type: 'boolean', label: 'Checked' },

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps, AVATAR_64, AVATAR_48, AVATAR_32, AVATAR_28, AVATAR_24 } from "src/components/Avatar";
+import Avatar, { AvatarProps } from "src/components/Avatar";
 
 export interface AvatarData {
   avatar: AvatarProps;
@@ -42,7 +42,7 @@ export const AvatarRowPropMeta = {
     initial: { type: 'string', label: 'Initial' },
     size: {
       type: 'select',
-      options: [AVATAR_64, AVATAR_48, AVATAR_32, AVATAR_28, AVATAR_24],
+      options: ['64', '48', '32', '28', '24'],
     },
     border: { type: 'boolean', label: 'Border' },
   }},

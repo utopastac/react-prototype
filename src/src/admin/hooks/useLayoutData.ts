@@ -1,6 +1,6 @@
 import { useAdminLayoutContext } from '../AdminLayoutContext';
 import { LayoutData } from '../LayoutContext';
-import { FormblockerComponents } from 'src/data/Components';
+import { InterventionScreenComponents } from 'src/data/Components';
 import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
 /**
@@ -92,7 +92,7 @@ export const useLayoutData = () => {
     const restoredLayouts = (data.layouts || []).map((layoutData: any) => ({
       components: (layoutData.components || []).map((item: any) => ({
         name: item.name,
-        Component: (FormblockerComponents as any)[item.name],
+        Component: (InterventionScreenComponents as any)[item.name],
         props: item.props || {}
       })),
       topBarProps: layoutData.topBarProps,
@@ -198,7 +198,7 @@ export const useLayoutData = () => {
     const restoredLayout = {
       components: (layoutData.components || []).map((item: any) => ({
           name: item.name,
-          Component: (FormblockerComponents as any)[item.name],
+          Component: (InterventionScreenComponents as any)[item.name],
           props: item.props || {}
         })),
       topBarProps: layoutData.topBarProps,

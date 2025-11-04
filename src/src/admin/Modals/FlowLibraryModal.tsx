@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../DevTools/Modal';
 import styles from './index.module.sass';
-import { FormblockerComponents } from 'src/data/Components';
+import { InterventionScreenComponents } from 'src/data/Components';
 import idvImg from 'src/assets/admin-layouts/idv.jpg';
 import disputesImg from 'src/assets/admin-layouts/disputes.jpg';
 import accountLinkingImg from 'src/assets/admin-layouts/account-linking.jpg';
@@ -50,7 +50,7 @@ const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onC
         ...layout,
         components: (layout.components || []).map((item: any) => ({
           ...item,
-          Component: (FormblockerComponents as any)[item.name],
+          Component: (InterventionScreenComponents as any)[item.name],
         })),
         showStatusBar: layout.showStatusBar !== undefined ? layout.showStatusBar : true,
       }));

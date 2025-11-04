@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { IconPropMeta, ICON_16, ICON_24, ICON_STANDARD } from "src/components/Icon";
+import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
 
 export interface InputProps {
   label?: string;
@@ -18,13 +18,13 @@ const Input: React.FC<InputProps> = ({ label, body, helpIcon, trailingIcon,place
         <input placeholder={placeholder} />
         { trailingIcon && (
           <div className={styles.trailingIcon}>
-            <Icon icon={trailingIcon} size={ICON_24} color={ICON_STANDARD} />
+            <Icon icon={trailingIcon} size="24" color="standard" />
           </div>
          )}
       </div>
       { body && (
         <div className={styles.helpText}>
-          { helpIcon && <Icon icon={helpIcon} size={ICON_16} color={ICON_STANDARD} /> }
+          { helpIcon && <Icon icon={helpIcon} size="16" color="standard" /> }
           <p>{body}</p>
         </div>
       )}

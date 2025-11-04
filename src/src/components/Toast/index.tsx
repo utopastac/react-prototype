@@ -1,5 +1,5 @@
 import React from "react";
-import Icon, { ICON_24, ICON_INVERSE, IconPropMeta } from "src/components/Icon";
+import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
 import styles from "./index.module.sass";
 
 export interface ToastProps {
@@ -15,7 +15,7 @@ const Toast: React.FC<ToastProps> = ({ headline, body, button, icon }) => {
     <div className={styles.Main}>
       <div>
         { icon && (
-          <div className={styles.icon}><Icon icon={icon} size={ICON_24} color={ICON_INVERSE} /></div>
+          <div className={styles.icon}><Icon icon={icon} size="24" color="inverse" /></div>
         )}
         <div className={styles.content}>
           <h4>{headline}</h4>

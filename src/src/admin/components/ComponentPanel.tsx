@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ToolbarButton from './ToolbarButton';
 import * as Icons from 'src/data/Icons';
-import { ICON_24 } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 import styles from 'src/admin/index.module.sass';
 import layoutsStyles from 'src/admin/layouts.module.sass';
 import { useLayoutData } from 'src/admin/hooks/useLayoutData';
@@ -85,7 +85,7 @@ const ComponentPanel: React.FC<ComponentPanelProps> = ({
                 onClick={onHideAdminPanel}
                 title="Hide admin panel (⌘.)"
                 icon={Icons.InterventionsHubCustomer16}
-                iconSize={ICON_24}
+                iconSize={"24" as IconSize}
               />
             </div>
             <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ToolbarButton from 'src/admin/components/ToolbarButton';
-import { ICON_INVERSE } from 'src/components/Icon';
+import { IconColor } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
 import { downloadAsFile } from 'src/helpers/Utils';
@@ -42,21 +42,21 @@ const JsonPanel: React.FC<JsonPanelProps> = ({ visible, onClose, getLayoutData, 
                     onClick={handleDownloadJson} 
                     icon={Icons.Download16} 
                     title="Download JSON" 
-                    iconColor={ICON_INVERSE} 
+                    iconColor={"inverse" as IconColor} 
                     position="bottom" 
                   />
                   <ToolbarButton 
                     onClick={handleCopyJson} 
                     icon={Icons.Copy16} 
                     title="Copy JSON" 
-                    iconColor={ICON_INVERSE} 
+                    iconColor={"inverse" as IconColor} 
                     position="bottom" 
                   />
                   <ToolbarButton 
                     onClick={onClose} 
                     icon={Icons.Failed16} 
                     title="Close" 
-                    iconColor={ICON_INVERSE} 
+                    iconColor={"inverse" as IconColor} 
                     position="bottom" 
                   />
                 </div>

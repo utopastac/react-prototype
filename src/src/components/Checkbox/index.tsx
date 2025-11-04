@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_INVERSE, ICON_16 } from "src/components/Icon";
+import Icon, { IconSize, IconColor } from "src/components/Icon";
 import CheckboxChecked from 'src/assets/checkbox-checked.svg';
 
 export interface CheckboxProps {
@@ -16,8 +16,8 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked }) => {
       {checked && (
         <Icon
           icon={CheckboxChecked}
-          size={ICON_16}
-          color={ICON_INVERSE}
+          size="16"
+          color="inverse"
           className={styles.checkmark}
         />
       )}

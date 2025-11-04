@@ -6,7 +6,7 @@
 // Used as the main interactive preview in AdminView.
 
 import React from 'react';
-import Icon, { ICON_24, ICON_16, ICON_STANDARD, ICON_ADMIN } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 
 // Update the props interface
 type SpecialType = 'topbar' | 'bottombuttons' | 'toast' | 'statusbar';

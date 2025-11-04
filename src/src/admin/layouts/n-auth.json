@@ -90,7 +90,7 @@
         {
           "name": "Cell",
           "props": {
-            "title": "Cash Card",
+            "title": "Card",
             "left": {
               "type": "CELL_ICON",
               "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
@@ -210,7 +210,7 @@
             "fullHeight": true,
             "width": 56,
             "height": 56,
-            "label": "Confirming Cash PIN"
+            "label": "Confirming PIN"
           }
         }
       ],
@@ -338,7 +338,7 @@
         {
           "name": "Cell",
           "props": {
-            "title": "Cash Card",
+            "title": "Card",
             "left": {
               "type": "CELL_ICON",
               "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
@@ -639,19 +639,6 @@
               "type": "CELL_PUSH"
             }
           }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Cash Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
         }
       ],
       "topBarProps": {
@@ -891,19 +878,6 @@
               "type": "CELL_PUSH"
             }
           }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Cash Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
         }
       ],
       "topBarProps": {
@@ -1127,19 +1101,6 @@
             "left": {
               "type": "CELL_ICON",
               "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Cash Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
             },
             "right": {
               "type": "CELL_PUSH"
@@ -1380,19 +1341,6 @@
             "disabled": true,
             "body": "Already verified"
           }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Cash Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
         }
       ],
       "topBarProps": {
@@ -1442,8 +1390,8 @@
         {
           "name": "Header",
           "props": {
-            "title": "Enter your Cash Card number",
-            "body": "We’ll check to make sure it matches what’s on file.",
+            "title": "Enter your Card number",
+            "body": "We'll check to make sure it matches what's on file.",
             "size": "HEADER_PAGE"
           }
         },
@@ -1456,7 +1404,7 @@
         {
           "name": "Input",
           "props": {
-            "placeholder": "Cash card number"
+            "placeholder": "Card number"
           }
         }
       ],
@@ -1630,7 +1578,7 @@
         {
           "name": "Cell",
           "props": {
-            "title": "Cash Card",
+            "title": "Card",
             "left": {
               "type": "CELL_ICON",
               "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"

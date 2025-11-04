@@ -1,13 +1,12 @@
 import React from "react";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 import styles from "./index.module.sass";
-import Avatar, { AVATAR_64, AvatarProps } from "src/components/Avatar";
-import AvatarStackedDiagonal, { AVATAR_STACKED_DIAGONAL_64, AvatarStackedDiagonalProps } from "src/components/AvatarStackedDiagonal";
-import Icon, { ICON_24, ICON_STANDARD, ICON_DISABLED, ICON_SUBTLE, IconSize, IconColor, IconProps } from "src/components/Icon";
+import Avatar, { AvatarProps } from "src/components/Avatar";
+import AvatarStackedDiagonal, { AvatarStackedDiagonalProps } from "src/components/AvatarStackedDiagonal";
+import Icon, { IconProps } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
-import IconBg, { IconBgProps, ICON_BG_64, IconBgTheme } from "src/components/IconBg";
+import IconBg, { IconBgProps } from "src/components/IconBg";
 import Button, { ButtonProps } from "src/components/Buttons/Button";
-import { BUTTON_COMPACT_SIZE } from "src/components/Buttons/Button";
 import Radio, { RadioProps } from "src/components/Radio";
 import Checkbox, { CheckboxProps } from "src/components/Checkbox";
 import Toggle, { ToggleProps } from "src/components/Toggle";
@@ -19,19 +18,6 @@ import { IconBgPropMeta } from "src/components/IconBg";
 // Omit 'size' from AvatarPropMeta for use in cell fields
 const { size: _avatarSize, ...AvatarPropMetaNoSize } = AvatarPropMeta;
 //
-export const CELL_AVATAR = "CELL_AVATAR";
-export const CELL_AVATAR_STACKED = "CELL_AVATAR_STACKED";
-export const CELL_ICON = "CELL_ICON";
-export const CELL_ICON_BG = "CELL_ICON_BG";
-export const CELL_NONE = "CELL_NONE";
-//
-export const CELL_PUSH = "CELL_PUSH";
-export const CELL_RADIO = "CELL_RADIO";
-export const CELL_CHECKBOX = "CELL_CHECKBOX";
-export const CELL_BUTTON = "CELL_BUTTON";
-export const CELL_TOGGLE = "CELL_TOGGLE";
-export const CELL_LABEL_PUSH = "CELL_LABEL_PUSH";
-//
 // Base cell interface
 interface BaseCell {
   type: string;
@@ -41,52 +27,52 @@ interface BaseCell {
 
 // Left cell interfaces
 interface AvatarCell extends BaseCell, AvatarProps {
-  type: typeof CELL_AVATAR;
+  type: 'avatar';
 }
 
 interface AvatarStackedCell extends BaseCell, AvatarStackedDiagonalProps {
-  type: typeof CELL_AVATAR_STACKED;
+  type: 'avatarStacked';
 }
 
 interface IconCell extends BaseCell, IconProps {
-  type: typeof CELL_ICON;
+  type: 'icon';
 }
 
 interface IconBgCell extends BaseCell, IconBgProps {
-  type: typeof CELL_ICON_BG;
+  type: 'iconBg';
 }
 
 interface NoneCell extends BaseCell {
-  type: typeof CELL_NONE;
+  type: 'none';
 }
 
 // Right cell interfaces
 interface PushCell extends BaseCell {
-  type: typeof CELL_PUSH;
+  type: 'push';
 }
 
 interface ButtonCell extends BaseCell {
-  type: typeof CELL_BUTTON;
+  type: 'button';
   title: string;
   props?: Omit<ButtonProps, 'title'>;
 }
 
 interface RadioCell extends BaseCell, RadioProps {
-  type: typeof CELL_RADIO;
+  type: 'radio';
 }
 
 interface CheckboxCell extends BaseCell, CheckboxProps {
-  type: typeof CELL_CHECKBOX;
+  type: 'checkbox';
   checked: boolean;
 }
 
 interface ToggleCell extends BaseCell, ToggleProps {
-  type: typeof CELL_TOGGLE;
+  type: 'toggle';
   checked: boolean;
 }
 
 interface LabelPushCell extends BaseCell {
-  type: typeof CELL_LABEL_PUSH;
+  type: 'labelPush';
   title: string;
 }
 
@@ -112,17 +98,17 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
     if (!left) return null;
     
     switch (left.type) {
-      case CELL_AVATAR:
-        return <Avatar {...(left as AvatarCell)} size={AVATAR_64} />;
-      case CELL_AVATAR_STACKED:
-        return <AvatarStackedDiagonal {...(left as AvatarStackedCell)} size={AVATAR_STACKED_DIAGONAL_64} />;
-      case CELL_ICON:
+      case 'avatar':
+        return <Avatar {...(left as AvatarCell)} size="64" />;
+      case 'avatarStacked':
+        return <AvatarStackedDiagonal {...(left as AvatarStackedCell)} size="64" />;
+      case 'icon':
         const iconCell = left as IconCell;
-        return <Icon icon={iconCell.icon} size={ICON_24} color={disabled ? ICON_DISABLED : iconCell.color || ICON_STANDARD} />;
-      case CELL_ICON_BG:
+        return <Icon icon={iconCell.icon} size={iconCell.size} color={disabled ? 'disabled' : iconCell.color || 'standard'} />;
+      case 'iconBg':
         const iconBgCell = left as IconBgCell;
-        return <IconBg icon={iconBgCell.icon} theme={iconBgCell.theme} customColor={iconBgCell.customColor} iconSize={iconBgCell.iconSize} size={ICON_BG_64} />;
-      case CELL_NONE:
+        return <IconBg icon={iconBgCell.icon} theme={iconBgCell.theme} customColor={iconBgCell.customColor} iconSize={iconBgCell.iconSize} size={iconBgCell.size || '64'} />;
+      case 'none':
         return null;
       default:
         return null;
@@ -133,40 +119,40 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
     if (!right) return null;
     
     switch (right.type) {
-      case CELL_PUSH:
+      case 'push':
         return (
           <div className={styles.push}>
-            <Icon icon={Icons.Push} size={ICON_24} color={ICON_STANDARD} />
+            <Icon icon={Icons.Push} size="24" color="standard" />
           </div>
         );
-      case CELL_BUTTON:
+      case 'button':
         const buttonCell = right as ButtonCell;
-        return <Button title={buttonCell.title} size={BUTTON_COMPACT_SIZE} {...buttonCell.props} />;
-      case CELL_RADIO:
+        return <Button title={buttonCell.title} size="compact" {...buttonCell.props} />;
+      case 'radio':
         const radioCell = right as RadioCell;
         return <Radio checked={radioCell.checked} />;
-      case CELL_CHECKBOX:
+      case 'checkbox':
         const checkboxCell = right as CheckboxCell;
         return <Checkbox checked={checkboxCell.checked} />;
-      case CELL_TOGGLE:
+      case 'toggle':
         const toggleCell = right as ToggleCell;
         return <Toggle checked={toggleCell.checked} />;
-      case CELL_LABEL_PUSH:
+      case 'labelPush':
         const labelPushCell = right as LabelPushCell;
         return (
           <div className={styles.labelPush}>
             <p>{labelPushCell.title}</p>
-            <Icon icon={Icons.Push} size={ICON_24} color={ICON_STANDARD} />
+            <Icon icon={Icons.Push} size="24" color="standard" />
           </div>
         );
-      case CELL_NONE:
+      case 'none':
         return null;
       default:
         return null;
     }
   };
 
-  const centerAlign = left && left.type === CELL_ICON_BG && !body;
+  const centerAlign = left && left.type === 'iconBg' && !body;
 
   return (
     <div
@@ -196,24 +182,24 @@ export const CellPropMeta = {
     type: 'object',
     label: 'Left',
     options: [
-      { label: 'None', value: 'CELL_NONE', type: 'CELL_NONE' },
-      { label: 'Avatar', value: 'CELL_AVATAR', type: 'CELL_AVATAR', fields: AvatarPropMetaNoSize },
-      { label: 'Avatar Stacked', value: 'CELL_AVATAR_STACKED', type: 'CELL_AVATAR_STACKED', fields: AvatarStackedDiagonalPropMeta },
-      { label: 'Icon', value: 'CELL_ICON', type: 'CELL_ICON', fields: IconPropMeta },
-      { label: 'Icon with Background', value: 'CELL_ICON_BG', type: 'CELL_ICON_BG', fields: IconBgPropMeta },
+      { label: 'None', value: 'none', type: 'none' },
+      { label: 'Avatar', value: 'avatar', type: 'avatar', fields: AvatarPropMetaNoSize },
+      { label: 'Avatar Stacked', value: 'avatarStacked', type: 'avatarStacked', fields: AvatarStackedDiagonalPropMeta },
+      { label: 'Icon', value: 'icon', type: 'icon', fields: IconPropMeta },
+      { label: 'Icon with Background', value: 'iconBg', type: 'iconBg', fields: IconBgPropMeta },
     ],
   },
   right: {
     type: 'object',
     label: 'Right',
     options: [
-      { label: 'None', value: 'CELL_NONE', type: 'CELL_NONE' },
-      { label: 'Push', value: 'CELL_PUSH', type: 'CELL_PUSH' },
-      { label: 'Button', value: 'CELL_BUTTON', type: 'CELL_BUTTON', fields: { title: { type: 'string', label: 'Title' } } },
-      { label: 'Radio', value: 'CELL_RADIO', type: 'CELL_RADIO', fields: { checked: { type: 'boolean', label: 'Checked' } } },
-      { label: 'Checkbox', value: 'CELL_CHECKBOX', type: 'CELL_CHECKBOX', fields: { checked: { type: 'boolean', label: 'Checked' } } },
-      { label: 'Toggle', value: 'CELL_TOGGLE', type: 'CELL_TOGGLE', fields: { checked: { type: 'boolean', label: 'Checked' } } },
-      { label: 'Label Push', value: 'CELL_LABEL_PUSH', type: 'CELL_LABEL_PUSH', fields: { title: { type: 'string', label: 'Title' } } },
+      { label: 'None', value: 'none', type: 'none' },
+      { label: 'Push', value: 'push', type: 'push' },
+      { label: 'Button', value: 'button', type: 'button', fields: { title: { type: 'string', label: 'Title' } } },
+      { label: 'Radio', value: 'radio', type: 'radio', fields: { checked: { type: 'boolean', label: 'Checked' } } },
+      { label: 'Checkbox', value: 'checkbox', type: 'checkbox', fields: { checked: { type: 'boolean', label: 'Checked' } } },
+      { label: 'Toggle', value: 'toggle', type: 'toggle', fields: { checked: { type: 'boolean', label: 'Checked' } } },
+      { label: 'Label Push', value: 'labelPush', type: 'labelPush', fields: { title: { type: 'string', label: 'Title' } } },
     ],
   },
   onClick: { type: 'function', label: 'onClick (not editable)' },

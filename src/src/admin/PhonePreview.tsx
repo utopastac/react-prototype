@@ -9,7 +9,7 @@ import ButtonGroup from 'src/components/ButtonGroup';
 import Toast from 'src/components/Toast';
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
-import Icon, { ICON_16, ICON_24, ICON_ADMIN, ICON_SUBTLE } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import ToolbarButton from './components/ToolbarButton';
 import gsap from "gsap";
@@ -470,7 +470,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
           onClick={handleZoomIn}
           disabled={zoomLevel >= 3}
           icon={Icons.Add24}
-          iconColor={ICON_ADMIN}
+          iconColor={"admin" as IconColor}
           position="left"
         />
         <ToolbarButton
@@ -478,21 +478,21 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
           onClick={handleZoomOut}
           disabled={zoomLevel <= 0.1}
           icon={Icons.Subtract32}
-          iconColor={ICON_ADMIN}
+          iconColor={"admin" as IconColor}
           position="left"
         />
         <ToolbarButton
           title="Reset Zoom (⌘ 0)"
           onClick={handleZoomReset}
           icon={Icons.Borrow24}
-          iconColor={ICON_ADMIN}
+          iconColor={"admin" as IconColor}
           position="left"
         />
         <ToolbarButton
           title="Fit to Screen"
           onClick={handleFitToScreen}
           icon={Icons.NumberPad24}
-          iconColor={ICON_ADMIN}
+          iconColor={"admin" as IconColor}
           position="left"
         />
         <div className={layoutsStyles.ZoomLevel}>
@@ -645,7 +645,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                             handleDuplicateLayout(index);
                           }}
                           icon={Icons.Copy16}
-                          iconColor={ICON_ADMIN}
+                          iconColor={"admin" as IconColor}
                           position="bottom"
                         />
                         <ToolbarButton
@@ -656,7 +656,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                             dispatch({ type: 'REMOVE_LAYOUT', index });
                           }}
                           icon={Icons.Clear16}
-                          iconColor={ICON_ADMIN}
+                          iconColor={"admin" as IconColor}
                           position="bottom"
                         />
                     </div>

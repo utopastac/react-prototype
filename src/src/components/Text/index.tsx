@@ -1,38 +1,24 @@
 import React from "react";
 import styles from "./index.module.sass";
 
-// Header size constants
-export const TEXT_HERO = "TEXT_HERO";
-export const TEXT_HEADER = "TEXT_HEADER";
-export const TEXT_SECTION_TITLE = "TEXT_SECTION_TITLE";
-export const TEXT_BODY = "TEXT_BODY";
-export const TEXT_DESCRIPTION = "TEXT_DESCRIPTION";
-//
-export const TEXT_PROMINENT = "TEXT_PROMINENT";
-export const TEXT_STANDARD = "TEXT_STANDARD";
-export const TEXT_SUBTLE = "TEXT_SUBTLE";
-
-export type TextSize = typeof TEXT_BODY | typeof TEXT_DESCRIPTION | typeof TEXT_SECTION_TITLE | typeof TEXT_HEADER | typeof TEXT_HERO;
-export type TextColor = typeof TEXT_PROMINENT | typeof TEXT_STANDARD | typeof TEXT_SUBTLE;
-
 export interface TextProps {
   text: string;
-  size?: TextSize;
-  color?: TextColor;
+  size?: 'hero' | 'header' | 'sectionTitle' | 'body' | 'description';
+  color?: 'prominent' | 'standard' | 'subtle';
 }
 
 const Text: React.FC<TextProps> = ({ text, size, color }) => {
   const textElement = () => {
     switch(size) {
-      case TEXT_HERO:
+      case 'hero':
         return <h1>{text}</h1>;
-      case TEXT_HEADER:
+      case 'header':
         return <h2>{text}</h2>;
-      case TEXT_SECTION_TITLE:
+      case 'sectionTitle':
         return <h4>{text}</h4>;
-      case TEXT_BODY:
+      case 'body':
         return <p>{text}</p>;
-      case TEXT_DESCRIPTION:
+      case 'description':
         return <p>{text}</p>;
       default:
         return <p>{text}</p>;
@@ -41,11 +27,11 @@ const Text: React.FC<TextProps> = ({ text, size, color }) => {
 
   const textClassName = () => {
     switch(color) {
-      case TEXT_PROMINENT:
+      case 'prominent':
         return styles.prominent;
-      case TEXT_STANDARD:
+      case 'standard':
         return styles.standard;
-      case TEXT_SUBTLE:
+      case 'subtle':
         return styles.subtle;
       default:
         return '';
@@ -67,11 +53,11 @@ export const TextPropMeta = {
   size: {
     type: 'select',
     label: 'Size',
-    options: [TEXT_HERO, TEXT_HEADER, TEXT_SECTION_TITLE, TEXT_BODY, TEXT_DESCRIPTION],
+    options: ['hero', 'header', 'sectionTitle', 'body', 'description'],
   },
   color: {
     type: 'select',
     label: 'Color',
-    options: [TEXT_PROMINENT, TEXT_STANDARD, TEXT_SUBTLE],
+    options: ['prominent', 'standard', 'subtle'],
   },
 };

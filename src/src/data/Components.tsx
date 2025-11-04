@@ -1,13 +1,6 @@
 import { Images } from "src/data/Images";
 // Header Components
 import Header, { 
-  HEADER_HERO, 
-  HEADER_PAGE, 
-  HEADER_SECTION, 
-  HEADER_AVATAR, 
-  HEADER_AVATAR_STACKED_DIAGONAL, 
-  HEADER_ICON,
-  HEADER_IMAGE,
   HeaderPropMeta
 } from 'src/components/Header';
 //
@@ -24,51 +17,28 @@ import Input, {
 import TextArea, { TextAreaPropMeta } from 'src/components/TextArea';
 //
 import InputCard, {
-  CARD_RADIO,
-  CARD_CHECKBOX,
   InputCardPropMeta
 } from 'src/components/InputCard';
 //
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import SearchBar, { SearchBarPropMeta } from 'src/components/SearchBar';
 //
-// CashKeypad removed
 //
 // Removed MoneyInputDisplay
-import UpsellCard, { UPSELL_LARGE, UPSELL_SMALL,UpsellCardPropMeta } from 'src/components/UpsellCard';
+import UpsellCard, { UpsellCardPropMeta } from 'src/components/UpsellCard';
 import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
 
 // Cell Components
 import Cell, {
-  CELL_AVATAR,
-  CELL_AVATAR_STACKED,
-  CELL_ICON,
-  CELL_ICON_BG,
-  CELL_NONE,
-  CELL_BUTTON,
-  CELL_CHECKBOX,
-  CELL_PUSH,
-  CELL_LABEL_PUSH,
-  CELL_RADIO,
-  CELL_TOGGLE,
   CellPropMeta
 } from 'src/components/Cell';
 //
 import CellActivity, {
-  CELL_ACTIVITY_AVATAR,
-  CELL_ACTIVITY_BUTTON,
-  CELL_ACTIVITY_ICON_BG,
-  CELL_ACTIVITY_INFO,
   CellActivityPropMeta
 } from 'src/components/CellActivity';
 
 // Avatar Components
 import Avatar, {
-  AVATAR_96,
-  AVATAR_64,
-  AVATAR_48,
-  AVATAR_32,
-  AVATAR_28,AVATAR_24,
   AvatarPropMeta
 } from 'src/components/Avatar';
 //
@@ -76,10 +46,6 @@ import AvatarCarousel, { AvatarCarouselPropMeta } from "src/components/AvatarCar
 import AvatarRow, { AvatarRowPropMeta } from "src/components/AvatarRow";
 //
 import AvatarStackedDiagonal, {
-  AVATAR_STACKED_DIAGONAL_64,
-  AVATAR_STACKED_DIAGONAL_48,
-  AVATAR_STACKED_DIAGONAL_32,
-  AVATAR_STACKED_DIAGONAL_24,
   AvatarStackedDiagonalPropMeta
 } from 'src/components/AvatarStackedDiagonal';
 
@@ -87,51 +53,20 @@ import AvatarStackedDiagonal, {
 // Removed Applet components (DiscoverPromo, BalanceApplet, SavingsApplet, CryptoApplet, SecondaryApplet, TertiaryApplet)
 
 import Text, {
-  TEXT_HERO,
-  TEXT_HEADER,
-  TEXT_SECTION_TITLE,
-  TEXT_BODY,
-  TEXT_DESCRIPTION,
-  TEXT_PROMINENT,
-  TEXT_STANDARD,
-  TEXT_SUBTLE,
   TextPropMeta
 } from 'src/components/Text';
 
 // UI Components
 import IconBg, {
-  ICON_BG_BRAND,
-  ICON_BG_GRAY,
-  ICON_BG_ERROR,
-  ICON_BG_48,
-  ICON_BG_64,
   IconBgPropMeta
 } from 'src/components/IconBg';
 //
 import Button, {
-  BUTTON_PROMINENT,
-  BUTTON_STANDARD,
-  BUTTON_DESTRUCTIVE,
-  BUTTON_SUBTLE,
-  BUTTON_BRAND,
-  BUTTON_COMPACT_SIZE,
-  BUTTON_CTA_SIZE,
-  BUTTON_DEFAULT_SIZE,
   ButtonPropMeta
 } from 'src/components/Buttons/Button';
 //
-import {
-  BUTTON_ACTION_CLICK,
-  BUTTON_ACTION_PATH,
-  BUTTON_ACTION_HALFSHEET
-} from 'src/hooks/useButtonAction';
 //
 import Divider, {
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL,
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE,
-  DIVIDER_BETWEEN_SECTION_LARGE,
-  DIVIDER_WITHIN_SECTION_MEDIUM,
-  DIVIDER_WITHIN_SECTION_SMALL,
   DividerPropMeta
 } from 'src/components/Divider';
 //
@@ -141,15 +76,6 @@ import Disclaimer, { DisclaimerPropMeta } from 'src/components/Disclaimer';
 import ProgressCircular, { ProgressCircularPropMeta } from 'src/components/ProgressCircular';
 import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
-  STATE_NOT_STARTED,
-  STATE_IN_PROGRESS,
-  STATE_PENDING,
-  STATE_DONE,
-  STATE_SKIPPED,
-  STATE_COLLAPSED,
-  PLACING_BEGINNING,
-  PLACING_MIDDLE,
-  PLACING_END,
   TimelineRowPropMeta
 } from 'src/components/Timeline/TimelineRow';
 
@@ -160,25 +86,11 @@ import Modal, { ModalPropMeta } from 'src/components/Modal';
 
 // Icons
 import Icon, {
-  ICON_16,
-  ICON_24,
-  ICON_32,
-  ICON_BRAND,
-  ICON_DISABLED,
-  ICON_INVERSE,
-  ICON_PROMINENT,
-  ICON_STANDARD,
-  ICON_SUBTLE,
-  ICON_EXTRA_SUBTLE,
-  ICON_SUCCESS,
-  ICON_WHITE,
-  ICON_FAILURE,
   IconPropMeta
 } from 'src/components/Icon';
 
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
-import { size } from 'lodash';
 import MarketingCardSmall, { MarketingCardSmallPropMeta } from 'src/components/MarketingCardSmall';
 import MarketingCardLarge, { MarketingCardLargePropMeta } from "src/components/MarketingCardLarge";
 
@@ -234,127 +146,9 @@ export const Components = {
   MarketingCardLarge,
 };
 
-// Constants and Enums
-export const ComponentData = {
-  // Input Card
-  CARD_RADIO,
-  CARD_CHECKBOX,
 
-  // Header
-  HEADER_HERO,
-  HEADER_PAGE,
-  HEADER_SECTION,
-  HEADER_AVATAR,
-  HEADER_AVATAR_STACKED_DIAGONAL,
-  HEADER_ICON,
-  HEADER_IMAGE,
-
-  // Cell
-  CELL_AVATAR,
-  CELL_AVATAR_STACKED,
-  CELL_ICON,
-  CELL_ICON_BG,
-  CELL_NONE,
-  CELL_BUTTON,
-  CELL_CHECKBOX,
-  CELL_PUSH,
-  CELL_LABEL_PUSH,
-  CELL_RADIO,
-  CELL_TOGGLE,
-
-  // Timeline
-  TIMELINE_STATE_NOT_STARTED: STATE_NOT_STARTED,
-  TIMELINE_STATE_IN_PROGRESS: STATE_IN_PROGRESS,
-  TIMELINE_STATE_PENDING: STATE_PENDING,
-  TIMELINE_STATE_DONE: STATE_DONE,
-  TIMELINE_STATE_SKIPPED: STATE_SKIPPED,
-  TIMELINE_STATE_COLLAPSED: STATE_COLLAPSED,
-  TIMELINE_PLACING_BEGINNING: PLACING_BEGINNING,
-  TIMELINE_PLACING_MIDDLE: PLACING_MIDDLE,
-  TIMELINE_PLACING_END: PLACING_END,
-
-  // Icon Background
-  ICON_BG_BRAND,
-  ICON_BG_GRAY,
-  ICON_BG_ERROR,
-  ICON_BG_48,
-  ICON_BG_64,
-
-  // Button
-  BUTTON_PROMINENT,
-  BUTTON_STANDARD,
-  BUTTON_DESTRUCTIVE,
-  BUTTON_SUBTLE,
-  BUTTON_BRAND,
-  BUTTON_COMPACT_SIZE,
-  BUTTON_CTA_SIZE,
-  BUTTON_DEFAULT_SIZE,
-  BUTTON_ACTION_CLICK,
-  BUTTON_ACTION_PATH,
-  BUTTON_ACTION_HALFSHEET,
-
-  // Divider
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL,
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE,
-  DIVIDER_BETWEEN_SECTION_LARGE,
-  DIVIDER_WITHIN_SECTION_MEDIUM,
-  DIVIDER_WITHIN_SECTION_SMALL,
-
-  // Avatar
-  AVATAR_96,
-  AVATAR_64,
-  AVATAR_48,
-  AVATAR_32,
-  AVATAR_28,
-  AVATAR_24,
-
-  // Avatar Stacked Diagonal
-  AVATAR_STACKED_DIAGONAL_64,
-  AVATAR_STACKED_DIAGONAL_48,
-  AVATAR_STACKED_DIAGONAL_32,
-  AVATAR_STACKED_DIAGONAL_24,
-
-  // Text
-  TEXT_HERO,
-  TEXT_HEADER,
-  TEXT_SECTION_TITLE,
-  TEXT_BODY,
-  TEXT_DESCRIPTION,
-  TEXT_PROMINENT,
-  TEXT_STANDARD,
-  TEXT_SUBTLE,
-
-  // Cell Activity
-  CELL_ACTIVITY_AVATAR,
-  CELL_ACTIVITY_BUTTON,
-  CELL_ACTIVITY_ICON_BG,
-  CELL_ACTIVITY_INFO,
-
-  // Keypad
-  // CashKeypad removed
-
-  // Icon
-  ICON_16,
-  ICON_24,
-  ICON_32,
-  ICON_BRAND,
-  ICON_DISABLED,
-  ICON_INVERSE,
-  ICON_PROMINENT,
-  ICON_STANDARD,
-  ICON_SUBTLE,
-  ICON_EXTRA_SUBTLE,
-  ICON_SUCCESS,
-  ICON_WHITE,
-  ICON_FAILURE,
-
-  // Upsell Card
-  UPSELL_SMALL,
-  UPSELL_LARGE,
-};
-
-// Formblocker Component Exports
-export const FormblockerComponents = {
+// InterventionScreen Component Exports
+export const InterventionScreenComponents = {
   // Header Components
   Header,
   FilterBar,
@@ -392,9 +186,9 @@ export const FormblockerComponents = {
   MarketingCardLarge
 };
 
-// Formblocker Component Exports
+// InterventionScreen Component Exports
 export const UiComponents = {
-  ...FormblockerComponents
+  ...InterventionScreenComponents
 };
 
 export const ComponentPropMeta = {
@@ -438,7 +232,7 @@ export const ComponentPropMeta = {
 };
 
 export const initialComponentProps: Record<string, any> = {
-  Header: { title: 'Header', body: 'Body copy', size: ComponentData.HEADER_PAGE },
+  Header: { title: 'Header', body: 'Body copy', size: 'page' },
   FilterBar: { filterChips: [{ title: 'Chip', active: true }] },
   Input: { label: 'Label', placeholder: 'Placeholder' },
   InputStackedHorizontal: {
@@ -448,29 +242,29 @@ export const initialComponentProps: Record<string, any> = {
     placeholder2: 'Placeholder 2'
   },
   TextArea: { label: 'Label', placeholder: 'Placeholder' },
-  InputCard: { title: 'Input Card', body: 'Body', right: { type: ComponentData.CARD_RADIO }, checked: false },
+  InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, checked: false },
   ButtonGroup: { buttons: [{ title: 'Button' }] },
   SearchBar: { placeholder: 'Search...' },
   PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
-  UpsellCard: { title: 'Info Card', body: 'Body', size: ComponentData.UPSELL_SMALL },
+  UpsellCard: { title: 'Info Card', body: 'Body', size: 'small' },
   MarketingCardSmall: { title: 'Marketing Card Small', body: 'Body', image: Images.Bed, button: 'Button text' },
   MarketingCardLarge: { title: 'Marketing Card Large', body: 'Body', image: Images.Cards, button: 'Button text' },
   Cell: { title: 'Cell', body: 'Body' },
   CellActivity: { title: 'Cell Activity', body: 'Body', date: 'Today', left: {}, right: {}, onClick: () => {} },
-  Text: { text: 'Text', size: ComponentData.TEXT_BODY, color: ComponentData.TEXT_STANDARD },
+  Text: { text: 'Text', size: 'body', color: 'standard' },
   AvatarCarousel: { avatars: [{
-    avatar: {size: ComponentData.AVATAR_64, initial: "J", image: null},
+    avatar: {size: '64', initial: "J", image: null},
     title: "Jane"
   },
   {
-    avatar: {size: ComponentData.AVATAR_64, initial:"N", image: null},
+    avatar: {size: '64', initial:"N", image: null},
     title: "Nigel"
   },
   {
-    avatar: {size: ComponentData.AVATAR_64, image:Avatars.Chavez, initial: undefined},
+    avatar: {size: '64', image:Avatars.Chavez, initial: undefined},
     title: "Chavez"
   },] },
-  Divider: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM },
+  Divider: { size: 'withinSectionMedium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
   Slider: { onDrop: () => {} },
   Timeline: {
@@ -480,42 +274,42 @@ export const initialComponentProps: Record<string, any> = {
         body: "Welcome to Interventions Hub!",
         value: "Jan 1",
         valueDescriptor: "Completed",
-        state: ComponentData.TIMELINE_STATE_DONE,
-        placing: ComponentData.TIMELINE_PLACING_BEGINNING
+        state: 'done',
+        placing: 'beginning'
       },
       {
         label: "First Payment Sent",
         body: "$20 to Jane",
         value: "Jan 5",
         valueDescriptor: "Completed",
-        state: ComponentData.TIMELINE_STATE_DONE,
-        placing: ComponentData.TIMELINE_PLACING_MIDDLE
+        state: 'done',
+        placing: 'middle'
       },
       {
         label: "Card Ordered",
-        body: "Physical Cash Card",
+        body: "Card",
         value: "Jan 10",
         valueDescriptor: "In Progress",
-        state: ComponentData.TIMELINE_STATE_IN_PROGRESS,
-        placing: ComponentData.TIMELINE_PLACING_MIDDLE
+        state: 'inProgress',
+        placing: 'middle'
       },
       {
         label: "Card Delivered",
         body: "Arriving soon",
         value: "Jan 15",
         valueDescriptor: "Pending",
-        state: ComponentData.TIMELINE_STATE_PENDING,
-        placing: ComponentData.TIMELINE_PLACING_END
+        state: 'pending',
+        placing: 'end'
       }
     ]
   },
   TimelineRow: {
     label: "Card Ordered",
-    body: "Physical Cash Card",
+    body: "Card",
     value: "Jan 10",
     valueDescriptor: "In Progress",
-    state: ComponentData.TIMELINE_STATE_IN_PROGRESS,
-    placing: ComponentData.TIMELINE_PLACING_MIDDLE
+    state: 'inProgress',
+    placing: 'middle'
   },
   Toast: {
     headline: "Headline",

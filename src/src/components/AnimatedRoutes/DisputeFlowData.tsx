@@ -1,4 +1,5 @@
-import {Components, ComponentData} from 'src/data/Components';
+import {Components} from 'src/data/Components';
+import { BUTTON_ACTION_PATH } from 'src/hooks/useButtonAction';
 import { closeModal } from 'src/containers/TransitionContext';
 import * as Icons from 'src/data/Icons';
 import InterventionScreen from 'src/containers/InterventionScreen';
@@ -15,31 +16,31 @@ export const disputeFlowData = [
           props: {
             title: 'Dispute a Payment',
             body: "We're here to help resolve issues with your transactions. We'll help you through the process and investigate your claim.",
-            size: ComponentData.HEADER_PAGE,
+            size: 'page',
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          props: {size: 'betweenSectionExtraLarge'}
         },
         {
           component: Components.Header,
           props: {
             title: 'Before you start',
             body: 'It will help us investigate if you have a few things.',
-            size: ComponentData.HEADER_SECTION,
+            size: 'section',
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Documents',
             body: 'Any receipts you might have',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.Document24 }
+            left: { type: 'icon', icon: Icons.Document24 }
           }
         },
         {
@@ -47,7 +48,7 @@ export const disputeFlowData = [
           props: {
             title: 'Merchant communication',
             body: 'Screenshots of communication with merchants',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.CardAdd24 }
+            left: { type: 'icon', icon: Icons.CardAdd24 }
           }
         },
         {
@@ -55,7 +56,7 @@ export const disputeFlowData = [
           props: {
             title: 'Details',
             body: 'Any relevant information about what happened',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.Bills24 }
+            left: { type: 'icon', icon: Icons.Bills24 }
           }
         },
       ],
@@ -66,13 +67,13 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Cancel',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Dispute',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/transaction', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/transaction', type: BUTTON_ACTION_PATH },
           },
         ]
       }
@@ -88,43 +89,43 @@ export const disputeFlowData = [
           props: {
             title: 'Select Transaction',
             body: 'Choose the transaction you want to dispute',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Recent Transactions',
             body: 'Tap to select from your recent activity',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Search by Date',
             body: 'Find a specific transaction by date',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Enter Transaction Details',
             body: 'Manually enter transaction information',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         }
       ],
@@ -135,8 +136,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/reason', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/reason', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -153,67 +154,67 @@ export const disputeFlowData = [
           props: {
             title: "What's the Issue?",
             body: "Select the reason for your dispute",
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Unauthorized Transaction',
             body: 'I did not authorize this payment or someone else used my account',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Incorrect Amount',
             body: 'The amount charged is different from what I expected',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Duplicate Charge',
             body: 'I was charged multiple times for the same transaction',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Merchant Dispute',
             body: 'I have an issue with the merchant (wrong item, not received, etc.)',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Processing Error',
             body: 'There was a technical error in processing this transaction',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         }
       ],
@@ -224,8 +225,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/details', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/details', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -242,12 +243,12 @@ export const disputeFlowData = [
           props: {
             title: 'Transaction Details',
             body: 'Please provide information about the disputed transaction',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -259,7 +260,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -271,7 +272,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -282,7 +283,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -299,8 +300,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/merchant-contact', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/merchant-contact', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -315,29 +316,29 @@ export const disputeFlowData = [
           component: Components.Header,
           props: {
             title: 'Did you contact the merchant?',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE}
+          props: {size: 'betweenSectionLarge'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Yes',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'No',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
       ],
@@ -348,8 +349,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/description', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/description', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -365,12 +366,12 @@ export const disputeFlowData = [
           props: {
             title: 'Describe the Issue',
             body: 'Please provide a detailed description of what happened',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.TextArea,
@@ -380,7 +381,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
       ],
       topBar: {
@@ -390,8 +391,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/evidence', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/evidence', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -407,47 +408,47 @@ export const disputeFlowData = [
           props: {
             title: 'Supporting Evidence',
             body: 'Upload any documents that support your dispute, including receipts, emails, screenshots, or any communication with the merchant can help us resolve your dispute faster.',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Upload Receipt',
             body: 'Add a photo or PDF of your receipt',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Upload Communication',
             body: 'Add emails, chat logs, or other correspondence',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'Upload Screenshots',
             body: 'Add screenshots of the issue or error messages',
-            right: { type: ComponentData.CELL_PUSH }
+            right: { type: 'push' }
           }
         }
       ],
@@ -458,13 +459,13 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Skip for Now',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/dispute/contact', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/dispute/contact', type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/contact', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/contact', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -481,12 +482,12 @@ export const disputeFlowData = [
           props: {
             title: 'Contact Information',
             body: 'How should we reach you about your dispute?',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -498,7 +499,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -510,7 +511,7 @@ export const disputeFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Input,
@@ -527,8 +528,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/review', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/review', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -544,12 +545,12 @@ export const disputeFlowData = [
           props: {
             title: 'Review Your Dispute',
             body: 'Please review all information before submitting',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.UpsellCard,
@@ -567,13 +568,13 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Edit Information',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/dispute/details', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/dispute/details', type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Submit Dispute',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/dispute/loading', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/dispute/loading', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -601,38 +602,38 @@ export const disputeFlowData = [
       sections: [
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Header,
           props: {
             title: 'Dispute Submitted',
             body: 'Your dispute has been received and is being processed',
-            size: ComponentData.HEADER_PAGE,
-            accessory: { type: ComponentData.HEADER_ICON, icon: Icons.Check32, theme: ComponentData.ICON_BG_BRAND }
+            size: 'page',
+            accessory: { type: 'icon', icon: Icons.Check32, theme: 'brand' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.Cell,
           props: {
             title: 'REF-2024-001234',
             body: 'Save this reference number for your records.',
-            right: { type: ComponentData.CELL_NONE }
+            right: { type: 'none' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL}
+          props: {size: 'betweenSectionExtraLargeCell'}
         },
         {
           component: Components.Header,
           props: {
             title: 'What happens next?',
-            size: ComponentData.HEADER_SECTION,
+            size: 'section',
           }
         },
         {
@@ -642,40 +643,40 @@ export const disputeFlowData = [
               {
                 label: 'Dispute Submitted',
                 body: 'Your dispute has been received and is being processed',
-                state: ComponentData.TIMELINE_STATE_DONE,
-                placing: ComponentData.TIMELINE_PLACING_BEGINNING
+                state: 'done',
+                placing: 'beginning'
               },
               {
                 label: 'Investigation Begins',
                 body: 'We will investigate your dispute within 10 business days',
-                state: ComponentData.TIMELINE_STATE_NOT_STARTED,
-                placing: ComponentData.TIMELINE_PLACING_MIDDLE
+                state: 'notStarted',
+                placing: 'middle'
               },
               {
                 label: 'Temporary Credit',
                 body: 'You may receive a temporary credit while we work with the merchant',
-                state: ComponentData.TIMELINE_STATE_NOT_STARTED,
-                placing: ComponentData.TIMELINE_PLACING_MIDDLE
+                state: 'notStarted',
+                placing: 'middle'
               },
               {
                 label: 'Resolution',
                 body: 'You will receive updates via email and in the app',
-                state: ComponentData.TIMELINE_STATE_NOT_STARTED,
-                placing: ComponentData.TIMELINE_PLACING_END
+                state: 'notStarted',
+                placing: 'end'
               }
             ]
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL}
+          props: {size: 'betweenSectionExtraLargeCell'}
         },
         {
           component: Components.Header,
           props: {
             title: 'Contact Us',
             body: 'If you have questions or need to provide additional information, contact our support team. Reference your dispute number when calling.',
-            size: ComponentData.HEADER_SECTION,
+            size: 'section',
           }
         }
       ],
@@ -683,8 +684,8 @@ export const disputeFlowData = [
         buttons: [
           {
             title: 'Done',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           }
         ]
       }

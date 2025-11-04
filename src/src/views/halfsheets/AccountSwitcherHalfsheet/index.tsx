@@ -3,16 +3,9 @@ import { Avatars } from "src/data/Avatars";
 import * as Icons from "src/data/Icons";
 import { useLayersDispatch, CHANGE_LAYER } from 'src/containers/LayersContext';
 import { useUser } from 'src/containers/UserContext';
-import Cell, { 
-  CELL_AVATAR, 
-  CELL_ICON_BG, 
-  CELL_RADIO, 
-  CELL_PUSH
-} from 'src/components/Cell';
-import { ICON_BG_GRAY } from 'src/components/IconBg';
+import Cell from 'src/components/Cell';
 import AddAccountHalfsheet from "src/views/halfsheets/AddAccountHalfsheet";
 import HalfSheet from 'src/components/HalfSheet';
-import { AVATAR_48 } from 'src/components/Avatar';
 //
 
 const AccountSwitcherHalfsheet = () => {
@@ -20,7 +13,7 @@ const AccountSwitcherHalfsheet = () => {
   const layersDispatch = useLayersDispatch();
 
   const userObject = useUser();
-  const { name, cashtag, avatar } = userObject;
+  const { name, headline, avatar } = userObject;
 
   function changeLayer(){
     if (layersDispatch) {
@@ -36,14 +29,14 @@ const AccountSwitcherHalfsheet = () => {
     <HalfSheet>
       <Cell
         title={name}
-        body={cashtag}
+        body={headline}
         left={{
-          type: CELL_AVATAR,
+          type: "avatar",
           image: avatar,
-          size: AVATAR_48
+          size: "48"
         }}
         right={{
-          type: CELL_RADIO,
+          type: "radio",
           checked: true
         }}
         onClick={()=>{}}
@@ -52,12 +45,12 @@ const AccountSwitcherHalfsheet = () => {
         title="Diego Martinez"
         body="$dmartinez"
         left={{
-          type: CELL_AVATAR,
+          type: "avatar",
           image: Avatars.Paul,
-          size: AVATAR_48
+          size: "48"
         }}
         right={{
-          type: CELL_RADIO,
+          type: "radio",
           checked: false
         }}
         onClick={()=>{}}
@@ -65,12 +58,12 @@ const AccountSwitcherHalfsheet = () => {
       <Cell
         title="Add account"
         left={{
-          type: CELL_ICON_BG,
+          type: "iconBg",
           icon: Icons.Add24,
-          theme: ICON_BG_GRAY
+          theme: "grey"
         }}
         right={{
-          type: CELL_PUSH
+          type: "push"
         }}
         onClick={()=>{
           changeLayer();

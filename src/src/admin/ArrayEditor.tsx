@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Icon, { ICON_16, ICON_STANDARD } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import styles from './index.module.sass';
 import ToolbarButton from './components/ToolbarButton';
@@ -134,8 +134,8 @@ const ArrayEditor: React.FC<ArrayEditorProps> = ({
                 {/* Animated chevron icon that rotates when expanded */}
                 <Icon
                   icon={Icons.ChevronDown16}
-                  size={ICON_16}
-                  color={ICON_STANDARD}
+                  size={"16" as IconSize}
+                  color={"standard" as IconColor}
                   className={`${styles.chevron} ${isOpen ? styles.open : ''}`}
                 />
                 <h4 style={{ margin: 0 }}>{(label ? label.replace(/s$/i, '') : 'Item')} {index + 1}</h4>

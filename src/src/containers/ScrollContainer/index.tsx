@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Divider, { DIVIDER_WITHIN_SECTION_MEDIUM } from "src/components/Divider";
+import Divider from "src/components/Divider";
 import styles from "./index.module.sass";
 
 export interface ScrollContainerProps {
@@ -10,7 +10,7 @@ export interface ScrollContainerProps {
 const ScrollContainer: React.FC<ScrollContainerProps> = ({ children, className }) => {
   return (
     <div className={styles.Main}>
-      <Divider size={DIVIDER_WITHIN_SECTION_MEDIUM} />
+      <Divider size="withinSectionMedium" />
       <div className={className}>{children}</div>
     </div>
   );

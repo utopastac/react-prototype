@@ -1,34 +1,18 @@
 import React from "react";
-import Avatar, { AvatarProps, AVATAR_64, AVATAR_48, AVATAR_32, AVATAR_28, AVATAR_24, AvatarPropMeta } from "src/components/Avatar";
-import AvatarStackedDiagonal, { AvatarStackedDiagonalProps, AVATAR_STACKED_DIAGONAL_64, AVATAR_STACKED_DIAGONAL_48, AVATAR_STACKED_DIAGONAL_32, AVATAR_STACKED_DIAGONAL_24, AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
-import IconBg, { IconBgProps, ICON_BG_GRAY, ICON_BG_BRAND, ICON_BG_CUSTOM, ICON_BG_64 } from "src/components/IconBg";
-import Icon, { ICON_32, ICON_24, ICON_16, ICON_STANDARD, IconPropMeta } from "src/components/Icon";
+import Avatar, { AvatarProps, AvatarPropMeta } from "src/components/Avatar";
+import AvatarStackedDiagonal, { AvatarStackedDiagonalProps, AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
+import IconBg, { IconBgProps } from "src/components/IconBg";
+import Icon, { IconPropMeta } from "src/components/Icon";
 import { Images, ImagesArray } from "src/data/Images";
 import styles from "./index.module.sass";
 import * as Icons from "src/data/icons";
 
-// Header size constants
-export const HEADER_HERO = "HEADER_HERO";
-export const HEADER_PAGE = "HEADER_PAGE";
-export const HEADER_SECTION = "HEADER_SECTION";
-export const HEADER_PROFILE = "HEADER_PROFILE";
-
-// Header accessory types
-export const HEADER_AVATAR = "HEADER_AVATAR";
-export const HEADER_AVATAR_STACKED_DIAGONAL = "HEADER_AVATAR_STACKED_DIAGONAL";
-export const HEADER_ICON = "HEADER_ICON";
-export const HEADER_IMAGE = "HEADER_IMAGE";
-export const HEADER_SHOW_MORE = "HEADER_SHOW_MORE";
-
-export type HeaderSize = typeof HEADER_HERO | typeof HEADER_PAGE | typeof HEADER_PROFILE | typeof HEADER_SECTION;
-export type HeaderAccessoryType = typeof HEADER_AVATAR | typeof HEADER_AVATAR_STACKED_DIAGONAL | typeof HEADER_ICON | typeof HEADER_IMAGE | typeof HEADER_SHOW_MORE;
-
 export interface HeaderAccessory {
-  type: HeaderAccessoryType;
+  type: 'avatar' | 'avatarStackedDiagonal' | 'icon' | 'image' | 'showMore';
 }
 
 export interface HeaderAvatarAccessory extends HeaderAccessory {
-  type: typeof HEADER_AVATAR;
+  type: 'avatar';
   image?: string;
   initial?: string;
   size: AvatarProps['size'];
@@ -36,7 +20,7 @@ export interface HeaderAvatarAccessory extends HeaderAccessory {
 }
 
 export interface HeaderAvatarStackedDiagonalAccessory extends HeaderAccessory {
-  type: typeof HEADER_AVATAR_STACKED_DIAGONAL;
+  type: 'avatarStackedDiagonal';
   image1?: string;
   image2?: string;
   initial1?: string;
@@ -45,7 +29,7 @@ export interface HeaderAvatarStackedDiagonalAccessory extends HeaderAccessory {
 }
 
 export interface HeaderIconAccessory extends HeaderAccessory {
-  type: typeof HEADER_ICON;
+  type: 'icon';
   icon: string;
   theme: IconBgProps['theme'];
   customColor?: string;
@@ -53,14 +37,14 @@ export interface HeaderIconAccessory extends HeaderAccessory {
 }
 
 export interface HeaderImageAccessory extends HeaderAccessory {
-  type: typeof HEADER_IMAGE;
+  type: 'image';
   image: string;
   alt?: string;
   offset?: boolean
 }
 
 export interface HeaderShowMoreAccessory extends HeaderAccessory {
-  type: typeof HEADER_SHOW_MORE;
+  type: 'showMore';
   text?: string;
 }
 
@@ -74,27 +58,27 @@ export type HeaderAccessoryProps =
 export interface HeaderProps {
   title: string;
   body?: string;
-  size: HeaderSize;
+  size: 'hero' | 'page' | 'profile' | 'section';
   accessory?: HeaderAccessoryProps;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
   const headerElement = () => {
     switch(size) {
-      case HEADER_HERO:
+      case 'hero':
         return <h1>{title}</h1>;
-      case HEADER_PAGE:
+      case 'page':
         return <h2>{title}</h2>;
-      case HEADER_PROFILE:
+      case 'profile':
         return <h2>{title}</h2>;
-      case HEADER_SECTION:
+      case 'section':
         return (
           <div className={styles.headerSection}>
             <h3>{title}</h3>
             { accessory && (
               <div className={styles.showMore}>
                 <p>{accessory.text ? accessory.text : 'Show more'}</p>
-                <Icon icon={Icons.SubtlePush16} size={ICON_16} color={ICON_STANDARD} />
+                <Icon icon={Icons.SubtlePush16} size="16" color="standard" />
               </div>
             )}
           </div>
@@ -106,13 +90,13 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
 
   const headerClassName = () => {
     switch(size) {
-      case HEADER_HERO:
+      case 'hero':
         return styles.hero;
-      case HEADER_PAGE:
+      case 'page':
         return styles.page;
-      case HEADER_PROFILE:
+      case 'profile':
         return styles.profile;
-      case HEADER_SECTION:
+      case 'section':
         return styles.section;
       default:
         return '';
@@ -123,13 +107,13 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
     if (!accessory) return null;
     
     switch(accessory.type) {
-      case HEADER_AVATAR:
-        return <Avatar {...accessory} size={AVATAR_64} />;
-      case HEADER_AVATAR_STACKED_DIAGONAL:
-        return <AvatarStackedDiagonal {...accessory} size={AVATAR_STACKED_DIAGONAL_64} />;
-      case HEADER_ICON:
-        return <IconBg {...accessory} iconSize={ICON_32} size={ICON_BG_64} />;
-      case HEADER_IMAGE:
+      case 'avatar':
+        return <Avatar {...accessory} size="64" />;
+      case 'avatarStackedDiagonal':
+        return <AvatarStackedDiagonal {...accessory} size="64" />;
+      case 'icon':
+        return <IconBg {...accessory} iconSize="32" size="64" />;
+      case 'image':
         return <img src={accessory.image} alt={accessory.alt} className={`${styles.image} ${accessory.offset && styles.offset}`} />;
       default:
         return null;
@@ -159,7 +143,7 @@ export const HeaderPropMeta = {
   size: {
     type: 'select',
     label: 'Size',
-    options: [HEADER_HERO, HEADER_PAGE, HEADER_PROFILE, HEADER_SECTION],
+    options: ['hero', 'page', 'profile', 'section'],
   },
   accessory: {
     type: 'object',
@@ -167,30 +151,30 @@ export const HeaderPropMeta = {
     options: [
       { type: null, label: 'None' },
       {
-        type: HEADER_AVATAR,
+        type: 'avatar',
         label: 'Avatar',
         fields: AvatarPropMetaNoSize,
       },
       {
-        type: HEADER_AVATAR_STACKED_DIAGONAL,
+        type: 'avatarStackedDiagonal',
         label: 'Avatar Stacked Diagonal',
         fields: AvatarStackedDiagonalPropMetaNoSize,
       },
       {
-        type: HEADER_ICON,
+        type: 'icon',
         label: 'Icon',
         fields: {
           icon: IconPropMeta.icon,
           theme: {
             type: 'select',
             label: 'Theme',
-            options: [ICON_BG_GRAY, ICON_BG_BRAND, ICON_BG_CUSTOM],
+            options: ['grey', 'brand', 'custom'],
           },
           customColor: { type: 'string', label: 'Custom Color' },
         },
       },
       {
-        type: HEADER_IMAGE,
+        type: 'image',
         label: 'Image',
         fields: {
           image: { label: 'Image', type: 'select', options: ImagesArray },
@@ -199,7 +183,7 @@ export const HeaderPropMeta = {
         },
       },
       {
-        type: HEADER_SHOW_MORE,
+        type: 'showMore',
         label: 'Show More',
         fields: {
           text: { label: 'Text', type: 'string' },

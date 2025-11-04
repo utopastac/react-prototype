@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.sass";
-import Icon, { ICON_24, ICON_INVERSE, ICON_PROMINENT, IconPropMeta } from "src/components/Icon";
+import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 import { useTransition, slideInLeft } from "src/containers/TransitionContext";
 
@@ -41,8 +41,8 @@ const TopBar: React.FC<TopBarProps> = ({ title, left, right, inverse, transparen
       <div className={styles.left} onClick={handleLeftClick}>
         <Icon 
           icon={isBackNavigation ? Icons.Back : (left?.icon || Icons.Back)} 
-          size={ICON_24}
-          color={inverse ? ICON_INVERSE : ICON_PROMINENT}
+          size="24"
+          color={inverse ? "inverse" : "prominent"}
         />
       </div>
       {title && <div className={styles.title}><h4>{title}</h4></div> }
@@ -50,8 +50,8 @@ const TopBar: React.FC<TopBarProps> = ({ title, left, right, inverse, transparen
         {right?.icon && (
           <Icon 
             icon={right.icon} 
-            size={ICON_24}
-            color={ICON_PROMINENT}
+            size="24"
+            color="prominent"
           />
         )}
       </div>

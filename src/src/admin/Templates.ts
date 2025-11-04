@@ -18,12 +18,11 @@
  * - Templates use the same component system as the drag-and-drop interface
  */
 
-import { FormblockerComponents, initialComponentProps } from 'src/data/Components';
+import { InterventionScreenComponents, initialComponentProps } from 'src/data/Components';
 import { TopBarProps } from 'src/components/TopBar';
 import { ButtonGroupProps } from 'src/components/ButtonGroup';
 import { ToastProps } from 'src/components/Toast';
 import { IOSStatusBarProps } from 'src/components/IOSStatusBar';
-import { ComponentData } from 'src/data/Components';
 import * as Icons from 'src/data/Icons';
 import { Images } from 'src/data/Images';
 
@@ -94,7 +93,7 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'ProgressCircular',
-        Component: (FormblockerComponents as any)['ProgressCircular'],
+        Component: (InterventionScreenComponents as any)['ProgressCircular'],
         props: initialComponentProps['ProgressCircular']
       },
     ],
@@ -119,47 +118,47 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
-        props: { title: 'This is a simple list', body: '', size: ComponentData.HEADER_PAGE }
+        Component: (InterventionScreenComponents as any)['Header'],
+        props: { title: 'This is a simple list', body: '', size: 'page' }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
+        Component: (InterventionScreenComponents as any)['Divider'],
         props: initialComponentProps['Divider']
       },
       // ListUnordered replacing two Cell entries
       {
         name: 'ListUnordered',
-        Component: (FormblockerComponents as any)['ListUnordered'],
+        Component: (InterventionScreenComponents as any)['ListUnordered'],
         props: initialComponentProps['ListUnordered']
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionExtraLargeCell' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Section Title',
           body: 'This is a section header for additional information.',
-          size: ComponentData.HEADER_SECTION
+          size: 'section'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'UpsellCard',
-        Component: (FormblockerComponents as any)['UpsellCard'],
+        Component: (InterventionScreenComponents as any)['UpsellCard'],
         props: initialComponentProps['UpsellCard']
       },
     ],
@@ -176,7 +175,7 @@ export const AdminTemplates: AdminTemplate[] = [
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   
@@ -197,13 +196,13 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "Get direct Deposit",
           body: 'We need to collect some info to confirm that you are really you.',
-          size: ComponentData.HEADER_HERO,
+          size: 'hero',
           accessory: {
-            type: ComponentData.HEADER_IMAGE,
+            type: 'image',
             image: Images.Security,
             offset: true
           }
@@ -211,40 +210,40 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       // Informational Cell 1
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Your info is secure',
           body: 'We use bank-level encryption to protect your data.',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.SecurityCheckFill },
-          right: { type: ComponentData.CELL_NONE }
+          left: { type: 'icon', icon: Icons.SecurityCheckFill },
+          right: { type: 'none' }
         }
       },
       // Informational Cell 2
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Why we ask',
           body: 'We need your legal name to verify your identity.',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.Information16 },
-          right: { type: ComponentData.CELL_NONE }
+          left: { type: 'icon', icon: Icons.Information16 },
+          right: { type: 'none' }
         }
       },
       // Informational Cell 3
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Need help?',
           body: 'Contact support if you have questions about verification.',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.Help24 },
-          right: { type: ComponentData.CELL_NONE }
+          left: { type: 'icon', icon: Icons.Help24 },
+          right: { type: 'none' }
         }
       },
       
@@ -259,13 +258,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Continue', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
     statusBarProps: {
       transparent: true,
@@ -291,59 +290,59 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
-        props: { title: 'When did you notice your phone was missing?', body: '', size: ComponentData.HEADER_PAGE }
+        Component: (InterventionScreenComponents as any)['Header'],
+        props: { title: 'When did you notice your phone was missing?', body: '', size: 'page' }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Morning',
           body: '',
-          right: { type: ComponentData.CARD_RADIO },
+          right: { type: 'radio' },
           checked: false
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Afternoon',
           body: '',
-          right: { type: ComponentData.CARD_RADIO },
+          right: { type: 'radio' },
           checked: false
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Evening',
           body: '',
-          right: { type: ComponentData.CARD_RADIO },
+          right: { type: 'radio' },
           checked: false
         }
       }
@@ -357,14 +356,14 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Back', type: ComponentData.BUTTON_STANDARD },
-        { title: 'Continue', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Back', type: 'standard' },
+        { title: 'Continue', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -384,59 +383,59 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
-        props: { title: 'When did you notice your phone was missing?', body: '', size: ComponentData.HEADER_PAGE }
+        Component: (InterventionScreenComponents as any)['Header'],
+        props: { title: 'When did you notice your phone was missing?', body: '', size: 'page' }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Morning',
           body: '',
-          right: { type: ComponentData.CARD_CHECKBOX },
+          right: { type: 'checkbox' },
           checked: false
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Afternoon',
           body: '',
-          right: { type: ComponentData.CARD_CHECKBOX },
+          right: { type: 'checkbox' },
           checked: false
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'InputCard',
-        Component: (FormblockerComponents as any)['InputCard'],
+        Component: (InterventionScreenComponents as any)['InputCard'],
         props: {
           ...initialComponentProps['InputCard'],
           title: 'Evening',
           body: '',
-          right: { type: ComponentData.CARD_CHECKBOX },
+          right: { type: 'checkbox' },
           checked: false
         }
       }
@@ -450,14 +449,14 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Back', type: ComponentData.BUTTON_STANDARD },
-        { title: 'Continue', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Back', type: 'standard' },
+        { title: 'Continue', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   
@@ -478,26 +477,26 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "What's your legal name?",
           body: 'We need to collect some info to confirm that you are really you.',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: undefined,
@@ -506,7 +505,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: undefined,
@@ -523,13 +522,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Next', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   
@@ -551,20 +550,20 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: "Card numbers don't match",
           body: "The card number you entered doesn't match what's on file.",
-          size: ComponentData.HEADER_PAGE,
+          size: 'page',
           accessory: {
-            type: ComponentData.HEADER_ICON,
+            type: 'icon',
             icon: Icons.Alert32,
-            theme: ComponentData.ICON_BG_ERROR
+            theme: 'error'
           }
         }
       }
@@ -578,14 +577,14 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Confirm another way', type: ComponentData.BUTTON_STANDARD },
-        { title: 'Try again', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Confirm another way', type: 'standard' },
+        { title: 'Try again', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: 'BUTTON_CTA_SIZE',
+      size: 'cta',
     },
   },
   /**
@@ -605,20 +604,20 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Success!',
           body: 'Your action was completed successfully.',
-          size: ComponentData.HEADER_PAGE,
+          size: 'page',
           accessory: {
-            type: ComponentData.HEADER_ICON,
+            type: 'icon',
             icon: Icons.AccountVerified32,
-            theme: ComponentData.ICON_BG_BRAND
+            theme: 'brand'
           }
         }
       }
@@ -632,13 +631,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Done', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Done', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -657,25 +656,25 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'What\'s your address?',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: 'Address',
@@ -684,7 +683,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           ...initialComponentProps['Input'],
           label: 'City',
@@ -693,7 +692,7 @@ export const AdminTemplates: AdminTemplate[] = [
       },
       {
         name: 'InputStackedHorizontal',
-        Component: (FormblockerComponents as any)['InputStackedHorizontal'],
+        Component: (InterventionScreenComponents as any)['InputStackedHorizontal'],
         props: {
           ...initialComponentProps['InputStackedHorizontal'],
           label1: 'State',
@@ -712,13 +711,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Next', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -737,26 +736,26 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Tell us more',
           body: 'Please provide additional details below.',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'TextArea',
-        Component: (FormblockerComponents as any)['TextArea'],
+        Component: (InterventionScreenComponents as any)['TextArea'],
         props: {
           ...initialComponentProps['TextArea'],
           label: undefined,
@@ -773,13 +772,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Submit', type: ComponentData.BUTTON_PROMINENT }
+        { title: 'Submit', type: 'prominent' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -797,26 +796,26 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Enter your Interventions Hub PIN for $diogomartinez',
           body: '',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'PINCheck',
-        Component: (FormblockerComponents as any)['PINCheck'],
+        Component: (InterventionScreenComponents as any)['PINCheck'],
         props: {
           value: '', // Start empty; user will enter PIN
           length: 4
@@ -832,13 +831,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: "I don't have this info", type: 'BUTTON_SUBTLE' }
+        { title: "I don't have this info", type: 'subtle' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -856,26 +855,26 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Enter the code sent to d••••••z@gmail.com',
           body: '',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       {
         name: 'Input',
-        Component: (FormblockerComponents as any)['Input'],
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
           placeholder: '--- ---'
         }
@@ -890,13 +889,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: ComponentData.BUTTON_PROMINENT, disabled: true }
+        { title: 'Continue', type: 'prominent', disabled: true }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
   /**
@@ -910,81 +909,71 @@ export const AdminTemplates: AdminTemplate[] = [
     components: [
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'withinSectionMedium' }
       },
       {
         name: 'Header',
-        Component: (FormblockerComponents as any)['Header'],
+        Component: (InterventionScreenComponents as any)['Header'],
         props: {
           title: 'Verify this account belongs to you',
           body: 'Select an option to verify this account is yours.',
-          size: ComponentData.HEADER_PAGE
+          size: 'page'
         }
       },
       {
         name: 'Divider',
-        Component: (FormblockerComponents as any)['Divider'],
-        props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+        Component: (InterventionScreenComponents as any)['Divider'],
+        props: { size: 'betweenSectionLarge' }
       },
       // Email
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Email',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.CommEmail24 },
-          right: { type: ComponentData.CELL_PUSH }
+          left: { type: 'icon', icon: Icons.CommEmail24 },
+          right: { type: 'push' }
         }
       },
       // Phone number
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Phone number',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.DeviceMobile24 },
-          right: { type: ComponentData.CELL_PUSH }
+          left: { type: 'icon', icon: Icons.DeviceMobile24 },
+          right: { type: 'push' }
         }
       },
       // Interventions Hub PIN
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Interventions Hub PIN',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.PasscodeFill24 },
-          right: { type: ComponentData.CELL_PUSH }
+          left: { type: 'icon', icon: Icons.PasscodeFill24 },
+          right: { type: 'push' }
         }
       },
       // Synced contacts
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Synced contacts',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.ContactTrue },
-          right: { type: ComponentData.CELL_PUSH }
+          left: { type: 'icon', icon: Icons.ContactTrue },
+          right: { type: 'push' }
         }
       },
       // Linked debit card
       {
         name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
+        Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Linked debit card',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.BankLinked24 },
-          right: { type: ComponentData.CELL_PUSH }
-        }
-      },
-      // Cash Card
-      {
-        name: 'Cell',
-        Component: (FormblockerComponents as any)['Cell'],
-        props: {
-          title: 'Cash Card',
-          left: { type: ComponentData.CELL_ICON, icon: Icons.CardBasic24 },
-          right: { type: ComponentData.CELL_PUSH }
+          left: { type: 'icon', icon: Icons.BankLinked24 },
+          right: { type: 'push' }
         }
       },
     ],
@@ -997,13 +986,13 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: "I don't have any of these", type: 'BUTTON_STANARD' }
+        { title: "I don't have any of these", type: 'standard' }
       ],
       horizontal: false,
       inComponent: false,
       showHairline: false,
       disclaimer: '',
-      size: ComponentData.BUTTON_CTA_SIZE,
+      size: 'cta',
     },
   },
 ]; 

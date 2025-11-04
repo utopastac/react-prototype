@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAdminLayoutContext } from './AdminLayoutContext';
 import styles from './index.module.sass';
-import Icon, { ICON_16, ICON_ADMIN } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import ToolbarButton from './components/ToolbarButton';
 
@@ -217,7 +217,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
                       handleDeleteLayout(index);
                     }}
                     icon={Icons.Clear16}
-                    iconColor={ICON_ADMIN}
+                    iconColor={"admin" as IconColor}
                     position="top"
                   />
                 )}
@@ -239,7 +239,7 @@ const LayoutTabs: React.FC<LayoutTabsProps> = ({
               title="Add new layout"
               onClick={handleAddLayout}
               icon={Icons.Add16}
-              iconColor={ICON_ADMIN}
+              iconColor={"admin" as IconColor}
               position="top"
             />
           </motion.div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_16, ICON_STANDARD } from "src/components/Icon";
+import Icon, { IconSize, IconColor } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 
 export interface FilterBarProps {
@@ -31,7 +31,7 @@ const FilterChip: React.FC<FilterChipProps> = ({ title, active, icon }) => {
   return (
     <div className={`${styles.FilterChip} ${active ? styles.active : ""}`}>
       {title}
-      {icon ? <Icon icon={Icons.SubtleExpand16} size={ICON_16} color={ICON_STANDARD} /> : null}
+      {icon ? <Icon icon={Icons.SubtleExpand16} size="16" color="standard" /> : null}
     </div>
   );
 };
