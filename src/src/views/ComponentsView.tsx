@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
 import * as Icons from "src/data/Icons";
-import Sections from "src/components/Sections";
-import { useLayersDispatch, ADD_LAYER, REMOVE_LAYER, CLOSE_LAYERS } from 'src/containers/LayersContext';
 
 // Direct component imports
 import TopBar from 'src/components/TopBar';
@@ -57,16 +55,7 @@ import styles from "./index.module.sass";
 
 const ComponentsView = () => {
 
-  const layersDispatch = useLayersDispatch();
   const navigate = useNavigate();
-
-  function openLayer(){
-    layersDispatch({
-      type: ADD_LAYER,
-      component: Sections,
-      props: {}
-    })
-  }
 
   // Dummy transaction data
   const transaction = {
@@ -324,7 +313,6 @@ const ComponentsView = () => {
       </ScrollContainer>
       <ButtonGroup
         buttons={[
-          {title: "Learn more", onClick: openLayer},
           {title: "Save", type: BUTTON_PROMINENT, onClick:()=>{}}
         ]}
       />      
