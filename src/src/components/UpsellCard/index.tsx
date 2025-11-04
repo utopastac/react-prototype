@@ -2,14 +2,10 @@ import React from "react";
 import styles from "./index.module.sass";
 import { ImagesArray } from "src/data/Images";
 //
-export const UPSELL_SMALL = "UPSELL_SMALL";
-export const UPSELL_LARGE = "UPSELL_LARGE";
-export type UpsellSize = typeof UPSELL_SMALL | typeof UPSELL_LARGE;
-//
 export interface UpsellCardProps {
   title: string;
   body: string;
-  size?: UpsellSize;
+  size?: 'small' | 'large';
   image?: string;
   button?: string;
 }
@@ -17,13 +13,13 @@ export interface UpsellCardProps {
 const UpsellCard: React.FC<UpsellCardProps> = ({ 
   title, 
   body, 
-  size = UPSELL_SMALL, 
+  size = 'small', 
   image, 
   button 
 }) => {
 
   return (
-    <div className={`${styles.Main} ${size === UPSELL_LARGE ? styles.large : styles.small}`}>
+    <div className={`${styles.Main} ${size === 'large' ? styles.large : styles.small}`}>
       <header>
         <h5>{title}</h5>
         <p>{body}</p>
@@ -41,7 +37,7 @@ export default UpsellCard;
 export const UpsellCardPropMeta = {
   title: { type: 'string', label: 'Title' },
   body: { type: 'string', label: 'Body' },
-  size: { type: 'select', label: 'Size', options: [UPSELL_SMALL, UPSELL_LARGE] },
+  size: { type: 'select', label: 'Size', options: ['small', 'large'] },
   image: { type: 'select', label: 'Image', options: ImagesArray },
   button: { type: 'string', label: 'Button Text' },
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './index.module.sass';
 import { AvatarsArray } from 'src/data/Avatars';
-import Avatar, { AVATAR_24, AVATAR_48 } from 'src/components/Avatar';
+import Avatar from 'src/components/Avatar';
 import Modal from '../DevTools/Modal';
 
 interface AvatarSelectInputProps {
@@ -45,7 +45,7 @@ const AvatarSelectInput: React.FC<AvatarSelectInputProps> = ({
       >
         <Avatar
           image={av}
-          size={AVATAR_48}
+          size="48"
           key={`Avatar${index}`}
         />
       </li>
@@ -63,7 +63,7 @@ const AvatarSelectInput: React.FC<AvatarSelectInputProps> = ({
         >
           <Avatar
             image={selectedAvatar}
-            size={AVATAR_24}
+            size="24"
           />
         </div>
       </div>

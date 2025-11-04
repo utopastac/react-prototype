@@ -2,7 +2,7 @@ import React from "react";
 import { Images, ImagesArray } from "src/data/Images";
 import styles from "./index.module.sass";
 //
-import Button, { BUTTON_COMPACT_SIZE, BUTTON_INVERSE } from "src/components/Buttons/Button";
+import Button from "src/components/Buttons/Button";
 //
 export interface UpsellCardProps {
   title: string;
@@ -20,7 +20,7 @@ const MarketingCardLarge: React.FC<UpsellCardProps> = ({ title, body, image, but
       <header>
         <h5>{title}</h5>
         <p>{body}</p>
-        { button && <Button title={button} type={BUTTON_INVERSE} size={BUTTON_COMPACT_SIZE} /> }
+        { button && <Button title={button} type="inverse" size="compact" /> }
       </header>
     </div>
   );

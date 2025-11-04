@@ -6,49 +6,25 @@ import * as Icons from "src/data/Icons";
 
 // Direct component imports
 import TopBar from 'src/components/TopBar';
-import Header, { HEADER_PAGE } from 'src/components/Header';
-import Divider, { 
-  DIVIDER_WITHIN_SECTION_MEDIUM,
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL,
-  DIVIDER_BETWEEN_SECTION_EXTRA_LARGE,
-  DIVIDER_BETWEEN_SECTION_LARGE
-} from 'src/components/Divider';
+import Header from 'src/components/Header';
+import Divider from 'src/components/Divider';
 import FilterBar from 'src/components/FilterBar';
 import SegmentedControl from 'src/components/SegmentedControl';
 import Slider from 'src/components/Slider';
 import Input from 'src/components/Input';
-import InputCard, { CARD_RADIO, CARD_CHECKBOX } from 'src/components/InputCard';
-import Cell, {
-  CELL_AVATAR,
-  CELL_ICON,
-  CELL_ICON_BG,
-  CELL_PUSH,
-  CELL_BUTTON,
-  CELL_LABEL_PUSH,
-  CELL_TOGGLE,
-  CELL_CHECKBOX,
-  CELL_RADIO
-} from 'src/components/Cell';
+import InputCard from 'src/components/InputCard';
+import Cell from 'src/components/Cell';
 import Timeline, { TimelineProps} from "src/components/Timeline";
 import TimelineRow, {
-  STATE_NOT_STARTED,
-  STATE_IN_PROGRESS,
-  STATE_DONE,
-  STATE_PENDING,
-  STATE_SKIPPED,
-  STATE_COLLAPSED,
-  PLACING_BEGINNING,
-  PLACING_MIDDLE,
-  PLACING_END,
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
 import SearchBar from 'src/components/SearchBar';
 import AvatarCarousel from 'src/components/AvatarCarousel';
 // Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
-import Button, { BUTTON_PROMINENT } from 'src/components/Buttons/Button';
-import IconBg, { ICON_BG_BRAND, ICON_BG_GRAY } from 'src/components/IconBg';
-import Avatar, { AVATAR_64, AVATAR_48 } from 'src/components/Avatar';
+import Button from 'src/components/Buttons/Button';
+import IconBg from 'src/components/IconBg';
+import Avatar from 'src/components/Avatar';
 
 import styles from "./index.module.sass";
 //
@@ -74,32 +50,32 @@ const ComponentsView = () => {
       label: 'Transaction Initiated', 
       body: transaction.time,
       value: transaction.amount,
-      state: STATE_DONE, 
-      placing: PLACING_BEGINNING 
+      state: 'done', 
+      placing: 'beginning' 
     },
     { 
       label: 'Payment Processing', 
       value: 'Processing',
-      state: STATE_SKIPPED, 
-      placing: PLACING_MIDDLE 
+      state: 'skipped', 
+      placing: 'middle' 
     },
     { 
       label: 'Merchant Verification', 
       value: transaction.merchant,
-      state: STATE_DONE, 
-      placing: PLACING_MIDDLE 
+      state: 'done', 
+      placing: 'middle' 
     },
     { 
       label: 'Location Confirmed', 
       value: transaction.location,
-      state: STATE_COLLAPSED, 
-      placing: PLACING_MIDDLE 
+      state: 'collapsed', 
+      placing: 'middle' 
     },
     { 
       label: 'Transaction Completed', 
       value: '4 May 2025',
-      state: STATE_NOT_STARTED, 
-      placing: PLACING_END 
+      state: 'notStarted', 
+      placing: 'end' 
     },
   ];
 
@@ -120,9 +96,9 @@ const ComponentsView = () => {
         <Header
           title = "What do you go by?"
           body = "If you don't go by your legal first name, you can change it here. We'll use this name on your profile. "
-          size={HEADER_PAGE}
+          size="page"
         />
-        <Divider size={DIVIDER_WITHIN_SECTION_MEDIUM} />
+        <Divider size="withinSectionMedium" />
         <FilterBar
           filterChips = {[
             {title: "Chip 1", active: false},
@@ -133,7 +109,7 @@ const ComponentsView = () => {
           ]}
         />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL}
+          size="betweenSectionExtraLargeCell"
         />
         <SegmentedControl
           left={{title: "Control left", active: true}}
@@ -141,17 +117,17 @@ const ComponentsView = () => {
           onClick={(segment) => {}}
         />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          size="betweenSectionExtraLarge"
         />
         <Slider
           onDrop={()=>{}}
         />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          size="betweenSectionExtraLarge"
         />
         <Timeline rowData={rowData} />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          size="betweenSectionExtraLarge"
         />
         <Input
           label="Preferred first name"
@@ -164,41 +140,41 @@ const ComponentsView = () => {
           placeholder="Wright"
         />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          size="betweenSectionExtraLarge"
         />
         <InputCard
           title="Last name"
           body="Your last name must match your legal last name and cannot be edited. Please contact support to change your legal name"
           right={{
-            type: CARD_RADIO,
+            type: "radio",
           }}
           checked={false}
           onClick={() => {}}
         />
         <Divider
-          size={DIVIDER_WITHIN_SECTION_MEDIUM}
+          size='withinSectionMedium'
         />
         <InputCard
           title="Last name"
           body="Your last name must match your legal last name and cannot be edited. Please contact support to change your legal name"
           right={{
-            type: CARD_CHECKBOX
+            type: "checkbox"
           }}
           checked={false}
           onClick={() => {}}
         />
         <Divider
-          size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE}
+          size="betweenSectionExtraLarge"
         />
         <Cell
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_AVATAR,
+            type: "avatar",
             image: Avatars.Karen
           }}
           right={{
-            type: CELL_PUSH
+            type: "push"
           }}
           onClick={()=>{}}
         />
@@ -206,11 +182,11 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_ICON,
+            type: "icon",
             icon: Icons.SecurityCheckFill
           }}
           right={{
-            type: CELL_BUTTON,
+            type: "button",
             title: "Button"
           }}
           onClick={()=>{}}
@@ -219,12 +195,12 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_ICON_BG,
+            type: "iconBg",
             icon: Icons.SecurityCheckFill,
-            theme: ICON_BG_BRAND
+            theme: "brand"
           }}
           right={{
-            type: CELL_LABEL_PUSH,
+            type: "labelPush",
             title: "Label"
           }}
           onClick={()=>{}}
@@ -233,11 +209,11 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_AVATAR,
+            type: "avatar",
             image: undefined,
           }}
           right={{
-            type: CELL_TOGGLE,
+            type: "toggle",
             checked: false,
             onClick: () => {}
           }}
@@ -247,12 +223,12 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_ICON_BG,
+            type: "iconBg",
             icon: Icons.SecurityCheckFill,
-            theme: ICON_BG_GRAY
+            theme: "grey"
           }}
           right={{
-            type: CELL_CHECKBOX,
+            type: "checkbox",
             checked: false,
             onClick: () => {}
           }}
@@ -262,58 +238,58 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: CELL_ICON_BG,
+            type: "iconBg",
             icon: Icons.ArrowLink,
-            theme: ICON_BG_BRAND
+            theme: "brand"
           }}
           right={{
-            type: CELL_RADIO,
+            type: "radio",
             checked: false,
             onClick: () => {}
           }}
           onClick={()=>{}}
         />
         {/* Applet components removed */}
-        <Divider size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL} />
+        <Divider size='betweenSectionExtraLargeCell' />
         <SearchBar placeholder="Search" />
         <AvatarCarousel
           avatars={[
             {
-              avatar: {size: AVATAR_64, initial: "J"},
+              avatar: {size: "64", initial: "J"},
               title: "Jane"
             },
             {
-              avatar: {size: AVATAR_64, initial:"N"},
+              avatar: {size: "64", initial:"N"},
               title: "Nigel"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Chavez},
+              avatar: {size: "64", image:Avatars.Chavez},
               title: "Chavez"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.James},
+              avatar: {size: "64", image:Avatars.James},
               title: "James"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Nina},
+              avatar: {size: "64", image:Avatars.Nina},
               title: "Lisa"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Darren},
+              avatar: {size: "64", image:Avatars.Darren},
               title: "Darren"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Kevin},
+              avatar: {size: "64", image:Avatars.Kevin},
               title: "Kevin"
             }
           ]}
         />
-        <Divider size={DIVIDER_BETWEEN_SECTION_LARGE} />
+        <Divider size="betweenSectionLarge" />
         {/* DiscoverPromo removed */}
       </ScrollContainer>
       <ButtonGroup
         buttons={[
-          {title: "Save", type: BUTTON_PROMINENT, onClick:()=>{}}
+          {title: "Save", type: "prominent", onClick:()=>{}}
         ]}
       />      
     </PageWrapper>

@@ -15,7 +15,7 @@ import {
 } from 'src/containers/FeedContext';
 
 import * as Icons from "src/data/Icons";
-import { ICON_16, ICON_PROMINENT, ICON_24 } from "src/components/Icon";
+import { IconSize, IconColor } from "src/components/Icon";
 import Modal from "./Modal";
 import DevToolsSection from "./DevToolsSection";
 import styles from "./index.module.sass";
@@ -110,8 +110,8 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
       {/* Toggle button for opening/closing dev tools */}
       <ToolbarButton 
         icon={Icons.Wallet24} 
-        iconSize={ICON_16} 
-        iconColor={ICON_PROMINENT} 
+        iconSize={'16' as IconSize} 
+        iconColor={'prominent' as IconColor} 
         onClick={toggleTools} 
         title="Toggle Dev Tools"
         className={styles.showTools}
@@ -233,7 +233,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
               buttonTitle="InterventionScreen maker"
               buttonIcon={Icons.DocumentQuill24}
               path={'/multi-admin'}
-              buttonIconSize={ICON_24}
+              buttonIconSize={'24' as IconSize}
             />
           </motion.div>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_24, ICON_INVERSE } from "../Icon";
+import Icon from "../Icon";
 
 interface ButtonProps {
   label: string;
@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({
         <div className={styles.content}>
           {icon && (
             <div className={styles.icon}>
-              {typeof icon === "string" ? <Icon icon={icon} size={ICON_24} color={ICON_INVERSE} /> : icon}
+              {typeof icon === "string" ? <Icon icon={icon} size="24" color="inverse" /> : icon}
             </div>
           )}
           {title && <div className={styles.title}>{title}</div>}

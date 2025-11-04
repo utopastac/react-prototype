@@ -1,35 +1,23 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_PROMINENT, ICON_SUBTLE, ICON_24, ICON_INVERSE, ICON_32, ICON_16, IconPropMeta } from "src/components/Icon";
-import type { IconColor, IconSize } from "src/components/Icon";
-
-export const ICON_BG_GRAY = "ICON_BG_GREY";
-export const ICON_BG_BRAND = "ICON_BG_BRAND";
-export const ICON_BG_ERROR = "ICON_BG_ERROR";
-export const ICON_BG_CUSTOM = "ICON_BG_CUSTOM";
-//
-export const ICON_BG_64 = "ICON_BG_64";
-export const ICON_BG_48 = "ICON_BG_48";
-
-export type IconBgTheme = typeof ICON_BG_GRAY | typeof ICON_BG_BRAND | typeof ICON_BG_ERROR | typeof ICON_BG_CUSTOM;
-export type IconBgSize = typeof ICON_BG_64 | typeof ICON_BG_48;
+import Icon, { IconPropMeta } from "src/components/Icon";
 
 export interface IconBgProps {
   icon: string;
-  theme: IconBgTheme;
+  theme: 'grey' | 'brand' | 'error' | 'custom';
   customColor?: string;
-  iconSize?: IconSize;
-  size?: IconBgSize;
+  iconSize?: '32' | '24' | '16';
+  size?: '64' | '48';
 }
 
 const IconBg: React.FC<IconBgProps> = ({ icon, theme, customColor, iconSize, size }) => {
-  let iconColor: IconColor = ICON_SUBTLE;
+  let iconColor: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin' = 'subtle';
 
   const sizeClass = (): string => {
     switch(size){
-      case ICON_BG_64:
+      case '64':
         return styles.i_64;
-      case ICON_BG_48:
+      case '48':
         return styles.i_48;
       default:
         return styles.defaultSize;
@@ -38,16 +26,16 @@ const IconBg: React.FC<IconBgProps> = ({ icon, theme, customColor, iconSize, siz
 
   const styleClass = (): string => {
     switch(theme) {
-      case ICON_BG_GRAY:
+      case 'grey':
         return styles.default;
-      case ICON_BG_BRAND:
-        iconColor = ICON_INVERSE;
+      case 'brand':
+        iconColor = 'inverse';
         return styles.branded;
-      case ICON_BG_ERROR:
-        iconColor = ICON_INVERSE;
+      case 'error':
+        iconColor = 'inverse';
         return styles.error;
-      case ICON_BG_CUSTOM:
-        iconColor = ICON_INVERSE;
+      case 'custom':
+        iconColor = 'inverse';
         return styles.custom;
       default:
         return styles.default;
@@ -59,7 +47,7 @@ const IconBg: React.FC<IconBgProps> = ({ icon, theme, customColor, iconSize, siz
       className={`${styles.Main} ${styleClass()} ${sizeClass()}`} 
       style={customColor ? { backgroundColor: customColor } : undefined}
     >
-      <Icon icon={icon} color={iconColor} size={iconSize ?? ICON_24} />
+      <Icon icon={icon} color={iconColor} size={iconSize ?? '24'} />
     </div>
   );
 };
@@ -71,7 +59,7 @@ export const IconBgPropMeta = {
   theme: {
     type: 'select',
     label: 'Theme',
-    options: [ICON_BG_BRAND, ICON_BG_GRAY, ICON_BG_CUSTOM],
+    options: ['brand', 'grey', 'custom'],
   },
   customColor: { type: 'string', label: 'Custom Color' },
   iconSize: IconPropMeta.size,

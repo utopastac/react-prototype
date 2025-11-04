@@ -6,14 +6,10 @@ import { useLayersDispatch } from 'src/containers/LayersContext';
 // Direct component imports
 import TitleBar from 'src/components/TitleBar';
 import SearchBar from 'src/components/SearchBar';
-import Divider, { 
-  DIVIDER_WITHIN_SECTION_SMALL,
-  DIVIDER_BETWEEN_SECTION_LARGE 
-} from 'src/components/Divider';
+import Divider from 'src/components/Divider';
 import AvatarCarousel from 'src/components/AvatarCarousel';
 // DiscoverPromo removed
 import NavigationBar from 'src/components/NavigationBar';
-import { AVATAR_64 } from 'src/components/Avatar';
 
 const DiscoverView = () => {
 
@@ -26,35 +22,35 @@ const DiscoverView = () => {
       <ScrollContainer>
         <TitleBar title="Discover" />
         <SearchBar placeholder="Search" />
-        <Divider size={DIVIDER_WITHIN_SECTION_SMALL} />
+        <Divider size="withinSectionSmall" />
         <AvatarCarousel
           avatars={[
             {
-              avatar: {size: AVATAR_64, initial: "J"},
+              avatar: {size: "64", initial: "J"},
               title: "Jane"
             },
             {
-              avatar: {size: AVATAR_64, initial:"N"},
+              avatar: {size: "64", initial:"N"},
               title: "Nigel"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Chavez},
+              avatar: {size: "64", image:Avatars.Chavez},
               title: "Chavez"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.James},
+              avatar: {size: "64", image:Avatars.James},
               title: "James"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Nina},
+              avatar: {size: "64", image:Avatars.Nina},
               title: "Lisa"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Darren},
+              avatar: {size: "64", image:Avatars.Darren},
               title: "Darren"
             },
             {
-              avatar: {size: AVATAR_64, image:Avatars.Kevin},
+              avatar: {size: "64", image:Avatars.Kevin},
               title: "Kevin"
             }
           ]}

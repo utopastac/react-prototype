@@ -1,4 +1,5 @@
-import {Components, ComponentData} from 'src/data/Components';
+import {Components} from 'src/data/Components';
+import { BUTTON_ACTION_PATH } from 'src/hooks/useButtonAction';
 import * as Icons from 'src/data/Icons';
 import InterventionScreen from 'src/containers/InterventionScreen';
 import LoadingWrapper from './LoadingWrapper';
@@ -15,7 +16,7 @@ export const reportFlowData = [
           props: {
             title: 'Report Account',
             body: "Help us understand what's happening",
-            size: ComponentData.HEADER_PAGE,
+            size: 'page',
           }
         },
         {
@@ -34,13 +35,13 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Cancel',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/discover', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Report',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/report/type', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/report/type', type: BUTTON_ACTION_PATH },
           },
         ]
       }
@@ -56,55 +57,55 @@ export const reportFlowData = [
           props: {
             title: "What's the Issue?",
             body: "Select the type of inappropriate behavior you're reporting",
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Spam or Scam',
             body: 'Account is sending unwanted messages or attempting to deceive users',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Harassment',
             body: 'Account is bullying, threatening, or intimidating others',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Inappropriate Content',
             body: 'Account is sharing content that violates our community guidelines',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Fake Account',
             body: 'Account appears to be impersonating someone else',
-            right: { type: ComponentData.CARD_RADIO }
+            right: { type: 'radio' }
           }
         }
       ],
@@ -115,8 +116,8 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/report/details', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/report/details', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -133,12 +134,12 @@ export const reportFlowData = [
           props: {
             title: 'Additional Details',
             body: 'Please provide any additional information that might help us understand the situation better',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: {size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM}
+          props: {size: 'withinSectionMedium'}
         },
         {
           component: Components.TextArea,
@@ -155,8 +156,8 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Submit Report',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/report/loading', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'prominent',
+            action: { path: '/report/loading', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -187,8 +188,8 @@ export const reportFlowData = [
           props: {
             title: 'Report Submitted',
             body: 'Thank you for helping us maintain a safe community',
-            size: ComponentData.HEADER_PAGE,
-            accessory: { type: ComponentData.HEADER_ICON, icon: Icons.Check32, theme: ComponentData.ICON_BG_BRAND }
+            size: 'page',
+            accessory: { type: 'icon', icon: Icons.Check32, theme: 'brand' }
           }
         },
         {
@@ -207,8 +208,8 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Done',
-            type: ComponentData.BUTTON_STANDARD,
-            action: { path: '/discover', type: ComponentData.BUTTON_ACTION_PATH },
+            type: 'standard',
+            action: { path: '/discover', type: BUTTON_ACTION_PATH },
           }
         ]
       }

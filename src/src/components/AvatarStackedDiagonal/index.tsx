@@ -2,17 +2,6 @@ import React from "react";
 import styles from "./index.module.sass";
 import { AvatarsArray } from "src/data/Avatars";
 
-export const AVATAR_STACKED_DIAGONAL_64 = "AVATAR_STACKED_DIAGONAL_64";
-export const AVATAR_STACKED_DIAGONAL_48 = "AVATAR_STACKED_DIAGONAL_48";
-export const AVATAR_STACKED_DIAGONAL_32 = "AVATAR_STACKED_DIAGONAL_32";
-export const AVATAR_STACKED_DIAGONAL_24 = "AVATAR_STACKED_DIAGONAL_24";
-
-export type AvatarSize = 
-  | typeof AVATAR_STACKED_DIAGONAL_64
-  | typeof AVATAR_STACKED_DIAGONAL_48
-  | typeof AVATAR_STACKED_DIAGONAL_32
-  | typeof AVATAR_STACKED_DIAGONAL_24;
-
 const BG_COLORS = [
   "#FF6B6B",
   "#4ECDC4",
@@ -29,7 +18,7 @@ export interface AvatarStackedDiagonalProps {
   image2?: string;
   initial1?: string;
   initial2?: string;
-  size: AvatarSize;
+  size: '64' | '48' | '32' | '24';
 }
 
 const AvatarStackedDiagonal: React.FC<AvatarStackedDiagonalProps> = ({ 
@@ -41,13 +30,13 @@ const AvatarStackedDiagonal: React.FC<AvatarStackedDiagonalProps> = ({
 }) => {
   const styleClass = () => {
     switch(size) {
-      case AVATAR_STACKED_DIAGONAL_64:
+      case '64':
         return styles.a_64;
-      case AVATAR_STACKED_DIAGONAL_48:
+      case '48':
         return styles.a_48;
-      case AVATAR_STACKED_DIAGONAL_32:
+      case '32':
         return styles.a_32;
-      case AVATAR_STACKED_DIAGONAL_24:
+      case '24':
         return styles.a_24;
       default:
         return styles.a_24;
@@ -78,6 +67,6 @@ export const AvatarStackedDiagonalPropMeta = {
   initial2: { type: 'string', label: 'Initial 2' },
   size: {
     type: 'select',
-    options: [AVATAR_STACKED_DIAGONAL_64, AVATAR_STACKED_DIAGONAL_48, AVATAR_STACKED_DIAGONAL_32, AVATAR_STACKED_DIAGONAL_24],
+    options: ['64', '48', '32', '24'],
   },
 };

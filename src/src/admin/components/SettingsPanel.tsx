@@ -7,7 +7,7 @@ import BooleanInput from '../LabeledInput/BooleanInput';
 import TextButton from './TextButton';
 import Signature from './Signature';
 import * as Icons from 'src/data/Icons';
-import { ICON_24 } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 import styles from '../index.module.sass';
 
 /**
@@ -148,7 +148,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
           contact="Contact @pwright"
           buttonTitle="App preview"
           buttonIcon={Icons.DeviceMobile24}
-          buttonIconSize={ICON_24}
+          buttonIconSize={"24" as IconSize}
         />
       </div>
     </motion.div>

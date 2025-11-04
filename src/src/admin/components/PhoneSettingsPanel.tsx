@@ -7,7 +7,7 @@ import TextButton from './TextButton';
 import Signature from './Signature';
 import SelectInput from '../LabeledInput/SelectInput';
 import * as Icons from 'src/data/Icons';
-import { ICON_24 } from 'src/components/Icon';
+import { IconSize } from 'src/components/Icon';
 import styles from '../index.module.sass';
 import { useActiveLayout } from '../AdminLayoutContext';
 import { AdminTemplates, AdminTemplate } from '../Templates';
@@ -158,7 +158,7 @@ const PhoneSettingsPanel: React.FC<PhoneSettingsPanelProps> = ({
             contact="Contact @pwright"
             buttonTitle="App preview"
             buttonIcon={Icons.DeviceMobile24}
-            buttonIconSize={ICON_24}
+            buttonIconSize={"24" as IconSize}
           />
         </div>
       </div>

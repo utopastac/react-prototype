@@ -1,4 +1,5 @@
-import { Components, ComponentData } from 'src/data/Components';
+import { Components } from 'src/data/Components';
+import { BUTTON_ACTION_PATH } from 'src/hooks/useButtonAction';
 import * as Icons from 'src/data/Icons';
 import { Avatars } from 'src/data/Avatars';
 import InterventionScreen from 'src/containers/InterventionScreen';
@@ -16,21 +17,21 @@ export const verificationFlowData = [
           props: {
             title: 'Select your account',
             body: "Next, you'll log into your other account to verify it's yours.",
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+          props: { size: 'withinSectionMedium' }
         },
         {
           component: Components.Cell,
           props: {
             title: 'Diego Martinez',
             body: '$dmartinez',
-            left: { type: ComponentData.CELL_AVATAR, image: Avatars.Darren },
-            right: { type: ComponentData.CELL_PUSH },
-            action: { path: '/account-linking/verify', type: ComponentData.BUTTON_ACTION_PATH }
+            left: { type: 'avatar', image: Avatars.Darren },
+            right: { type: 'push' },
+            action: { path: '/account-linking/verify', type: BUTTON_ACTION_PATH }
           }
         },
         {
@@ -38,9 +39,9 @@ export const verificationFlowData = [
           props: {
             title: 'Diogo Martinez',
             body: '$diogomartinez',
-            left: { type: ComponentData.CELL_AVATAR, image: Avatars.Isaac },
-            right: { type: ComponentData.CELL_PUSH },
-            action: { path: '/account-linking/verify', type: ComponentData.BUTTON_ACTION_PATH }
+            left: { type: 'avatar', image: Avatars.Isaac },
+            right: { type: 'push' },
+            action: { path: '/account-linking/verify', type: BUTTON_ACTION_PATH }
           }
         },
         {
@@ -48,13 +49,13 @@ export const verificationFlowData = [
           props: {
             title: 'Find another account',
             body: 'Search by name, email, or phone number',
-            left: { type: ComponentData.CELL_ICON_BG, icon: Icons.Search24 },
-            right: { type: ComponentData.CELL_PUSH }
+            left: { type: 'iconBg', icon: Icons.Search24 },
+            right: { type: 'push' }
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+          props: { size: 'withinSectionMedium' }
         },
         {
           component: Components.UpsellCard,
@@ -82,34 +83,34 @@ export const verificationFlowData = [
           props: {
             title: 'Get a code to log into $dmartinez',
             body: 'Select an option to verify this account belongs to you.',
-            size: ComponentData.HEADER_PAGE,
-            accessory: { type: ComponentData.HEADER_AVATAR, size: ComponentData.AVATAR_64, image: Avatars.Isaac }
+            size: 'page',
+            accessory: { type: 'avatar', size: '64', image: Avatars.Isaac }
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Phone number',
             body: '***-***-4567',
-            right: { type: ComponentData.CARD_RADIO },
+            right: { type: 'radio' },
             checkedValue: 'phone',
             path: '/account-linking/code'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_WITHIN_SECTION_MEDIUM }
+          props: { size: 'withinSectionMedium' }
         },
         {
           component: Components.InputCard,
           props: {
             title: 'Email',
             body: 'd*******z@gmail.com',
-            right: { type: ComponentData.CARD_RADIO },
+            right: { type: 'radio' },
             checkedValue: 'email',
             path: '/account-linking/code'
           }
@@ -120,8 +121,8 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Verify another way', type: ComponentData.BUTTON_STANDARD },
-          { title: 'Continue', type: ComponentData.BUTTON_PROMINENT, action: { path: '/account-linking/code', type: ComponentData.BUTTON_ACTION_PATH } }
+          { title: 'Verify another way', type: 'standard' },
+          { title: 'Continue', type: 'prominent', action: { path: '/account-linking/code', type: BUTTON_ACTION_PATH } }
         ]
       }
     }
@@ -135,12 +136,12 @@ export const verificationFlowData = [
           component: Components.Header,
           props: {
             title: 'Enter the code sent to (555) ***-**55',
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.Input,
@@ -156,8 +157,8 @@ export const verificationFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: ComponentData.BUTTON_PROMINENT,
-            action: { path: '/account-linking/pre-confirmation', type: ComponentData.BUTTON_ACTION_PATH }
+            type: 'prominent',
+            action: { path: '/account-linking/pre-confirmation', type: BUTTON_ACTION_PATH }
           }
         ]
       }
@@ -173,19 +174,19 @@ export const verificationFlowData = [
           props: {
             title: 'Connect these accounts?',
             body: "You'll access $dmartinez and $diogomartinez with 1 secure login.",
-            size: ComponentData.HEADER_PAGE,
-            accessory: { type: ComponentData.HEADER_AVATAR_STACKED_DIAGONAL, size: ComponentData.AVATAR_STACKED_DIAGONAL_64, image1: Avatars.Isaac, image2: Avatars.Darren }
+            size: 'page',
+            accessory: { type: 'avatarStackedDiagonal', size: '64', image1: Avatars.Isaac, image2: Avatars.Darren }
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.Header,
           props: {
             title: 'What to expect',
-            size: ComponentData.HEADER_SECTION
+            size: 'section'
           }
         },
         {
@@ -193,7 +194,7 @@ export const verificationFlowData = [
           props: {
             title: 'Separate balances',
             body: 'Your transactions and other account activity stay where they are.',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.CurrencyUsd24 }
+            left: { type: 'icon', icon: Icons.CurrencyUsd24 }
           }
         },
         {
@@ -201,7 +202,7 @@ export const verificationFlowData = [
           props: {
             title: 'Shared contact preferences',
             body: "We'll send all your account notifications to the same email and phone number.",
-            left: { type: ComponentData.CELL_ICON, icon: Icons.Notifications24 }
+            left: { type: 'icon', icon: Icons.Notifications24 }
           }
         },
         {
@@ -209,7 +210,7 @@ export const verificationFlowData = [
           props: {
             title: 'Security options',
             body: 'Turn on security lock to require a PIN or Face ID to switch accounts.',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.SecurityLockOutline24 }
+            left: { type: 'icon', icon: Icons.SecurityLockOutline24 }
           }
         }
       ],
@@ -218,7 +219,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Continue', type: ComponentData.BUTTON_PROMINENT, action: { path: '/account-linking/progress', type: ComponentData.BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/account-linking/progress', type: BUTTON_ACTION_PATH } }
         ],
         disclaimer: "After you connect your accounts, they can't be disconnected.",
         showHairline: true
@@ -250,20 +251,20 @@ export const verificationFlowData = [
           props: {
             title: 'Review your login info',
             body: "You can access your accounts with any of these options. Be sure to remove any info you don't use anymore.",
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.Cell,
           props: {
             title: '555-123-4567',
             body: 'Updated 2 years ago',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.DeviceMobile24, color: ComponentData.ICON_STANDARD },
-            right: { title: 'Remove', props: { type: ComponentData.BUTTON_DESTRUCTIVE }, type: ComponentData.CELL_BUTTON }
+            left: { type: 'icon', icon: Icons.DeviceMobile24, color: 'standard' },
+            right: { title: 'Remove', props: { type: 'destructive' }, type: 'button' }
           }
         },
         {
@@ -271,8 +272,8 @@ export const verificationFlowData = [
           props: {
             title: '555-765-4321',
             body: 'Updated 1 year ago',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.DeviceMobile24, color: ComponentData.ICON_STANDARD },
-            right: { title: 'Remove', props: { type: ComponentData.BUTTON_DESTRUCTIVE }, type: ComponentData.CELL_BUTTON }
+            left: { type: 'icon', icon: Icons.DeviceMobile24, color: 'standard' },
+            right: { title: 'Remove', props: { type: 'destructive' }, type: 'button' }
           }
         },
         {
@@ -281,7 +282,7 @@ export const verificationFlowData = [
             buttons: [
               {
                 title: 'Add email',
-                type: ComponentData.BUTTON_STANDARD
+                type: 'standard'
               }
             ]
           }
@@ -292,7 +293,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Continue', type: ComponentData.BUTTON_PROMINENT, action: { path: '/account-linking/devices', type: ComponentData.BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/account-linking/devices', type: BUTTON_ACTION_PATH } }
         ],
         disclaimer: 'You can update this info anytime in settings.'
       }
@@ -308,20 +309,20 @@ export const verificationFlowData = [
           props: {
             title: 'Still using these devices?',
             body: "Log out of any devices that shouldn't have access to your accounts.",
-            size: ComponentData.HEADER_PAGE
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.Cell,
           props: {
             title: 'Mac',
             body: 'Honolulu, HI • Today',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.AlertOutline24 },
-            right: { title: 'Log out', type: ComponentData.CELL_BUTTON }
+            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            right: { title: 'Log out', type: 'button' }
           }
         },
         {
@@ -329,8 +330,8 @@ export const verificationFlowData = [
           props: {
             title: 'Windows PC',
             body: 'New York, NY • June 24',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.AlertOutline24 },
-            right: { title: 'Log out', type: ComponentData.CELL_BUTTON }
+            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            right: { title: 'Log out', type: 'button' }
           }
         },
         {
@@ -338,8 +339,8 @@ export const verificationFlowData = [
           props: {
             title: "Diogo's iPhone 12",
             body: 'New York, NY • Feb 3',
-            left: { type: ComponentData.CELL_ICON, icon: Icons.AlertOutline24 },
-            right: { title: 'Log out', type: ComponentData.CELL_BUTTON }
+            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            right: { title: 'Log out', type: 'button' }
           }
         }
       ],
@@ -348,8 +349,8 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Log out all other devices', type: ComponentData.BUTTON_DESTRUCTIVE },
-          { title: 'Continue', type: ComponentData.BUTTON_PROMINENT, action: { path: '/account-linking/confirmation', type: ComponentData.BUTTON_ACTION_PATH } }
+          { title: 'Log out all other devices', type: 'destructive' },
+          { title: 'Continue', type: 'prominent', action: { path: '/account-linking/confirmation', type: BUTTON_ACTION_PATH } }
         ]
       }
     }
@@ -364,31 +365,31 @@ export const verificationFlowData = [
           props: {
             title: 'All set!',
             body: 'You can now access and switch between your accounts with a single login.',
-            accessory: { type: ComponentData.HEADER_ICON, theme: ComponentData.ICON_BG_BRAND, icon: Icons.Check32, iconSize: ComponentData.ICON_32 },
-            size: ComponentData.HEADER_PAGE
+            accessory: { type: 'icon', theme: 'brand', icon: Icons.Check32, iconSize: '32' },
+            size: 'page'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_BETWEEN_SECTION_LARGE }
+          props: { size: 'betweenSectionLarge' }
         },
         {
           component: Components.Header,
           props: {
             title: 'Connected accounts',
-            size: ComponentData.HEADER_SECTION
+            size: 'section'
           }
         },
         {
           component: Components.Divider,
-          props: { size: ComponentData.DIVIDER_WITHIN_SECTION_SMALL }
+          props: { size: 'withinSectionSmall' }
         },
         {
           component: Components.Cell,
           props: {
             title: 'Diego Martinez',
             body: '$dmartinez',
-            left: { type: ComponentData.CELL_AVATAR, image: Avatars.Darren }
+            left: { type: 'avatar', image: Avatars.Darren }
           }
         },
         {
@@ -396,7 +397,7 @@ export const verificationFlowData = [
           props: {
             title: 'Diogo Martinez',
             body: '$diogomartinez',
-            left: { type: ComponentData.CELL_AVATAR, image: Avatars.Isaac }
+            left: { type: 'avatar', image: Avatars.Isaac }
           }
         }
       ],
@@ -405,7 +406,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Review Settings', type: ComponentData.BUTTON_PROMINENT, action: { path: '/account', transition: closeModal, type: ComponentData.BUTTON_ACTION_PATH } }
+          { title: 'Review Settings', type: 'prominent', action: { path: '/account', transition: closeModal, type: BUTTON_ACTION_PATH } }
         ]
       }
     }

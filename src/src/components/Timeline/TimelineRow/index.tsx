@@ -1,38 +1,25 @@
 import React from "react";
 import styles from "./index.module.sass";
 //
-export const STATE_NOT_STARTED = "TIMELINE_ROW_STATE_NOT_STARTED";
-export const STATE_IN_PROGRESS = "TIMELINE_ROW_STATE_IN_PROGRESS";
-export const STATE_PENDING = "TIMELINE_ROW_STATE_PENDING";
-export const STATE_DONE = "TIMELINE_ROW_STATE_DONE";
-export const STATE_SKIPPED = "TIMELINE_ROW_STATE_SKIPPED";
-export const STATE_COLLAPSED = "TIMELINE_ROW_STATE_COLLAPSED";
-
-export const PLACING_BEGINNING = "TIMELINE_ROW_PLACING_BEGINNING";
-export const PLACING_MIDDLE = "TIMELINE_ROW_PLACING_MIDDLE";
-export const PLACING_END = "TIMELINE_ROW_PLACING_END";
-
-export type State = typeof STATE_NOT_STARTED | typeof STATE_IN_PROGRESS | typeof STATE_PENDING | typeof STATE_DONE | typeof STATE_SKIPPED | typeof STATE_COLLAPSED;
-export type Placing = typeof PLACING_BEGINNING | typeof PLACING_MIDDLE | typeof PLACING_END;
 
 export interface TimelineRowProps {
   label: string;
   body?: string;
   value?: string;
   valueDescriptor?: string;
-  state: State;
-  placing: Placing;
+  state: 'notStarted' | 'inProgress' | 'pending' | 'done' | 'skipped' | 'collapsed';
+  placing: 'beginning' | 'middle' | 'end';
 }
 
 const TimelineRow: React.FC<TimelineRowProps> = ({ label, body, value, valueDescriptor, state, placing }) => {
 
   const placingClass = () => {
     switch (placing) {
-      case PLACING_BEGINNING:
+      case 'beginning':
         return styles.beginning;
-      case PLACING_MIDDLE:
+      case 'middle':
         return styles.middle;
-      case PLACING_END:
+      case 'end':
         return styles.end;
       default:
         return '';
@@ -41,17 +28,17 @@ const TimelineRow: React.FC<TimelineRowProps> = ({ label, body, value, valueDesc
 
   const stateClass = () => {
     switch (state) {
-      case STATE_NOT_STARTED:
+      case 'notStarted':
         return styles.notStarted;
-      case STATE_IN_PROGRESS:
+      case 'inProgress':
         return styles.inProgress;
-      case STATE_PENDING:
+      case 'pending':
         return styles.pending;
-      case STATE_DONE:
+      case 'done':
         return styles.done;
-      case STATE_SKIPPED:
+      case 'skipped':
         return styles.skipped;
-      case STATE_COLLAPSED:
+      case 'collapsed':
         return styles.collapsed;
       default:
         return null;
@@ -106,21 +93,21 @@ export const TimelineRowPropMeta = {
     type: 'select',
     label: 'Sequence',
     options: [
-      STATE_NOT_STARTED,
-      STATE_IN_PROGRESS,
-      STATE_PENDING,
-      STATE_DONE,
-      STATE_SKIPPED,
-      STATE_COLLAPSED,
+      'notStarted',
+      'inProgress',
+      'pending',
+      'done',
+      'skipped',
+      'collapsed',
     ],
   },
   placing: {
     type: 'select',
     label: 'State',
     options: [
-      PLACING_BEGINNING,
-      PLACING_MIDDLE,
-      PLACING_END,
+      'beginning',
+      'middle',
+      'end',
     ],
   },
 };

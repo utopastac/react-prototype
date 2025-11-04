@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Button, { BUTTON_CTA_SIZE, BUTTON_COMPACT_SIZE, BUTTON_DEFAULT_SIZE, ButtonProps, ButtonPropMeta } from "src/components/Buttons/Button";
+import Button, { ButtonProps, ButtonPropMeta } from "src/components/Buttons/Button";
 
 export interface ButtonGroupProps {
   buttons: ButtonProps[];
@@ -8,7 +8,7 @@ export interface ButtonGroupProps {
   inComponent?: boolean;
   showHairline?: boolean;
   disclaimer?: string;
-  size?: string;
+  size?: 'compact' | 'default' | 'cta';
 }
 
 const ButtonGroup = ({ 
@@ -17,7 +17,7 @@ const ButtonGroup = ({
   inComponent, 
   showHairline, 
   disclaimer, 
-  size = BUTTON_CTA_SIZE 
+  size = "cta" 
 }: ButtonGroupProps) => {
   const buttonsRender = buttons.map((button, index) => {
     return <Button {...button} key={`ButtonGroup${index}`} size={size} />
@@ -50,9 +50,9 @@ export const ButtonGroupPropMeta = {
     type: 'select', 
     label: 'Button Size',
     options: [
-      BUTTON_COMPACT_SIZE,
-      BUTTON_CTA_SIZE,
-      BUTTON_DEFAULT_SIZE,
+      'compact',
+      'cta',
+      'default',
     ]
   },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.sass';
-import Icon, { ICON_24, ICON_STANDARD, ICON_INVERSE, IconSize, IconColor } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 
 interface ToolbarButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -14,10 +14,10 @@ interface ToolbarButtonProps {
   iconColor?: IconColor;
 }
 
-const ToolbarButton: React.FC<ToolbarButtonProps> = ({ onClick, onMouseDown, title, className, icon, position='right', disabled, iconSize = ICON_24, iconColor = ICON_STANDARD }) => {
+const ToolbarButton: React.FC<ToolbarButtonProps> = ({ onClick, onMouseDown, title, className, icon, position='right', disabled, iconSize = "24" as IconSize, iconColor = "standard" as IconColor }) => {
   return (
     <button
-      className={[styles.ToolbarButton, className, iconColor===ICON_INVERSE ? styles.inverse : ''].filter(Boolean).join(' ')}
+      className={[styles.ToolbarButton, className, iconColor==="inverse" ? styles.inverse : ''].filter(Boolean).join(' ')}
       onClick={onClick}
       onMouseDown={onMouseDown}
       title={title}

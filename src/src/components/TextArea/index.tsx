@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.sass";
-import Icon, { ICON_16, ICON_STANDARD, IconPropMeta } from "../Icon";
+import Icon, { IconPropMeta, IconSize, IconColor } from "../Icon";
 
 export interface TextAreaProps {
   label: string;
@@ -22,7 +22,7 @@ const TextArea: React.FC<TextAreaProps> = ({ label, placeholder, body, helpIcon 
       />
       { body && (
         <div className={styles.helpText}>
-          { helpIcon && <Icon icon={helpIcon} size={ICON_16} color={ICON_STANDARD} /> }
+          { helpIcon && <Icon icon={helpIcon} size="16" color="standard" /> }
           <p>{body}</p>
         </div>
       )}

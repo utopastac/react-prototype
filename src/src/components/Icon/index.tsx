@@ -2,40 +2,10 @@ import React from "react";
 import styles from "./index.module.sass";
 import * as Icons from "src/data/Icons";
 
-export type IconSize = typeof ICON_32 | typeof ICON_24 | typeof ICON_16;
-export type IconColor = 
-  | typeof ICON_BRAND 
-  | typeof ICON_PROMINENT 
-  | typeof ICON_STANDARD 
-  | typeof ICON_SUBTLE 
-  | typeof ICON_EXTRA_SUBTLE
-  | typeof ICON_DISABLED 
-  | typeof ICON_INVERSE 
-  | typeof ICON_WHITE 
-  | typeof ICON_SUCCESS 
-  | typeof ICON_FAILURE
-  | typeof ICON_ADMIN;
-
-export const ICON_32 = "ICON_32";
-export const ICON_24 = "ICON_24";
-export const ICON_16 = "ICON_16";
-
-export const ICON_BRAND = "ICON_BRAND";
-export const ICON_PROMINENT = "ICON_PROMINENT";
-export const ICON_STANDARD = "ICON_STANDARD";
-export const ICON_SUBTLE = "ICON_SUBTLE";
-export const ICON_EXTRA_SUBTLE = "ICON_EXTRA_SUBTLE";
-export const ICON_DISABLED = "ICON_DISABLED";
-export const ICON_INVERSE = "ICON_INVERSE";
-export const ICON_WHITE = "ICON_WHITE";
-export const ICON_SUCCESS = "ICON_SUCCESS";
-export const ICON_FAILURE = "ICON_FAILURE";
-export const ICON_ADMIN = "ICON_ADMIN";
-
 export interface IconProps {
   icon: string | (typeof Icons)[keyof typeof Icons];
-  size: IconSize;
-  color: IconColor;
+  size: '32' | '24' | '16';
+  color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin';
   className?: string;
 }
 
@@ -43,11 +13,11 @@ const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
 
   const styleClass = () =>{
     switch(size){
-      case ICON_32:
+      case '32':
         return styles.i_32;
-      case ICON_24:
+      case '24':
         return styles.i_24;
-      case ICON_16:
+      case '16':
         return styles.i_16;
       default:
         return styles.i_24;
@@ -56,25 +26,25 @@ const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
 
   const colorClass = () =>{
     switch(color){
-      case ICON_BRAND:
+      case 'brand':
         return styles.brand;
-      case ICON_PROMINENT:
+      case 'prominent':
         return styles.prominent;
-      case ICON_SUBTLE:
+      case 'subtle':
         return styles.subtle;
-      case ICON_EXTRA_SUBTLE:
+      case 'extraSubtle':
         return styles.extraSubtle;
-      case ICON_INVERSE:
+      case 'inverse':
         return styles.inverse;
-      case ICON_DISABLED:
+      case 'disabled':
         return styles.disabled;
-      case ICON_WHITE:
+      case 'white':
         return styles.white;
-      case ICON_SUCCESS:
+      case 'success':
         return styles.success;
-      case ICON_FAILURE:
+      case 'failure':
         return styles.failure;
-      case ICON_ADMIN:
+      case 'admin':
         return styles.admin;
       default:
         return styles.default;
@@ -126,14 +96,14 @@ export const IconPropMeta = {
   size: {
     type: 'select',
     label: 'Size',
-    options: [ICON_16, ICON_24, ICON_32]
+    options: ['16', '24', '32']
   },
   color: {
     type: 'select',
     label: 'Color',
     options: [
-      ICON_BRAND, ICON_PROMINENT, ICON_STANDARD, ICON_SUBTLE, ICON_EXTRA_SUBTLE,
-      ICON_DISABLED, ICON_INVERSE, ICON_WHITE, ICON_SUCCESS, ICON_FAILURE
+      'brand', 'prominent', 'standard', 'subtle', 'extraSubtle',
+      'disabled', 'inverse', 'white', 'success', 'failure'
     ]
   },
   className: { type: 'string', label: 'CSS Class' }

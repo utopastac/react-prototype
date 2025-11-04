@@ -5,8 +5,8 @@ import { useFeed, FeedItem } from 'src/containers/FeedContext';
 
 import TitleBar from 'src/components/TitleBar';
 import SearchBar from 'src/components/SearchBar';
-import Divider, { DIVIDER_WITHIN_SECTION_SMALL } from 'src/components/Divider';
-import CellActivity, { CELL_ACTIVITY_AVATAR, CELL_ACTIVITY_INFO } from 'src/components/CellActivity';
+import Divider from 'src/components/Divider';
+import CellActivity from 'src/components/CellActivity';
 import NavigationBar from 'src/components/NavigationBar';
 
 const FeedView: React.FC = () => {
@@ -26,11 +26,11 @@ const FeedView: React.FC = () => {
         body={content}
         date={new Date(createdAt).toLocaleString(undefined, { month: 'short', day: 'numeric' })}
         left={{
-          type: CELL_ACTIVITY_AVATAR,
+          type: "avatar",
           image: author.avatar
         }}
         right={{
-          type: CELL_ACTIVITY_INFO,
+          type: "info",
           title: `${stats.likes} likes`
         }}
         onClick={() => {}}
@@ -46,7 +46,7 @@ const FeedView: React.FC = () => {
           right={{}}
         />
         <SearchBar placeholder="Search" />
-        <Divider size={DIVIDER_WITHIN_SECTION_SMALL} />
+        <Divider size="withinSectionSmall" />
         { feedRows }
       </ScrollContainer>
       <NavigationBar

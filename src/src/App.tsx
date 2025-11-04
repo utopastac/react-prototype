@@ -11,7 +11,7 @@ import BounceEffect from 'src/components/PhoneEffects/BounceEffect';
 import ScaleContainer from 'src/components/PhoneEffects/ScaleContainer';
 import useStringEndsWith from 'src/hooks/useStringEndsWith';
 import { usePhoneEffects } from 'src/containers/PhoneEffectsContext';
-import Icon, { ICON_24, ICON_PROMINENT } from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import { useNavigate } from 'react-router-dom';
 import { isEditingField } from 'src/helpers/Utils';
@@ -156,7 +156,7 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
         aria-label="Go to home"
         type="button"
       >
-        <Icon icon={Icons.Discover} size={ICON_24} color={ICON_PROMINENT} className={styles.homeIcon} />
+        <Icon icon={Icons.Discover} size="24" color="prominent" className={styles.homeIcon} />
       </button>
       
       <div className={styles.RootWrapper}>

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import styles from "./index.module.sass";
-import Icon, { ICON_16, ICON_PROMINENT, ICON_STANDARD, ICON_SUBTLE, ICON_WHITE } from "src/components/Icon";
+import Icon, { IconSize, IconColor } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 
 type Props = {
@@ -60,7 +60,7 @@ const DevToolsSection = ({ title, children, isOpen, onToggle }: Props) => {
           ref={arrowRef}
           className={styles.arrow}
         >
-          <Icon icon={Icons.TickerDown16} size={ICON_16} color={ICON_PROMINENT} />
+          <Icon icon={Icons.TickerDown16} size="16" color="prominent" />
         </span>
       </header>
       <div

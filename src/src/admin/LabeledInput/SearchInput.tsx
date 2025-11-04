@@ -2,8 +2,7 @@ import React, { useRef } from 'react';
 import styles from './index.module.sass';
 import ToolbarButton from '../components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
-import { ICON_16 } from 'src/components/Icon';
-import Icon from 'src/components/Icon';
+import Icon, { IconSize, IconColor } from 'src/components/Icon';
 
 
 interface SearchInputProps {
@@ -36,7 +35,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <div className={`${styles.SearchInput} ${styles.Input}`} style={{ position: 'relative' }}>
       <span className={styles.SearchIcon}>
-        <Icon icon={Icons.Search16} size={ICON_16} color={"ICON_SUBTLE"} />
+        <Icon icon={Icons.Search16} size="16" color="subtle" />
       </span>
       <input
         ref={inputRef}
@@ -60,7 +59,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
             handleClear();
           }}
           icon={Icons.Failed16}
-          iconSize={ICON_16}
+          iconSize={"16" as IconSize}
           className={styles.ClearButton}
           position="left"
         />
