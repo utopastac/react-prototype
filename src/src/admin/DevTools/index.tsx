@@ -41,7 +41,7 @@ interface DevToolsProps {
  * 
  * A comprehensive development tools panel that provides:
  * - Theme customization settings
- * - User profile editing (name, cashtag, avatar)
+ * - User profile editing (name, avatar)
  * - Activity management (view/add/remove activities)
  * - Navigation to different app flows
  * 
@@ -227,10 +227,10 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
               </DevToolsSection>
             </div>
             
-            {/* Developer signature and formblocker link */}
+            {/* Developer signature and intervention screen link */}
             <Signature
               contact="Contact @pwright"
-              buttonTitle="Formblocker maker"
+              buttonTitle="InterventionScreen maker"
               buttonIcon={Icons.DocumentQuill24}
               path={'/multi-admin'}
               buttonIconSize={ICON_24}

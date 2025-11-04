@@ -17,9 +17,9 @@ const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
     >
       <div className={styles.WelcomeContent}>
         <div className={styles.WelcomeSection}>
-          <h4>🎉 Welcome to the Interventions Hub Formblocker Builder</h4>
+          <h4>🎉 Welcome to the Interventions Hub InterventionScreen Builder</h4>
           <p>
-            This is a tool for building and sharing Interventions Hub Formblocker interfaces. 
+            This is a tool for building and sharing Interventions Hub InterventionScreen interfaces. 
             Here's what you can do:
           </p>
         </div>

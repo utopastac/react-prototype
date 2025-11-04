@@ -330,7 +330,6 @@ export const ComponentData = {
   CELL_ACTIVITY_INFO,
 
   // Keypad
-  // CashKeypad removed
 
   // Icon
   ICON_16,
@@ -352,8 +351,8 @@ export const ComponentData = {
   UPSELL_LARGE,
 };
 
-// Formblocker Component Exports
-export const FormblockerComponents = {
+// InterventionScreen Component Exports
+export const InterventionScreenComponents = {
   // Header Components
   Header,
   FilterBar,
@@ -391,9 +390,9 @@ export const FormblockerComponents = {
   MarketingCardLarge
 };
 
-// Formblocker Component Exports
+// InterventionScreen Component Exports
 export const UiComponents = {
-  ...FormblockerComponents
+  ...InterventionScreenComponents
 };
 
 export const ComponentPropMeta = {
@@ -492,7 +491,7 @@ export const initialComponentProps: Record<string, any> = {
       },
       {
         label: "Card Ordered",
-        body: "Physical Cash Card",
+        body: "Card",
         value: "Jan 10",
         valueDescriptor: "In Progress",
         state: ComponentData.TIMELINE_STATE_IN_PROGRESS,
@@ -510,7 +509,7 @@ export const initialComponentProps: Record<string, any> = {
   },
   TimelineRow: {
     label: "Card Ordered",
-    body: "Physical Cash Card",
+    body: "Card",
     value: "Jan 10",
     valueDescriptor: "In Progress",
     state: ComponentData.TIMELINE_STATE_IN_PROGRESS,

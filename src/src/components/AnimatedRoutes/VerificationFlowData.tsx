@@ -47,7 +47,7 @@ export const verificationFlowData = [
           component: Components.Cell,
           props: {
             title: 'Find another account',
-            body: 'Search by $cashtag, email, or phone number',
+            body: 'Search by name, email, or phone number',
             left: { type: ComponentData.CELL_ICON_BG, icon: Icons.Search24 },
             right: { type: ComponentData.CELL_PUSH }
           }
@@ -60,7 +60,7 @@ export const verificationFlowData = [
           component: Components.UpsellCard,
           props: {
             title: 'Why connect accounts?',
-            body: 'Switch between accounts with 1 secure login while keeping your $cashtags, balances, and activity separate.'
+            body: 'Switch between accounts with 1 secure login while keeping your activity separate.'
           }
         }
       ],
