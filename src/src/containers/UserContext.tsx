@@ -11,13 +11,13 @@ import { Avatars } from "src/data/Avatars";
  * user data across all components.
  * 
  * Key Features:
- * - User profile data (name, cashtag, avatar)
- * - Financial balances (cash, savings, crypto)
+ * - User profile data (name, headline, avatar)
+ * - Professional info (title, company, location)
  * - Type-safe state updates via reducer pattern
  * - Error handling for context usage outside provider
  * 
  * Usage Patterns:
- * - Reading user data: const { name, balance } = useUser();
+ * - Reading user data: const { name, headline } = useUser();
  * - Updating user data: const dispatch = useUserDispatch();
  *   dispatch({ type: UPDATE_USER, payload: { name: "New Name" } });
  * 
@@ -37,13 +37,16 @@ export const UPDATE_USER = 'UPDATE_USER';
  * and avoid floating-point arithmetic issues.
  */
 export interface UserObject {
-  name: string,           // User's display name
-  cashtag: string,        // User's unique cashtag identifier
-  avatar: string,         // Path to user's avatar image
-  balance: string,        // Current cash balance (formatted as string)
-  savingsBalance: string, // Current savings account balance
-  savingsTarget: string,  // Savings goal amount
-  cryptoBalance: string   // Crypto balance (8 decimal precision)
+  name: string,            // User's display name
+  headline: string,        // User's LinkedIn headline
+  avatar: string,          // Path to user's avatar image
+  title: string,           // Current job title
+  company: string,         // Current company
+  location: string,        // User's location
+  vanity: string,          // LinkedIn vanity username
+  connectionsCount: number,// Number of connections
+  followersCount: number,  // Number of followers
+  profileUrl: string       // Full LinkedIn profile URL
 }
 
 /**
@@ -57,12 +60,15 @@ export interface UserObject {
  */
 const defaultParams: UserObject = {
   name: "Peter Wright",
-  cashtag: "$peterjwright",
+  headline: "Design Lead at ExampleCo | Building delightful products",
   avatar: Avatars.NinaD,
-  balance: (Math.round((Math.random()*5000) * 100) / 100).toFixed(2),
-  savingsBalance: (Math.round((Math.random()*10000) * 100) / 100).toFixed(2),
-  savingsTarget: "10000.00",
-  cryptoBalance: (Math.round((Math.random()*2) * 100000000) / 100000000).toFixed(8)
+  title: "Design Lead",
+  company: "ExampleCo",
+  location: "San Francisco Bay Area",
+  vanity: "peter-wright",
+  connectionsCount: 500,
+  followersCount: 1200,
+  profileUrl: "https://www.linkedin.com/in/peter-wright/"
 }
 
 /**

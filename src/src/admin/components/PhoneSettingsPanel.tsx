@@ -155,7 +155,7 @@ const PhoneSettingsPanel: React.FC<PhoneSettingsPanelProps> = ({
             </ToolsSection>
           </div>
           <Signature
-            contact="Contact @peterwright"
+            contact="Contact @pwright"
             buttonTitle="App preview"
             buttonIcon={Icons.DeviceMobile24}
             buttonIconSize={ICON_24}

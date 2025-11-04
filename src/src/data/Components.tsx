@@ -32,7 +32,6 @@ import InputCard, {
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import SearchBar, { SearchBarPropMeta } from 'src/components/SearchBar';
 //
-// CashKeypad removed
 //
 // Removed MoneyInputDisplay
 import UpsellCard, { UPSELL_LARGE, UPSELL_SMALL,UpsellCardPropMeta } from 'src/components/UpsellCard';

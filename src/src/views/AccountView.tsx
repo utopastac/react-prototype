@@ -26,7 +26,7 @@ const AccountView = () => {
   const transitionNavigate = useTransitionNavigate();
 
   const userObject = useUser();
-  const { name, cashtag, avatar, balance } = userObject;
+  const { name, headline, avatar } = userObject;
 
 
   useEffect(()=>{
@@ -45,7 +45,7 @@ const AccountView = () => {
       />
       <ScrollContainer>
         <Header
-          title={name}t
+          title={name}
           size={HEADER_PAGE}
           accessory={{
             type: HEADER_AVATAR,
@@ -58,7 +58,7 @@ const AccountView = () => {
         />
         <div className={styles.buttonRow}>
           <Button 
-            title={cashtag}
+            title={headline}
             size={BUTTON_COMPACT_SIZE}
             action={{
               type: BUTTON_ACTION_HALFSHEET,
@@ -76,32 +76,8 @@ const AccountView = () => {
             size={BUTTON_COMPACT_SIZE}
           />
         </div>
-        <Cell
-          title="Invite friends"
-          body="Get $5"
-          left={{
-            type: CELL_ICON_BG,
-            icon: Icons.Add24,
-            theme: ICON_BG_BRAND
-          }}
-          right={{
-            type: CELL_PUSH,
-          }}
-          onClick={()=>{}}
-        />
         <Divider
           size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL}
-        />
-        <Cell
-          title="Linked Banks"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.BankAccount24
-          }}
-          right={{
-            type: CELL_PUSH,
-          }}
-          onClick={()=>{}}
         />
         <Cell
           title="Security"
@@ -130,28 +106,6 @@ const AccountView = () => {
           left={{
             type: CELL_ICON,
             icon: Icons.Favorite24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Families"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.Family24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Shopping"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.CategoryShopping24
           }}
           right={{
             type: CELL_PUSH
@@ -205,81 +159,14 @@ const AccountView = () => {
         <Divider
           size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL}
         />
-        <Header
-          title="Interventions Hub settings"
-          body="These settings apply to all your connected accounts on Interventions Hub."
-          size={HEADER_SECTION}
-        />
-        <Divider
-          size={DIVIDER_WITHIN_SECTION_MEDIUM}
-        />
-        <AvatarRow
-          avatars={[
-            {
-              avatar: {size: AVATAR_48, image: Avatars.Darren}
-            },
-            {
-              avatar: {size: AVATAR_48, image: Avatars.Nina}
-            }
-          ]}
-        />
-        <Cell
-          title="2 connected accounts"
-          body="$dmartinez, $dbarber1"
-          left={{type: CELL_NONE}}
-          right={{type: CELL_NONE}}
-        />
-        <Cell
-          title="Personal information"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.Avatar24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Notifications"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.Notifications24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Your devices"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.DeviceDesktop24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Limits"
-          left={{
-            type: CELL_ICON,
-            icon: Icons.Limits24
-          }}
-          right={{
-            type: CELL_PUSH
-          }}
-          onClick={()=>{}}
-        />
+       
         <Divider
           size={DIVIDER_WITHIN_SECTION_MEDIUM}
         />
         <ButtonGroup
           buttons={[
-            {title: "Create a business account", onClick: ()=>{}},
-            {title: "Sign out all accounts", type: BUTTON_DESTRUCTIVE, onClick:()=>{}}
+            {title: "Create a jobs account", onClick: ()=>{}},
+            {title: "Sign out", type: BUTTON_DESTRUCTIVE, onClick:()=>{}}
           ]}
         />
         <Disclaimer />

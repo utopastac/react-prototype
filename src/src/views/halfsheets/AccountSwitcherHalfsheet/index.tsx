@@ -20,7 +20,7 @@ const AccountSwitcherHalfsheet = () => {
   const layersDispatch = useLayersDispatch();
 
   const userObject = useUser();
-  const { name, cashtag, avatar } = userObject;
+  const { name, headline, avatar } = userObject;
 
   function changeLayer(){
     if (layersDispatch) {
@@ -36,7 +36,7 @@ const AccountSwitcherHalfsheet = () => {
     <HalfSheet>
       <Cell
         title={name}
-        body={cashtag}
+        body={headline}
         left={{
           type: CELL_AVATAR,
           image: avatar,

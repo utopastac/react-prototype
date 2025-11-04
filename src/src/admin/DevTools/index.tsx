@@ -54,13 +54,13 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
   // Context hooks for managing user data and activities
   const userDispatch = useUserDispatch();
   const userObject: UserObject = useUser();
-  const { name, cashtag, avatar } = userObject;
+  const { name, headline, avatar } = userObject;
 
   const activityData = useFeed();
 
   // Local state for form inputs - synced with user context
   const [nameInputValue, setNameInputValue] = useState(name);
-  const [cashtagInputValue, setCashtagInputValue] = useState(cashtag);
+  const [headlineInputValue, setHeadlineInputValue] = useState(headline);
   
   // Modal state management
   const [showModalValue, setShowModalValue] = useState(false);
@@ -142,7 +142,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                 <ThemeSection />
               </DevToolsSection>
 
-              {/* User Settings Section - Name, Cashtag, Avatar */}
+              {/* User Settings Section - Name, Headline, Avatar */}
               <DevToolsSection 
                 title="User Settings"
                 isOpen={openSections.includes("User Settings")}
@@ -157,11 +157,11 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                   }}
                 />
                 <LabeledInput
-                  config={{ type: 'string', label: 'Cashtag' }}
-                  value={cashtagInputValue}
+                  config={{ type: 'string', label: 'Headline' }}
+                  value={headlineInputValue}
                   onChange={(value: string) => {
-                    setCashtagInputValue(value);
-                    userDispatch!({ type: UPDATE_USER, payload: { cashtag: value } });
+                    setHeadlineInputValue(value);
+                    userDispatch!({ type: UPDATE_USER, payload: { headline: value } });
                   }}
                 />
                 <LabeledInput
@@ -229,7 +229,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
             
             {/* Developer signature and formblocker link */}
             <Signature
-              contact="Contact @peterwright"
+              contact="Contact @pwright"
               buttonTitle="Formblocker maker"
               buttonIcon={Icons.DocumentQuill24}
               path={'/multi-admin'}

@@ -388,7 +388,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
             </ToolsSection>
           </div>
           <Signature
-            contact="Contact @peterwright"
+            contact="Contact @pwright"
             buttonTitle="App preview"
             buttonIcon={Icons.DeviceMobile24}
             buttonIconSize={ICON_24}
@@ -449,7 +449,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
           </ToolsSection>
         </div>
         <Signature
-          contact="Contact @peterwright"
+          contact="Contact @pwright"
           buttonTitle="App preview"
           buttonIcon={Icons.DeviceMobile24}
           buttonIconSize={ICON_24}

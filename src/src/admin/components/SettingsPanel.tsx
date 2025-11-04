@@ -145,7 +145,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
         
         {/* Footer signature with contact info and app preview button */}
         <Signature
-          contact="Contact @peterwright"
+          contact="Contact @pwright"
           buttonTitle="App preview"
           buttonIcon={Icons.DeviceMobile24}
           buttonIconSize={ICON_24}
