@@ -32,10 +32,7 @@ import InputCard, {
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import SearchBar, { SearchBarPropMeta } from 'src/components/SearchBar';
 //
-import CashKeypad, {
-  KEYPAD_ACTION_ADD,
-  KEYPAD_ACTION_BACKSPACE
-} from 'src/components/CashKeypad';
+// CashKeypad removed
 //
 // Removed MoneyInputDisplay
 import UpsellCard, { UPSELL_LARGE, UPSELL_SMALL,UpsellCardPropMeta } from 'src/components/UpsellCard';
@@ -201,7 +198,6 @@ export const Components = {
   ButtonGroup,
   SearchBar,
   PINCheck,
-  CashKeypad,
   UpsellCard,
   InputStackedHorizontal,
 
@@ -335,8 +331,7 @@ export const ComponentData = {
   CELL_ACTIVITY_INFO,
 
   // Keypad
-  KEYPAD_ACTION_ADD,
-  KEYPAD_ACTION_BACKSPACE,
+  // CashKeypad removed
 
   // Icon
   ICON_16,

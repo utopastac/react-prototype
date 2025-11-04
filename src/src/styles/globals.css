@@ -1231,7 +1231,7 @@
 }
 
 /* --- Supportive --- */
-.typography-supportive-s {
+/* .typography-supportive-s {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-supportive-s);
   font-weight: var(--font-weight-regular);
@@ -1433,4 +1433,4 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-display-xl);
   margin-bottom: var(--paragraph-spacing-none);
-}
+} */

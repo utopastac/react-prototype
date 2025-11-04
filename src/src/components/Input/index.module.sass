@@ -3,7 +3,7 @@
 .Main
   padding: size(6) $margin-default
   label
-    @extend %body-label-m
+    @extend %typography-title-l
     color: var(--color-text)
     margin-bottom: size(4)
     display: block
@@ -14,7 +14,7 @@
     border: var(--size-border-width-standard) solid var(--color-border-subtle)
     border-radius: $radius-s
     padding: size(12) size(16)
-    @extend %component-input
+    @extend %typography-body
     background: var(--color-background)
     color: var(--color-text)
     &:placeholder
@@ -28,7 +28,7 @@
     margin-top: size(4)
     gap: size(4)
     p
-      @extend %body-body-s
+      @extend %typography-body
       color: var(--color-text)
 
   .inputWrapper
