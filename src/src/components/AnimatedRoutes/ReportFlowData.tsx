@@ -1,14 +1,13 @@
 import {Components, ComponentData} from 'src/data/Components';
 import * as Icons from 'src/data/Icons';
-import { WHITE } from 'src/containers/TabBackgroundContext';
-import Formblocker from 'src/containers/Formblocker';
+import InterventionScreen from 'src/containers/InterventionScreen';
 import LoadingWrapper from './LoadingWrapper';
 import { closeModal } from 'src/containers/TransitionContext';
 
 export const reportFlowData = [
   {
     path: '/',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -28,7 +27,6 @@ export const reportFlowData = [
         }
       ],
       scrollContainerClassName: 'separatedContainer',
-      tabBackground: WHITE,
       topBar: {
         isBackNavigation: true
       },
@@ -50,7 +48,7 @@ export const reportFlowData = [
   },
   {
     path: 'type',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -127,7 +125,7 @@ export const reportFlowData = [
   },
   {
     path: 'details',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -181,7 +179,7 @@ export const reportFlowData = [
   },
   {
     path: 'confirm',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {

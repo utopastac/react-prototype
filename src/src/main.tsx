@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { Providers } from './Providers';
 
+import './styles/globals.css';
 import './styles/variables.css';
 import './index.sass';
 
@@ -12,14 +13,12 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import AdminView from 'src/admin/AdminView';
 import { useTheme } from './containers/ThemeContext';
-import { useTabBackground } from './containers/TabBackgroundContext';
 
 // Wrapper to inject theme-related props
 function WithThemeProps({ Component }: { Component: React.ComponentType<any> }) {
   const themeObject = useTheme();
   const { theme, scale, device } = themeObject;
-  const tabBackground = useTabBackground();
-  return <Component theme={theme} scale={scale} device={device} tabBackground={tabBackground} />;
+  return <Component theme={theme} scale={scale} device={device} />;
 }
 
 /**

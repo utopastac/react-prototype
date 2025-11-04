@@ -7,12 +7,12 @@ import {
 } from 'src/containers/UserContext';
 
 import { 
-  useActivity, 
-  useActivityDispatch, 
-  ACTIVITY_REMOVE, 
-  ACTIVITY_ADD, 
-  ActivityItem 
-} from 'src/containers/ActivityContext';
+  useFeed, 
+  useFeedDispatch, 
+  FEED_REMOVE, 
+  FEED_ADD, 
+  FeedItem 
+} from 'src/containers/FeedContext';
 
 import * as Icons from "src/data/Icons";
 import { ICON_16, ICON_PROMINENT, ICON_24 } from "src/components/Icon";
@@ -56,7 +56,7 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
   const userObject: UserObject = useUser();
   const { name, cashtag, avatar } = userObject;
 
-  const activityData = useActivity();
+  const activityData = useFeed();
 
   // Local state for form inputs - synced with user context
   const [nameInputValue, setNameInputValue] = useState(name);
@@ -173,37 +173,37 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                 />
               </DevToolsSection>
 
-              {/* Activity Management Section */}
+              {/* Feed Management Section */}
               <DevToolsSection 
-                title="Activity"
-                isOpen={openSections.includes("Activity")}
-                onToggle={() => handleSectionToggle("Activity")}
+                title="Feed"
+                isOpen={openSections.includes("Feed")}
+                onToggle={() => handleSectionToggle("Feed")}
               >
                 <div className={styles.inputSection}>
                   <div className={styles.input}>
-                    {/* Activity count dropdown - shows current activities */}
+                    {/* Feed count dropdown - shows current posts */}
                     <div
                       className={styles.dropdown}
                       onClick={(e: React.MouseEvent) => {
                         setModalContentsValue({
-                          content: (<ActivityRows />),
-                          title: "Activity rows",
+                          content: (<FeedRows />),
+                          title: "Feed posts",
                           x: e.pageX,
                           y: e.pageY
                         });
                         setShowModalValue(!showModalValue);
                       }}
                     >
-                      {`${activityData.length} rows`}
+                      {`${activityData.length} posts`}
                     </div>
-                    {/* Add activity button */}
+                    {/* Add post button */}
                     <ToolbarButton
-                      title="Add activity"
+                      title="Add post"
                       icon={Icons.Add16}
                       onClick={(e: React.MouseEvent) => {
                         setModalContentsValue({
-                          content: (<AddActivity />),
-                          title: "Add activity",
+                          content: (<AddFeedPost />),
+                          title: "Add post",
                           x: e.pageX,
                           y: e.pageY
                         });
@@ -250,30 +250,30 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
 };
 
 /**
- * ActivityRows Component
+ * FeedRows Component
  * 
  * Displays a list of all current activities in a modal.
  * Clicking on an activity row removes it from the list.
  */
-const ActivityRows: React.FC = () => {
-  const activityDispatch = useActivityDispatch();
-  const activityData = useActivity();
+const FeedRows: React.FC = () => {
+  const activityDispatch = useFeedDispatch();
+  const activityData = useFeed();
 
   return (
     <div className={styles.activityRows}>
-      {activityData.map((activity: ActivityItem, index: number) => (
+      {activityData.map((post: FeedItem, index: number) => (
         <div
           key={`activityRow${index}`}
           className={styles.activityRow}
           onClick={() => {
             activityDispatch({
-              type: ACTIVITY_REMOVE,
+              type: FEED_REMOVE,
               index
             });
           }}
         >
-          <h4 className={styles.text}>{activity.name}</h4>
-          <p>{activity.total}</p>
+          <h4 className={styles.text}>{post.author.name}</h4>
+          <p>{post.stats.likes} likes</p>
         </div>
       ))}
     </div>
@@ -281,20 +281,18 @@ const ActivityRows: React.FC = () => {
 };
 
 /**
- * AddActivity Component
+ * AddFeedPost Component
  * 
  * Form for adding new activities to the activity list.
  * Includes fields for name, body, date, total, and avatar.
  * Automatically fetches a random avatar on component mount.
  */
-const AddActivity: React.FC = () => {
-  const activityDispatch = useActivityDispatch();
+const AddFeedPost: React.FC = () => {
+  const activityDispatch = useFeedDispatch();
   
-  // Form state for new activity
-  const [nameInputValue, setNameInputValue] = useState("");
-  const [bodyInputValue, setBodyInputValue] = useState("");
-  const [dateInputValue, setDateInputValue] = useState("");
-  const [totalInputValue, setTotalInputValue] = useState("");
+  // Form state for new post
+  const [authorNameInputValue, setAuthorNameInputValue] = useState("");
+  const [contentInputValue, setContentInputValue] = useState("");
   const [avatarInputValue, setAvatarInputValue] = useState("");
 
   // Fetch a random avatar when component mounts
@@ -309,45 +307,35 @@ const AddActivity: React.FC = () => {
     fetchRandomAvatar();
   }, []);
 
-  /**
-   * Handles adding a new activity to the activity list
-   */
-  const handleAddActivity = () => {
-    const newActivity: ActivityItem = {
-      name: nameInputValue,
-      body: bodyInputValue,
-      date: dateInputValue,
-      total: totalInputValue,
-      avatar: avatarInputValue
+  const handleAddPost = () => {
+    const newPost: FeedItem = {
+      id: `${Date.now()}`,
+      author: {
+        name: authorNameInputValue || "Anonymous",
+        avatar: avatarInputValue
+      },
+      content: contentInputValue,
+      createdAt: new Date().toISOString(),
+      stats: { likes: 0, comments: 0, shares: 0 }
     };
 
     activityDispatch({
-      type: ACTIVITY_ADD,
-      activity: newActivity
+      type: FEED_ADD,
+      post: newPost
     });
   };
 
   return (
     <div className={styles.addActivity}>
       <LabeledInput
-        config={{ type: 'string', label: 'Name' }}
-        value={nameInputValue}
-        onChange={setNameInputValue}
+        config={{ type: 'string', label: 'Author Name' }}
+        value={authorNameInputValue}
+        onChange={setAuthorNameInputValue}
       />
       <LabeledInput
-        config={{ type: 'string', label: 'Body' }}
-        value={bodyInputValue}
-        onChange={setBodyInputValue}
-      />
-      <LabeledInput
-        config={{ type: 'string', label: 'Date' }}
-        value={dateInputValue}
-        onChange={setDateInputValue}
-      />
-      <LabeledInput
-        config={{ type: 'string', label: 'Total' }}
-        value={totalInputValue}
-        onChange={setTotalInputValue}
+        config={{ type: 'string', label: 'Content' }}
+        value={contentInputValue}
+        onChange={setContentInputValue}
       />
       
       {/* Avatar input with preview and random generation */}
@@ -372,9 +360,9 @@ const AddActivity: React.FC = () => {
         )}
       </div>
       
-      {/* Add activity button */}
+      {/* Add post button */}
       <div className={styles.row}>
-        <TextButton text="Add activity" onClick={handleAddActivity} />
+        <TextButton text="Add post" onClick={handleAddPost} />
       </div>
     </div>
   );

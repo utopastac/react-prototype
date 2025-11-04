@@ -12,7 +12,7 @@ import { Avatars } from "src/data/Avatars";
  * 
  * Key Features:
  * - User profile data (name, cashtag, avatar)
- * - Financial balances (cash, savings, bitcoin)
+ * - Financial balances (cash, savings, crypto)
  * - Type-safe state updates via reducer pattern
  * - Error handling for context usage outside provider
  * 
@@ -43,7 +43,7 @@ export interface UserObject {
   balance: string,        // Current cash balance (formatted as string)
   savingsBalance: string, // Current savings account balance
   savingsTarget: string,  // Savings goal amount
-  bitcoinBalance: string  // Bitcoin balance (8 decimal precision)
+  cryptoBalance: string   // Crypto balance (8 decimal precision)
 }
 
 /**
@@ -62,7 +62,7 @@ const defaultParams: UserObject = {
   balance: (Math.round((Math.random()*5000) * 100) / 100).toFixed(2),
   savingsBalance: (Math.round((Math.random()*10000) * 100) / 100).toFixed(2),
   savingsTarget: "10000.00",
-  bitcoinBalance: (Math.round((Math.random()*2) * 100000000) / 100000000).toFixed(8)
+  cryptoBalance: (Math.round((Math.random()*2) * 100000000) / 100000000).toFixed(8)
 }
 
 /**

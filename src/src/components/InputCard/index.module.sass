@@ -6,7 +6,7 @@
   align-items: top
   &.checked
     .card:after
-      border-color: var(--semantic-border-selected)
+      border-color: var(--color-border)
       border-width: var(--size-border-width-selected)
   .card
     flex: 1
@@ -23,13 +23,13 @@
       right: 0
       bottom: 0
       border-radius: $radius-m
-      border: var(--size-border-width-standard) solid var(--semantic-border-standard)
+      border: var(--size-border-width-standard) solid var(--color-border-subtle)
   h5
     @extend %body-label-m
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
   p
     @extend %body-body-s
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     margin-top: size(4)
   .textContent
     flex: 1

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.sass";
-import { useTabBackground } from 'src/containers/TabBackgroundContext';
 
 export interface IOSStatusBarProps {
   showNotch?: boolean;
@@ -10,7 +9,6 @@ export interface IOSStatusBarProps {
 
 const IOSStatusBar: React.FC<IOSStatusBarProps> = ({ showNotch = false, transparent, inverse = false }) => {
   const [time, setTime] = useState<string>("");
-  const tabBackground = useTabBackground();
 
   useEffect(() => {
     const updateTime = (): void => {

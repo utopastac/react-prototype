@@ -10,7 +10,7 @@ import ModalBacker from "../ModalBacker";
 import TextBlock from "src/components/TextBlock";
 import { SECTION, BLOCK } from "src/components/TextBlock";
 import LinkBlocks from "src/components/LinkBlocks";
-import RelatedArticles from "src/components/RelatedArticles";
+// RelatedArticles removed
 import Divider, { DIVIDER_BETWEEN_SECTION_LARGE } from "src/components/Divider";
 
 interface ArticleData {
@@ -50,13 +50,7 @@ const Article = ({ data }: ArticleProps) => {
       <Divider size={DIVIDER_BETWEEN_SECTION_LARGE} />
       <TextBlock title="What is it?" body="A government-issued ID is an official document, like a passport or driver's license, used to verify a person's identity." size={BLOCK} />
       <LinkBlocks blocks={linkBlockData} />
-      <RelatedArticles data={{
-        articles: [
-          { title: "Hello old chap", image: image },
-          { title: "Hello old chap", image: image },
-          { title: "Hello old chap", image: image }
-        ]
-      }} />
+      {/* RelatedArticles removed */}
     </div>
   );
 };

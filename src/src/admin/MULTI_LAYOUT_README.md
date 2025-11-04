@@ -89,7 +89,6 @@ function App() {
         scale="1"
         device="M"
         font="standard"
-        tabBackground="white"
       />
     </MultiLayoutProvider>
   );

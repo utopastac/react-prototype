@@ -8,7 +8,7 @@
       text-decoration: line-through
   &.pending
     .value
-      color: var(--semantic-text-subtle)
+      color: var(--color-text-meta)
   &.collapsed
     .body, .value, .valueDescriptor
       display: none
@@ -19,17 +19,17 @@
     justify-content: space-between
   .label
     @extend %body-label-m
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
   .body
     @extend %body-body-s
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
   .value
     @extend %body-label-m
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     text-align: right
   .valueDescriptor
     @extend %body-body-s
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     text-align: right
   .indicator
     position: relative
@@ -76,7 +76,7 @@
       width: size(4)
       height: size(4)
       border-radius: $radius-pill
-      background: var(--component-timeline-dot-background-collapsed)
+      background: var(--color-icon)
   &.beginning
     .initialLine
       opacity: 0
@@ -85,45 +85,45 @@
       opacity: 0
   &.notStarted
     .initialLine
-      background: var(--component-timeline-line-background-not-started)
+      background: var(--color-background-neutral-soft)
     .dot
-      background: var(--component-timeline-dot-background-not-started)
+      background: var(--color-background-neutral-soft)
     .endLine
-      background: var(--component-timeline-line-background-not-started)
+      background: var(--color-background-neutral-soft)
   &.inProgress
     .initialLine
-      background: var(--component-timeline-line-background-in-progress)
+      background: var(--color-border)
     .dot
-      border: 2px solid var(--component-timeline-dot-border-in-progress)
+      border: 2px solid var(--color-border)
     .endLine
-      background: var(--component-timeline-line-background-not-started)
+      background: var(--color-background-neutral-soft)
   &.done
     .initialLine
-      background: var(--component-timeline-line-background-done)
+      background: var(--color-border)
     .dot
-      background: var(--component-timeline-dot-background-done)
+      background: var(--color-icon)
     .endLine
-      background: var(--component-timeline-line-background-done)
+      background: var(--color-border)
   &.pending
     .initialLine
-      background: var(--component-timeline-line-background-pending)
+      background: var(--color-border)
     .dot
-      background: var(--component-timeline-dot-background-pending)
+      background: var(--color-icon)
     .endLine
-      background: var(--component-timeline-line-background-pending)
+      background: var(--color-border)
   &.skipped
     .initialLine
-      background: var(--component-timeline-line-background-skipped)
+      background: var(--color-border)
     .dot
-      background: var(--component-timeline-dot-background-skipped)
+      background: var(--color-icon)
     .endLine
-      background: var(--component-timeline-line-background-skipped)
+      background: var(--color-border)
   &.collapsed
     .initialLine
-      background: var(--component-timeline-line-background-skipped)
+      background: var(--color-border)
     .dot
       display: none
     .collapsedDots
       display: flex
     .endLine
-      background: var(--component-timeline-line-background-skipped)
+      background: var(--color-border)

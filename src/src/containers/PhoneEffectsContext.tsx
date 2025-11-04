@@ -80,8 +80,7 @@ interface PhoneEffectsProviderProps {
  * 
  * Provider hierarchy (from Providers.tsx):
  * ThemeProvider → UserProvider → ActivityProvider → LayersProvider → 
- * TabBackgroundProvider → TransitionProvider → 
- * TiltProvider → PhoneEffectsProvider
+ * TransitionProvider → TiltProvider → PhoneEffectsProvider
  */
 export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ children }) => {
   // Core phone effect states - all default to safe values

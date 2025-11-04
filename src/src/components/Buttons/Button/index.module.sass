@@ -8,7 +8,7 @@ $nav-bottom-border: 3px
   justify-content: center
   @include animate(0.1s)
   // background: var(--text-standard)
-  // color: var(--semantic-text-inverse)
+  // color: var(--color-text-solid)
   border-radius: $radius-pill
   padding: 0 size(16)
 
@@ -18,35 +18,37 @@ $nav-bottom-border: 3px
   .icon
     width: 20px
     height: 20px
-    background: green
+    background: white
   &.prominent
-    background: var(--component-button-background-prominent)
-    color: var(--component-button-text-prominent)
+    background: var(--color-action)
+    color: var(--color-label-knockout)
+    &:hover
+      background: var(--color-action-hover)
     &.disabled
-      color: var(--semantic-background-app)
+      color: var(--color-background)
       opacity: 0.11
 
   &.destructive
-    background: var(--semantic-background-standard)
-    color: var(--semantic-text-danger)
+    background: var(--color-background-neutral-soft)
+    color: var(--color-negative)
   &.inverse
-    background: var(--base-constant-white)
-    color: var(--semantic-text-standard)
+    background: var(--white-a100)
+    color: var(--color-text)
   &.standard
-    background: var(--component-button-background-standard)
-    color: var(--component-button-text-standard)
+    background: var(--color-background-neutral-soft)
+    color: var(--color-text)
     &.disabled
-      background: var(--semantic-background-subtle)
-      color: var(--semantic-text-disabled)
+      background: var(--color-background-neutral-soft)
+      color: var(--color-text-disabled)
   &.subtle
-    background: var(--component-button-background-subtle)
-    color: var(--component-button-text-subtle)
+    background: var(--color-background-transparent)
+    color: var(--color-text)
     text-decoration: underline
     &.disabled
-      color: var(--semantic-text-disabled)
+      color: var(--color-text-disabled)
   &.brand
-    background: var(--component-button-background-brand)
-    color: var(--component-button-text-brand)
+    background: var(--color-action)
+    color: var(--color-text-solid)
   &.compact
     height: size(32)
     display: inline-flex

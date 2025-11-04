@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
 import * as Icons from "src/data/Icons";
-import { useTabBackgroundDispatch, WHITE } from 'src/containers/TabBackgroundContext';
 import { useUser } from 'src/containers/UserContext';
 import { useTransitionNavigate, transitions } from 'src/hooks/useTransitionNavigate';
 import styles from "./index.module.sass";
@@ -24,7 +23,6 @@ import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
 const AccountView = () => {
 
-  const tabBackgroundDispatch = useTabBackgroundDispatch();
   const transitionNavigate = useTransitionNavigate();
 
   const userObject = useUser();
@@ -32,9 +30,6 @@ const AccountView = () => {
 
 
   useEffect(()=>{
-    tabBackgroundDispatch({
-      type: WHITE
-    });
   }, []);
 
   return (

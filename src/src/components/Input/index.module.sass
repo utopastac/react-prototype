@@ -4,23 +4,23 @@
   padding: size(6) $margin-default
   label
     @extend %body-label-m
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     margin-bottom: size(4)
     display: block
 
   input
     outline: none
     width: 100%
-    border: var(--size-border-width-standard) solid var(--semantic-border-standard)
+    border: var(--size-border-width-standard) solid var(--color-border-subtle)
     border-radius: $radius-s
     padding: size(12) size(16)
     @extend %component-input
-    background: var(--semantic-background-app)
-    color: var(--semantic-text-standard)
+    background: var(--color-background)
+    color: var(--color-text)
     &:placeholder
-      color: var(--semantic-text-disabled)
+      color: var(--color-text-disabled)
     &:focus
-      border-color: var(--semantic-border-prominent)
+      border-color: var(--color-border)
       border-width: var(--size-border-width-selected)
   .helpText
     display: flex
@@ -29,7 +29,7 @@
     gap: size(4)
     p
       @extend %body-body-s
-      color: var(--semantic-text-standard)
+      color: var(--color-text)
 
   .inputWrapper
     position: relative

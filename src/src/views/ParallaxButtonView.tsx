@@ -20,7 +20,7 @@ const ParallaxButtonView = () => {
             <Icon icon={Icons.Avatar24} size={ICON_24} color={ICON_WHITE} />
             <Icon icon={Icons.BankAccount24} size={ICON_24} color={ICON_WHITE} />
             <Icon icon={Icons.Bills24} size={ICON_24} color={ICON_WHITE} />
-            <Icon icon={Icons.BitcoinLightning24} size={ICON_24} color={ICON_WHITE} />
+            <Icon icon={Icons.Fast24} size={ICON_24} color={ICON_WHITE} />
             <Icon icon={Icons.Block24} size={ICON_24} color={ICON_WHITE} />
             <Icon icon={Icons.CardAdd24} size={ICON_24} color={ICON_WHITE} />
             <Icon icon={Icons.CardDesign24} size={ICON_24} color={ICON_WHITE} />

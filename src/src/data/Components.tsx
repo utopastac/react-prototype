@@ -37,7 +37,7 @@ import CashKeypad, {
   KEYPAD_ACTION_BACKSPACE
 } from 'src/components/CashKeypad';
 //
-import MoneyInputDisplay from 'src/components/MoneyInputDisplay';
+// Removed MoneyInputDisplay
 import UpsellCard, { UPSELL_LARGE, UPSELL_SMALL,UpsellCardPropMeta } from 'src/components/UpsellCard';
 import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
 
@@ -87,12 +87,7 @@ import AvatarStackedDiagonal, {
 } from 'src/components/AvatarStackedDiagonal';
 
 // Applet Components
-import DiscoverPromo, { DiscoverPromoPropMeta } from 'src/components/DiscoverPromo';
-import BalanceApplet from 'src/components/BalanceApplet';
-import SavingsApplet from 'src/components/SavingsApplet';
-import BitcoinApplet from 'src/components/BitcoinApplet';
-import SecondaryApplet from 'src/components/SecondaryApplet';
-import TertiaryApplet from 'src/components/TertiaryApplet';
+// Removed Applet components (DiscoverPromo, BalanceApplet, SavingsApplet, CryptoApplet, SecondaryApplet, TertiaryApplet)
 
 import Text, {
   TEXT_HERO,
@@ -207,7 +202,6 @@ export const Components = {
   SearchBar,
   PINCheck,
   CashKeypad,
-  MoneyInputDisplay,
   UpsellCard,
   InputStackedHorizontal,
 
@@ -223,13 +217,7 @@ export const Components = {
   AvatarRow,
   AvatarStackedDiagonal,
 
-  // Applet Components
-  DiscoverPromo,
-  BalanceApplet,
-  SavingsApplet,
-  BitcoinApplet,
-  SecondaryApplet,
-  TertiaryApplet,
+  // Applet Components removed
 
   // UI Components
   IconBg,
@@ -433,7 +421,7 @@ export const ComponentPropMeta = {
   AvatarCarousel: AvatarCarouselPropMeta,
   AvatarRow: AvatarRowPropMeta,
   AvatarStackedDiagonal: AvatarStackedDiagonalPropMeta,
-  DiscoverPromo: DiscoverPromoPropMeta,
+  // DiscoverPromo removed
   IconBg: IconBgPropMeta,
   Button: ButtonPropMeta,
   Divider: DividerPropMeta,

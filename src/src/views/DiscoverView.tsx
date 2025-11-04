@@ -1,10 +1,7 @@
-import { React, useEffect } from "react";
+import React from "react";
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
-import Sections from "src/components/Sections";
-import { useLayersDispatch, ADD_LAYER, REMOVE_LAYER, CLOSE_LAYERS } from 'src/containers/LayersContext';
-import { useTabBackgroundDispatch, WHITE } from 'src/containers/TabBackgroundContext';
-import styles from "./index.module.sass";
+import { useLayersDispatch } from 'src/containers/LayersContext';
 
 // Direct component imports
 import TitleBar from 'src/components/TitleBar';
@@ -14,37 +11,20 @@ import Divider, {
   DIVIDER_BETWEEN_SECTION_LARGE 
 } from 'src/components/Divider';
 import AvatarCarousel from 'src/components/AvatarCarousel';
-import DiscoverPromo from 'src/components/DiscoverPromo';
+// DiscoverPromo removed
 import NavigationBar from 'src/components/NavigationBar';
-import Avatar, { AVATAR_64 } from 'src/components/Avatar';
+import { AVATAR_64 } from 'src/components/Avatar';
 
 const DiscoverView = () => {
 
   const layersDispatch = useLayersDispatch();
-  const tabBackgroundDispatch = useTabBackgroundDispatch();
 
-  useEffect(()=>{
-    tabBackgroundDispatch({
-      type: WHITE
-    });
-  }, []);
-
-  function openLayer(){
-    layersDispatch({
-      type: ADD_LAYER,
-      component: Sections,
-      props: {}
-    })
-  }
+  
 
   return (
     <PageWrapper background>
       <ScrollContainer>
-        <TitleBar
-          title="Discover"
-          right={{
-          }}
-        />
+        <TitleBar title="Discover" />
         <SearchBar placeholder="Search" />
         <Divider size={DIVIDER_WITHIN_SECTION_SMALL} />
         <AvatarCarousel
@@ -79,12 +59,7 @@ const DiscoverView = () => {
             }
           ]}
         />
-        <Divider size={DIVIDER_BETWEEN_SECTION_LARGE} />
-        <DiscoverPromo
-          title="New Interventions Hub Card"
-          body="Glitter card is here - and it's radiant"
-          button="Learn more"
-        />
+        {/* DiscoverPromo removed */}
       </ScrollContainer>
       <NavigationBar
         activeIndex={3}

@@ -3,7 +3,7 @@
 .Main
   margin: 0 $margin-default
   border-radius: $radius-m
-  border: 1px solid var(--semantic-border-subtle)
+  border: 1px solid var(--color-border-faint)
   position: relative
   display: flex
   padding: size(16)
@@ -14,15 +14,15 @@
     flex: 1
   p
     @extend %body-body-s
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
   h5
     @extend %component-card-title-s
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     margin-bottom: size(4)
   a
     @extend %body-label-s
     display: block
-    color: var(--semantic-text-standard)
+    color: var(--color-text)
     margin-top: size(16)
     &::after
       content: '→'

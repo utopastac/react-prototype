@@ -1,7 +1,7 @@
 @import 'src/styles/site'
 
 .Main
-  background: var(--semantic-background-standard)
+  background: var(--color-background-neutral-soft)
   border-radius: $radius-pill
   overflow: hidden
   img
@@ -15,7 +15,7 @@
     justify-content: center
     align-items: center
     @extend %avatar-64
-    color: var(--component-avatar-text) !important
+    color: var(--color-text-solid) !important
   &.a_96
     width: size(96)
     height: size(96)
@@ -47,4 +47,4 @@
     > div
       @extend %avatar-24
   &.border
-    outline: 2px solid var(--base-constant-black)
+    outline: 2px solid var(--black-a100)

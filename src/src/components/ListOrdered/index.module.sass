@@ -11,19 +11,19 @@
   &.subtle
     background: none
     .title
-      color: var(--semantic-text-standard)      
+      color: var(--color-text)      
     .body
       display: none
     .index
-      background-color: var(--semantic-background-subtle)
-      color: var(--semantic-text-standard)
+      background-color: var(--color-background-neutral-soft)
+      color: var(--color-text)
   &.standard
     background: none
     .title
-      color: var(--semantic-text-standard)
+      color: var(--color-text)
     .index
-      background-color: var(--semantic-icon-standard)
-      color: var(--semantic-background-app)
+      background-color: var(--color-icon)
+      color: var(--color-background)
 
 .item
   display: flex
@@ -47,10 +47,10 @@
 
 .title
   @extend %body-body-m
-  color: var(--semantic-text-standard)
+  color: var(--color-text)
   &.showBody
     @extend %body-label-m
 
 .body
   @extend %body-body-s
-  color: var(--semantic-text-standard)
+  color: var(--color-text)

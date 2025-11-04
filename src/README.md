@@ -14,7 +14,7 @@ A modern, interactive React application for our Interventions Hub.
 - **Interactive Navigation**: Smooth animated transitions between screens with Framer Motion
 - **Mobile-First Design**: Responsive design optimized for mobile devices with iOS-style status bars and home indicators
 - **Real-time Balance Display**: Dynamic balance and transaction management
-- **Bitcoin Integration**: Bitcoin balance display and management interface
+- **Crypto Integration**: Crypto balance display and management interface
 
 ### Advanced UI/UX
 - **Theme Support**: Light and Dark themes with real-time switching
@@ -168,7 +168,6 @@ The project uses a comprehensive component system that includes:
 - **Button**: Multiple button styles (Standard, Prominent, Destructive, etc.)
 - **Cell**: List items with various layouts
 - **Input**: Form inputs with validation
-- **Applet**: Card-like components for displaying information
 - **NavigationBar**: Bottom navigation with animations
 - **TitleBar**: Headers with customizable actions
 

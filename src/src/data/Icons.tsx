@@ -2,7 +2,6 @@
 import Account from "src/assets/navigation/account.svg";
 import Activity from "src/assets/navigation/activity.svg";
 import Back from "src/assets/navigation/back.svg";
-import Bitcoin from "src/assets/navigation/bitcoin.svg";
 import Card from "src/assets/navigation/card.svg";
 import Close from "src/assets/navigation/close.svg";
 import Copy from "src/assets/navigation/copy.svg";
@@ -41,7 +40,6 @@ import AlertOffline16 from "src/assets/16/alert-offline.svg";
 import AlertOnline16 from "src/assets/16/alert-online.svg";
 import AlertOutline16 from "src/assets/16/alert-outline.svg";
 import AlertReportedFill16 from "src/assets/16/alert-reported-fill.svg";
-import BitcoinLightning16 from "src/assets/16/bitcoin-lightning.svg";
 import Block16 from "src/assets/16/block.svg";
 import Business16 from "src/assets/16/business.svg";
 import CameraFill16 from "src/assets/16/camera-fill.svg";
@@ -152,7 +150,6 @@ import Avatar24 from "src/assets/24/avatar.svg";
 import BankAccount24 from "src/assets/24/bank-account.svg";
 import BankLinked24 from "src/assets/24/bank-linked.svg";
 import Bills24 from "src/assets/24/bills.svg";
-import BitcoinLightning24 from "src/assets/24/bitcoin-lightning.svg";
 import Block24 from "src/assets/24/block.svg";
 import Borrow24 from "src/assets/24/borrow.svg";
 import Business24 from "src/assets/24/business.svg";
@@ -272,7 +269,6 @@ import BankLinked32 from "src/assets/32/bank-linked.svg";
 import Bills32 from "src/assets/32/bills.svg";
 import BiometricsFace32 from "src/assets/32/biometrics-face.svg";
 import BiometricsFingerprint32 from "src/assets/32/biometrics-fingerprint.svg";
-import BitcoinLightning32 from "src/assets/32/bitcoin-lightning.svg";
 import Block32 from "src/assets/32/block.svg";
 import Borrow32 from "src/assets/32/borrow.svg";
 import BundleSafe32 from "src/assets/32/bundle-safe.svg";
@@ -365,7 +361,6 @@ export {
   Account,
   Activity,
   Back,
-  Bitcoin,
   Card,
   Close,
   Copy,
@@ -404,7 +399,6 @@ export {
   AlertOnline16,
   AlertOutline16,
   AlertReportedFill16,
-  BitcoinLightning16,
   Block16,
   Business16,
   CameraFill16,
@@ -515,7 +509,6 @@ export {
   BankAccount24,
   BankLinked24,
   Bills24,
-  BitcoinLightning24,
   Block24,
   Borrow24,
   Business24,
@@ -635,7 +628,6 @@ export {
   Bills32,
   BiometricsFace32,
   BiometricsFingerprint32,
-  BitcoinLightning32,
   Block32,
   Borrow32,
   BundleSafe32,

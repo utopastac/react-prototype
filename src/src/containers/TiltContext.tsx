@@ -106,8 +106,7 @@ export const useTilt = () => useContext(TiltContext);
  * 
  * Provider hierarchy (from Providers.tsx):
  * ThemeProvider → UserProvider → ActivityProvider → LayersProvider → 
- * TabBackgroundProvider → TransitionProvider → 
- * TiltProvider → PhoneEffectsProvider
+ * TransitionProvider → TiltProvider → PhoneEffectsProvider
  */
 export const TiltProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Initialize tilt state with default values (no tilt, no blur, no rotation)

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useTabBackgroundDispatch, BLACK } from 'src/containers/TabBackgroundContext';
 import styles from './FlowStartView.module.sass';
 
 interface FlowStartViewProps {
@@ -16,12 +15,7 @@ const FlowStartView: React.FC<FlowStartViewProps> = ({
   startButtonText = 'Start',
 }) => {
 
-  const tabBackgroundDispatch = useTabBackgroundDispatch();
-
   useEffect(()=>{
-    tabBackgroundDispatch({
-      type: BLACK
-    });
   }, []);
   
   const navigate = useNavigate();

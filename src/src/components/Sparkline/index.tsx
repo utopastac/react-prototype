@@ -1,6 +1,5 @@
 import { React, useRef, useEffect } from "react";
 import * as Colors from "src/data/colors";
-import { useTheme } from 'src/containers/ThemeContext';
 import styles from "./index.module.sass";
 //
 type Props = {
@@ -10,8 +9,7 @@ type Props = {
 
 const Sparkline = (({ progress, image }: Props) => {
 
-  const themeObject = useTheme();
-  const theme = themeObject.theme;
+  
 
   const canvasRef = useRef(null);
   const dpi = window.devicePixelRatio;
@@ -35,7 +33,7 @@ const Sparkline = (({ progress, image }: Props) => {
 
   useEffect(()=>{
 
-    const line = Colors.GetColor(Colors.BITCOIN, theme);
+    const line = Colors.GetColor(Colors.COLOR_LOGO_BRAND);
 
     const canvas = canvasRef.current;
     fix_dpi(canvas);

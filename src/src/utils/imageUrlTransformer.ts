@@ -31,7 +31,6 @@ import Icons16_bank_linked from 'src/assets/16/bank-linked.svg';
 import Icons16_bills from 'src/assets/16/bills.svg';
 import Icons16_biometrics_face from 'src/assets/16/biometrics-face.svg';
 import Icons16_biometrics_fingerprint from 'src/assets/16/biometrics-fingerprint.svg';
-import Icons16_bitcoin_lightning from 'src/assets/16/bitcoin-lightning.svg';
 import Icons16_block from 'src/assets/16/block.svg';
 import Icons16_borrow from 'src/assets/16/borrow.svg';
 import Icons16_bullet_generic from 'src/assets/16/bullet-generic.svg';
@@ -243,7 +242,6 @@ import Icons24_bank_linked from 'src/assets/24/bank-linked.svg';
 import Icons24_bills from 'src/assets/24/bills.svg';
 import Icons24_biometrics_face from 'src/assets/24/biometrics-face.svg';
 import Icons24_biometrics_fingerprint from 'src/assets/24/biometrics-fingerprint.svg';
-import Icons24_bitcoin_lightning from 'src/assets/24/bitcoin-lightning.svg';
 import Icons24_block from 'src/assets/24/block.svg';
 import Icons24_borrow from 'src/assets/24/borrow.svg';
 import Icons24_bullet_generic from 'src/assets/24/bullet-generic.svg';
@@ -542,7 +540,6 @@ import Icons32_bank_linked from 'src/assets/32/bank-linked.svg';
 import Icons32_bills from 'src/assets/32/bills.svg';
 import Icons32_biometrics_face from 'src/assets/32/biometrics-face.svg';
 import Icons32_biometrics_fingerprint from 'src/assets/32/biometrics-fingerprint.svg';
-import Icons32_bitcoin_lightning from 'src/assets/32/bitcoin-lightning.svg';
 import Icons32_block from 'src/assets/32/block.svg';
 import Icons32_borrow from 'src/assets/32/borrow.svg';
 import Icons32_bundle_safe from 'src/assets/32/bundle-safe.svg';
@@ -716,7 +713,6 @@ import Icons32_wallet from 'src/assets/32/wallet.svg';
 import NavigationIcons_account from 'src/assets/navigation/account.svg';
 import NavigationIcons_activity from 'src/assets/navigation/activity.svg';
 import NavigationIcons_back from 'src/assets/navigation/back.svg';
-import NavigationIcons_bitcoin from 'src/assets/navigation/bitcoin.svg';
 import NavigationIcons_card from 'src/assets/navigation/card.svg';
 import NavigationIcons_close from 'src/assets/navigation/close.svg';
 import NavigationIcons_copy from 'src/assets/navigation/copy.svg';
@@ -782,7 +778,6 @@ const assetMap = new Map<string, string>([
   ['/sites/interventions-hub/src/assets/16/bills.svg', Icons16_bills],
   ['/sites/interventions-hub/src/assets/16/biometrics-face.svg', Icons16_biometrics_face],
   ['/sites/interventions-hub/src/assets/16/biometrics-fingerprint.svg', Icons16_biometrics_fingerprint],
-  ['/sites/interventions-hub/src/assets/16/bitcoin-lightning.svg', Icons16_bitcoin_lightning],
   ['/sites/interventions-hub/src/assets/16/block.svg', Icons16_block],
   ['/sites/interventions-hub/src/assets/16/borrow.svg', Icons16_borrow],
   ['/sites/interventions-hub/src/assets/16/bullet-generic.svg', Icons16_bullet_generic],
@@ -994,7 +989,6 @@ const assetMap = new Map<string, string>([
   ['/sites/interventions-hub/src/assets/24/bills.svg', Icons24_bills],
   ['/sites/interventions-hub/src/assets/24/biometrics-face.svg', Icons24_biometrics_face],
   ['/sites/interventions-hub/src/assets/24/biometrics-fingerprint.svg', Icons24_biometrics_fingerprint],
-  ['/sites/interventions-hub/src/assets/24/bitcoin-lightning.svg', Icons24_bitcoin_lightning],
   ['/sites/interventions-hub/src/assets/24/block.svg', Icons24_block],
   ['/sites/interventions-hub/src/assets/24/borrow.svg', Icons24_borrow],
   ['/sites/interventions-hub/src/assets/24/bullet-generic.svg', Icons24_bullet_generic],
@@ -1293,7 +1287,6 @@ const assetMap = new Map<string, string>([
   ['/sites/interventions-hub/src/assets/32/bills.svg', Icons32_bills],
   ['/sites/interventions-hub/src/assets/32/biometrics-face.svg', Icons32_biometrics_face],
   ['/sites/interventions-hub/src/assets/32/biometrics-fingerprint.svg', Icons32_biometrics_fingerprint],
-  ['/sites/interventions-hub/src/assets/32/bitcoin-lightning.svg', Icons32_bitcoin_lightning],
   ['/sites/interventions-hub/src/assets/32/block.svg', Icons32_block],
   ['/sites/interventions-hub/src/assets/32/borrow.svg', Icons32_borrow],
   ['/sites/interventions-hub/src/assets/32/bundle-safe.svg', Icons32_bundle_safe],
@@ -1467,7 +1460,6 @@ const assetMap = new Map<string, string>([
   ['/sites/interventions-hub/src/assets/navigation/account.svg', NavigationIcons_account],
   ['/sites/interventions-hub/src/assets/navigation/activity.svg', NavigationIcons_activity],
   ['/sites/interventions-hub/src/assets/navigation/back.svg', NavigationIcons_back],
-  ['/sites/interventions-hub/src/assets/navigation/bitcoin.svg', NavigationIcons_bitcoin],
   ['/sites/interventions-hub/src/assets/navigation/card.svg', NavigationIcons_card],
   ['/sites/interventions-hub/src/assets/navigation/close.svg', NavigationIcons_close],
   ['/sites/interventions-hub/src/assets/navigation/copy.svg', NavigationIcons_copy],

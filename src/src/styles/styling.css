@@ -1,0 +1,1100 @@
+
+/* LinkedIn Design System Component Styles */
+
+/* Button Base Styles */
+.linkedin-button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1x);
+  white-space: nowrap;
+  border-radius: var(--corner-radius-1x);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+  text-decoration: none;
+}
+
+.linkedin-button-base:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.linkedin-button-base:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.linkedin-button-base svg {
+  pointer-events: none;
+  width: var(--size-2x);
+  height: var(--size-2x);
+  flex-shrink: 0;
+}
+
+/* Disabled button icons */
+.linkedin-button-disabled svg {
+  color: inherit;
+  opacity: 1;
+}
+
+/* Button Variants */
+.linkedin-button-primary {
+  background-color: var(--color-action);
+  color: var(--white-a100);
+}
+
+.linkedin-button-primary:hover {
+  background-color: var(--color-action-hover);
+}
+
+.linkedin-button-primary:active {
+  background-color: var(--color-action-active);
+}
+
+.linkedin-button-destructive {
+  background-color: var(--color-negative);
+  color: var(--white-a100);
+}
+
+.linkedin-button-destructive:hover {
+  background-color: var(--color-negative-hover);
+}
+
+.linkedin-button-destructive:active {
+  background-color: var(--color-negative-active);
+}
+
+.linkedin-button-outline {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-border-faint);
+}
+
+.linkedin-button-outline:hover {
+  background-color: var(--color-background-faint);
+  border-color: var(--color-border-faint-hover);
+}
+
+.linkedin-button-outline:active {
+  background-color: var(--color-background-faint-active);
+  border-color: var(--color-border-faint-active);
+}
+
+.linkedin-button-secondary {
+  background-color: var(--color-background-neutral-soft);
+  color: var(--color-text);
+}
+
+.linkedin-button-secondary:hover {
+  background-color: var(--color-background-neutral-strong);
+}
+
+.linkedin-button-secondary:active {
+  background-color: var(--color-background-neutral-strong);
+}
+
+.linkedin-button-ghost {
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.linkedin-button-ghost:hover {
+  background-color: var(--color-background-faint);
+}
+
+.linkedin-button-ghost:active {
+  background-color: var(--color-background-faint-active);
+}
+
+.linkedin-button-link {
+  background-color: transparent;
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.linkedin-button-link:hover {
+  color: var(--color-link-hover);
+}
+
+.linkedin-button-link:active {
+  color: var(--color-link-active);
+}
+
+/* Button Sizes */
+.linkedin-button-default {
+  height: var(--size-6x); /* 48px for medium */
+  padding: var(--space-1_5x) var(--space-2_5x);
+  border-radius: var(--corner-radius-3x);
+}
+
+.linkedin-button-small {
+  height: var(--size-4x); /* 32px for small */
+  padding: var(--space-0_5x) var(--space-1_5x);
+  gap: var(--space-0_5x);
+  border-radius: var(--corner-radius-3x);
+}
+
+.linkedin-button-large {
+  height: var(--size-6x);
+  padding: var(--space-1_5x) var(--space-3x);
+  border-radius: var(--corner-radius-1x);
+}
+
+.linkedin-button-icon {
+  width: var(--size-5x);
+  height: var(--size-5x);
+  padding: 0;
+  border-radius: var(--corner-radius-1x);
+}
+
+/* Secondary Button with Emphasis (Blue variant) */
+.linkedin-button-secondary-emphasis {
+  background-color: transparent;
+  color: var(--color-action);
+  border-color: var(--color-action);
+}
+
+.linkedin-button-secondary-emphasis:hover {
+  background-color: var(--color-background-action-transparent-hover);
+  border-color: var(--color-action-hover);
+  color: var(--color-action-hover);
+}
+
+.linkedin-button-secondary-emphasis:active {
+  background-color: var(--color-background-action-transparent-active);
+  border-color: var(--color-action-active);
+  color: var(--color-action-active);
+}
+
+/* Loading State */
+.linkedin-button-loading {
+  opacity: 1;
+}
+
+.linkedin-button-loading.linkedin-button-primary {
+  background-color: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+}
+
+.linkedin-button-loading.linkedin-button-outline,
+.linkedin-button-loading.linkedin-button-secondary-emphasis {
+  background-color: var(--color-background-disabled);
+  border-color: var(--color-border-disabled);
+  color: var(--color-text-disabled);
+}
+
+/* Disabled States */
+.linkedin-button-disabled {
+  cursor: not-allowed;
+}
+
+/* Primary Button Disabled */
+.linkedin-button-primary-disabled {
+  background-color: var(--color-background-solid-disabled);
+  color: var(--color-text-solid-disabled);
+  border-color: transparent;
+}
+
+.linkedin-button-primary-disabled:hover,
+.linkedin-button-primary-disabled:active,
+.linkedin-button-primary-disabled:focus-visible {
+  background-color: var(--color-background-solid-disabled);
+  color: var(--color-text-solid-disabled);
+  border-color: transparent;
+  outline: none;
+}
+
+/* Secondary Button Disabled (Default - Grey outline) */
+.linkedin-button-secondary-disabled {
+  background-color: var(--color-background);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+}
+
+.linkedin-button-secondary-disabled:hover,
+.linkedin-button-secondary-disabled:active,
+.linkedin-button-secondary-disabled:focus-visible {
+  background-color: var(--color-background);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  outline: none;
+}
+
+/* Secondary Button Disabled (Emphasis - Blue outline) */
+.linkedin-button-secondary-emphasis-disabled {
+  background-color: var(--color-background);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+}
+
+.linkedin-button-secondary-emphasis-disabled:hover,
+.linkedin-button-secondary-emphasis-disabled:active,
+.linkedin-button-secondary-emphasis-disabled:focus-visible {
+  background-color: var(--color-background);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-disabled);
+  outline: none;
+}
+
+/* Card Styles */
+.linkedin-card {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--corner-radius-2x);
+  box-shadow: var(--elevation-raised);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3x);
+}
+
+.linkedin-card-header {
+  padding: var(--space-3x) var(--space-3x) 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: var(--space-1x);
+  align-items: start;
+}
+
+.linkedin-card-title {
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.linkedin-card-description {
+  color: var(--color-text-meta);
+}
+
+.linkedin-card-content {
+  padding: 0 var(--space-3x);
+}
+
+.linkedin-card-content:last-child {
+  padding-bottom: var(--space-3x);
+}
+
+.linkedin-card-footer {
+  padding: 0 var(--space-3x) var(--space-3x);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2x);
+}
+
+/* Input Styles */
+.linkedin-input {
+  width: 100%;
+  padding: var(--space-1x) var(--space-1_5x);
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--corner-radius-0_5x);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.linkedin-input:focus {
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 2px var(--color-background-action-transparent-hover);
+}
+
+.linkedin-input:disabled {
+  background-color: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.linkedin-input::placeholder {
+  color: var(--color-text-meta);
+}
+
+/* Label Styles */
+.linkedin-label {
+  color: var(--color-label);
+  font-weight: 500;
+  display: block;
+  margin-bottom: var(--space-0_5x);
+}
+
+/* Badge Styles */
+.linkedin-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-0_25x) var(--space-1x);
+  border-radius: var(--corner-radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.linkedin-badge-default {
+  background-color: var(--color-background-accent-strong-1);
+  color: var(--color-accent-1);
+}
+
+.linkedin-badge-secondary {
+  background-color: var(--color-background-neutral-soft);
+  color: var(--color-text);
+}
+
+.linkedin-badge-destructive {
+  background-color: var(--color-background-negative-strong);
+  color: var(--color-negative);
+}
+
+.linkedin-badge-outline {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-faint);
+}
+
+/* Progress Styles */
+.linkedin-progress {
+  width: 100%;
+  height: var(--space-1x);
+  background-color: var(--color-track-faint);
+  border-radius: var(--corner-radius-full);
+  overflow: hidden;
+}
+
+.linkedin-progress-indicator {
+  background-color: var(--color-action);
+  height: 100%;
+  transition: all 0.2s ease-in-out;
+  border-radius: var(--corner-radius-full);
+}
+
+/* Alert Styles */
+.linkedin-alert {
+  padding: var(--space-2x);
+  border-radius: var(--corner-radius-1x);
+  border: 1px solid var(--color-border-faint);
+  display: flex;
+  gap: var(--space-1_5x);
+  align-items: flex-start;
+}
+
+.linkedin-alert-default {
+  background-color: var(--color-background-accent-soft-4);
+  border-color: var(--color-accent-4);
+}
+
+.linkedin-alert-destructive {
+  background-color: var(--color-background-negative-soft);
+  border-color: var(--color-negative);
+}
+
+.linkedin-alert-title {
+  color: var(--color-text);
+  font-weight: 600;
+  margin-bottom: var(--space-0_5x);
+}
+
+.linkedin-alert-description {
+  color: var(--color-text-meta);
+}
+
+/* Skeleton Styles */
+.linkedin-skeleton {
+  background-color: var(--color-background-faint);
+  border-radius: var(--corner-radius-0_5x);
+  animation: linkedin-skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes linkedin-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Table Styles */
+.linkedin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.linkedin-table-header {
+  border-bottom: 1px solid var(--color-border-faint);
+}
+
+.linkedin-table-head {
+  padding: var(--space-2x);
+  text-align: left;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.linkedin-table-row {
+  border-bottom: 1px solid var(--color-border-faint);
+}
+
+.linkedin-table-row:hover {
+  background-color: var(--color-background-faint);
+}
+
+.linkedin-table-cell {
+  padding: var(--space-2x);
+  color: var(--color-text);
+}
+
+/* Switch Styles */
+.linkedin-switch {
+  width: var(--size-6x);
+  height: var(--size-3x);
+  background-color: var(--color-track-faint);
+  border-radius: var(--corner-radius-full);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.linkedin-switch[data-state="checked"] {
+  background-color: var(--color-checked);
+}
+
+.linkedin-switch-thumb {
+  width: var(--size-2_5x);
+  height: var(--size-2_5x);
+  background-color: var(--white-a100);
+  border-radius: var(--corner-radius-full);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px var(--black-a30);
+}
+
+.linkedin-switch[data-state="checked"] .linkedin-switch-thumb {
+  transform: translateX(calc(var(--size-3x) - 2px));
+}
+
+/* Checkbox Styles */
+.linkedin-checkbox {
+  width: var(--size-2x);
+  height: var(--size-2x);
+  border: 1px solid var(--color-border);
+  border-radius: var(--corner-radius-0_5x);
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkedin-checkbox[data-state="checked"] {
+  background-color: var(--color-checked);
+  border-color: var(--color-checked);
+  color: var(--white-a100);
+}
+
+/* Radio Button Styles */
+.linkedin-radio {
+  width: var(--size-2x);
+  height: var(--size-2x);
+  border: 1px solid var(--color-border);
+  border-radius: var(--corner-radius-full);
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkedin-radio[data-state="checked"] {
+  border-color: var(--color-checked);
+}
+
+.linkedin-radio[data-state="checked"]::after {
+  content: '';
+  width: var(--space-1x);
+  height: var(--space-1x);
+  background-color: var(--color-checked);
+  border-radius: var(--corner-radius-full);
+}
+
+/* Separator Styles */
+.linkedin-separator {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border-faint);
+  margin: var(--space-2x) 0;
+}
+
+.linkedin-separator-vertical {
+  width: 1px;
+  height: auto;
+  margin: 0 var(--space-2x);
+}
+
+/* Textarea Styles */
+.linkedin-textarea {
+  display: flex;
+  min-height: calc(var(--size-8x) + var(--space-2x));
+  width: 100%;
+  border-radius: var(--corner-radius-0_5x);
+  border: 1px solid var(--color-border-faint);
+  background-color: var(--color-background);
+  padding: var(--space-1_5x);
+  color: var(--color-text);
+  resize: vertical;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.linkedin-textarea:focus {
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 2px var(--color-background-action-transparent-hover);
+}
+
+.linkedin-textarea:disabled {
+  background-color: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  resize: none;
+}
+
+.linkedin-textarea::placeholder {
+  color: var(--color-text-meta);
+}
+
+/* Slider Styles */
+.linkedin-slider {
+  position: relative;
+  display: flex;
+  width: 100%;
+  touch-action: none;
+  user-select: none;
+  align-items: center;
+}
+
+.linkedin-slider-track {
+  position: relative;
+  height: var(--space-1x);
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: var(--corner-radius-full);
+  background-color: var(--color-track-faint);
+}
+
+.linkedin-slider-range {
+  position: absolute;
+  height: 100%;
+  background-color: var(--color-action);
+}
+
+.linkedin-slider-thumb {
+  display: block;
+  height: var(--size-2_5x);
+  width: var(--size-2_5x);
+  border-radius: var(--corner-radius-full);
+  border: 2px solid var(--color-action);
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.linkedin-slider-thumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-background-action-transparent-hover);
+}
+
+.linkedin-slider-thumb:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Tabs Styles */
+.linkedin-tabs-list {
+  display: inline-flex;
+  height: var(--size-6x);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--corner-radius-1x);
+  background-color: var(--color-background-neutral-soft);
+  padding: var(--space-0_5x);
+  color: var(--color-text-meta);
+}
+
+.linkedin-tabs-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--corner-radius-0_5x);
+  padding: var(--space-1x) var(--space-1_5x);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+}
+
+.linkedin-tabs-trigger:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.linkedin-tabs-trigger:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.linkedin-tabs-trigger[data-state="active"] {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  box-shadow: var(--elevation-raised);
+}
+
+.linkedin-tabs-content {
+  margin-top: var(--space-2x);
+  outline: none;
+}
+
+.linkedin-tabs-content:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+/* Accordion Styles */
+.linkedin-accordion-item {
+  border-bottom: 1px solid var(--color-border-faint);
+}
+
+.linkedin-accordion-trigger {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2x) 0;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  width: 100%;
+  text-align: left;
+}
+
+.linkedin-accordion-trigger:hover {
+  text-decoration: underline;
+}
+
+.linkedin-accordion-trigger:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.linkedin-accordion-trigger[data-state="open"] svg {
+  transform: rotate(180deg);
+}
+
+.linkedin-accordion-trigger svg {
+  height: var(--size-2x);
+  width: var(--size-2x);
+  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.linkedin-accordion-content {
+  overflow: hidden;
+  color: var(--color-text-meta);
+  transition: all 0.2s ease-in-out;
+}
+
+.linkedin-accordion-content[data-state="open"] {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.linkedin-accordion-content[data-state="closed"] {
+  animation: accordion-up 0.2s ease-out;
+}
+
+.linkedin-accordion-content-inner {
+  padding-bottom: var(--space-2x);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Dialog/Modal Styles */
+.linkedin-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: var(--color-scrim);
+  animation: overlay-show 0.15s ease-out;
+}
+
+@keyframes overlay-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.linkedin-dialog-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  display: grid;
+  width: 100%;
+  max-width: var(--panel-large);
+  transform: translate(-50%, -50%);
+  gap: var(--space-2x);
+  border: 1px solid var(--color-border-faint);
+  background-color: var(--color-background);
+  padding: var(--space-3x);
+  box-shadow: var(--elevation-raised);
+  border-radius: var(--corner-radius-2x);
+  animation: content-show 0.15s ease-out;
+}
+
+@keyframes content-show {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.linkedin-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1x);
+  text-align: center;
+}
+
+.linkedin-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-2x);
+}
+
+@media (min-width: 640px) {
+  .linkedin-dialog-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+.linkedin-dialog-title {
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.linkedin-dialog-description {
+  color: var(--color-text-meta);
+}
+
+/* Dropdown Menu Styles */
+.linkedin-dropdown-content {
+  z-index: 50;
+  min-width: var(--size-12x);
+  overflow: hidden;
+  border-radius: var(--corner-radius-1x);
+  border: 1px solid var(--color-border-faint);
+  background-color: var(--color-background);
+  padding: var(--space-0_5x);
+  color: var(--color-text);
+  box-shadow: var(--elevation-raised);
+  animation: content-show 0.15s ease-out;
+}
+
+.linkedin-dropdown-item {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  border-radius: var(--corner-radius-0_5x);
+  padding: var(--space-1x) var(--space-2x);
+  outline: none;
+  transition: colors 0.2s ease-in-out;
+}
+
+.linkedin-dropdown-item:focus {
+  background-color: var(--color-background-faint);
+  color: var(--color-text);
+}
+
+.linkedin-dropdown-item:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.linkedin-dropdown-item svg {
+  margin-right: var(--space-1x);
+  height: var(--size-2x);
+  width: var(--size-2x);
+}
+
+.linkedin-dropdown-label {
+  padding: var(--space-1x) var(--space-2x);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.linkedin-dropdown-separator {
+  margin: var(--space-0_5x) calc(-1 * var(--space-0_5x));
+  height: 1px;
+  background-color: var(--color-border-faint);
+}
+
+/* Popover Styles */
+.linkedin-popover-content {
+  z-index: 50;
+  width: var(--panel-medium);
+  border-radius: var(--corner-radius-1x);
+  border: 1px solid var(--color-border-faint);
+  background-color: var(--color-background);
+  padding: var(--space-2x);
+  color: var(--color-text);
+  box-shadow: var(--elevation-raised);
+  outline: none;
+  animation: content-show 0.15s ease-out;
+}
+
+/* Tooltip Styles */
+.linkedin-tooltip-content {
+  z-index: 50;
+  overflow: hidden;
+  border-radius: var(--corner-radius-0_5x);
+  border: 1px solid var(--color-border-faint);
+  background-color: var(--color-background-overlay);
+  padding: var(--space-0_5x) var(--space-1_5x);
+  color: var(--color-text-knockout);
+  box-shadow: var(--elevation-raised);
+  animation: content-show 0.15s ease-out;
+}
+
+/* Breadcrumb Styles */
+.linkedin-breadcrumb {
+  color: var(--color-text-meta);
+}
+
+.linkedin-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1x);
+  break-words: break-word;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.linkedin-breadcrumb-link {
+  color: var(--color-text-meta);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.linkedin-breadcrumb-link:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.linkedin-breadcrumb-page {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.linkedin-breadcrumb-separator {
+  color: var(--color-text-meta);
+}
+
+/* Pagination Styles */
+.linkedin-pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.linkedin-pagination-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-0_5x);
+}
+
+.linkedin-pagination-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--corner-radius-0_5x);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+  min-width: var(--size-5x);
+  height: var(--size-5x);
+  padding: 0 var(--space-1x);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.linkedin-pagination-item:hover {
+  background-color: var(--color-background-faint);
+}
+
+.linkedin-pagination-item:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.linkedin-pagination-item[aria-current="page"] {
+  background-color: var(--color-action);
+  color: var(--white-a100);
+}
+
+.linkedin-pagination-item:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.linkedin-pagination-ellipsis {
+  display: flex;
+  height: var(--size-5x);
+  width: var(--size-5x);
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-meta);
+}
+
+/* Avatar Styles */
+.linkedin-avatar {
+  position: relative;
+  display: flex;
+  height: var(--size-6x);
+  width: var(--size-6x);
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--corner-radius-full);
+}
+
+.linkedin-avatar-image {
+  aspect-ratio: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.linkedin-avatar-fallback {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--corner-radius-full);
+  background-color: var(--color-background-neutral-soft);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Toggle Styles */
+.linkedin-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--corner-radius-0_5x);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: var(--color-text);
+  height: var(--size-5x);
+  padding: 0 var(--space-1_5x);
+}
+
+.linkedin-toggle:hover {
+  background-color: var(--color-background-faint);
+}
+
+.linkedin-toggle:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 2px;
+}
+
+.linkedin-toggle[data-state="on"] {
+  background-color: var(--color-background-faint);
+  color: var(--color-text);
+}
+
+.linkedin-toggle:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Typography defaults using LinkedIn Design System */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text);
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  color: var(--color-text);
+  line-height: 1.5;
+  margin: 0;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+a:visited:hover {
+  color: var(--color-link-visited-hover);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}

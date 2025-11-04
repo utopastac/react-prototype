@@ -44,11 +44,9 @@ import TimelineRow, {
   PLACING_END,
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
-import BalanceApplet from 'src/components/BalanceApplet';
-import SavingsApplet from 'src/components/SavingsApplet';
 import SearchBar from 'src/components/SearchBar';
 import AvatarCarousel from 'src/components/AvatarCarousel';
-import DiscoverPromo from 'src/components/DiscoverPromo';
+// Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
 import Button, { BUTTON_PROMINENT } from 'src/components/Buttons/Button';
 import IconBg, { ICON_BG_BRAND, ICON_BG_GRAY } from 'src/components/IconBg';
@@ -286,10 +284,7 @@ const ComponentsView = () => {
           }}
           onClick={()=>{}}
         />
-        <Divider size={DIVIDER_WITHIN_SECTION_MEDIUM} />
-        <BalanceApplet />
-        <Divider size={DIVIDER_WITHIN_SECTION_MEDIUM} />
-        <SavingsApplet />
+        {/* Applet components removed */}
         <Divider size={DIVIDER_BETWEEN_SECTION_EXTRA_LARGE_CELL} />
         <SearchBar placeholder="Search" />
         <AvatarCarousel
@@ -325,12 +320,7 @@ const ComponentsView = () => {
           ]}
         />
         <Divider size={DIVIDER_BETWEEN_SECTION_LARGE} />
-        <DiscoverPromo
-          title="New Interventions Hub Card"
-          body="Glitter card is here - and it's radiant"
-          button="Learn more"
-        />
-        <Divider size={DIVIDER_BETWEEN_SECTION_LARGE} />
+        {/* DiscoverPromo removed */}
       </ScrollContainer>
       <ButtonGroup
         buttons={[

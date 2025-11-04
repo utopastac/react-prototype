@@ -5,15 +5,13 @@ import styles from "./index.module.sass";
 import Icon, { ICON_EXTRA_SUBTLE } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 import { ICON_24, ICON_WHITE, ICON_PROMINENT } from "src/components/Icon";
-import { useTabBackground, BRAND } from 'src/containers/TabBackgroundContext';
 
 export interface NavigationBarProps {
   activeIndex: number;
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
-  const tabBackground = useTabBackground();
-  const inverse = tabBackground === BRAND;
+  const inverse = false;
 
   const tabData = [
     {icon: Icons.Discover, url: "/discover"},
@@ -31,7 +29,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   ));
 
   return (
-    <div className={`${styles.Main} ${inverse ? styles.brand : ""}`}>
+    <div className={`${styles.Main}`}>
       <div>
         {tabs}
       </div>

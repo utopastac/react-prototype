@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import * as Colors from "src/data/colors";
-import { useTheme } from 'src/containers/ThemeContext';
 import styles from "./index.module.sass";
 
 export interface CircularProgressProps {
@@ -9,8 +8,7 @@ export interface CircularProgressProps {
 }
 
 const CircularProgress = ({ progress, image }: CircularProgressProps) => {
-  const themeObject = useTheme();
-  const theme = themeObject.theme;
+  
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dpi = window.devicePixelRatio;
@@ -25,8 +23,8 @@ const CircularProgress = ({ progress, image }: CircularProgressProps) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const track = Colors.GetColor(Colors.BORDER_SUBTLE, theme);
-    const arc = Colors.GetColor(Colors.ICON_BRAND, theme);
+    const track = Colors.GetColor(Colors.COLOR_BORDER_SUBTLE);
+    const arc = Colors.GetColor(Colors.COLOR_LOGO_BRAND);
 
     fix_dpi(canvas);
     const ctx = canvas.getContext('2d');

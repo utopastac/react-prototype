@@ -28,14 +28,13 @@ interface AppProps {
   theme: string;        // Theme variant (light/dark)
   scale: string;        // Text scaling factor
   device: string;       // Device type for responsive design
-  tabBackground: string; // Background color for tabs
 }
 
 /**
  * Main App component that serves as the root of the Interventions Hub interface
  * Handles phone effects, keyboard shortcuts, and navigation
  */
-const App: React.FC<AppProps> = ({ theme, scale, device, tabBackground }) => {
+const App: React.FC<AppProps> = ({ theme, scale, device }) => {
   // Phone effects context provides state and controls for phone visibility and animations
   const { 
     phoneVisible,      // Whether the phone interface is visible
@@ -149,7 +148,6 @@ const App: React.FC<AppProps> = ({ theme, scale, device, tabBackground }) => {
       data-theme={theme}
       data-text-scale={scale}
       data-device={device}
-      data-tab-bg={tabBackground}
     >
       {/* Home Button - Navigates to the main discover view */}
       <button

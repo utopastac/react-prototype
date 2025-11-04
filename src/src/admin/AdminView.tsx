@@ -50,7 +50,6 @@ interface AdminViewProps {
   scale: string;
   device: string;
   font: string;
-  tabBackground: string;
 }
 
 // Utility to update deeply nested state (dot/bracket notation, arrays, deep objects)
@@ -78,8 +77,7 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
   theme,
   scale,
   device,
-  font,
-  tabBackground
+  font
 }) => {
   const [layoutState, dispatch] = useAdminLayoutContext();
   const { layout: activeLayout, index: activeIndex } = useActiveLayout();
@@ -577,7 +575,6 @@ const AdminViewContent: React.FC<AdminViewProps> = ({
         data-text-scale={scale}
         data-device={device}
         data-font={font}
-        data-tab-bg={tabBackground}
         style={{ background: adminTheme.backgroundColor }}
       >
         {/* Phone Preview Grid */}

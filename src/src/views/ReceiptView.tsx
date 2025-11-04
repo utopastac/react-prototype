@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
 import { AVATAR_64 } from "src/components/Avatar";
-import { useTabBackgroundDispatch, WHITE } from 'src/containers/TabBackgroundContext';
 // Import components directly
 import TopBar from 'src/components/TopBar';
 import Header, { HEADER_PAGE, HEADER_ICON, HEADER_AVATAR, HEADER_SECTION, HEADER_PROFILE } from 'src/components/Header';
@@ -22,13 +21,9 @@ import styles from "./index.module.sass";
 
 const ReceiptView = () => {
 
-  const tabBackgroundDispatch = useTabBackgroundDispatch();
   const navigate = useNavigate();
 
   useEffect(()=>{
-    tabBackgroundDispatch({
-      type: WHITE
-    });
   }, []);
 
   // Dummy transaction data

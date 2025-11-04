@@ -1,14 +1,13 @@
 import {Components, ComponentData} from 'src/data/Components';
 import { closeModal } from 'src/containers/TransitionContext';
 import * as Icons from 'src/data/Icons';
-import { WHITE } from 'src/containers/TabBackgroundContext';
-import Formblocker from 'src/containers/Formblocker';
+import InterventionScreen from 'src/containers/InterventionScreen';
 import LoadingWrapper from './LoadingWrapper';
 
 export const disputeFlowData = [
   {
     path: '/',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -60,7 +59,6 @@ export const disputeFlowData = [
           }
         },
       ],
-      tabBackground: WHITE,
       topBar: {
         isBackNavigation: true
       },
@@ -82,7 +80,7 @@ export const disputeFlowData = [
   },
   {
     path: 'transaction',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -147,7 +145,7 @@ export const disputeFlowData = [
   },
   {
     path: 'reason',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -236,7 +234,7 @@ export const disputeFlowData = [
   },
   {
     path: 'details',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -310,7 +308,7 @@ export const disputeFlowData = [
   },
   {
     path: 'merchant-contact',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -359,7 +357,7 @@ export const disputeFlowData = [
   },
   {
     path: 'description',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -401,7 +399,7 @@ export const disputeFlowData = [
   },
   {
     path: 'evidence',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -475,7 +473,7 @@ export const disputeFlowData = [
   },
   {
     path: 'contact',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -538,7 +536,7 @@ export const disputeFlowData = [
   },
   {
     path: 'review',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -598,7 +596,7 @@ export const disputeFlowData = [
   },
   {
     path: 'confirm',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {

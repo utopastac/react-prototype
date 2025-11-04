@@ -1,16 +1,16 @@
 import React from "react";
-import Formblocker, { FormblockerData } from 'src/containers/Formblocker';
+import InterventionScreen, { InterventionScreenData } from 'src/containers/InterventionScreen';
 import HalfSheet from 'src/components/HalfSheet';
 //
 interface FormblockerHalfsheetProps {
-  data: FormblockerData;
+  data: InterventionScreenData;
 }
 
 const FormblockerHalfsheet: React.FC<FormblockerHalfsheetProps> = ({ data }) => {
 
   return (
     <HalfSheet>
-      <Formblocker data={data} />
+      <InterventionScreen data={data} />
     </HalfSheet>
   );
 };

@@ -1,9 +1,9 @@
-import Formblocker from "src/containers/Formblocker";
+import InterventionScreen from "src/containers/InterventionScreen";
 import PageWrapper from "src/containers/PageWrapper";
 import ScrollContainer from 'src/containers/ScrollContainer';
 
 export {
-  Formblocker,
+  InterventionScreen,
   PageWrapper,
   ScrollContainer
 };

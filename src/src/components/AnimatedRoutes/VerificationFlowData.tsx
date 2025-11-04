@@ -1,15 +1,14 @@
 import { Components, ComponentData } from 'src/data/Components';
 import * as Icons from 'src/data/Icons';
-import { WHITE } from 'src/containers/TabBackgroundContext';
 import { Avatars } from 'src/data/Avatars';
-import Formblocker from 'src/containers/Formblocker';
+import InterventionScreen from 'src/containers/InterventionScreen';
 import LoadingWrapper from './LoadingWrapper';
 import { closeModal } from 'src/containers/TransitionContext';
 
 export const verificationFlowData = [
   {
     path: '/',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -65,7 +64,6 @@ export const verificationFlowData = [
           }
         }
       ],
-      tabBackground: WHITE,
       topBar: {
         left: { icon: Icons.Close },
         // onClick: -1,
@@ -76,7 +74,7 @@ export const verificationFlowData = [
   },
   {
     path: 'verify',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -117,7 +115,6 @@ export const verificationFlowData = [
           }
         }
       ],
-      tabBackground: WHITE,
       topBar: {
         isBackNavigation: true
       },
@@ -131,7 +128,7 @@ export const verificationFlowData = [
   },
   {
     path: 'code',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -168,7 +165,7 @@ export const verificationFlowData = [
   },
   {
     path: 'pre-confirmation',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -245,7 +242,7 @@ export const verificationFlowData = [
   },
   {
     path: 'alias',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -303,7 +300,7 @@ export const verificationFlowData = [
   },
   {
     path: 'devices',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {
@@ -359,7 +356,7 @@ export const verificationFlowData = [
   },
   {
     path: 'confirmation',
-    component: Formblocker,
+    component: InterventionScreen,
     data: {
       sections: [
         {

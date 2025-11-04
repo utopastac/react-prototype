@@ -2,7 +2,7 @@
 
 .scrim
   position: relative
-  background: var(--scrim-background)
+  background: var(--color-scrim)
   display: flex
   align-items: center
   justify-content: center
@@ -12,7 +12,7 @@
   margin-top: -47px
 
 .modal
-  background: var(--semantic-background-app)
+  background: var(--color-background)
   border-radius: $radius-l
   display: flex
   width: 100%
@@ -32,11 +32,11 @@
 
 .title
   @extend %body-label-m
-  color: var(--semantic-text-standard)
+  color: var(--color-text)
 
 .description
   @extend %body-body-m
-  color: var(--semantic-text-standard)
+  color: var(--color-text)
 
 .buttons
   width: 100%
@@ -50,13 +50,13 @@
   outline: none
   border: none
   background: none
-  border-top: 1px solid var(--semantic-border-subtle)
+  border-top: 1px solid var(--color-border-faint)
   @extend %component-button
 
 .primaryButton
   @extend .modalButton
-  color: var(--semantic-text-standard)
+  color: var(--color-text)
 
 .secondaryButton
   @extend .modalButton
-  color: var(--semantic-text-subtle)
+  color: var(--color-text-meta)

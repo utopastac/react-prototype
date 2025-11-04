@@ -14,8 +14,8 @@ export const UPDATE_THEME = 'UPDATE_THEME';
  * These constants define the available color themes for the application
  * Each theme has corresponding CSS variables defined in _colors.sass
  */
-export const LIGHT = "THEME_LIGHT";      // Default light theme with white background
-export const DARK = "THEME_DARK";        // Dark theme with black background
+export const LIGHT = "light";      // Default light theme with white background
+export const DARK = "dark";        // Dark theme with black background
 
 // ===== SCALE CONSTANTS =====
 /**
