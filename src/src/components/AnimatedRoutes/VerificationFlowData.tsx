@@ -31,7 +31,7 @@ export const verificationFlowData = [
             body: '$dmartinez',
             left: { type: 'avatar', image: Avatars.Darren },
             right: { type: 'push' },
-            action: { path: 'account-linking/verify', type: BUTTON_ACTION_PATH }
+            action: { path: '/flows/account-linking/verify', type: BUTTON_ACTION_PATH }
           }
         },
         {
@@ -41,7 +41,7 @@ export const verificationFlowData = [
             body: '$diogomartinez',
             left: { type: 'avatar', image: Avatars.Isaac },
             right: { type: 'push' },
-            action: { path: 'account-linking/verify', type: BUTTON_ACTION_PATH }
+            action: { path: '/flows/account-linking/verify', type: BUTTON_ACTION_PATH }
           }
         },
         {
@@ -98,7 +98,7 @@ export const verificationFlowData = [
             body: '***-***-4567',
             right: { type: 'radio' },
             checkedValue: 'phone',
-            path: 'account-linking/code'
+            path: '/flows/account-linking/code'
           }
         },
         {
@@ -112,7 +112,7 @@ export const verificationFlowData = [
             body: 'd*******z@gmail.com',
             right: { type: 'radio' },
             checkedValue: 'email',
-            path: 'account-linking/code'
+            path: '/flows/account-linking/code'
           }
         }
       ],
@@ -122,7 +122,7 @@ export const verificationFlowData = [
       buttons: {
         buttons: [
           { title: 'Verify another way', type: 'standard' },
-          { title: 'Continue', type: 'prominent', action: { path: 'account-linking/code', type: BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/flows/account-linking/code', type: BUTTON_ACTION_PATH } }
         ]
       }
     }
@@ -158,7 +158,7 @@ export const verificationFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: 'account-linking/pre-confirmation', type: BUTTON_ACTION_PATH }
+            action: { path: '/flows/account-linking/pre-confirmation', type: BUTTON_ACTION_PATH }
           }
         ]
       }
@@ -219,7 +219,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Continue', type: 'prominent', action: { path: '/account-linking/progress', type: BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/flows/account-linking/progress', type: BUTTON_ACTION_PATH } }
         ],
         disclaimer: "After you connect your accounts, they can't be disconnected.",
         showHairline: true
@@ -229,7 +229,7 @@ export const verificationFlowData = [
   {
     path: 'progress',
     component: LoadingWrapper,
-    route: 'account-linking/alias',
+    route: '/flows/account-linking/alias',
     data: {
       sections: [
         {
@@ -293,7 +293,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Continue', type: 'prominent', action: { path: 'account-linking/devices', type: BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/flows/account-linking/devices', type: BUTTON_ACTION_PATH } }
         ],
         disclaimer: 'You can update this info anytime in settings.'
       }
@@ -350,7 +350,7 @@ export const verificationFlowData = [
       buttons: {
         buttons: [
           { title: 'Log out all other devices', type: 'destructive' },
-          { title: 'Continue', type: 'prominent', action: { path: 'account-linking/confirmation', type: BUTTON_ACTION_PATH } }
+          { title: 'Continue', type: 'prominent', action: { path: '/flows/account-linking/confirmation', type: BUTTON_ACTION_PATH } }
         ]
       }
     }
@@ -406,7 +406,7 @@ export const verificationFlowData = [
       },
       buttons: {
         buttons: [
-          { title: 'Review Settings', type: 'prominent', action: { path: 'account', transition: closeModal, type: BUTTON_ACTION_PATH } }
+          { title: 'Review Settings', type: 'prominent', action: { path: '/flows/account', transition: closeModal, type: BUTTON_ACTION_PATH } }
         ]
       }
     }

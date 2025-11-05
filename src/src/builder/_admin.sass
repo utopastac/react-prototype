@@ -137,11 +137,11 @@ $admin-brand-subtle: rgba($admin-brand-highlight, 0.03)
     position: absolute
     @if $position == 'top'
       left: 50%
-      top: -size(8)
+      top: neg-size(8)
       transform: translateX(-50%) translateY(0)
     @if $position == 'bottom'
       left: 50%
-      bottom: -size(12)
+      bottom: neg-size(12)
       transform: translateX(-50%) translateY(0)
     @else if $position == 'left'
       right: 100%
@@ -153,11 +153,11 @@ $admin-brand-subtle: rgba($admin-brand-highlight, 0.03)
       transform: translateX(0) translateY(-50%)
     @else if $position == 'top-right'
       left: 100%
-      top: -size(8)
+      top: neg-size(8)
       transform: translateX(0) translateY(0)
     @else if $position == 'top-left'
       right: 100%
-      top: -size(8)
+      top: neg-size(8)
       transform: translateX(0) translateY(0)
     @else if $position == 'bottom-right'
       left: 100%

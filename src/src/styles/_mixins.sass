@@ -43,7 +43,7 @@ $screen-xxl: 1400px
 @function size($size)
   @return #{(calc($size / 10))}rem
 
-@function -size($size)
+@function neg-size($size)
   @return -#{(calc($size / 10))}rem
 
 // fixed spacing variables - subject to change LOL
@@ -52,7 +52,7 @@ $units: 8
 @function units($num)
   @return #{calc(($num * $units) / 10)}rem
 
-@function -units($num)
+@function neg-units($num)
   @return -#{calc(($num * $units) / 10)}rem
 
 %link-hover

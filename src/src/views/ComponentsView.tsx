@@ -87,7 +87,7 @@ const ComponentsView = () => {
           left={{
             icon: Icons.Close,
             onClick: ()=>{
-              navigate("discover")
+              navigate("/flows/discover")
             }
           }}
           right={{
