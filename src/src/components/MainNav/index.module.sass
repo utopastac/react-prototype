@@ -1,32 +1,41 @@
 @use "sass:color"
 
 .nav
-  position: sticky
+  position: fixed
+  left: 0
   top: 0
+  bottom: 0
+  width: size(200)
   z-index: 1000
-  background: var(--color-bg, #0b0b0c)
-  border-bottom: 1px solid color.adjust(#ffffff, $alpha: -0.9)
+  background: white;
+  border-right: 1px solid var(--color-border-faint)
 
 .list
   display: flex
-  align-items: center
-  gap: 12px
+  flex-direction: column
+  align-items: stretch
+  gap: 8px
   margin: 0
-  padding: 8px 12px
+  padding: 12px 8px
   list-style: none
+  height: 100%
+  overflow-y: auto
 
   li
     margin: 0
 
 .right
-  margin-left: auto
+  margin-top: auto
+  margin-left: 0
 
 .link
-  color: var(--color-text-secondary, #a0a0a8)
+  color: var(--color-text)
   text-decoration: none
-  padding: 6px 10px
+  padding: 10px 12px
   border-radius: 8px
+  font-size: size(16)
   transition: color 120ms ease, background 120ms ease
+  display: block
 
   &:hover
     color: var(--color-text, #ffffff)

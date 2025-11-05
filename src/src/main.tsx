@@ -11,6 +11,7 @@ import { Providers } from './Providers';
 import './styles/globals.css';
 import './styles/variables.css';
 import './index.sass';
+import styles from './layout.module.sass';
 
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -31,22 +32,24 @@ function WithThemeProps({ Component }: { Component: React.ComponentType<any> }) 
  */
 function AppWrapper() {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <MainNav />
-      <Routes>
-        {/* Default route -> Platform */}
-        <Route path="/" element={<Navigate to="/platform" replace />} />
+      <div className={styles.content}>
+        <Routes>
+          {/* Default route -> Platform */}
+          <Route path="/" element={<Navigate to="/platform" replace />} />
 
-        {/* Builder panel */}
-        <Route path="/builder" element={<WithThemeProps Component={BuilderView} />} />
+          {/* Builder panel */}
+          <Route path="/builder" element={<WithThemeProps Component={BuilderView} />} />
 
-        {/* Top-level pages (no phone interface) */}
-        <Route path="/platform" element={<WithThemeProps Component={PlatformView} />} />
-        <Route path="/patterns" element={<WithThemeProps Component={PatternsView} />} />
+          {/* Top-level pages (no phone interface) */}
+          <Route path="/platform" element={<WithThemeProps Component={PlatformView} />} />
+          <Route path="/patterns" element={<WithThemeProps Component={PatternsView} />} />
 
-        {/* Flows (phone interface) */}
-        <Route path="/flows/*" element={<WithThemeProps Component={App} />} />
-      </Routes>
+          {/* Flows (phone interface) */}
+          <Route path="/flows/*" element={<WithThemeProps Component={App} />} />
+        </Routes>
+      </div>
     </div>
   );
 }
