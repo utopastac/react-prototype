@@ -1515,27 +1515,30 @@ const assetMap = new Map<string, string>([
 export const transformImageUrl = (url: string): string => {
   if (!url) return '';
   
+  // Ensure url is a string (handles cases where non-string values are passed)
+  const urlString = typeof url === 'string' ? url : String(url);
+  
   // If it's already a full URL or data URL, return as is
-  if (url.startsWith('http') || url.startsWith('data:')) {
-    return url;
+  if (urlString.startsWith('http') || urlString.startsWith('data:')) {
+    return urlString;
   }
   
   // If it's a relative path that starts with /, try to transform it
-  if (url.startsWith('/')) {
+  if (urlString.startsWith('/')) {
     // Check if we have a mapping for this path
-    const transformedUrl = assetMap.get(url);
+    const transformedUrl = assetMap.get(urlString);
     if (transformedUrl) {
       return transformedUrl;
     }
     
     // If no mapping found, return the original URL (might work in development)
     // In production, this will likely fail, but we can't map everything
-    console.warn(`No asset mapping found for URL: ${url}`);
-    return url;
+    console.warn(`No asset mapping found for URL: ${urlString}`);
+    return urlString;
   }
   
   // If it's a Vite-processed URL (already transformed), return as is
-  return url;
+  return urlString;
 };
 
 /**

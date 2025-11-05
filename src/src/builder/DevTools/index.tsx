@@ -24,7 +24,6 @@ import ThemeSection from "src/builder/DevTools/ThemeSection";
 import LabeledInput from '../LabeledInput';
 import ToolbarButton from '../components/ToolbarButton';
 import TextButton from '../components/TextButton';
-import Signature from '../components/Signature';
 //
 
 /**
@@ -225,15 +224,6 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
                 </div>
               </DevToolsSection>
             </div>
-            
-            {/* Developer signature and intervention screen link */}
-            <Signature
-              contact="Contact @pwright"
-              buttonTitle="InterventionScreen maker"
-              buttonIcon={Icons.DocumentQuill24}
-              path={'/builder'}
-              buttonIconSize={'24'}
-            />
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,7 +5,6 @@ import ToolbarButton from 'src/builder/components/ToolbarButton';
 import ThemeSection from '../DevTools/ThemeSection';
 import BooleanInput from '../LabeledInput/BooleanInput';
 import TextButton from './TextButton';
-import Signature from './Signature';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
 
@@ -141,14 +140,6 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
             )}
           </ToolsSection>
         </div>
-        
-        {/* Footer signature with contact info and app preview button */}
-        <Signature
-          contact="Contact @pwright"
-          buttonTitle="App preview"
-          buttonIcon={Icons.DeviceMobile24}
-          buttonIconSize={"24"}
-        />
       </div>
     </motion.div>
   );

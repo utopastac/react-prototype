@@ -4,7 +4,6 @@ import ToolsSection from './ToolsSection';
 import ToolbarButton from 'src/builder/components/ToolbarButton';
 import ThemeSection from '../DevTools/ThemeSection';
 import TextButton from './TextButton';
-import Signature from './Signature';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
 import SliderInput from '../LabeledInput/SliderInput';
@@ -386,12 +385,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
               />
             </ToolsSection>
           </div>
-            <Signature
-            contact="Contact @pwright"
-            buttonTitle="App preview"
-            buttonIcon={Icons.DeviceMobile24}
-              buttonIconSize={"24"}
-          />
         </>
       );
     }
@@ -447,12 +440,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
             />
           </ToolsSection>
         </div>
-        <Signature
-          contact="Contact @pwright"
-          buttonTitle="App preview"
-          buttonIcon={Icons.DeviceMobile24}
-          buttonIconSize={"24"}
-        />
       </>
     );
   };

@@ -10,6 +10,8 @@
   z-index: 1000
   background: white;
   border-right: 1px solid var(--color-border-faint)
+  display: flex
+  flex-direction: column
 
 .list
   display: flex
@@ -19,7 +21,7 @@
   margin: 0
   padding: 12px 8px
   list-style: none
-  height: 100%
+  flex: 1
   overflow-y: auto
 
   li
@@ -46,5 +48,22 @@
   @extend .link
   color: var(--color-text, #ffffff)
   background: color.adjust(#ffffff, $alpha: -0.85)
+
+.Signature
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  margin-top: auto
+  padding-top: 12px
+  border-top: 1px solid var(--color-border-faint)
+
+  h5
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 16px 12px
+    font-size: 1.1rem
+    color: rgba(0, 0, 0, 0.5)
+    margin: 0 !important
 
 

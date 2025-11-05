@@ -4,7 +4,6 @@ import ToolsSection from './ToolsSection';
 import ToolbarButton from 'src/builder/components/ToolbarButton';
 import BooleanInput from '../LabeledInput/BooleanInput';
 import TextButton from './TextButton';
-import Signature from './Signature';
 import SelectInput from '../LabeledInput/SelectInput';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
@@ -153,12 +152,6 @@ const PhoneSettingsPanel: React.FC<PhoneSettingsPanelProps> = ({
               />
             </ToolsSection>
           </div>
-          <Signature
-            contact="Contact @pwright"
-            buttonTitle="App preview"
-            buttonIcon={Icons.DeviceMobile24}
-            buttonIconSize={"24"}
-          />
         </div>
       </div>
     </motion.div>
