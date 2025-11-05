@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.sass";
-import Icon, { IconPropMeta, IconSize, IconColor } from "../Icon";
+import Icon, { IconPropMeta } from "../Icon";
 
 export interface TextAreaProps {
   label: string;

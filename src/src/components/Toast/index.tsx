@@ -1,5 +1,5 @@
 import React from "react";
-import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
+import Icon, { IconPropMeta } from "src/components/Icon";
 import styles from "./index.module.sass";
 
 export interface ToastProps {

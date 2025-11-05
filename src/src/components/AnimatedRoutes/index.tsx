@@ -67,43 +67,43 @@ const AnimatedRoutes = () => {
     <div className={styles.routesWrapper}>
       <AnimatePresence initial={false}>
         <Routes location={location} key={location.pathname}>
-          {/* Default route - redirect to discover */}
-          <Route path="/" element={<Navigate to="/discover" replace />} />
-          
-          <Route path="/components" element={withRouteContainer(ComponentsView)} />
-          <Route path="/discover" element={withRouteContainer(DiscoverView)} />
-          <Route path="/feed" element={withRouteContainer(FeedView)} />
-          <Route path="/account" element={withRouteContainer(AccountView)} />
-          <Route path="/receipt" element={withRouteContainer(ReceiptView)} />
-          <Route path="/chavez" element={withRouteContainer(ChavezView)} />
-          <Route path="/parallax" element={withRouteContainer(ParallaxButtonView)} />
+          {/* Flows index -> discover */}
+          <Route index element={<Navigate to="discover" replace />} />
+
+          <Route path="components" element={withRouteContainer(ComponentsView)} />
+          <Route path="discover" element={withRouteContainer(DiscoverView)} />
+          <Route path="feed" element={withRouteContainer(FeedView)} />
+          <Route path="account" element={withRouteContainer(AccountView)} />
+          <Route path="receipt" element={withRouteContainer(ReceiptView)} />
+          <Route path="chavez" element={withRouteContainer(ChavezView)} />
+          <Route path="parallax" element={withRouteContainer(ParallaxButtonView)} />
           
           {/* Layout routes (Flows) - nested routes are handled within the layouts */}
           {/* <Route path="/account-linking/*" element={<VerificationLayout />} /> */}
 
           {/* Dispute flow */}
-          <Route path="/account-linking/*" element={
+          <Route path="account-linking/*" element={
             <Routes>
               {renderFlow(verificationFlowData)}
             </Routes>
           } />
           
           {/* Report flow */}
-          <Route path="/report/*" element={
+          <Route path="report/*" element={
             <Routes>
               {renderFlow(reportFlowData)}
             </Routes>
           } />
 
           {/* Dispute flow */}
-          <Route path="/dispute/*" element={
+          <Route path="dispute/*" element={
             <Routes>
               {renderFlow(disputeFlowData)}
             </Routes>
           } />
           
           {/* Flow start route */}
-          <Route path="/flow-start" element={withRouteContainer(FlowStartView, {
+          <Route path="flow-start" element={withRouteContainer(FlowStartView, {
             content: "<h1>Welcome to the Flow</h1><p>This is a customizable flow start page.</p>",
             startButtonPath: "/verification/step1",
             startButtonText: "Begin Verification"

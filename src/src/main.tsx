@@ -3,15 +3,19 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App.tsx';
+import MainNav from 'src/components/MainNav';
+import PlatformView from 'src/views/PlatformView';
+import PatternsView from 'src/views/PatternsView';
 import { Providers } from './Providers';
 
 import './styles/globals.css';
 import './styles/variables.css';
 import './index.sass';
+import styles from './layout.module.sass';
 
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import AdminView from 'src/admin/AdminView';
+import BuilderView from 'src/views/BuilderView';
 import { useTheme } from './containers/ThemeContext';
 
 // Wrapper to inject theme-related props
@@ -23,27 +27,29 @@ function WithThemeProps({ Component }: { Component: React.ComponentType<any> }) 
 
 /**
  * AppWrapper component that handles routing and theme context
- * This component wraps the main App and AdminView with necessary context providers
+ * This component wraps the main App and BuilderView with necessary context providers
  * and determines which route to render based on the current URL
  */
 function AppWrapper() {
   return (
-    <div>
-      <Routes>
-        {/* Admin panel route - accessible at /admin */}
-        <Route
-          path="/admin"
-          element={
-              <WithThemeProps Component={AdminView} />
-          }
-        />
-        
-        {/* Default route - renders the main App component for all other paths */}
-        <Route 
-          path="/*" 
-          element={<WithThemeProps Component={App} />} 
-        />
-      </Routes>
+    <div className={styles.wrapper}>
+      <MainNav />
+      <div className={styles.content}>
+        <Routes>
+          {/* Default route -> Platform */}
+          <Route path="/" element={<Navigate to="/platform" replace />} />
+
+          {/* Builder panel */}
+          <Route path="/builder" element={<WithThemeProps Component={BuilderView} />} />
+
+          {/* Top-level pages (no phone interface) */}
+          <Route path="/platform" element={<WithThemeProps Component={PlatformView} />} />
+          <Route path="/patterns" element={<WithThemeProps Component={PatternsView} />} />
+
+          {/* Flows (phone interface) */}
+          <Route path="/flows/*" element={<WithThemeProps Component={App} />} />
+        </Routes>
+      </div>
     </div>
   );
 }

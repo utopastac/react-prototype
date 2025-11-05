@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTransition, noTransition } from 'src/containers/TransitionContext';
 import styles from "./index.module.sass";
-import Icon, { IconSize, IconColor } from "src/components/Icon";
+import Icon from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 
 export interface NavigationBarProps {
@@ -13,8 +13,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   const inverse = false;
 
   const tabData = [
-    {icon: Icons.Discover, url: "/discover"},
-    {icon: Icons.Activity, url: "/activity"}
+  {icon: Icons.Discover, url: "discover"},
+  {icon: Icons.Activity, url: "activity"}
   ];
 
   const tabs = tabData.map((tab, index) => (

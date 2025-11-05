@@ -20,11 +20,11 @@ The image URL transformation system automatically converts these relative paths 
 
 The transformation is integrated at key points in the admin system:
 
-- **Flow Library Loading** (`src/admin/Modals/FlowLibraryModal.tsx`)
-- **URL Sharing** (`src/admin/hooks/useUrlSharing.ts`)
-- **Multi-Layout URL Sharing** (`src/admin/hooks/useMultiUrlSharing.ts`)
-- **Local Storage** (`src/admin/hooks/useLocalStorage.ts`)
-- **Multi-Layout Data** (`src/admin/hooks/useMultiLayoutData.ts`)
+- **Flow Library Loading** (`src/builder/Modals/FlowLibraryModal.tsx`)
+- **URL Sharing** (`src/builder/hooks/useUrlSharing.ts`)
+- **Multi-Layout URL Sharing** (`src/builder/hooks/useMultiUrlSharing.ts`)
+- **Local Storage** (`src/builder/hooks/useLocalStorage.ts`)
+- **Multi-Layout Data** (`src/builder/hooks/useMultiLayoutData.ts`)
 
 ### Asset Mapping Generation
 

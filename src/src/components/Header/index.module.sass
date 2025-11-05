@@ -1,4 +1,4 @@
-@import 'src/styles/site'
+@use 'src/styles/site' as *
 
 .Main
   padding: 0 $margin-default
@@ -35,7 +35,7 @@
     width: 100%
 
     &.offset
-      margin: -size(99) -size(16) 0 -size(16)// -99 to offset both the iosStatusBar and the TopBar height
+      margin: neg-size(99) neg-size(16) 0 neg-size(16)// -99 to offset both the iosStatusBar and the TopBar height
       width: calc(100% + (var(--margin-default)*2))
 
   .headerSection

@@ -54,16 +54,20 @@ const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
   // Ensure the icon URL is properly formatted for mask images
   const getIconUrl = () => {
     if (!icon) return '';
+    
+    // Convert icon to string if it's not already (handles imported SVG modules)
+    const iconUrl = typeof icon === 'string' ? icon : (icon as any)?.default || String(icon);
+    
     // If it's already a full URL, use it as is
-    if (icon.startsWith('http') || icon.startsWith('data:')) {
-      return icon;
+    if (iconUrl.startsWith('http') || iconUrl.startsWith('data:')) {
+      return iconUrl;
     }
     // If it's a relative path, ensure it starts with /
-    if (icon.startsWith('/')) {
-      return icon;
+    if (iconUrl.startsWith('/')) {
+      return iconUrl;
     }
     // Otherwise, assume it's a Vite-processed URL
-    return icon;
+    return iconUrl;
   };
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { IconSize, IconColor } from "src/components/Icon";
+import Icon from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 
 export interface FilterBarProps {

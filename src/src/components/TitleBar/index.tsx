@@ -1,7 +1,7 @@
 import React from "react";
 import { useTransitionNavigate, transitions } from 'src/hooks/useTransitionNavigate';
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps, IconSize, IconColor, IconPropMeta } from "src/components/Avatar";
+import Avatar, { AvatarProps } from "src/components/Avatar";
 import Icon, { IconPropMeta as IconPropMetaImport } from "src/components/Icon";
 import { useUser } from 'src/containers/UserContext';
 
@@ -28,7 +28,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ title, icon, right, inverse }) => {
   return (
     <div className={`${styles.Main} ${inverse ? styles.inverse : ""}`}>
       {element}
-      <div className={styles.avatar} onClick={()=>{transitionNavigate('/account', transitions.slideInOver)}}>
+      <div className={styles.avatar} onClick={()=>{transitionNavigate('account', transitions.slideInOver)}}>
         <Avatar image={avatar} size="32" {...right} />
       </div>
     </div>

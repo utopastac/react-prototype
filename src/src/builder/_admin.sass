@@ -1,0 +1,220 @@
+@use 'src/styles/site' as *
+
+$dev-warning: #ff4444
+$dev-tools-padding: size(16)
+$dev-tools-border-radius: size(4)
+$dev-tools-wrapper-border-radius: size(8)
+$dev-tools-input-size: size(28)
+$dev-tools-input-bg: rgba(0,0,0,0.1)
+$dev-tools-input-padding: size(8)
+$dev-tools-highlight: rgb(79, 101, 222)
+$dev-tools-input-focus: rgba(0,0,0,0.12)
+$dev-tools-input-hover: rgba(0,0,0,0.12)
+$dev-tools-button-bg: rgba(0,0,0,0.9)
+$dev-tools-button-hover: rgba(0,0,0,1)
+$dev-tools-section-gap: size(14)
+$dev-tools-text-dark: black
+$dev-tools-text-medium: rgba(black, 0.8)
+$dev-tools-text-light: rgba(black, 0.5)
+$dev-tools-text-lightest: rgba(black, 0.35)
+$dev-tools-text-button: #FFFFFF
+$dev-tools-chip-border: rgba(black, 0.3)
+$dev-tools-chip-hover: rgba(black, 0.1)
+$dev-tools-section-border: rgba(black, 0.1)
+$dev-tools-width: size(320)
+$dev-tools-section-header-height: size(56)
+$dev-tools-font-size-xs: 1rem
+$dev-tools-font-size-s: 1.1rem
+$dev-tools-font-size-m: 1.2rem
+$dev-tools-font-size-l: 1.4rem
+$dev-tools-font-size-xl: 1.5rem
+$dev-tools-input-font-size: $dev-tools-font-size-s
+$dev-tools-icon-font-size: 1.6rem
+$dev-tools-side-offset: size(0)
+$admin-panel-size: size(320)
+//
+$white: #fff
+$light-gray: #CCCCCC
+$gray-e4: #E4E4E4
+$gray-f4: #F4F4F4
+$gray-ef: #EFEFEF
+$gray-888: #888
+//
+:root
+  --component-highlight: rgba(12, 243, 0, 0.15)
+[data-theme="dark"]
+  --component-highlight: rgba(255, 255, 255, 0.2)
+//
+$admin-brand-highlight: #00c026
+$admin-brand-mid: rgba($admin-brand-highlight, 0.2)
+$admin-brand-light: rgba($admin-brand-highlight, 0.07)
+$admin-brand-subtle: rgba($admin-brand-highlight, 0.03)
+//
+%button-base
+  position: relative
+  border: none
+  cursor: pointer
+  border-radius: 4px
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: opacity 0.2s
+  font-size: $dev-tools-font-size-m
+  @extend %bold
+%button-primary
+  @extend %button-base
+  color: white
+  background: black
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    background: #222222
+    color: #fff
+  &:active
+    background: #444444
+%button-secondary
+  @extend %button-base
+  color: $dev-tools-text-medium
+  background: #E4E4E4
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    background: #E0E0E0
+  &:active
+    background: #d4d4d4
+%button-tertiary
+  @extend %button-base
+  margin-top: size(8)
+  color: $dev-tools-text-medium
+  border: 1px solid #d4d4d4
+  background: white
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    border-color: #b4b4b4
+  &:active
+    background: #F4F4F4
+%input-field
+  border: none
+  outline: none
+  appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  background: #f4f4f4
+  border-radius: size(8)
+  height: size(32)
+  padding: 0 size(12)
+  font-size: $dev-tools-font-size-s
+  box-sizing: border-box
+  width: 100%
+  min-width: 0
+  box-sizing: border-box
+  &:focus
+    outline: none
+    box-shadow: 0 0 0 2px #D2D2D2
+    border-color: #D2D2D2
+  &:active
+    background: #EFEFEF
+%input-label
+  display: block
+  @extend %bold
+  font-size: $dev-tools-font-size-s
+%dev-tools-select
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>') 
+  background-repeat: no-repeat
+  background-position: right size(12) center
+  padding-right: size(32)
+  align-items: center
+  font-size: $dev-tools-font-size-s
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  box-sizing: border-box
+%signature
+@mixin tooltip($title, $position: 'top', $delay: 0.1s)
+  &:after
+    content: $title
+    position: absolute
+    @if $position == 'top'
+      left: 50%
+      top: neg-size(8)
+      transform: translateX(-50%) translateY(0)
+    @if $position == 'bottom'
+      left: 50%
+      bottom: neg-size(12)
+      transform: translateX(-50%) translateY(0)
+    @else if $position == 'left'
+      right: 100%
+      top: 50%
+      transform: translateX(0) translateY(-50%)
+    @else if $position == 'right'
+      left: 100%
+      top: 50%
+      transform: translateX(0) translateY(-50%)
+    @else if $position == 'top-right'
+      left: 100%
+      top: neg-size(8)
+      transform: translateX(0) translateY(0)
+    @else if $position == 'top-left'
+      right: 100%
+      top: neg-size(8)
+      transform: translateX(0) translateY(0)
+    @else if $position == 'bottom-right'
+      left: 100%
+      top: 100%
+      transform: translateX(0) translateY(0)
+    @else if $position == 'bottom-left'
+      right: 100%
+      top: 100%
+      transform: translateX(0) translateY(0)
+    
+      
+    background: #222
+    color: #fff
+    padding: size(3) size(5)
+    border-radius: size(4)
+    font-size: $dev-tools-font-size-s
+    white-space: nowrap
+    opacity: 0
+    pointer-events: none
+    transition: opacity 0.2s, transform 0.2s
+    transition-delay: $delay
+    z-index: 10000
+  &:hover
+    &::after
+      opacity: 1
+      @if $position == 'top'
+        transform: translateX(-50%) translateY(-8px)
+      @if $position == 'bottom'
+        transform: translateX(-50%) translateY(8px)
+      @else if $position == 'left'
+        transform: translateX(-8px) translateY(-50%)
+      @else if $position == 'right'
+        transform: translateX(8px) translateY(-50%)
+      @else if $position == 'top-right'
+        transform: translateX(8px) translateY(-8px)
+      @else if $position == 'top-left'
+        transform: translateX(-8px) translateY(-8px)
+      @else if $position == 'bottom-right'
+        transform: translateX(8px) translateY(8px)
+      @else if $position == 'bottom-left'
+        transform: translateX(-8px) translateY(8px)
+%admin-panel
+  background: white
+  // border-radius: $dev-tools-wrapper-border-radius
+%dev-tools-dropdown
+  flex: 1
+  height: $dev-tools-input-size
+  border-radius: $dev-tools-border-radius
+  background: $dev-tools-input-bg
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 $dev-tools-input-padding
+  font-size: $dev-tools-input-font-size
+  cursor: pointer
+  color: $dev-tools-text-dark
+  &::after
+    content: "↓"
+  &:hover
+    background: $dev-tools-input-focus

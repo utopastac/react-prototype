@@ -1,4 +1,8 @@
-@import "utilz.sass"
-@import "mixins.sass"
-@import "variables.sass"
-@import "typography.sass"
+@forward "utilz.sass"
+@forward "mixins.sass"
+@forward "variables.sass" hide $screen-s, $screen-m, $screen-l, $screen-xl
+@forward "typography.sass"
+@use "utilz.sass" as *
+@use "mixins.sass" as *
+@use "variables.sass" as *
+@use "typography.sass" as *
