@@ -57,7 +57,7 @@ const AddAccountHalfsheet = () => {
           action = {
             {
               type: BUTTON_ACTION_PATH,
-              path: '/account-linking',
+              path: 'account-linking',
               transition: transitions.defaultTransition
             }
           }

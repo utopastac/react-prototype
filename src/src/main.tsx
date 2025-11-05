@@ -3,13 +3,16 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App.tsx';
+import MainNav from 'src/components/MainNav';
+import PlatformView from 'src/views/PlatformView';
+import PatternsView from 'src/views/PatternsView';
 import { Providers } from './Providers';
 
 import './styles/globals.css';
 import './styles/variables.css';
 import './index.sass';
 
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import AdminView from 'src/admin/AdminView';
 import { useTheme } from './containers/ThemeContext';
@@ -29,20 +32,20 @@ function WithThemeProps({ Component }: { Component: React.ComponentType<any> }) 
 function AppWrapper() {
   return (
     <div>
+      <MainNav />
       <Routes>
-        {/* Admin panel route - accessible at /admin */}
-        <Route
-          path="/admin"
-          element={
-              <WithThemeProps Component={AdminView} />
-          }
-        />
-        
-        {/* Default route - renders the main App component for all other paths */}
-        <Route 
-          path="/*" 
-          element={<WithThemeProps Component={App} />} 
-        />
+        {/* Default route -> Platform */}
+        <Route path="/" element={<Navigate to="/platform" replace />} />
+
+        {/* Admin panel */}
+        <Route path="/admin" element={<WithThemeProps Component={AdminView} />} />
+
+        {/* Top-level pages (no phone interface) */}
+        <Route path="/platform" element={<WithThemeProps Component={PlatformView} />} />
+        <Route path="/patterns" element={<WithThemeProps Component={PatternsView} />} />
+
+        {/* Flows (phone interface) */}
+        <Route path="/flows/*" element={<WithThemeProps Component={App} />} />
       </Routes>
     </div>
   );

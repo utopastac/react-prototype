@@ -28,7 +28,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ title, icon, right, inverse }) => {
   return (
     <div className={`${styles.Main} ${inverse ? styles.inverse : ""}`}>
       {element}
-      <div className={styles.avatar} onClick={()=>{transitionNavigate('/account', transitions.slideInOver)}}>
+      <div className={styles.avatar} onClick={()=>{transitionNavigate('account', transitions.slideInOver)}}>
         <Avatar image={avatar} size="32" {...right} />
       </div>
     </div>

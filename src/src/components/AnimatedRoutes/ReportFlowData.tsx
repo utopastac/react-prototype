@@ -36,12 +36,12 @@ export const reportFlowData = [
           {
             title: 'Cancel',
             type: 'standard',
-            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
+            action: { path: 'discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Report',
             type: 'prominent',
-            action: { path: '/report/type', type: BUTTON_ACTION_PATH },
+            action: { path: 'report/type', type: BUTTON_ACTION_PATH },
           },
         ]
       }
@@ -117,7 +117,7 @@ export const reportFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/report/details', type: BUTTON_ACTION_PATH },
+            action: { path: 'report/details', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -157,7 +157,7 @@ export const reportFlowData = [
           {
             title: 'Submit Report',
             type: 'prominent',
-            action: { path: '/report/loading', type: BUTTON_ACTION_PATH },
+            action: { path: 'report/loading', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -166,7 +166,7 @@ export const reportFlowData = [
   {
     path: 'loading',
     component: LoadingWrapper,
-    route: '/report/confirm',
+    route: 'report/confirm',
     data: {
       sections: [
         {
@@ -209,7 +209,7 @@ export const reportFlowData = [
           {
             title: 'Done',
             type: 'standard',
-            action: { path: '/discover', type: BUTTON_ACTION_PATH },
+            action: { path: 'discover', type: BUTTON_ACTION_PATH },
           }
         ]
       }

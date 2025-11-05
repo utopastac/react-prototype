@@ -75,15 +75,15 @@ const DevTools: React.FC<DevToolsProps> = ({ isToolsOpen, toggleTools }) => {
 
   // Navigation routes data for the Flows section
   const routeData = [
-    {title:"Components", path:"/components", description:"All UI components"},
-    {title:"App", path:"/discover", description:"Main app interface"},
-    {title:"Account", path:"/account", description:"User profile settings"},
-    {title:"Account linking", path:"/account-linking", description:"Account linking flow"},
-    {title:"Reporting", path:"/report", description:"User reporting flow"},
-    {title:"Disputes", path:"/dispute", description:"Disputes flow"},
-    {title:"Receipt", path:"/receipt", description:"Receipt view"},
-    {title:"Chavez", path:"/chavez", description:"Special features demo"},
-    {title:"Parallax", path:"/parallax", description:"Animation showcase"}
+    {title:"Components", path:"components", description:"All UI components"},
+    {title:"App", path:"discover", description:"Main app interface"},
+    {title:"Account", path:"account", description:"User profile settings"},
+    {title:"Account linking", path:"account-linking", description:"Account linking flow"},
+    {title:"Reporting", path:"report", description:"User reporting flow"},
+    {title:"Disputes", path:"dispute", description:"Disputes flow"},
+    {title:"Receipt", path:"receipt", description:"Receipt view"},
+    {title:"Chavez", path:"chavez", description:"Special features demo"},
+    {title:"Parallax", path:"parallax", description:"Animation showcase"}
   ];
 
   // Generate navigation links from route data

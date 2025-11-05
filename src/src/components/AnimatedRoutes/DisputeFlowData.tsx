@@ -68,12 +68,12 @@ export const disputeFlowData = [
           {
             title: 'Cancel',
             type: 'standard',
-            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
+            action: { path: 'discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Start Dispute',
             type: 'prominent',
-            action: { path: '/dispute/transaction', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/transaction', type: BUTTON_ACTION_PATH },
           },
         ]
       }
@@ -137,7 +137,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/reason', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/reason', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -226,7 +226,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/details', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/details', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -301,7 +301,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/merchant-contact', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/merchant-contact', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -350,7 +350,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/description', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/description', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -392,7 +392,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/evidence', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/evidence', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -460,12 +460,12 @@ export const disputeFlowData = [
           {
             title: 'Skip for Now',
             type: 'standard',
-            action: { path: '/dispute/contact', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/contact', type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/contact', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/contact', type: BUTTON_ACTION_PATH },
           }
         ],
         showHairline: true
@@ -529,7 +529,7 @@ export const disputeFlowData = [
           {
             title: 'Continue',
             type: 'prominent',
-            action: { path: '/dispute/review', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/review', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -569,12 +569,12 @@ export const disputeFlowData = [
           {
             title: 'Edit Information',
             type: 'standard',
-            action: { path: '/dispute/details', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/details', type: BUTTON_ACTION_PATH },
           },
           {
             title: 'Submit Dispute',
             type: 'prominent',
-            action: { path: '/dispute/loading', type: BUTTON_ACTION_PATH },
+            action: { path: 'dispute/loading', type: BUTTON_ACTION_PATH },
           }
         ]
       }
@@ -583,7 +583,7 @@ export const disputeFlowData = [
   {
     path: 'loading',
     component: LoadingWrapper,
-    route: '/dispute/confirm',
+    route: 'dispute/confirm',
     data: {
       sections: [
         {
@@ -685,7 +685,7 @@ export const disputeFlowData = [
           {
             title: 'Done',
             type: 'standard',
-            action: { path: '/discover', transition: closeModal, type: BUTTON_ACTION_PATH },
+            action: { path: 'discover', transition: closeModal, type: BUTTON_ACTION_PATH },
           }
         ]
       }
