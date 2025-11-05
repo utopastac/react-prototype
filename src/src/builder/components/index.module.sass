@@ -2,11 +2,11 @@
 @use 'src/builder/admin.sass' as *
 
 .ToolsSection
-  border-bottom: 1px solid $dev-tools-section-border
-  padding: size(8) $dev-tools-padding
+  border-bottom: 1px solid var(--builder-section-border)
+  padding: var(--builder-input-padding) var(--builder-padding)
   h3
     display: flex
     justify-content: space-between
     align-items: center
-    font-size: $dev-tools-font-size-l
+    font-size: var(--builder-font-size-l)
     @extend %medium

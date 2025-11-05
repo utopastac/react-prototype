@@ -16,21 +16,21 @@
     //position: fixed
     //top: 0
     //right: 0
-    width: $dev-tools-width
+    width: var(--builder-width)
     display: flex
     flex-direction: column
-    border-left: 1px solid $dev-tools-section-border
+    border-left: 1px solid var(--builder-section-border)
     > header
       display: flex
       align-items: center
       justify-content: space-between
-      padding: size(12) $dev-tools-padding size(10) $dev-tools-padding
+      padding: size(12) var(--builder-padding) size(10) var(--builder-padding)
       height: size(48)
       cursor: pointer
-      color: $dev-tools-text-medium
-      border-bottom: 1px solid $dev-tools-section-border
+      color: var(--builder-text-medium)
+      border-bottom: 1px solid var(--builder-section-border)
       h2
-        font-size: $dev-tools-font-size-s
+        font-size: var(--builder-font-size-s)
         @extend %medium
         letter-spacing: 0.02rem
         text-transform: uppercase
@@ -84,19 +84,19 @@
       opacity: 1
     &.active
       cursor: default
-      outline: 4px solid $dev-tools-button-bg
+      outline: 4px solid var(--builder-button-bg)
       outline-offset: -4px
       opacity: 1
   h5
-    padding: 0 $dev-tools-padding
-    font-size: $dev-tools-font-size-m
-    color: $dev-tools-text-medium
+    padding: 0 var(--builder-padding)
+    font-size: var(--builder-font-size-m)
+    color: var(--builder-text-medium)
     @extend %medium
     margin-bottom: size(6)
   h3, h4, h5, h6, p
     letter-spacing: -0.008rem
   ul.inputSection
-    padding: 0 $dev-tools-padding
+    padding: 0 var(--builder-padding)
     white-space: nowrap
     overflow-x: scroll
     width: 100%
@@ -110,34 +110,34 @@
       padding: 0 size(14)
       margin-right: size(4)
       border-radius: 500px
-      border: 1px solid $dev-tools-chip-border
-      font-size: $dev-tools-font-size-s
+      border: 1px solid var(--builder-chip-border)
+      font-size: var(--builder-font-size-s)
       cursor: pointer
       background: transparent
-      color: $dev-tools-text-dark
+      color: var(--builder-text-dark)
       &:hover
-        background: $dev-tools-chip-hover
+        background: var(--builder-chip-hover)
       &.active
-        background: $dev-tools-button-bg
-        color: $dev-tools-text-button
-        border-color: $dev-tools-button-bg
+        background: var(--builder-button-bg)
+        color: var(--builder-button-text)
+        border-color: var(--builder-button-bg)
         cursor: default
 .activityRows
   height: size(248)
   overflow-y: scroll
   padding: size(8) 0
 .activityRow
-  padding: 0 $dev-tools-padding
+  padding: 0 var(--builder-padding)
   display: flex
   align-items: center
   justify-content: space-between
-  height: $dev-tools-input-size
-  font-size: $dev-tools-input-font-size
+  height: var(--builder-input-size)
+  font-size: var(--builder-input-font-size)
   position: relative
   cursor: pointer
-  color: $dev-tools-text-medium
+  color: var(--builder-text-medium)
   &:hover
-    background: $dev-tools-input-bg
+    background: var(--builder-input-bg)
     p
       opacity: 0
     &::after
@@ -147,19 +147,19 @@
       right: size(4)
       height: size(20)
       padding: 0 size(8)
-      border-radius: $dev-tools-border-radius
+      border-radius: var(--builder-border-radius)
       display: flex
       @extend %medium
-      background: #ff4f64
+      background: var(--builder-warning)
       color: white
       justify-content: center
       align-items: center
   h4
     @extend %medium
   p
-    color: $dev-tools-text-light
+    color: var(--builder-text-light)
 .addActivity
-  padding: size(8) $dev-tools-padding
+  padding: var(--builder-input-padding) var(--builder-padding)
   .avatarInput
     display: flex
     align-items: center
@@ -181,14 +181,14 @@
   gap: 0px
   padding-bottom: size(8)
 .EffectInfo
-  padding: $dev-tools-padding
+  padding: var(--builder-padding)
 .Shortcuts
   max-height: 1000px
   opacity: 1
   pointer-events: auto
   padding: size(12) 0
   .shortcutGroup
-    border-top: 1px solid $dev-tools-section-border
+    border-top: 1px solid var(--builder-section-border)
     display: flex
     flex-direction: column
     gap: size(8)
@@ -201,4 +201,4 @@
   z-index: 10000
   top: size(8)
   right: size(8)
-  background: $gray-f4
+  background: var(--builder-gray-f4)

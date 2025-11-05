@@ -2,16 +2,16 @@
 
 @use 'src/builder/admin.sass' as *
 .SaveModal
-  padding: size(16)
+  padding: var(--builder-padding)
   input
     @extend %input-field
     width: 100%
 .LoadModal
-  padding: size(8)
+  padding: var(--builder-input-padding)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
-    padding: size(8)
+    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-m)
+    padding: var(--builder-input-padding)
   li
     @extend %button-base
     h4
@@ -19,45 +19,45 @@
       height: size(32)
       @extend %button-base
       justify-content: flex-start
-      color: $dev-tools-text-medium
-      font-size: $dev-tools-font-size-m
+      color: var(--builder-text-medium)
+      font-size: var(--builder-font-size-m)
       padding: size(4) size(12)
       &:hover
-        background: $gray-e4
+        background: var(--builder-gray-e4)
 .ShareModal
-  padding: size(16)
+  padding: var(--builder-padding)
   input
     @extend %input-field
   > div
     display: flex
-    gap: size(8)
+    gap: var(--builder-input-padding)
     align-items: center
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-m)
 .ConfirmModal
-  padding: size(16)
+  padding: var(--builder-padding)
   > div
     display: flex
-    gap: size(8)
-    margin-top: size(16)
+    gap: var(--builder-input-padding)
+    margin-top: var(--builder-padding)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-m)
 .WelcomeModal
   width: size(500)
 .WelcomeContent
-  padding: size(16)
+  padding: var(--builder-padding)
 .WelcomeSection
   margin-bottom: size(24)
   h4
-    color: $dev-tools-text-dark
-    font-size: $dev-tools-font-size-l
+    color: var(--builder-text-dark)
+    font-size: var(--builder-font-size-l)
     font-weight: 600
-    margin-bottom: size(8)
+    margin-bottom: var(--builder-input-padding)
   p
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-m)
     line-height: 1.5
     margin-bottom: size(12)
   ul
@@ -65,26 +65,26 @@
     padding: 0
     margin: 0
   li
-    color: $dev-tools-text-medium
-    font-size: $dev-tools-font-size-m
+    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-m)
     line-height: 1.6
     margin-bottom: size(6)
-    padding-left: size(16)
+    padding-left: var(--builder-padding)
     position: relative
     &:before
       content: "•"
       position: absolute
       left: 0
-      color: $dev-tools-text-light
+      color: var(--builder-text-light)
 .WelcomeFooter
   text-align: center
-  margin-top: size(8)
+  margin-top: var(--builder-input-padding)
 .WelcomeButton 
 .HistoryModal
-  padding: size(16)
+  padding: var(--builder-padding)
   max-height: size(400)
   overflow-y: auto
-  min-width: size(320)
+  min-width: var(--builder-width)
   .HistoryList
     padding: 0
     margin: 0
@@ -92,10 +92,10 @@
   .HistoryEntry
     display: flex
     align-items: center
-    padding: size(4) size(8)
-    border-radius: 4px
+    padding: size(4) var(--builder-input-padding)
+    border-radius: var(--builder-border-radius)
     margin-bottom: 2px
-    font-size: $dev-tools-font-size-m
+    font-size: var(--builder-font-size-m)
     transition: background 0.1s
     cursor: pointer
     border: 1px solid transparent
@@ -103,11 +103,11 @@
     font-weight: normal
     opacity: 1
     &:hover
-      background: $gray-e4
+      background: var(--builder-gray-e4)
   .HistoryEntryCurrent
-    background: #e0ffe0
+    background: var(--builder-brand-green-light)
     font-weight: bold
-    border: 1px solid #b2e5b2
+    border: 1px solid var(--builder-brand-green-border)
     cursor: default
   .HistoryEntryFuture
     opacity: 0.5
@@ -120,49 +120,49 @@
     font-family: monospace
     font-size: 12px
     margin-left: 12px
-    color: #888
+    color: var(--builder-gray-888)
     min-width: 70px
     text-align: right
   .HistoryModalActions
     display: flex
-    gap: 8px
+    gap: var(--builder-input-padding)
     margin-top: 12px
 
 .FlowLibraryModal
   // Templates Tab
   ul
-    padding: size(8)
+    padding: var(--builder-input-padding)
     display: flex
     flex-direction: column
-    gap: size(8)
+    gap: var(--builder-input-padding)
 
     li
-      border-radius: $dev-tools-border-radius
+      border-radius: var(--builder-border-radius)
       cursor: pointer
       display: flex
       align-items: center
       gap: size(4)
       
       &:hover
-        background: $gray-f4
+        background: var(--builder-gray-f4)
 
       .image
         width: size(100)
         height: size(56)
-        background: $gray-f4
+        background: var(--builder-gray-f4)
 
         img
           width: 100%
-          border-radius: $dev-tools-border-radius
+          border-radius: var(--builder-border-radius)
 
       .content
         flex: 1
-        padding: size(8)
+        padding: var(--builder-input-padding)
 
         h4
           @extend %medium
-          font-size: $dev-tools-font-size-m
+          font-size: var(--builder-font-size-m)
           margin-bottom: size(4)
         
         p
-          font-size: $dev-tools-font-size-s
+          font-size: var(--builder-font-size-s)
