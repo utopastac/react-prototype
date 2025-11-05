@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = '/Users/becter/code/react-prototype/src/src/admin/layouts/n-auth.json';
+const path = '/Users/becter/code/react-prototype/src/src/builder/layouts/n-auth.json';
 let txt = fs.readFileSync(path, 'utf8');
 // Remove trailing commas before ] and }
 txt = txt.replace(/,(\s*\])/g, '$1');

@@ -16,7 +16,6 @@ import AvatarRow from 'src/components/AvatarRow';
 import ButtonGroup from 'src/components/ButtonGroup';
 import Disclaimer from 'src/components/Disclaimer';
 import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
-import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
 const AccountView = () => {
@@ -65,8 +64,8 @@ const AccountView = () => {
             //onClick={openLayer}
             icon={{
               type: Icons.SubtleExpand16,
-              size: "16" as IconSize,
-              color: "subtle" as IconColor
+              size: "16",
+              color: "subtle"
             }}
           />
           <Button 
@@ -81,7 +80,9 @@ const AccountView = () => {
           title="Security"
           left={{
             type: "icon",
-            icon: Icons.SecurityLockOutline24
+            icon: Icons.SecurityLockOutline24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -92,7 +93,9 @@ const AccountView = () => {
           title="Privacy"
           left={{
             type: "icon",
-            icon: Icons.SensitiveVisible24
+            icon: Icons.SensitiveVisible24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -103,7 +106,9 @@ const AccountView = () => {
           title="Favorites"
           left={{
             type: "icon",
-            icon: Icons.Favorite24
+            icon: Icons.Favorite24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -114,7 +119,9 @@ const AccountView = () => {
           title="Linked apps & businesses"
           left={{
             type: "icon",
-            icon: Icons.BankLinked24
+            icon: Icons.BankLinked24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -125,7 +132,9 @@ const AccountView = () => {
           title="Themes"
           left={{
             type: "icon",
-            icon: Icons.CustomizeBrushFill24
+            icon: Icons.CustomizeBrushFill24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -136,7 +145,9 @@ const AccountView = () => {
           title="Documents & statements"
           left={{
             type: "icon",
-            icon: Icons.Document24
+            icon: Icons.Document24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -147,7 +158,9 @@ const AccountView = () => {
           title="Support"
           left={{
             type: "icon",
-            icon: Icons.Help24
+            icon: Icons.Help24,
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"

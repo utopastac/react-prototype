@@ -1,0 +1,23 @@
+@import 'src/styles/site'
+@import 'src/builder/admin.sass'
+
+.Main
+  padding: 0
+  pointer-events: auto
+  display: grid
+  grid-template-columns: 0.55fr 1fr
+  font-size: $dev-tools-font-size-s
+  .key
+    font-size: $dev-tools-font-size-m
+    font-family: monospace
+    display: inline
+    border: 1px solid $dev-tools-chip-border
+    border-radius: size(3)
+    padding: size(2) size(7)
+    margin-right: size(4)
+  .commandKey
+    vertical-align: middle
+    font-family: $font-dev
+  .description
+    font-size: $dev-tools-font-size-s
+    color: $dev-tools-text-medium

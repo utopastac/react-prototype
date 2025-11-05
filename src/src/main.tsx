@@ -14,7 +14,7 @@ import './index.sass';
 
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import AdminView from 'src/admin/AdminView';
+import BuilderView from 'src/views/BuilderView';
 import { useTheme } from './containers/ThemeContext';
 
 // Wrapper to inject theme-related props
@@ -26,7 +26,7 @@ function WithThemeProps({ Component }: { Component: React.ComponentType<any> }) 
 
 /**
  * AppWrapper component that handles routing and theme context
- * This component wraps the main App and AdminView with necessary context providers
+ * This component wraps the main App and BuilderView with necessary context providers
  * and determines which route to render based on the current URL
  */
 function AppWrapper() {
@@ -37,8 +37,8 @@ function AppWrapper() {
         {/* Default route -> Platform */}
         <Route path="/" element={<Navigate to="/platform" replace />} />
 
-        {/* Admin panel */}
-        <Route path="/admin" element={<WithThemeProps Component={AdminView} />} />
+        {/* Builder panel */}
+        <Route path="/builder" element={<WithThemeProps Component={BuilderView} />} />
 
         {/* Top-level pages (no phone interface) */}
         <Route path="/platform" element={<WithThemeProps Component={PlatformView} />} />

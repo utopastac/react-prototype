@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
+import Icon, { IconPropMeta } from "src/components/Icon";
 
 export interface InputProps {
   label?: string;
@@ -10,7 +10,7 @@ export interface InputProps {
   placeholder: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, body, helpIcon, trailingIcon,placeholder }) => {
+const Input: React.FC<InputProps> = ({ label, body, helpIcon, trailingIcon, placeholder }) => {
   return (
     <div className={styles.Main}>
       { label && <label>{label}</label> }

@@ -1,0 +1,42 @@
+@import 'src/styles/site'
+@import 'src/builder/admin.sass'
+
+.section
+  border-bottom: 1px solid $dev-tools-section-border
+  overflow: hidden
+  &.open
+    .header h4
+      color: $dev-tools-text-dark
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  cursor: pointer
+  height: $dev-tools-section-header-height
+  padding: 0 $dev-tools-padding
+  user-select: none
+  h4
+    font-size: $dev-tools-font-size-l
+    @extend %medium
+    color: $dev-tools-text-medium
+  &:hover
+    //background: rgba(black, 0.18)
+    h4
+      color: $dev-tools-text-dark
+    .arrow
+      opacity: 1
+.arrow
+  font-size: $dev-tools-icon-font-size
+  opacity: 0.4
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 16px
+  height: 16px
+  color: $dev-tools-text-medium
+  transform-origin: center
+.content
+  display: block
+  overflow: hidden
+  > div
+    padding: 0 $dev-tools-padding $dev-tools-padding $dev-tools-padding

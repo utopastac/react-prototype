@@ -9,7 +9,6 @@ import Divider from 'src/components/Divider';
 import Cell from 'src/components/Cell';
 import UpsellCard from 'src/components/UpsellCard';
 import * as Icons from "src/data/Icons";
-import Icon, { IconSize, IconColor } from 'src/components/Icon';
 import styles from "./index.module.sass";
 
 const ReceiptView = () => {
@@ -68,8 +67,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Time24,
-            size: "24" as IconSize,
-            color: "standard" as IconColor
+            size: "24",
+            color: "standard"
           }}
         />
         
@@ -79,8 +78,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Location16,
-            size: "24" as IconSize,
-            color: "standard" as IconColor
+            size: "24",
+            color: "standard"
           }}
         />
         
@@ -90,8 +89,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Card,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
         />
         
@@ -101,8 +100,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Information16,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
         />
         
@@ -127,8 +126,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Business24,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -141,8 +140,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Help24,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -155,8 +154,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Alert24,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"
@@ -169,8 +168,8 @@ const ReceiptView = () => {
           left={{
             type: "icon",
             icon: Icons.Activity,
-            size: ICON_24,
-            color: ICON_STANDARD
+            size: '24',
+            color: 'standard'
           }}
           right={{
             type: "push"

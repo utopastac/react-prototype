@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { IconSize, IconColor } from "src/components/Icon";
+import Icon from "src/components/Icon";
 import CheckboxChecked from 'src/assets/checkbox-checked.svg';
 
 export interface CheckboxProps {

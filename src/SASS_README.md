@@ -188,7 +188,7 @@ Many components support size variants:
     height: size(48)
 ```
 
-## Admin Panel Styles (`src/admin/_admin.sass`)
+## Admin Panel Styles (`src/builder/_admin.sass`)
 
 Separate styling system for the development/admin panel:
 

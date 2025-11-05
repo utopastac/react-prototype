@@ -32,7 +32,7 @@ const MainNav: React.FC = () => {
         </li>
         <li className={styles.right}
         >
-          <a href="#/admin" className={styles.link}>Builder</a>
+          <a href="#/builder" className={styles.link}>Builder</a>
         </li>
       </ul>
     </nav>

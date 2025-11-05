@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.sass";
-import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
+import Icon, { IconPropMeta } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 import { useTransition, slideInLeft } from "src/containers/TransitionContext";
 

@@ -1,0 +1,302 @@
+@import 'src/styles/site'
+@import 'src/builder/admin.sass'
+
+$zoom-transition: transform 0s ease
+
+.CenterContainer
+  position: relative
+  flex: 1
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100vh
+  gap: size(24)
+  background-color: $gray-f4
+
+.PhonePreviewContainer
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+
+.PhonePreview
+  overflow: auto
+  width: 100%
+  height: 100%
+  padding: size(96)
+  touch-action: none
+
+.GridContent
+  width: 100%
+  width: max-content
+  min-width: 100%
+  box-sizing: border-box
+  box-sizing: border-box
+  display: grid
+  gap: size(96)
+  align-content: start
+  justify-content: start
+  transform-origin: top left
+  // transition: $zoom-transition
+
+.ZoomControls
+  position: absolute
+  bottom: size(16)
+  right: size(16)
+  display: flex
+  flex-direction: column
+  gap: size(4)
+  z-index: 1000
+  background: white
+  border-radius: $dev-tools-wrapper-border-radius
+  padding: size(4)
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
+
+.ZoomLevel
+  text-align: center
+  font-size: $dev-tools-font-size-xs
+  color: $dev-tools-text-light
+  margin: size(4) 0
+
+.PhoneItem
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 100%
+  min-height: 500px
+
+.EmptyGridSpace
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 100%
+  min-height: 500px
+  border: 2px dashed $dev-tools-section-border
+  border-radius: size(40)
+  // background-color: $gray-ef
+  cursor: pointer
+  transition: all 0.2s ease
+  padding: size(24)
+
+  &:hover
+    border: none
+    background-color: #fafafa
+    box-shadow: 0px 8px 32px rgba(0,0,0,0.1)
+    scale: 1.02
+
+    .EmptySpaceText
+      opacity: 1
+
+  .EmptySpaceIcon
+    font-size: size(48)
+    color: $dev-tools-text-light
+
+  .EmptySpaceText
+    opacity: 0
+    transition: all 0.2s ease
+    font-size: $dev-tools-font-size-l
+    color: $admin-brand-highlight
+    text-align: center
+    transition: $zoom-transition
+
+.InactivePhone
+  border-width: size(0)
+  //box-shadow: none !important
+
+.ActivePhone
+  border-width: size(0)
+  //box-shadow: none !important
+  outline: 3px solid $admin-brand-highlight
+
+.PhoneLabel
+  position: absolute
+  top: -size(28)
+  left: 0
+  transition: $zoom-transition
+  z-index: 1000
+  @include tooltip(attr(data-label), "bottom", 0.35s)
+
+.ActiveIndicator
+  display: none
+
+.ActiveLabel
+  color: $admin-brand-highlight
+
+.PhoneActions
+  display: flex
+  justify-content: center
+  visibility: hidden
+  position: absolute
+  bottom: -size(48)
+  left: 0
+  right: 0
+  transition: $zoom-transition
+  z-index: 1000
+
+  &.active
+    visibility: visible
+  // position: absolute
+  // bottom: -size(16)
+  // left: 0
+
+.Spacer
+  flex: 0 0 auto
+  width: 50%
+
+.templatePicker
+  display: flex
+  flex-direction: column
+  gap: size(2)
+  width: 100%
+  position: absolute
+  padding: size(24)
+  top: 50%
+  transform: translateY(-50%)
+  left: 0
+  right: 0
+
+.templateRow
+  width: calc(100% + size(24))
+  font-size: $dev-tools-font-size-l
+  padding: 0 size(12)
+  border-radius: $dev-tools-border-radius
+  // background: $gray-ef
+  margin: 0 -size(12)
+  display: flex
+  align-items: center
+  height: size(36)
+  justify-content: space-between
+
+  span
+    transition: $zoom-transition
+
+  &::after
+    content: "+"
+    display: none
+    font-size: size(24)
+    line-height: size(24)
+    color: $dev-tools-text-light
+
+  &:hover
+    background: $gray-f4
+    &::after
+      display: block
+
+
+
+.LayoutList
+  display: flex
+  flex-direction: column
+  gap: size(4)
+  padding: size(8) $dev-tools-padding
+  cursor: default
+  height: 100%
+  overflow-y: scroll
+
+.LayoutListItem
+  border-radius: size(6)
+  background: transparent
+  cursor: pointer
+  font-size: $dev-tools-font-size-s
+  color: $dev-tools-text-medium
+  transition: background 0.15s
+
+  h4
+    padding: size(4) size(8)
+    border-radius: $dev-tools-border-radius
+
+  ul
+    padding: 0
+
+    li
+      font-size: $dev-tools-font-size-s
+      padding: size(8) size(12) size(8) size(32)
+      border-radius: $dev-tools-border-radius
+      width: 100%
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+
+      &.active
+        background: $admin-brand-mid
+
+      &:hover
+        background: $admin-brand-mid
+
+  &:hover
+    &:not(&.active)
+      background: $gray-e4
+
+  &.active
+    background: $admin-brand-subtle
+    font-weight: 600
+
+    h4
+      background: $admin-brand-light
+
+.templateGroupHeader
+  @extend %medium
+  color: $dev-tools-text-lightest
+  font-size: $dev-tools-font-size-m
+  margin: size(24) 0 0 0
+
+.LayoutName
+  background: none !important
+  color: $dev-tools-text-medium
+
+// Layout Drag and Drop Styles
+.DraggedLayout
+  opacity: 0.5
+  transform: scale(0.95)
+  transition: all 0.2s ease
+  cursor: grabbing !important
+
+  .PhonePreview
+    pointer-events: none
+
+.DropTarget
+  border: 3px solid $admin-brand-highlight !important
+  background-color: rgba($admin-brand-highlight, 0.1) !important
+  box-shadow: 0px 8px 32px rgba($admin-brand-highlight, 0.3) !important
+  scale: 1.05
+
+.DragOverGridPosition
+  border: 2px solid $admin-brand-highlight
+  background-color: rgba($admin-brand-highlight, 0.05)
+
+.LayoutDragHandle
+  position: absolute
+  top: size(-32)
+  right: size(0)
+  padding: size(8) size(12) size(8) size(12)
+  background: $gray-f4
+  border: 1px solid $dev-tools-section-border
+  border-radius: $dev-tools-border-radius
+  cursor: grab
+  display: flex
+  align-items: center
+  justify-content: center
+  z-index: 1001
+  transition: all 0.2s ease
+  opacity: 0
+  font-family: $font-dev
+  color: $dev-tools-text-medium
+  font-size: $dev-tools-font-size-m
+  @extend %medium
+  gap: size(8)
+
+  &:hover
+    border-color: $gray-e4
+    background: $gray-e4
+    opacity: 1
+
+  &:active
+    cursor: grabbing
+
+.PhoneItem:hover .LayoutDragHandle
+  opacity: 1

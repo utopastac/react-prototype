@@ -119,10 +119,10 @@ The admin/editor interface uses a **reducer-based state management system** for 
 
 ### How It Works
 - **All layout state** (dropped components, selection, top bar, bottom buttons, toast, etc.) is managed in a single reducer.
-- The reducer and state are provided via `LayoutProvider` (see `src/admin/LayoutContext.tsx`).
+- The reducer and state are provided via `LayoutProvider` (see `src/builder/LayoutContext.tsx`).
 - Any component within the provider tree can access and update the layout state using the `useLayoutContext` hook:
   ```tsx
-  import { useLayoutContext } from 'src/admin/LayoutContext';
+  import { useLayoutContext } from 'src/builder/LayoutContext';
   const [layoutState, dispatch] = useLayoutContext();
   ```
 - **Actions** are dispatched to update state (e.g., `dispatch({ type: 'SET_DROPPED', dropped: [...] })`).
@@ -146,7 +146,7 @@ The admin/editor interface uses a **reducer-based state management system** for 
 
 ### Example Usage
 ```tsx
-import { useLayoutContext } from 'src/admin/LayoutContext';
+import { useLayoutContext } from 'src/builder/LayoutContext';
 const [layoutState, dispatch] = useLayoutContext();
 
 // Update dropped components
@@ -158,7 +158,7 @@ const addComponent = (component) => {
 const reset = () => dispatch({ type: 'RESET' });
 ```
 
-See `src/admin/LayoutContext.tsx` and `src/admin/AdminView.tsx` for more details and usage patterns.
+See `src/builder/LayoutContext.tsx` and `src/builder/AdminView.tsx` for more details and usage patterns.
 
 ## 🎨 Component System
 

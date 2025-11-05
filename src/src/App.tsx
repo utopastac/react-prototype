@@ -6,7 +6,7 @@ import Layers from 'src/components/Layers';
 import styles from "./app.module.sass";
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
-import DevTools from 'src/admin/DevTools';
+import DevTools from 'src/builder/DevTools';
 import BounceEffect from 'src/components/PhoneEffects/BounceEffect';
 import ScaleContainer from 'src/components/PhoneEffects/ScaleContainer';
 import useStringEndsWith from 'src/hooks/useStringEndsWith';

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTransitionNavigate, transitions } from 'src/hooks/useTransitionNavigate';
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps, IconSize, IconColor, IconPropMeta } from "src/components/Avatar";
+import Avatar, { AvatarProps } from "src/components/Avatar";
 import Icon, { IconPropMeta as IconPropMetaImport } from "src/components/Icon";
 import { useUser } from 'src/containers/UserContext';
 

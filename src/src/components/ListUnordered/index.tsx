@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Icon, { IconPropMeta, IconSize, IconColor } from "src/components/Icon";
+import Icon, { IconPropMeta } from "src/components/Icon";
 
 /**
  * ListUnordered displays a styled unordered list with optional icons, body, and value for each item.

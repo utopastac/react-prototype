@@ -1,0 +1,29 @@
+@import 'src/styles/site'
+@import 'src/builder/admin.sass'
+
+.Tabs
+  display: flex
+  gap: size(4)
+  padding: size(8) $dev-tools-padding
+  border-bottom: 1px solid $dev-tools-section-border
+
+.Tab
+  background: white
+  border: none
+  border-radius: 500px
+  padding: size(6) size(12)
+  font-size: $dev-tools-font-size-s
+  color: $dev-tools-text-light
+  cursor: pointer
+  flex: 0 0 auto
+  // width: min-content
+  transition: background 0.15s
+
+  &:hover
+    &:not(&.active)
+      background: $gray-ef
+
+  &.active
+    background: $gray-ef
+    color: $dev-tools-text-dark
+    @extend %medium
