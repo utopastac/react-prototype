@@ -404,45 +404,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     return (
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
-          <div style={{ flexShrink: 0 }}>
-            <ToolsSection>
-              <ThemeSection />
-            </ToolsSection>
-            <ToolsSection>
-              <SliderInput
-                label="Background"
-                value={backgroundToSlider(adminTheme.backgroundColor)}
-                onChange={handleBackgroundChange}
-              />
-              <SliderInput
-                label="Shadows"
-                value={shadowToSlider(adminTheme.phoneShadow)}
-                onChange={handleShadowChange}
-              />
-              <SliderInput
-                label="Spacing"
-                value={spacingToSlider(adminTheme.layoutSpacing)}
-                onChange={handleSpacingChange}
-              />
-              <SliderInput
-                label="Outline"
-                value={outlineToSlider(adminTheme.layoutOutline)}
-                onChange={handleOutlineChange}
-              />
-            </ToolsSection>
-            <ToolsSection>
-              <TextButton
-                onClick={onOpenClearAllLayoutsModal}
-                variant="secondary"
-                text="Clear All Layouts"
-              />
-              <TextButton 
-                onClick={onResetWelcomeModal} 
-                variant="tertiary" 
-                text="Reset Welcome Modal" 
-              />
-            </ToolsSection>
-          </div>
           {/* Layout List */}
           <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
             {layoutNames.map((name, idx) => {
@@ -486,6 +447,45 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
                 </div>
               );
             })}
+          </div>
+          <div style={{ flexShrink: 0 }}>
+            <ToolsSection>
+              <ThemeSection />
+            </ToolsSection>
+            <ToolsSection>
+              <SliderInput
+                label="Background"
+                value={backgroundToSlider(adminTheme.backgroundColor)}
+                onChange={handleBackgroundChange}
+              />
+              <SliderInput
+                label="Shadows"
+                value={shadowToSlider(adminTheme.phoneShadow)}
+                onChange={handleShadowChange}
+              />
+              <SliderInput
+                label="Spacing"
+                value={spacingToSlider(adminTheme.layoutSpacing)}
+                onChange={handleSpacingChange}
+              />
+              <SliderInput
+                label="Outline"
+                value={outlineToSlider(adminTheme.layoutOutline)}
+                onChange={handleOutlineChange}
+              />
+            </ToolsSection>
+            <ToolsSection>
+              <TextButton
+                onClick={onOpenClearAllLayoutsModal}
+                variant="secondary"
+                text="Clear All Layouts"
+              />
+              <TextButton 
+                onClick={onResetWelcomeModal} 
+                variant="tertiary" 
+                text="Reset Welcome Modal" 
+              />
+            </ToolsSection>
           </div>
         </div>
       </>
