@@ -487,15 +487,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             showAdminPanel={showAdminPanel}
             adminPanelWidth={adminPanelWidth}
             setAdminPanelWidth={setAdminPanelWidth}
-            onHideAdminPanel={() => setShowAdminPanel(false)}
-            onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
-            onOpenSave={() => setOpenModal('save')}
-            onOpenLoad={() => {
-              localStorage.setLoadList(localStorage.getLoadList());
-              setOpenModal('load');
-            }}
-            onShare={handleShareModal}
-            onOpenTemplates={() => setOpenModal('templates')}
             onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
             selected={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
           />
@@ -623,6 +614,15 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             onOpenClearAllLayoutsModal={() => setOpenModal('clearAll')}
             isPhoneSettingsVisible={activeIndex >= 0 && activeLayout !== null}
             onClosePhoneSettings={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+            onHideAdminPanel={() => setShowAdminPanel(false)}
+            onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
+            onOpenSave={() => setOpenModal('save')}
+            onOpenLoad={() => {
+              localStorage.setLoadList(localStorage.getLoadList());
+              setOpenModal('load');
+            }}
+            onShare={handleShareModal}
+            onOpenTemplates={() => setOpenModal('templates')}
             selected={selected}
             selectedSpecial={selectedSpecial}
             layoutState={layoutState}

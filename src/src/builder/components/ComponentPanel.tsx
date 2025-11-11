@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ToolbarButton from './ToolbarButton';
-import * as Icons from 'src/data/Icons';
 import styles from 'src/builder/index.module.sass';
 import layoutsStyles from 'src/builder/layouts.module.sass';
 import { useLayoutData } from 'src/builder/hooks/useLayoutData';
@@ -18,12 +16,6 @@ interface ComponentPanelProps {
   showAdminPanel: boolean;
   adminPanelWidth: number;
   setAdminPanelWidth: (w: number) => void;
-  onHideAdminPanel: () => void;
-  onShowKeyboardShortcuts: () => void;
-  onOpenSave: () => void;
-  onOpenLoad: () => void;
-  onShare: () => void;
-  onOpenTemplates: () => void;
   onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void;
   selected?: { layoutIdx: number, droppedIdx: number } | null;
 }
@@ -32,12 +24,6 @@ const ComponentPanel: React.FC<ComponentPanelProps> = ({
   showAdminPanel,
   adminPanelWidth,
   setAdminPanelWidth,
-  onHideAdminPanel,
-  onShowKeyboardShortcuts,
-  onOpenSave,
-  onOpenLoad,
-  onShare,
-  onOpenTemplates,
   onDroppedComponentClick,
   selected
 }) => {
@@ -78,23 +64,6 @@ const ComponentPanel: React.FC<ComponentPanelProps> = ({
       {/* Panel content */}
       <div style={{ height: '100%', position: 'relative' }}>
         <div className={styles.Tools}>
-          <div className={styles.ToolBar}>
-            <div>
-              <ToolbarButton
-                onClick={onHideAdminPanel}
-                title="Hide admin panel (⌘.)"
-                icon={Icons.InterventionsHubCustomer16}
-                iconSize={"24"}
-              />
-            </div>
-            <div>
-              <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts (⌘k)" icon={Icons.Keyboard24} position="bottom-left" />
-              <ToolbarButton onClick={onOpenTemplates} title="Flow library (⌘/)" icon={Icons.DocumentW224} position="bottom" />
-              <ToolbarButton onClick={onOpenSave} title="Save (⌘s)" icon={Icons.Download16} position="bottom" />
-              <ToolbarButton onClick={onOpenLoad} title="Load (⌘l)" icon={Icons.Load24} position="bottom" />
-              <ToolbarButton onClick={onShare} title="Share (⌘p)" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom-right" />
-            </div>
-          </div>
           {/* Layout List */}
           <div className={layoutsStyles.LayoutList}>
             {layoutNames.map((name, idx) => {

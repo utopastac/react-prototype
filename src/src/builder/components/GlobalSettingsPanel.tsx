@@ -32,6 +32,13 @@ interface GlobalSettingsPanelProps {
   onOpenClearAllLayoutsModal?: () => void;
   isPhoneSettingsVisible: boolean;
   onClosePhoneSettings: () => void;
+  // Toolbar props
+  onHideAdminPanel: () => void;
+  onShowKeyboardShortcuts: () => void;
+  onOpenSave: () => void;
+  onOpenLoad: () => void;
+  onShare: () => void;
+  onOpenTemplates: () => void;
   // Prop editor props
   selected: { phoneIndex: number; componentIndex: number } | null;
   selectedSpecial: { phoneIndex: number; type: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar' } | null;
@@ -67,6 +74,12 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   onOpenClearAllLayoutsModal,
   isPhoneSettingsVisible,
   onClosePhoneSettings,
+  onHideAdminPanel,
+  onShowKeyboardShortcuts,
+  onOpenSave,
+  onOpenLoad,
+  onShare,
+  onOpenTemplates,
   selected,
   selectedSpecial,
   layoutState,
@@ -392,15 +405,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     // Default: Global settings
     return (
       <>
-        <header className={styles.PanelHeader}>
-          <h2>Global Settings</h2>
-          <ToolbarButton 
-            onClick={onShowJsonPanel} 
-            icon={Icons.CategoryTechnology32} 
-            title={`${!showJsonPanel ? "Show" : "Hide"} Multi-Layout JSON`} 
-            position="left" 
-          />
-        </header>
         <div className={styles.Controls}>
           <ToolsSection>
             <ThemeSection />
@@ -468,6 +472,24 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
             backgroundColor: 'white',
           }}
         >
+          <div className={styles.ToolBar}>
+            <div>
+              <ToolbarButton
+                onClick={onHideAdminPanel}
+                title="Hide admin panel (⌘.)"
+                icon={Icons.InterventionsHubCustomer16}
+                iconSize={"24"}
+              />
+            </div>
+            <div>
+              <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts (⌘k)" icon={Icons.Keyboard24} position="bottom-left" />
+              <ToolbarButton onClick={onOpenTemplates} title="Flow library (⌘/)" icon={Icons.DocumentW224} position="bottom" />
+              <ToolbarButton onClick={onOpenSave} title="Save (⌘s)" icon={Icons.Download16} position="bottom" />
+              <ToolbarButton onClick={onOpenLoad} title="Load (⌘l)" icon={Icons.Load24} position="bottom" />
+              <ToolbarButton onClick={onShare} title="Share (⌘p)" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom" />
+              <ToolbarButton onClick={onShowJsonPanel} title={`${!showJsonPanel ? "Show" : "Hide"} Multi-Layout JSON`} icon={Icons.CategoryTechnology32} position="bottom-right" />
+            </div>
+          </div>
           {renderContent()}
         </div>
       </div>
