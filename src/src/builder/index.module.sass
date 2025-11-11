@@ -43,6 +43,11 @@
     top: var(--builder-side-offset)
     right: var(--builder-side-offset)
     z-index: 95
+  &.toolbarPanel
+    width: size(64)
+    border-right: 1px solid var(--builder-section-border)
+    border-left: none
+    z-index: 110
   &.JsonPanel
     display: flex
     flex-direction: column
@@ -304,7 +309,15 @@
     display: flex
     justify-content: space-between
     align-items: center
-    gap: size(4)
+    gap: size(1)
+.ToolBarVertical
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: size(4)
+  padding: var(--builder-input-padding)
+  height: 100%
+  justify-content: flex-start
 .AdminToggle
   position: fixed
   top: var(--builder-input-padding)

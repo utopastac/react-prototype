@@ -275,7 +275,7 @@ The system supports the following keyboard shortcuts:
 
 ### Component Reuse
 - `PhonePreviewContent`: Reused for individual phone rendering
-- `ComponentPanel`: Reused for component palette
+- `GlobalSettingsPanel`: Contains layout list and global settings
 - `SettingsPanel`: Reused for layout settings
 - `ToolbarButton`: Reused for action buttons
 

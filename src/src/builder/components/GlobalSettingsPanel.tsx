@@ -6,6 +6,7 @@ import ThemeSection from '../DevTools/ThemeSection';
 import TextButton from './TextButton';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
+import layoutsStyles from '../layouts.module.sass';
 import SliderInput from '../LabeledInput/SliderInput';
 import { useAdminTheme, useAdminThemeDispatch } from '../AdminThemeContext';
 import { lerpColor, hexToRgb } from 'src/helpers/Utils';
@@ -21,24 +22,18 @@ import { TopBarPropMeta } from 'src/components/TopBar';
 import { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import { ToastPropMeta } from 'src/components/Toast';
 import { IOSStatusBarPropMeta } from 'src/components/IOSStatusBar';
+import { useLayoutData } from '../hooks/useLayoutData';
+import { formatComponentName } from '../formatComponentName';
+import EditableLabel from './EditableLabel';
 
 interface GlobalSettingsPanelProps {
   isPropEditorVisible: boolean;
   rightPanelWidth: number;
   setRightPanelWidth: (w: number) => void;
-  onShowJsonPanel: () => void;
-  showJsonPanel: boolean;
   onResetWelcomeModal?: () => void;
   onOpenClearAllLayoutsModal?: () => void;
   isPhoneSettingsVisible: boolean;
   onClosePhoneSettings: () => void;
-  // Toolbar props
-  onHideAdminPanel: () => void;
-  onShowKeyboardShortcuts: () => void;
-  onOpenSave: () => void;
-  onOpenLoad: () => void;
-  onShare: () => void;
-  onOpenTemplates: () => void;
   // Prop editor props
   selected: { phoneIndex: number; componentIndex: number } | null;
   selectedSpecial: { phoneIndex: number; type: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar' } | null;
@@ -62,24 +57,19 @@ interface GlobalSettingsPanelProps {
   onShowStatusBarChange: () => void;
   onClearLayout: () => void;
   onDeselectPhone: () => void;
+  // Layout list props
+  onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void;
+  selectedLayout?: { layoutIdx: number, droppedIdx: number } | null;
 }
 
 const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   isPropEditorVisible,
   rightPanelWidth,
   setRightPanelWidth,
-  onShowJsonPanel,
-  showJsonPanel,
   onResetWelcomeModal,
   onOpenClearAllLayoutsModal,
   isPhoneSettingsVisible,
   onClosePhoneSettings,
-  onHideAdminPanel,
-  onShowKeyboardShortcuts,
-  onOpenSave,
-  onOpenLoad,
-  onShare,
-  onOpenTemplates,
   selected,
   selectedSpecial,
   layoutState,
@@ -100,11 +90,14 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   onShowToastChange,
   onShowStatusBarChange,
   onClearLayout,
-  onDeselectPhone
+  onDeselectPhone,
+  onDroppedComponentClick,
+  selectedLayout
 }) => {
   const adminTheme = useAdminTheme();
   const setAdminTheme = useAdminThemeDispatch();
   const { layout, index: activeIndex } = useActiveLayout();
+  const { layoutNames, activeLayoutIndex } = useLayoutData();
 
   // Map context value to slider (0-1) and vice versa
   const bgMin = '#1A1A1A';
@@ -184,6 +177,11 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   const handleOutlineChange = useCallback((t: number) => {
     setAdminTheme({ type: 'Update', payload: { layoutOutline: sliderToOutline(t) } });
   }, [setAdminTheme]);
+
+  // Handler for renaming a layout
+  const handleRenameLayout = (idx: number, newName: string) => {
+    dispatch({ type: 'RENAME_LAYOUT', index: idx, name: newName });
+  };
 
   // --- Resizing logic ---
   const [width, resizeHandle, isResizing, , isHoveringEdge] = usePanelResize({
@@ -405,44 +403,90 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     // Default: Global settings
     return (
       <>
-        <div className={styles.Controls}>
-          <ToolsSection>
-            <ThemeSection />
-          </ToolsSection>
-          <ToolsSection>
-            <SliderInput
-              label="Background"
-              value={backgroundToSlider(adminTheme.backgroundColor)}
-              onChange={handleBackgroundChange}
-            />
-            <SliderInput
-              label="Shadows"
-              value={shadowToSlider(adminTheme.phoneShadow)}
-              onChange={handleShadowChange}
-            />
-            <SliderInput
-              label="Spacing"
-              value={spacingToSlider(adminTheme.layoutSpacing)}
-              onChange={handleSpacingChange}
-            />
-            <SliderInput
-              label="Outline"
-              value={outlineToSlider(adminTheme.layoutOutline)}
-              onChange={handleOutlineChange}
-            />
-          </ToolsSection>
-          <ToolsSection>
-            <TextButton
-              onClick={onOpenClearAllLayoutsModal}
-              variant="secondary"
-              text="Clear All Layouts"
-            />
-            <TextButton 
-              onClick={onResetWelcomeModal} 
-              variant="tertiary" 
-              text="Reset Welcome Modal" 
-            />
-          </ToolsSection>
+        <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
+          <div style={{ flexShrink: 0 }}>
+            <ToolsSection>
+              <ThemeSection />
+            </ToolsSection>
+            <ToolsSection>
+              <SliderInput
+                label="Background"
+                value={backgroundToSlider(adminTheme.backgroundColor)}
+                onChange={handleBackgroundChange}
+              />
+              <SliderInput
+                label="Shadows"
+                value={shadowToSlider(adminTheme.phoneShadow)}
+                onChange={handleShadowChange}
+              />
+              <SliderInput
+                label="Spacing"
+                value={spacingToSlider(adminTheme.layoutSpacing)}
+                onChange={handleSpacingChange}
+              />
+              <SliderInput
+                label="Outline"
+                value={outlineToSlider(adminTheme.layoutOutline)}
+                onChange={handleOutlineChange}
+              />
+            </ToolsSection>
+            <ToolsSection>
+              <TextButton
+                onClick={onOpenClearAllLayoutsModal}
+                variant="secondary"
+                text="Clear All Layouts"
+              />
+              <TextButton 
+                onClick={onResetWelcomeModal} 
+                variant="tertiary" 
+                text="Reset Welcome Modal" 
+              />
+            </ToolsSection>
+          </div>
+          {/* Layout List */}
+          <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
+            {layoutNames.map((name, idx) => {
+              const isActive = idx === activeLayoutIndex;
+              const components = layoutState.layouts[idx]?.components || [];
+              const selectedComponentIdx = selectedLayout && selectedLayout.layoutIdx === idx ? selectedLayout.droppedIdx : null;
+              return (
+                <div
+                  key={name + idx}
+                  className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
+                  onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
+                >
+                  <h4>
+                    <EditableLabel
+                      label={name}
+                      onRenameFinish={newName => handleRenameLayout(idx, newName)}
+                      onRenameCancel={() => {}}
+                      className={layoutsStyles.LayoutName}
+                      inputClassName={layoutsStyles.LayoutName}
+                    />
+                  </h4>
+                  {/* Show components if this layout is active */}
+                  {isActive && components.length > 0 && (
+                    <ul>
+                      {components.map((item: any, cidx: number) => (
+                        <li
+                          key={item.name + cidx}
+                          className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
+                          onClick={e => {
+                            e.stopPropagation();
+                            if (onDroppedComponentClick) {
+                              onDroppedComponentClick(idx, cidx);
+                            }
+                          }}
+                        >
+                          {formatComponentName(item.name)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </>
     );
@@ -472,24 +516,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
             backgroundColor: 'white',
           }}
         >
-          <div className={styles.ToolBar}>
-            <div>
-              <ToolbarButton
-                onClick={onHideAdminPanel}
-                title="Hide admin panel (⌘.)"
-                icon={Icons.InterventionsHubCustomer16}
-                iconSize={"24"}
-              />
-            </div>
-            <div>
-              <ToolbarButton onClick={onShowKeyboardShortcuts} title="Keyboard shortcuts (⌘k)" icon={Icons.Keyboard24} position="bottom-left" />
-              <ToolbarButton onClick={onOpenTemplates} title="Flow library (⌘/)" icon={Icons.DocumentW224} position="bottom" />
-              <ToolbarButton onClick={onOpenSave} title="Save (⌘s)" icon={Icons.Download16} position="bottom" />
-              <ToolbarButton onClick={onOpenLoad} title="Load (⌘l)" icon={Icons.Load24} position="bottom" />
-              <ToolbarButton onClick={onShare} title="Share (⌘p)" icon={Icons.Hyperlink24 || Icons.Download16} position="bottom" />
-              <ToolbarButton onClick={onShowJsonPanel} title={`${!showJsonPanel ? "Show" : "Hide"} Multi-Layout JSON`} icon={Icons.CategoryTechnology32} position="bottom-right" />
-            </div>
-          </div>
           {renderContent()}
         </div>
       </div>
