@@ -4,14 +4,16 @@ import KeyboardShortcutsPanel from 'src/builder/components/KeyboardShortcutsPane
 
 interface ShortcutsModalProps {
   onClose: () => void;
+  x?: number;
+  y?: number;
 }
 
-const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ onClose }) => {
+const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ onClose, x = 650, y = 40 }) => {
   return (
     <Modal
       title="Keyboard Shortcuts"
-      x={650}
-      y={40}
+      x={x}
+      y={y}
       close={onClose}
     >
       <KeyboardShortcutsPanel />

@@ -10,14 +10,16 @@ interface LoadModalProps {
   onLoad: (name: string) => void;
   onDeleteSave: (name: string) => void;
   onClose: () => void;
+  x?: number;
+  y?: number;
 }
 
-const LoadModal: React.FC<LoadModalProps> = ({ loadList, loadError, onLoad, onDeleteSave, onClose }) => {
+const LoadModal: React.FC<LoadModalProps> = ({ loadList, loadError, onLoad, onDeleteSave, onClose, x = 650, y = 40 }) => {
   return (
     <Modal
       title="Load Layout"
-      x={650}
-      y={40}
+      x={x}
+      y={y}
       close={onClose}
     >
       <div className={styles.LoadModal}>

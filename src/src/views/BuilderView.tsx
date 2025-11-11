@@ -10,11 +10,7 @@ import AdminToast from 'src/builder/components/Toast';
 import ToolbarButton from 'src/builder/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
 import { AdminTemplate, AdminTemplates } from 'src/builder/Templates';
-import SaveModal from 'src/builder/Modals/SaveModal';
-import LoadModal from 'src/builder/Modals/LoadModal';
-import ShareModal from 'src/builder/Modals/ShareModal';
-import { WelcomeModal, ShortcutsModal, FlowLibraryModal } from 'src/builder/Modals';
-import ClearModal from 'src/builder/Modals/ClearModal';
+import ModalHandler from 'src/builder/components/ModalHandler';
 import { useLocalStorage } from 'src/builder/hooks/useLocalStorage';
 import { useUrlSharing } from 'src/builder/hooks/useUrlSharing';
 import JsonPanel from 'src/builder/components/JsonPanel';
@@ -125,30 +121,19 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
 
   // Zoom state
   const [zoomLevel, setZoomLevel] = useState(0.8);
-  const [isZoomedOut, setIsZoomedOut] = useState(false);
   const ZOOM_STEP = 1.3;
-  const zoomHideLevel = 0.5;
 
   // Zoom handlers
   const handleZoomIn = () => {
-    setZoomLevel(prev => {
-      const newLevel = Math.min(prev * ZOOM_STEP, 3);
-      setIsZoomedOut(newLevel < zoomHideLevel);
-      return newLevel;
-    });
+    setZoomLevel(prev => Math.min(prev * ZOOM_STEP, 3));
   };
 
   const handleZoomOut = () => {
-    setZoomLevel(prev => {
-      const newLevel = Math.max(prev / ZOOM_STEP, 0.1);
-      setIsZoomedOut(newLevel < zoomHideLevel);
-      return newLevel;
-    });
+    setZoomLevel(prev => Math.max(prev / ZOOM_STEP, 0.1));
   };
 
   const handleZoomReset = () => {
     setZoomLevel(1);
-    setIsZoomedOut(false);
   };
 
   const handleFitToScreen = () => {
@@ -351,12 +336,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
     }
   }, []);
 
-  // Handler to close welcome modal
-  const handleCloseWelcomeModal = () => {
-    window.localStorage.setItem('interventions-hub-welcome-seen', 'true');
-    setShowWelcomeModal(false);
-  };
-
   // Handler to reset welcome modal for testing
   const handleResetWelcomeModal = () => {
     window.localStorage.removeItem('interventions-hub-welcome-seen');
@@ -480,28 +459,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
 
   return (
     <div className={styles.Main}>
-      {/* Toolbar Panel */}
-      <AnimatePresence>
-        <ToolbarPanel
-          onHideAdminPanel={() => setShowAdminPanel(false)}
-          onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
-          onOpenSave={() => setOpenModal('save')}
-          onOpenLoad={() => {
-            localStorage.setLoadList(localStorage.getLoadList());
-            setOpenModal('load');
-          }}
-          onShare={handleShareModal}
-          onOpenTemplates={() => setOpenModal('templates')}
-          onShowJsonPanel={() => setShowJsonPanel(v => !v)}
-          showJsonPanel={showJsonPanel}
-          showAdminPanel={showAdminPanel}
-          zoomLevel={zoomLevel}
-          onZoomIn={handleZoomIn}
-          onZoomOut={handleZoomOut}
-          onZoomReset={handleZoomReset}
-          onFitToScreen={handleFitToScreen}
-        />
-      </AnimatePresence>
 
       {/* Floating Template Picker */}
       {templatePicker && (
@@ -536,70 +493,39 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
         </div>
       )}
 
-      {/* Template Modal */}
-      {openModal === 'templates' && (
-        <FlowLibraryModal
-          onLoadComplete={data => {
-            console.log('BuilderView received data:', data);
-            dispatch({
-              type: 'SET_ALL_LAYOUTS',
-              layouts: data.layouts,
-              names: data.names,
-              layoutPositions: data.layoutPositions,
-              gridRows: data.gridRows,
-              gridCols: data.gridCols,
-            });
-            setOpenModal(null);
-            setToast('✅ Loaded flow');
-          }}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-
-      {/* Keyboard Shortcuts Modal */}
-      {openModal === 'shortcuts' && (
-        <ShortcutsModal onClose={() => setOpenModal(null)} />
-      )}
-
-          {/* Save Modal */}
-      {openModal === 'save' && (
-        <SaveModal
-          saveName={localStorage.saveName}
-          onSaveNameChange={localStorage.setSaveName}
-          onSave={handleSaveModal}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-      {/* Load Modal */}
-      {openModal === 'load' && (
-        <LoadModal
-          loadList={localStorage.loadList}
-          loadError={localStorage.loadError}
-          onLoad={handleLoadModal}
-          onDeleteSave={handleDeleteSaveModal}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
-      {/* Share Modal */}
-      {openModal === 'share' && (
-        <ShareModal
-          shareUrl={urlSharing.shareUrl}
-          layoutData={urlSharing.getLayoutData()}
-          onClose={() => setOpenModal(null)}
-          showToast={setToast}
-        />
-      )}
-
-      {/* Clear All Layouts Modal */}
-      {openModal === 'clearAll' && (
-        <ClearModal
-          onClear={() => {
-            setOpenModal(null);
-            handleReset();
-          }}
-          onClose={() => setOpenModal(null)}
-        />
-      )}
+      {/* Modal Handler */}
+      <ModalHandler
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        showWelcomeModal={showWelcomeModal}
+        setShowWelcomeModal={setShowWelcomeModal}
+        saveName={localStorage.saveName}
+        onSaveNameChange={localStorage.setSaveName}
+        onSave={handleSaveModal}
+        loadList={localStorage.loadList}
+        loadError={localStorage.loadError}
+        onLoad={handleLoadModal}
+        onDeleteSave={handleDeleteSaveModal}
+        shareUrl={urlSharing.shareUrl}
+        layoutData={urlSharing.getLayoutData()}
+        showToast={setToast}
+        onLoadComplete={data => {
+          console.log('BuilderView received data:', data);
+          dispatch({
+            type: 'SET_ALL_LAYOUTS',
+            layouts: data.layouts,
+            names: data.names,
+            layoutPositions: data.layoutPositions,
+            gridRows: data.gridRows,
+            gridCols: data.gridCols,
+          });
+          setOpenModal(null);
+          setToast('✅ Loaded flow');
+        }}
+        onClear={() => {
+          handleReset();
+        }}
+      />
 
       {/* Main Content Area */}
       <div
@@ -724,6 +650,28 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
         )}
       </AnimatePresence>
 
+      {/* Toolbar Panel */}
+      <AnimatePresence>
+        <ToolbarPanel
+          onHideAdminPanel={() => setShowAdminPanel(v => !v)}
+          onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
+          onOpenSave={() => setOpenModal('save')}
+          onOpenLoad={() => {
+            localStorage.setLoadList(localStorage.getLoadList());
+            setOpenModal('load');
+          }}
+          onShare={handleShareModal}
+          onOpenTemplates={() => setOpenModal('templates')}
+          onShowJsonPanel={() => setShowJsonPanel(v => !v)}
+          showJsonPanel={showJsonPanel}
+          zoomLevel={zoomLevel}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onZoomReset={handleZoomReset}
+          onFitToScreen={handleFitToScreen}
+        />
+      </AnimatePresence>
+
       {/* JSON Panel */}
       <JsonPanel
         visible={showJsonPanel && showAdminPanel}
@@ -746,11 +694,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
 
       {/* Toast notifications */}
       {toast && <AdminToast message={toast} onDone={() => setToast(null)} />}
-
-      {/* Welcome Modal (shows on first visit) */}
-      {showWelcomeModal && (
-        <WelcomeModal onClose={handleCloseWelcomeModal} />
-      )}
     </div>
   );
 };

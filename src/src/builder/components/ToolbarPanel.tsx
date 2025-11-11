@@ -14,7 +14,6 @@ interface ToolbarPanelProps {
   onOpenTemplates: () => void;
   onShowJsonPanel: () => void;
   showJsonPanel: boolean;
-  showAdminPanel: boolean;
   zoomLevel: number;
   onZoomIn: () => void;
   onZoomOut: () => void;
@@ -31,28 +30,25 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
   onOpenTemplates,
   onShowJsonPanel,
   showJsonPanel,
-  showAdminPanel,
   zoomLevel,
   onZoomIn,
   onZoomOut,
   onZoomReset,
   onFitToScreen
 }) => {
-  if (!showAdminPanel) return null;
-
   return (
     <motion.div
       className={`${styles.AdminPanel} ${styles.toolbarPanel}`}
-      initial={{ width: 0, opacity: 0 }}
-      animate={{ width: 48, opacity: 1 }}
-      exit={{ width: 0, opacity: 0 }}
+      initial={{ x: '100%', opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: '100%', opacity: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
     >
       <div className={styles.ToolBarVertical}>
         <div className={styles.ToolBarTopSection}>
           <ToolbarButton
             onClick={onHideAdminPanel}
-            title="Hide admin panel (⌘.)"
+            title="Toggle admin panel (⌘.)"
             icon={Icons.InterventionsHubCustomer16}
             iconSize={"24"}
           />

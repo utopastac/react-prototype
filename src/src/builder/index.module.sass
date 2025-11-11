@@ -44,9 +44,12 @@
     right: var(--builder-side-offset)
     z-index: 95
   &.toolbarPanel
+    // position: fixed
+    // top: 0
+    // right: 0
     width: size(48)
-    border-right: 1px solid var(--builder-section-border)
-    border-left: none
+    border-left: 1px solid var(--builder-section-border)
+    border-right: none
     z-index: 500
     overflow: visible
   &.JsonPanel
@@ -68,6 +71,34 @@
     pre
       font-family: monospace
       font-size: var(--builder-font-size-s)
+.JsonModal
+  width: 80vw
+  max-width: size(1200)
+  max-height: 80vh
+  display: flex
+  flex-direction: column
+.JsonModalContent
+  display: flex
+  flex-direction: column
+  flex: 1
+  min-height: 0
+  padding: var(--builder-padding)
+.JsonModalActions
+  display: flex
+  gap: size(4)
+  margin-bottom: var(--builder-padding)
+  padding-bottom: var(--builder-padding)
+  border-bottom: 1px solid var(--builder-section-border)
+.JsonModalScroll
+  flex: 1
+  overflow-y: auto
+  overflow-x: auto
+  pre
+    font-family: monospace
+    font-size: var(--builder-font-size-s)
+    margin: 0
+    white-space: pre-wrap
+    word-wrap: break-word
   .PanelHeader
     display: flex
     align-items: center
