@@ -123,6 +123,41 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
   const adminTheme = useAdminTheme();
   const setAdminTheme = useAdminThemeDispatch();
 
+  // Zoom state
+  const [zoomLevel, setZoomLevel] = useState(0.8);
+  const [isZoomedOut, setIsZoomedOut] = useState(false);
+  const ZOOM_STEP = 1.3;
+  const zoomHideLevel = 0.5;
+
+  // Zoom handlers
+  const handleZoomIn = () => {
+    setZoomLevel(prev => {
+      const newLevel = Math.min(prev * ZOOM_STEP, 3);
+      setIsZoomedOut(newLevel < zoomHideLevel);
+      return newLevel;
+    });
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => {
+      const newLevel = Math.max(prev / ZOOM_STEP, 0.1);
+      setIsZoomedOut(newLevel < zoomHideLevel);
+      return newLevel;
+    });
+  };
+
+  const handleZoomReset = () => {
+    setZoomLevel(1);
+    setIsZoomedOut(false);
+  };
+
+  const handleFitToScreen = () => {
+    // The fit to screen logic is handled in PhonePreview component
+    // We just need to trigger it via the callback
+    // The actual calculation needs access to PhonePreview's internal containerRef
+    // So we'll let PhonePreview handle it internally when onFitToScreen is called
+  };
+
   // Panel dimensions (now in AdminThemeContext)
   const rightPanelWidth = adminTheme.settingsPanelWidth;
   const setRightPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { settingsPanelWidth: w } });
@@ -460,6 +495,11 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           onShowJsonPanel={() => setShowJsonPanel(v => !v)}
           showJsonPanel={showJsonPanel}
           showAdminPanel={showAdminPanel}
+          zoomLevel={zoomLevel}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onZoomReset={handleZoomReset}
+          onFitToScreen={handleFitToScreen}
         />
       </AnimatePresence>
 
@@ -588,6 +628,12 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             gridCols={layoutState.gridCols}
             onAddLayoutAt={handleAddLayoutAt}
             onDuplicateLayoutAt={handleDuplicateLayoutAt}
+            zoomLevel={zoomLevel}
+            setZoomLevel={setZoomLevel}
+            onZoomIn={handleZoomIn}
+            onZoomOut={handleZoomOut}
+            onZoomReset={handleZoomReset}
+            onFitToScreen={handleFitToScreen}
           />
         </div>
       </div>
