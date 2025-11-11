@@ -33,7 +33,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
     <motion.div
       className={`${styles.AdminPanel} ${styles.toolbarPanel}`}
       initial={{ width: 0, opacity: 0 }}
-      animate={{ width: 64, opacity: 1 }}
+      animate={{ width: 48, opacity: 1 }}
       exit={{ width: 0, opacity: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
     >
