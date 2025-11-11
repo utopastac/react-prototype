@@ -6,7 +6,6 @@ export interface AdminThemeState {
   phoneShadow: string;
   layoutSpacing: string;
   layoutOutline: string;
-  adminPanelWidth: number;
   settingsPanelWidth: number;
 }
 
@@ -22,7 +21,6 @@ const defaultAdminTheme: AdminThemeState = {
   phoneShadow: 'none', // Slider zero
   layoutSpacing: '96px',
   layoutOutline: '0px',
-  adminPanelWidth: 320,
   settingsPanelWidth: 280,
 };
 

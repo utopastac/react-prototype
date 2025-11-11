@@ -49,6 +49,13 @@ interface MultiPhonePreviewProps {
   gridCols?: number;
   onAddLayoutAt?: (row: number, col: number, templateName?: string) => void;
   onDuplicateLayoutAt?: (index: number) => void;
+  // Zoom props
+  zoomLevel?: number;
+  setZoomLevel?: (level: number) => void;
+  onZoomIn?: () => void;
+  onZoomOut?: () => void;
+  onZoomReset?: () => void;
+  onFitToScreen?: () => void;
 }
 
 // Grid position interface
@@ -66,7 +73,13 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     selected,
     setSelected,
     setSelectedSpecial,
-    selectedSpecial
+    selectedSpecial,
+    zoomLevel: externalZoomLevel,
+    setZoomLevel: externalSetZoomLevel,
+    onZoomIn: externalOnZoomIn,
+    onZoomOut: externalOnZoomOut,
+    onZoomReset: externalOnZoomReset,
+    onFitToScreen: externalOnFitToScreen
   } = props;
   const [layoutState, dispatch] = useAdminLayoutContext();
   const { index: activeIndex } = useActiveLayout();
@@ -91,8 +104,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   // Grid position mapping - maps layout index to grid position
   // const [layoutPositions, setLayoutPositions] = useState<Map<number, GridPosition>>(new Map());
 
-  // Zoom state
-  const [zoomLevel, setZoomLevel] = useState(0.8);
+  // Zoom state - use external if provided, otherwise internal
+  const [internalZoomLevel, setInternalZoomLevel] = useState(0.8);
+  const zoomLevel = externalZoomLevel !== undefined ? externalZoomLevel : internalZoomLevel;
+  const setZoomLevel = externalSetZoomLevel || setInternalZoomLevel;
   const [isZoomedOut, setIsZoomedOut] = useState(false);
 
   // Layout drag-and-drop state
@@ -174,8 +189,12 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     return closestIdx;
   }
 
-  // Zoom handlers
+  // Zoom handlers - use external if provided, otherwise internal
   const handleZoomIn = () => {
+    if (externalOnZoomIn) {
+      externalOnZoomIn();
+      return;
+    }
     const container = containerRef.current;
     if (container) {
       lastCenterRef.current = {
@@ -192,6 +211,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   };
 
   const handleZoomOut = () => {
+    if (externalOnZoomOut) {
+      externalOnZoomOut();
+      return;
+    }
     const container = containerRef.current;
     if (container) {
       lastCenterRef.current = {
@@ -208,6 +231,10 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   };
 
   const handleZoomReset = () => {
+    if (externalOnZoomReset) {
+      externalOnZoomReset();
+      return;
+    }
     const container = containerRef.current;
     if (container) {
       lastCenterRef.current = {
@@ -242,6 +269,11 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     
     setZoomLevel(newZoom);
     setIsZoomedOut(newZoom < 0.8);
+    
+    // Call external handler if provided
+    if (externalOnFitToScreen) {
+      externalOnFitToScreen();
+    }
   };
 
   /**
@@ -462,43 +494,6 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
 
   return (
     <>
-      {/* Zoom Controls */}
-      <div className={layoutsStyles.ZoomControls}>
-        <ToolbarButton
-          title="Zoom In (⌘ =)"
-          onClick={handleZoomIn}
-          disabled={zoomLevel >= 3}
-          icon={Icons.Add24}
-          iconColor={"admin"}
-          position="left"
-        />
-        <ToolbarButton
-          title="Zoom Out (⌘ -)"
-          onClick={handleZoomOut}
-          disabled={zoomLevel <= 0.1}
-          icon={Icons.Subtract32}
-          iconColor={"admin"}
-          position="left"
-        />
-        <ToolbarButton
-          title="Reset Zoom (⌘ 0)"
-          onClick={handleZoomReset}
-          icon={Icons.Borrow24}
-          iconColor={"admin"}
-          position="left"
-        />
-        <ToolbarButton
-          title="Fit to Screen"
-          onClick={handleFitToScreen}
-          icon={Icons.NumberPad24}
-          iconColor={"admin"}
-          position="left"
-        />
-        <div className={layoutsStyles.ZoomLevel}>
-          {Math.round(zoomLevel * 100)}%
-        </div>
-      </div>
-
       <div
         className={layoutsStyles.PhonePreview}
         ref={containerRef}

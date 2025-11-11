@@ -10,6 +10,7 @@ import { Providers } from './Providers';
 
 import './styles/globals.css';
 import './styles/variables.css';
+import './builder/builder-variables.css';
 import './index.sass';
 import styles from './layout.module.sass';
 

@@ -27,7 +27,7 @@ $inputWidth: size(160)
     transition: 0.1s
     border-radius: size(4)
     &:hover
-      background: #F4F4F4
+      background: var(--builder-gray-f4)
   label
     @extend %input-label
     max-width: size(150)
@@ -81,10 +81,10 @@ $inputWidth: size(160)
   border-radius: 8px
   transition: background-color 0.2s
   &:hover
-    background: #F4F4F4
+    background: var(--builder-gray-f4)
   &.active
-    background: #E3F2FD
-    border: 2px solid #2196F3
+    background: var(--blue-20)
+    border: 2px solid var(--blue-60)
 
 .TextAreaInput
   align-items: flex-start
@@ -128,7 +128,7 @@ $thumbSize: size(16)
     right: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: $gray-e4
+    background: var(--builder-gray-e4)
     transition: height 0.3s
 
   .track
@@ -138,7 +138,7 @@ $thumbSize: size(16)
     left: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: $dev-tools-text-dark
+    background: var(--builder-text-dark)
     transition: height 0.3s
     
   .thumb
@@ -148,6 +148,6 @@ $thumbSize: size(16)
     height: $thumbSize
     width: $thumbSize
     border-radius: 500px
-    background: $dev-tools-text-dark
+    background: var(--builder-text-dark)
     transform: translateY(-50%)
     cursor: pointer

@@ -4,16 +4,16 @@
 .Tabs
   display: flex
   gap: size(4)
-  padding: size(8) $dev-tools-padding
-  border-bottom: 1px solid $dev-tools-section-border
+  padding: var(--builder-input-padding) var(--builder-padding)
+  border-bottom: 1px solid var(--builder-section-border)
 
 .Tab
   background: white
   border: none
   border-radius: 500px
   padding: size(6) size(12)
-  font-size: $dev-tools-font-size-s
-  color: $dev-tools-text-light
+  font-size: var(--builder-font-size-s)
+  color: var(--builder-text-light)
   cursor: pointer
   flex: 0 0 auto
   // width: min-content
@@ -21,9 +21,9 @@
 
   &:hover
     &:not(&.active)
-      background: $gray-ef
+      background: var(--builder-gray-ef)
 
   &.active
-    background: $gray-ef
-    color: $dev-tools-text-dark
+    background: var(--builder-gray-ef)
+    color: var(--builder-text-dark)
     @extend %medium

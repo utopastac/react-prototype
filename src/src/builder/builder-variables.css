@@ -1,0 +1,103 @@
+:root {
+  /* Builder Warning Colors */
+  --builder-warning: #ff4444;
+
+  /* Builder Input Colors */
+  --builder-input-bg: rgba(0, 0, 0, 0.1);
+  --builder-input-focus: rgba(0, 0, 0, 0.12);
+  --builder-input-hover: rgba(0, 0, 0, 0.12);
+
+  /* Builder Highlight Colors */
+  --builder-highlight: rgb(79, 101, 222);
+  --builder-component-highlight: rgba(12, 243, 0, 0.15);
+
+  /* Builder Button Colors */
+  --builder-button-bg: rgba(0, 0, 0, 0.9);
+  --builder-button-hover: rgba(0, 0, 0, 1);
+  --builder-button-secondary-bg: #E4E4E4;
+  --builder-button-secondary-hover: #E0E0E0;
+  --builder-button-secondary-active: #d4d4d4;
+  --builder-button-tertiary-border: #d4d4d4;
+  --builder-button-tertiary-border-hover: #b4b4b4;
+  --builder-button-tertiary-bg-hover: #F4F4F4;
+  --builder-button-text: #FFFFFF;
+
+  /* Builder Text Colors */
+  --builder-text-dark: black;
+  --builder-text-medium: rgba(0, 0, 0, 0.8);
+  --builder-text-light: rgba(0, 0, 0, 0.5);
+  --builder-text-lightest: rgba(0, 0, 0, 0.35);
+
+  /* Builder Chip Colors */
+  --builder-chip-border: rgba(0, 0, 0, 0.3);
+  --builder-chip-hover: rgba(0, 0, 0, 0.1);
+
+  /* Builder Section Colors */
+  --builder-section-border: rgba(0, 0, 0, 0.1);
+
+  /* Builder Gray Colors */
+  --builder-white: #fff;
+  --builder-light-gray: #CCCCCC;
+  --builder-gray-e4: #E4E4E4;
+  --builder-gray-f4: #F4F4F4;
+  --builder-gray-ef: #EFEFEF;
+  --builder-gray-888: #888;
+  --builder-gray-d2: #D2D2D2;
+
+  /* Builder Brand Colors */
+  --builder-brand-highlight: #00c026;
+  --builder-brand-mid: rgba(0, 192, 38, 0.2);
+  --builder-brand-light: rgba(0, 192, 38, 0.07);
+  --builder-brand-subtle: rgba(0, 192, 38, 0.03);
+  --builder-brand-green-light: #e0ffe0;
+  --builder-brand-green-border: #b2e5b2;
+
+  /* Builder Dark Theme Colors */
+  --builder-dark-bg: #1A1A1A;
+  --builder-dark-border: rgba(255, 255, 255, 0.25);
+  --builder-dark-text: white;
+
+  /* Builder Input Field Colors */
+  --builder-input-field-bg: #f4f4f4;
+  --builder-input-field-active: #EFEFEF;
+  --builder-input-field-focus-shadow: 0 0 0 2px #D2D2D2;
+
+  /* Builder Tooltip Colors */
+  --builder-tooltip-bg: #222;
+  --builder-tooltip-text: #fff;
+
+  /* Builder Primary Button Colors */
+  --builder-primary-bg: black;
+  --builder-primary-hover: #222222;
+  --builder-primary-active: #444444;
+
+  /* Builder Spacing */
+  --builder-padding: calc(var(--space-1x) * 2); /* 16px */
+  --builder-input-padding: var(--space-1x); /* 8px */
+  --builder-section-gap: calc(var(--space-1x) + 6px); /* 14px */
+
+  /* Builder Sizes */
+  --builder-width: calc(var(--space-1x) * 40); /* 320px */
+  --builder-input-size: calc(var(--space-1x) * 3.5); /* 28px */
+  --builder-section-header-height: calc(var(--space-1x) * 7); /* 56px */
+  --builder-side-offset: 0px;
+  --builder-panel-size: calc(var(--space-1x) * 40); /* 320px */
+
+  /* Builder Border Radius */
+  --builder-border-radius: var(--corner-radius-0_5x); /* 4px */
+  --builder-wrapper-border-radius: var(--corner-radius-1x); /* 8px */
+
+  /* Builder Font Sizes */
+  --builder-font-size-xs: 1rem;
+  --builder-font-size-s: 1.1rem;
+  --builder-font-size-m: 1.2rem;
+  --builder-font-size-l: 1.4rem;
+  --builder-font-size-xl: 1.5rem;
+  --builder-input-font-size: var(--builder-font-size-s);
+  --builder-icon-font-size: 1.6rem;
+}
+
+[data-theme="dark"] {
+  --builder-component-highlight: rgba(255, 255, 255, 0.2);
+}
+

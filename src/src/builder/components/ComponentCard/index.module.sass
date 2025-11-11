@@ -4,7 +4,7 @@
 .Main
   border-radius: size(8)
   align-items: center
-  background: #fff
+  background: var(--builder-white)
   margin-bottom: 0
   padding: size(4)
   cursor: pointer
@@ -12,16 +12,16 @@
   width: 100%
 
   &:hover
-    background: #E4E4E4
+    background: var(--builder-gray-e4)
     //outline: size(8) solid #EFEFEF
   p
-    font-size: $dev-tools-font-size-s
+    font-size: var(--builder-font-size-s)
     margin-top: size(4)
 .ComponentName
-  font-size: $dev-tools-font-size-m
+  font-size: var(--builder-font-size-m)
   padding-bottom: size(4)
 .ComponentPreview
-  background: #F4F4F4
+  background: var(--builder-gray-f4)
   position: relative
   padding: size(8)
   border-radius: size(4)

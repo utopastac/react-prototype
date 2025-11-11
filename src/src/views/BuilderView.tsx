@@ -6,7 +6,6 @@ import { useHistoryManager } from 'src/builder/hooks/useHistoryManager';
 import { useLayoutData } from 'src/builder/hooks/useLayoutData';
 import styles from 'src/builder/index.module.sass';
 import layoutsStyles from 'src/builder/layouts.module.sass';
-import ComponentPanel from 'src/builder/components/ComponentPanel';
 import AdminToast from 'src/builder/components/Toast';
 import ToolbarButton from 'src/builder/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
@@ -20,6 +19,7 @@ import { useLocalStorage } from 'src/builder/hooks/useLocalStorage';
 import { useUrlSharing } from 'src/builder/hooks/useUrlSharing';
 import JsonPanel from 'src/builder/components/JsonPanel';
 import GlobalSettingsPanel from 'src/builder/components/GlobalSettingsPanel';
+import ToolbarPanel from 'src/builder/components/ToolbarPanel';
 import { useKeyboardShortcuts } from 'src/builder/hooks/useKeyboardShortcuts';
 import SelectInput from 'src/builder/LabeledInput/SelectInput';
 import {
@@ -123,10 +123,43 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
   const adminTheme = useAdminTheme();
   const setAdminTheme = useAdminThemeDispatch();
 
+  // Zoom state
+  const [zoomLevel, setZoomLevel] = useState(0.8);
+  const [isZoomedOut, setIsZoomedOut] = useState(false);
+  const ZOOM_STEP = 1.3;
+  const zoomHideLevel = 0.5;
+
+  // Zoom handlers
+  const handleZoomIn = () => {
+    setZoomLevel(prev => {
+      const newLevel = Math.min(prev * ZOOM_STEP, 3);
+      setIsZoomedOut(newLevel < zoomHideLevel);
+      return newLevel;
+    });
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => {
+      const newLevel = Math.max(prev / ZOOM_STEP, 0.1);
+      setIsZoomedOut(newLevel < zoomHideLevel);
+      return newLevel;
+    });
+  };
+
+  const handleZoomReset = () => {
+    setZoomLevel(1);
+    setIsZoomedOut(false);
+  };
+
+  const handleFitToScreen = () => {
+    // The fit to screen logic is handled in PhonePreview component
+    // We just need to trigger it via the callback
+    // The actual calculation needs access to PhonePreview's internal containerRef
+    // So we'll let PhonePreview handle it internally when onFitToScreen is called
+  };
+
   // Panel dimensions (now in AdminThemeContext)
-  const adminPanelWidth = adminTheme.adminPanelWidth;
   const rightPanelWidth = adminTheme.settingsPanelWidth;
-  const setAdminPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { adminPanelWidth: w } });
   const setRightPanelWidth = (w: number) => setAdminTheme({ type: 'Update', payload: { settingsPanelWidth: w } });
   /**
    * Handle phone selection
@@ -447,6 +480,29 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
 
   return (
     <div className={styles.Main}>
+      {/* Toolbar Panel */}
+      <AnimatePresence>
+        <ToolbarPanel
+          onHideAdminPanel={() => setShowAdminPanel(false)}
+          onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
+          onOpenSave={() => setOpenModal('save')}
+          onOpenLoad={() => {
+            localStorage.setLoadList(localStorage.getLoadList());
+            setOpenModal('load');
+          }}
+          onShare={handleShareModal}
+          onOpenTemplates={() => setOpenModal('templates')}
+          onShowJsonPanel={() => setShowJsonPanel(v => !v)}
+          showJsonPanel={showJsonPanel}
+          showAdminPanel={showAdminPanel}
+          zoomLevel={zoomLevel}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onZoomReset={handleZoomReset}
+          onFitToScreen={handleFitToScreen}
+        />
+      </AnimatePresence>
+
       {/* Floating Template Picker */}
       {templatePicker && (
         <div
@@ -479,28 +535,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           />
         </div>
       )}
-      {/* Component Panel */}
-      <AnimatePresence>
-        {showAdminPanel && (
-          <ComponentPanel
-            key="component-panel"
-            showAdminPanel={showAdminPanel}
-            adminPanelWidth={adminPanelWidth}
-            setAdminPanelWidth={setAdminPanelWidth}
-            onHideAdminPanel={() => setShowAdminPanel(false)}
-            onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
-            onOpenSave={() => setOpenModal('save')}
-            onOpenLoad={() => {
-              localStorage.setLoadList(localStorage.getLoadList());
-              setOpenModal('load');
-            }}
-            onShare={handleShareModal}
-            onOpenTemplates={() => setOpenModal('templates')}
-            onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
-            selected={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Template Modal */}
       {openModal === 'templates' && (
@@ -594,6 +628,12 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             gridCols={layoutState.gridCols}
             onAddLayoutAt={handleAddLayoutAt}
             onDuplicateLayoutAt={handleDuplicateLayoutAt}
+            zoomLevel={zoomLevel}
+            setZoomLevel={setZoomLevel}
+            onZoomIn={handleZoomIn}
+            onZoomOut={handleZoomOut}
+            onZoomReset={handleZoomReset}
+            onFitToScreen={handleFitToScreen}
           />
         </div>
       </div>
@@ -617,8 +657,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             isPropEditorVisible={isPropEditorVisible}
             rightPanelWidth={rightPanelWidth}
             setRightPanelWidth={setRightPanelWidth}
-            onShowJsonPanel={() => setShowJsonPanel(v => !v)}
-            showJsonPanel={showJsonPanel}
             onResetWelcomeModal={handleResetWelcomeModal}
             onOpenClearAllLayoutsModal={() => setOpenModal('clearAll')}
             isPhoneSettingsVisible={activeIndex >= 0 && activeLayout !== null}
@@ -680,6 +718,8 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
               }
             }}
             onDeselectPhone={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+            onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
+            selectedLayout={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
           />
         )}
       </AnimatePresence>

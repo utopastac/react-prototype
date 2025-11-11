@@ -6,7 +6,7 @@
  * that developers can use as starting points for building interfaces.
  * 
  * USAGE:
- * - Templates are displayed in a dropdown in the ComponentPanel
+ * - Templates are displayed in a dropdown in the GlobalSettingsPanel (phone settings view)
  * - When selected, they replace the current layout with the predefined components
  * - Templates can include both regular components and special UI elements (top bar, bottom buttons)
  * - This enables rapid prototyping and consistent UI patterns across the app
