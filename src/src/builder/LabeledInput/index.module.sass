@@ -97,8 +97,8 @@ $inputWidth: size(160)
     padding: size(8)
     font-family: $font-dev
 
-$trackHeight: size(4)
-$thumbSize: size(16)
+$trackHeight: size(3)
+$thumbSize: size(12)
 
 .SliderInput
   display: flex
@@ -138,7 +138,7 @@ $thumbSize: size(16)
     left: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: var(--builder-text-dark)
+    background: var(--builder-brand-highlight)
     transition: height 0.3s
     
   .thumb
@@ -146,8 +146,8 @@ $thumbSize: size(16)
     top: 50%
     left: 0
     height: $thumbSize
-    width: $thumbSize
+    width: calc($thumbSize + 4px)
     border-radius: 500px
-    background: var(--builder-text-dark)
+    background: var(--builder-brand-highlight)
     transform: translateY(-50%)
     cursor: pointer
