@@ -12,9 +12,7 @@ import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import Button from 'src/components/Buttons/Button';
 import Cell from 'src/components/Cell';
-import AvatarRow from 'src/components/AvatarRow';
 import ButtonGroup from 'src/components/ButtonGroup';
-import Disclaimer from 'src/components/Disclaimer';
 import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
@@ -102,7 +100,6 @@ const AccountView = () => {
             {title: "Sign out", type: "destructive", onClick:()=>{}}
           ]}
         />
-        <Disclaimer />
       </ScrollContainer>
     </PageWrapper>
     

@@ -3,10 +3,8 @@ import Modal from '../DevTools/Modal';
 import styles from './index.module.sass';
 import { InterventionScreenComponents } from 'src/data/Components';
 import idvImg from 'src/assets/admin-layouts/idv.jpg';
-import accountLinkingImg from 'src/assets/admin-layouts/account-linking.jpg';
 import nAuthImg from 'src/assets/admin-layouts/n-auth.jpg';
 import idvData from '../layouts/idv.json';
-import accountLinkingData from '../layouts/account-linking.json';
 import nAuthData from '../layouts/n-auth.json';
 import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
@@ -25,7 +23,6 @@ interface FlowLibraryModalProps {
 
 const templates: (FlowInfo & { data: any })[] = [
   { name: 'IDV', description: 'ID verification flow', data: idvData, image: idvImg },
-  { name: 'Account Linking', description: 'Account linking flows', data: accountLinkingData, image: accountLinkingImg },
   { name: 'N Auth', description: 'Account recovery flows', data: nAuthData, image: nAuthImg },
 ];
 

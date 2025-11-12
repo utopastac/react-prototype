@@ -72,7 +72,6 @@ import Divider, {
 //
 import SegmentedControl, { SegmentedControlPropMeta } from 'src/components/SegmentedControl';
 import Slider, { SliderPropMeta } from 'src/components/Slider';
-import Disclaimer, { DisclaimerPropMeta } from 'src/components/Disclaimer';
 import ProgressCircular, { ProgressCircularPropMeta } from 'src/components/ProgressCircular';
 import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
@@ -133,7 +132,6 @@ export const Components = {
   Divider,
   SegmentedControl,
   Slider,
-  Disclaimer,
   Icon,
   ProgressCircular,
   Timeline,
@@ -216,7 +214,6 @@ export const ComponentPropMeta = {
   Divider: DividerPropMeta,
   SegmentedControl: SegmentedControlPropMeta,
   Slider: SliderPropMeta,
-  Disclaimer: DisclaimerPropMeta,
   Timeline: TimelinePropMeta,
   TimelineRow: TimelineRowPropMeta,
   Icon: IconPropMeta,

@@ -64,7 +64,7 @@ A modern, interactive React application for our Interventions Hub.
 
 ### Navigation
 - Use the bottom navigation bar to switch between main app sections
-- Navigate through different flows like Account Linking and Reporting
+- Navigate through different flows like Reporting
 
 ### Keyboard Shortcuts
 - `/` - Toggle phone visibility

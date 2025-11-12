@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./index.module.sass";
 import * as Icons from "src/data/Icons";
-import { transitions } from 'src/hooks/useTransitionNavigate';
-import { BUTTON_ACTION_PATH } from 'src/hooks/useButtonAction';
 import Cell from 'src/components/Cell';
 import HalfSheet from 'src/components/HalfSheet';
 //
@@ -39,13 +37,9 @@ const AddAccountHalfsheet = () => {
           right={{
             type: "push"
           }}
-          action = {
-            {
-              type: BUTTON_ACTION_PATH,
-              path: '/flows/account-linking',
-              transition: transitions.defaultTransition
-            }
-          }
+          onClick={()=>{
+            // TODO: Implement account linking
+          }}
         />
       </div>
     </HalfSheet>

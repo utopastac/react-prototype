@@ -13,7 +13,6 @@ import FlowStartView from 'src/views/FlowStartView';
 //import VerificationLayout from './VerificationLayout';
 // Report flow
 import { reportFlowData } from './ReportFlowData';
-import { verificationFlowData } from './VerificationFlowData';
 //
 import { useTransition } from 'src/containers/TransitionContext';
 import styles from './styles.module.sass';
@@ -74,13 +73,6 @@ const AnimatedRoutes = () => {
           <Route path="parallax" element={withRouteContainer(ParallaxButtonView)} />
           
           {/* Layout routes (Flows) - nested routes are handled within the layouts */}
-          {/* <Route path="/account-linking/*" element={<VerificationLayout />} /> */}
-
-          <Route path="account-linking/*" element={
-            <Routes>
-              {renderFlow(verificationFlowData)}
-            </Routes>
-          } />
           
           {/* Report flow */}
           <Route path="report/*" element={
