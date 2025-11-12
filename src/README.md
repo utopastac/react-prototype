@@ -23,7 +23,6 @@ A modern, interactive React application for our Interventions Hub.
 - **3D Tilt Effects**: Interactive phone tilt animations with gyroscope-like behavior
 
 ### Developer Experience
-- **Comprehensive Dev Tools**: Built-in development panel for theme switching, user data management, and navigation
 - **Component Library**: Extensive collection of reusable UI components
 - **TypeScript**: Full type safety throughout the application
 - **SASS Modules**: Modular styling with CSS modules
@@ -67,14 +66,6 @@ A modern, interactive React application for our Interventions Hub.
 - Use the bottom navigation bar to switch between main app sections
 - Navigate through different flows like Account Linking, Reporting, and Disputes
 
-### Dev Tools
-Press the dev tools button to access:
-- **Theme Switcher**: Change between Light and Dark themes
-- **Device Simulation**: Test different screen sizes
-- **Text Scaling**: Adjust text size for accessibility
-- **User Data**: Modify user information and avatars
-- **Quick Navigation**: Direct links to all app sections
-
 ### Keyboard Shortcuts
 - `/` - Toggle phone visibility
 - `,` - Toggle phone tilt mode
@@ -91,7 +82,6 @@ src/
 │   ├── Input/           # Input components
 │   ├── NavigationBar/   # Bottom navigation
 │   ├── TitleBar/        # Header components
-│   ├── DevTools/        # Development tools panel
 │   ├── Icon/           # Icon system
 │   └── ...
 ├── containers/          # Context providers and state management

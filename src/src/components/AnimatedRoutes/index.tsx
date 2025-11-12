@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 // All views
 import ComponentsView from "src/views/ComponentsView";
 import DiscoverView from "src/views/DiscoverView";
-import FeedView from "src/views/FeedView";
 import AccountView from "src/views/AccountView";
 import ChavezView from "src/views/ChavezView";
 import ReceiptView from "src/views/ReceiptView";
@@ -72,7 +71,6 @@ const AnimatedRoutes = () => {
 
           <Route path="components" element={withRouteContainer(ComponentsView)} />
           <Route path="discover" element={withRouteContainer(DiscoverView)} />
-          <Route path="feed" element={withRouteContainer(FeedView)} />
           <Route path="account" element={withRouteContainer(AccountView)} />
           <Route path="receipt" element={withRouteContainer(ReceiptView)} />
           <Route path="chavez" element={withRouteContainer(ChavezView)} />

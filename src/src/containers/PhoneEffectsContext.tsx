@@ -17,7 +17,6 @@ import { TiltState } from 'src/containers/TiltContext';
  * 
  * The context integrates with:
  * - App.tsx: Main application component that applies these effects
- * - DevTools: Admin interface for toggling effects via UI controls
  * - Keyboard shortcuts: Global hotkeys for quick effect toggling
  * - TiltContainer: Component that applies tilt transforms
  * - Phone effects components: BounceEffect, ScaleContainer, etc.
@@ -25,7 +24,6 @@ import { TiltState } from 'src/containers/TiltContext';
  * Usage patterns:
  * - Keyboard shortcuts: "/" (hide), "," (tilt), "wow" (spin), "blur", "bounce", "scale"
  * - ESC key: Clears all active effects
- * - DevTools panel: UI controls for all effects
  * - Programmatic: Direct function calls for custom interactions
  */
 interface PhoneEffectsContextType {
@@ -96,7 +94,7 @@ export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ chil
 
   /**
    * Toggle phone visibility on/off
-   * Used by "/" keyboard shortcut and DevTools controls
+   * Used by "/" keyboard shortcut
    * When disabled, the entire phone interface is hidden from view
    */
   const togglePhoneVisibility = useCallback(() => {
@@ -105,7 +103,7 @@ export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ chil
 
   /**
    * Toggle phone tilt effect on/off
-   * Used by "," keyboard shortcut and DevTools controls
+   * Used by "," keyboard shortcut
    * Stops spinning when enabling tilt to prevent conflicts
    * When enabled, phone responds to mouse movement with 3D tilt effects
    */
@@ -116,7 +114,7 @@ export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ chil
 
   /**
    * Toggle blur effect on/off
-   * Used by "blur" keyboard shortcut and DevTools controls
+   * Used by "blur" keyboard shortcut
    * When enabled, applies blur during tilt or spinning animations
    */
   const toggleBlur = useCallback(() => {
@@ -125,7 +123,7 @@ export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ chil
 
   /**
    * Toggle bounce effect on/off
-   * Used by "bounce" keyboard shortcut and DevTools controls
+   * Used by "bounce" keyboard shortcut
    * When enabled, applies spring-like bouncing animation to the phone
    */
   const toggleBounce = useCallback(() => {
@@ -134,7 +132,7 @@ export const PhoneEffectsProvider: React.FC<PhoneEffectsProviderProps> = ({ chil
 
   /**
    * Toggle scale effect on/off
-   * Used by "scale" keyboard shortcut and DevTools controls
+   * Used by "scale" keyboard shortcut
    * When enabled, applies zoom in/out animation to the phone
    */
   const toggleScale = useCallback(() => {
