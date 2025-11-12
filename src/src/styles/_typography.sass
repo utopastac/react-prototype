@@ -5,54 +5,39 @@
 //
 //
 $font-dev: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-$font-display: var(--font-display)
-$font-heading: var(--font-heading)
-$font-paragraph: var(--font-standard)
-$font-paragraph-bold: var(--font-standard)
-$font-paragraph-extra-bold: var(--font-standard)
-$font-meta: var(--font-meta)
-//
-//
-$font-regular-weight: var(--font-regular-weight)
-$font-medium-weight: var(--font-medium-weight)
-$font-bold-weight: var(--font-bold-weight)
-$font-extra-bold-weight: var(--font-extra-bold-weight)
-//
-$font-heading-weight: var(--font-heading-weight)
 //
 // TYPOGRAPHY
 //
 %heading
-  font-family: $font-heading
-  font-weight: $font-regular-weight
+  font-family: var(--font-family-display)
+  font-weight: ar(--font-weight-regular)
   color: var(--color-text)
 
 %paragraph
-  font-family: $font-paragraph
-  font-weight: $font-regular-weight
+  font-family: var(--font-family-sans)
+  font-weight: ar(--font-weight-regular)
   color: var(--color-text)
 
 %meta
-  font-family: $font-meta
-  font-weight: $font-regular-weight
+  font-family: var(--font-family-sans)
+  font-weight: ar(--font-weight-regular)
   color: var(--color-text)
 //
 //
 //
 %regular
-  font-weight: $font-regular-weight
+  font-weight: var(--font-weight-regular)
 
 %medium
-  font-weight: $font-medium-weight
+  font-weight: var(--font-weight-medium)
 
 %bold
-  font-weight: $font-bold-weight
+  font-weight: var(--font-weight-bold)
 
 %extra-bold
-  font-weight: $font-extra-bold-weight
+  font-weight: var(--font-weight-bold)
 
 %body-bold
-  font-family: $font-paragraph-extra-bold
   @extend %bold
 //
 //
@@ -161,6 +146,7 @@ $font-heading-weight: var(--font-heading-weight)
   @extend %heading
   @extend %regular
   @include fontSize(var(--font-size-display-xl), var(--line-height-display-xl), 0)
+
 %typography-display-xl-bold
   @extend %heading
   @extend %bold

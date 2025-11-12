@@ -54,6 +54,7 @@ const Signature: React.FC<SignatureProps> = ({
 const MainNav: React.FC = () => {
   return (
     <nav className={styles.nav} aria-label="Main">
+      <h1>Interventions Hub</h1>
       <ul className={styles.list}>
         <li>
           <NavLink

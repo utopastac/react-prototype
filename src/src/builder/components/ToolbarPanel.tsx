@@ -51,36 +51,43 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
             title="Toggle admin panel (⌘.)"
             icon={Icons.InterventionsHubCustomer16}
             iconSize={"24"}
+            position="left"
           />
           <ToolbarButton 
             onClick={onShowKeyboardShortcuts} 
             title="Keyboard shortcuts (⌘k)" 
             icon={Icons.Keyboard24} 
+            position="left"
           />
           <ToolbarButton 
             onClick={onOpenTemplates} 
             title="Flow library (⌘/)" 
             icon={Icons.DocumentW224} 
+            position="left"
           />
           <ToolbarButton 
             onClick={onOpenSave} 
             title="Save (⌘s)" 
             icon={Icons.Download16} 
+            position="left"
           />
           <ToolbarButton 
             onClick={onOpenLoad} 
             title="Load (⌘l)" 
             icon={Icons.Load24} 
+            position="left"
           />
           <ToolbarButton 
             onClick={onShare} 
             title="Share (⌘p)" 
             icon={Icons.Hyperlink24 || Icons.Download16} 
+            position="left"
           />
           <ToolbarButton 
             onClick={onShowJsonPanel} 
-            title={`${!showJsonPanel ? "Show" : "Hide"} Multi-Layout JSON`} 
+            title={`${!showJsonPanel ? "Show" : "Hide"} JSON`} 
             icon={Icons.CategoryTechnology32} 
+            position="left"
           />
         </div>
         {/* Zoom Controls */}
@@ -91,6 +98,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
             disabled={zoomLevel >= 3}
             icon={Icons.Add24}
             iconColor={"admin"}
+            position="left"
           />
           <ToolbarButton
             title="Zoom Out (⌘ -)"
@@ -98,18 +106,21 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
             disabled={zoomLevel <= 0.1}
             icon={Icons.Subtract32}
             iconColor={"admin"}
+            position="left"
           />
           <ToolbarButton
             title="Reset Zoom (⌘ 0)"
             onClick={onZoomReset}
             icon={Icons.Borrow24}
             iconColor={"admin"}
+            position="left"
           />
           <ToolbarButton
             title="Fit to Screen"
             onClick={onFitToScreen}
             icon={Icons.NumberPad24}
             iconColor={"admin"}
+            position="left"
           />
           <div className={layoutsStyles.ZoomLevel}>
             {Math.round(zoomLevel * 100)}%
