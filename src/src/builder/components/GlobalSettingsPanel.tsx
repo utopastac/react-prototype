@@ -504,7 +504,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
       }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-      onClick={isPhoneSettingsVisible ? onClosePhoneSettings : undefined}
+      onClick={isPhoneSettingsVisible && !isPropEditorVisible ? onClosePhoneSettings : undefined}
     >
       {/* Draggable left edge */}
       {resizeHandle}
@@ -514,6 +514,10 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
           style={{ 
             opacity: 1,
             backgroundColor: 'white',
+          }}
+          onClick={(e) => {
+            // Stop propagation so clicks on settings don't close the panel
+            e.stopPropagation();
           }}
         >
           {renderContent()}

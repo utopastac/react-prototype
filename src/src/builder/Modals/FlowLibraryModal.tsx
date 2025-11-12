@@ -21,6 +21,8 @@ interface FlowInfo {
 interface FlowLibraryModalProps {
   onLoadComplete: (data: any) => void;
   onClose: () => void;
+  x?: number;
+  y?: number;
 }
 
 const templates: (FlowInfo & { data: any })[] = [
@@ -30,7 +32,7 @@ const templates: (FlowInfo & { data: any })[] = [
   { name: 'N Auth', description: 'Account recovery flows', data: nAuthData, image: nAuthImg },
 ];
 
-const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onClose }) => {
+const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onClose, x = 650, y = 40 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -74,8 +76,8 @@ const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onC
   return (
     <Modal
       title="Flow Library"
-      x={650}
-      y={40}
+      x={x}
+      y={y}
       close={onClose}
     >
       <div className={styles.FlowLibraryModal}>

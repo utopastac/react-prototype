@@ -45,12 +45,12 @@
   --builder-gray-d2: #D2D2D2;
 
   /* Builder Brand Colors */
-  --builder-brand-highlight: #00c026;
-  --builder-brand-mid: rgba(0, 192, 38, 0.2);
-  --builder-brand-light: rgba(0, 192, 38, 0.07);
-  --builder-brand-subtle: rgba(0, 192, 38, 0.03);
-  --builder-brand-green-light: #e0ffe0;
-  --builder-brand-green-border: #b2e5b2;
+  --builder-brand-highlight: #0017e6;
+  --builder-brand-mid: rgba(0, 19, 192, 0.2);
+  --builder-brand-light: rgba(0, 3, 192, 0.07);
+  --builder-brand-subtle: rgba(10, 0, 192, 0.03);
+  --builder-brand-green-light: #e0e4ff;
+  --builder-brand-green-border: #b2bee5;
 
   /* Builder Dark Theme Colors */
   --builder-dark-bg: #1A1A1A;

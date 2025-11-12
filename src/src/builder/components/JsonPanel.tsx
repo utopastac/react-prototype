@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Modal from '../DevTools/Modal';
 import ToolbarButton from 'src/builder/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
 import styles from '../index.module.sass';
@@ -23,50 +23,36 @@ const JsonPanel: React.FC<JsonPanelProps> = ({ visible, onClose, getLayoutData, 
       showToast?.('Copied JSON to clipboard');
     });
   };
+  
+  if (!visible) return null;
+  
   return (
-      <AnimatePresence>
-        {visible && (
-          <motion.div
-            className={`${styles.AdminPanel} ${styles.JsonPanel} ${styles.rightSide}`}
-          initial={{ x: '100%', width: 0 }}
-          animate={{ x: 0, width: 280 }}
-          exit={{ x: '100%', width: 0 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-        >
-            <header className={styles.PanelHeader}>
-              <div>
-              <h2>JSON (all screens)</h2>
-                <div className={styles.actions}>
-                  <ToolbarButton 
-                    onClick={handleDownloadJson} 
-                    icon={Icons.Download16} 
-                    title="Download JSON" 
-                    iconColor={"inverse"} 
-                    position="bottom" 
-                  />
-                  <ToolbarButton 
-                    onClick={handleCopyJson} 
-                    icon={Icons.Copy16} 
-                    title="Copy JSON" 
-                    iconColor={"inverse"} 
-                    position="bottom" 
-                  />
-                  <ToolbarButton 
-                    onClick={onClose} 
-                    icon={Icons.Failed16} 
-                    title="Close" 
-                    iconColor={"inverse"} 
-                    position="bottom" 
-                  />
-                </div>
-              </div>
-            </header>
-            <div className={styles.layoutJson}>
-            <pre>{JSON.stringify(getLayoutData(), null, 2)}</pre>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <Modal
+      title="JSON (all screens)"
+      showBackground={true}
+      close={onClose}
+      className={styles.JsonModal}
+    >
+      <div className={styles.JsonModalContent}>
+        <div className={styles.JsonModalActions}>
+          <ToolbarButton 
+            onClick={handleDownloadJson} 
+            icon={Icons.Download16} 
+            title="Download JSON" 
+            position="bottom" 
+          />
+          <ToolbarButton 
+            onClick={handleCopyJson} 
+            icon={Icons.Copy16} 
+            title="Copy JSON" 
+            position="bottom" 
+          />
+        </div>
+        <div className={styles.JsonModalScroll}>
+          <pre>{JSON.stringify(getLayoutData(), null, 2)}</pre>
+        </div>
+      </div>
+    </Modal>
   );
 };
 
