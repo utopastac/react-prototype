@@ -21,6 +21,17 @@
   @extend %admin-panel
   z-index: 100
   border-right: 1px solid var(--builder-section-border)
+
+  .PanelHeader
+    > div
+      display: flex
+      align-items: center
+      justify-content: space-between
+      padding: var(--builder-padding)
+      border-bottom: 1px solid var(--builder-section-border)
+      height: size(48)
+      background: var(--builder-white)
+      
   &.rightSide
     width: size(320)
     border-right: none
