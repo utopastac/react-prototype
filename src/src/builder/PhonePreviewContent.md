@@ -67,13 +67,6 @@
 
 ---
 
-## Tips
-
-- Use clear visual cues for selection states to improve UX.
-- Keep the selection logic in sync with the state in `AdminView`.
-
----
-
 ## Related Files
 
 - `PhonePreviewContent.tsx`: The main implementation.

@@ -17,7 +17,7 @@ import EditableLabel from './components/EditableLabel';
 import { useAdminTheme } from './AdminThemeContext';
 
 /**
- * MultiPhonePreview
+ * PhonePreview
  *
  * Renders multiple phone previews in a grid layout, each with independent state.
  * Supports drag-and-drop between phones, individual selection, and prop editing.
@@ -34,7 +34,7 @@ import { useAdminTheme } from './AdminThemeContext';
 
 // Update prop types
 type SelectedSpecial = { phoneIndex: number, type: 'topbar' | 'bottombuttons' | 'toast' | 'statusbar' } | null;
-interface MultiPhonePreviewProps {
+interface PhonePreviewProps {
   /** Whether to show phone names/labels */
   showLabels?: boolean;
   /** Callback when a phone is selected */
@@ -49,24 +49,15 @@ interface MultiPhonePreviewProps {
   gridCols?: number;
   onAddLayoutAt?: (row: number, col: number, templateName?: string) => void;
   onDuplicateLayoutAt?: (index: number) => void;
-  // Zoom props
-  zoomLevel?: number;
-  setZoomLevel?: (level: number) => void;
-  onZoomIn?: () => void;
-  onZoomOut?: () => void;
-  onZoomReset?: () => void;
-  onFitToScreen?: () => void;
+  // Zoom props - now required (fully controlled)
+  zoomLevel: number;
+  setZoomLevel: (level: number) => void;
+  /** Callback to receive the container ref for fit-to-screen calculations */
+  onContainerRef?: (ref: HTMLDivElement | null) => void;
 }
 
-// Grid position interface
-interface GridPosition {
-  row: number;
-  col: number;
-}
 
-const ZOOM_STEP = 1.3; // 20% per step, adjust as desired
-
-const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
+const PhonePreview: React.FC<PhonePreviewProps> = (props) => {
   const {
     showLabels = true,
     onPhoneSelect,
@@ -74,41 +65,22 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     setSelected,
     setSelectedSpecial,
     selectedSpecial,
-    zoomLevel: externalZoomLevel,
-    setZoomLevel: externalSetZoomLevel,
-    onZoomIn: externalOnZoomIn,
-    onZoomOut: externalOnZoomOut,
-    onZoomReset: externalOnZoomReset,
-    onFitToScreen: externalOnFitToScreen
+    zoomLevel,
+    onContainerRef
   } = props;
   const [layoutState, dispatch] = useAdminLayoutContext();
   const { index: activeIndex } = useActiveLayout();
   const adminTheme = useAdminTheme();
   
-  // Per-phone selectedIdx state for prop editing
-  const [selectedIdxs, setSelectedIdxs] = useState<(number | null)[]>(() =>
-    layoutState.layouts.map(() => null)
-  );
-  useEffect(() => {
-    setSelectedIdxs(idxs => {
-      if (idxs.length !== layoutState.layouts.length) {
-        return layoutState.layouts.map((_, i) => idxs[i] ?? null);
-      }
-      return idxs;
-    });
-  }, [layoutState.layouts.length]);
-  
-  // Local state for multi-phone interactions
-  const [selectedPhoneIndex, setSelectedPhoneIndex] = useState<number | null>(null);
   
   // Grid position mapping - maps layout index to grid position
   // const [layoutPositions, setLayoutPositions] = useState<Map<number, GridPosition>>(new Map());
 
-  // Zoom state - use external if provided, otherwise internal
-  const [internalZoomLevel, setInternalZoomLevel] = useState(0.8);
-  const zoomLevel = externalZoomLevel !== undefined ? externalZoomLevel : internalZoomLevel;
-  const setZoomLevel = externalSetZoomLevel || setInternalZoomLevel;
-  const [isZoomedOut, setIsZoomedOut] = useState(false);
+  // Derived state for zoom UI
+  const zoomHideLevel = 0.5;
+  // Ensure zoomLevel is valid and calculate isZoomedOut
+  const validZoomLevel = isNaN(zoomLevel) || zoomLevel <= 0 ? 0.8 : zoomLevel;
+  const isZoomedOut = validZoomLevel < zoomHideLevel;
 
   // Layout drag-and-drop state
   const [draggedLayoutIndex, setDraggedLayoutIndex] = useState<number | null>(null);
@@ -131,165 +103,22 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
     // No longer needed as EditableLabel handles its own selection
   }, []);
 
-  // Keyboard shortcuts for zoom
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey) {
-        switch (e.key) {
-          case '=':
-          case '+':
-            e.preventDefault();
-            handleZoomIn();
-            break;
-          case '-':
-            e.preventDefault();
-            handleZoomOut();
-            break;
-          case '0':
-            e.preventDefault();
-            handleZoomReset();
-            break;
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [zoomLevel]);
+  // Keyboard shortcuts for zoom are handled in BuilderView
 
   // Refs for drag-and-drop
   const phoneRefs = useRef<(HTMLDivElement | null)[]>([]);
-  // Ref for the scroll container
-  const containerRef = useRef<HTMLDivElement>(null);
-  const zoomHideLevel = 0.5;
-  // Replace lastCenterOffsetRef with a ref for center and zoom
-  const lastCenterRef = useRef<{centerX: number, centerY: number, prevZoom: number} | null>(null);
+  // Ref for the scroll container - use callback ref to expose to parent
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Helper to find the layout closest to the center of the container
-  function getClosestLayoutToCenter() {
-    const container = containerRef.current;
-    if (!container) return 0;
-    const containerCenterX = container.scrollLeft + container.clientWidth / 2;
-    const containerCenterY = container.scrollTop + container.clientHeight / 2;
-    let minDist = Infinity;
-    let closestIdx = 0;
-    for (let i = 0; i < phoneRefs.current.length; i++) {
-      const node = phoneRefs.current[i];
-      if (!node) continue;
-      const nodeCenterX = node.offsetLeft * zoomLevel + (node.offsetWidth * zoomLevel) / 2;
-      const nodeCenterY = node.offsetTop * zoomLevel + (node.offsetHeight * zoomLevel) / 2;
-      const dx = nodeCenterX - containerCenterX;
-      const dy = nodeCenterY - containerCenterY;
-      const dist = dx * dx + dy * dy;
-      if (dist < minDist) {
-        minDist = dist;
-        closestIdx = i;
-      }
-    }
-    return closestIdx;
-  }
 
-  // Zoom handlers - use external if provided, otherwise internal
-  const handleZoomIn = () => {
-    if (externalOnZoomIn) {
-      externalOnZoomIn();
-      return;
-    }
-    const container = containerRef.current;
-    if (container) {
-      lastCenterRef.current = {
-        centerX: container.scrollLeft + container.clientWidth / 2,
-        centerY: container.scrollTop + container.clientHeight / 2,
-        prevZoom: zoomLevel
-      };
-    }
-    setZoomLevel(prev => {
-      const newLevel = Math.min(prev * ZOOM_STEP, 3);
-      setIsZoomedOut(newLevel < zoomHideLevel);
-      return newLevel;
-    });
-  };
-
-  const handleZoomOut = () => {
-    if (externalOnZoomOut) {
-      externalOnZoomOut();
-      return;
-    }
-    const container = containerRef.current;
-    if (container) {
-      lastCenterRef.current = {
-        centerX: container.scrollLeft + container.clientWidth / 2,
-        centerY: container.scrollTop + container.clientHeight / 2,
-        prevZoom: zoomLevel
-      };
-    }
-    setZoomLevel(prev => {
-      const newLevel = Math.max(prev / ZOOM_STEP, 0.1);
-      setIsZoomedOut(newLevel < zoomHideLevel);
-      return newLevel;
-    });
-  };
-
-  const handleZoomReset = () => {
-    if (externalOnZoomReset) {
-      externalOnZoomReset();
-      return;
-    }
-    const container = containerRef.current;
-    if (container) {
-      lastCenterRef.current = {
-        centerX: container.scrollLeft + container.clientWidth / 2,
-        centerY: container.scrollTop + container.clientHeight / 2,
-        prevZoom: zoomLevel
-      };
-    }
-    setZoomLevel(1);
-    setIsZoomedOut(false);
-  };
-
-  const handleFitToScreen = () => {
-    // Use the calculated grid dimensions
-    if (layoutState.gridRows === 0 || layoutState.gridCols === 0) return;
-    
-    // Calculate the grid size needed (including the extra row/column)
-    const gridWidth = layoutState.gridCols * 300 + (layoutState.gridCols - 1) * 80; // 300px width + 80px gap
-    const gridHeight = layoutState.gridRows * 500 + (layoutState.gridRows - 1) * 80; // 500px height + 80px gap
-    
-    // Get container dimensions
-    const container = containerRef.current;
-    if (!container) return;
-    
-    const containerWidth = container.clientWidth - 112; // Account for padding
-    const containerHeight = container.clientHeight - 112;
-    
-    // Calculate zoom level to fit
-    const zoomX = containerWidth / gridWidth;
-    const zoomY = containerHeight / gridHeight;
-    const newZoom = Math.min(zoomX, zoomY, 1); // Don't zoom in beyond 100%
-    
-    setZoomLevel(newZoom);
-    setIsZoomedOut(newZoom < 0.8);
-    
-    // Call external handler if provided
-    if (externalOnFitToScreen) {
-      externalOnFitToScreen();
-    }
-  };
+  // Zoom handlers are now fully controlled by parent (BuilderView)
 
   /**
    * Handle phone selection
    */
   const handlePhoneSelect = (index: number) => {
-    setSelectedPhoneIndex(index);
     dispatch({ type: 'SET_ACTIVE_LAYOUT', index });
     onPhoneSelect?.(index);
-  };
-
-  /**
-   * Handle phone double-click for full-screen editing
-   */
-  const handlePhoneDoubleClick = (index: number) => {
-    // (Removed unused onPhoneDoubleClick reference)
   };
 
 
@@ -476,27 +305,14 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   // Track which empty cell is hovered
   const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
 
-  // Add useEffect to scroll after zoom changes
-  useEffect(() => {
-    if (!lastCenterRef.current) return;
-    const container = containerRef.current;
-    if (container) {
-      const { centerX, centerY, prevZoom } = lastCenterRef.current;
-      const scale = zoomLevel / prevZoom;
-      const newCenterX = centerX * scale;
-      const newCenterY = centerY * scale;
-      // Set scroll position directly (no animation)
-      container.scrollLeft = newCenterX - container.clientWidth / 2;
-      container.scrollTop = newCenterY - container.clientHeight / 2;
-    }
-    lastCenterRef.current = null;
-  }, [zoomLevel]);
-
   return (
     <>
       <div
         className={layoutsStyles.PhonePreview}
-        ref={containerRef}
+        ref={(el) => {
+          containerRef.current = el;
+          onContainerRef?.(el);
+        }}
         onClick={e => {
           // Only trigger if the click is on the container itself, not a phone or child
           if (e.target === e.currentTarget && props.onCanvasClick) {
@@ -629,7 +445,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                     ].filter(Boolean).join(' ')}
                     style={{
                       transform: `scale(${1 / zoomLevel})`,
-                      transformOrigin: 'center center',
+                      transformOrigin: 'top right',
                     }}>
                         <ToolbarButton
                           key={`duplicate-phone-${index}`}
@@ -639,7 +455,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                             handleDuplicateLayout(index);
                           }}
                           icon={Icons.Copy16}
-                          iconColor={"admin"}
+                          iconColor={"subtle"}
                           position="bottom"
                         />
                         <ToolbarButton
@@ -650,7 +466,7 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
                             dispatch({ type: 'REMOVE_LAYOUT', index });
                           }}
                           icon={Icons.Clear16}
-                          iconColor={"admin"}
+                          iconColor={"subtle"}
                           position="bottom"
                         />
                     </div>
@@ -768,4 +584,4 @@ const MultiPhonePreview: React.FC<MultiPhonePreviewProps> = (props) => {
   );
 };
 
-export default MultiPhonePreview; 
+export default PhonePreview; 

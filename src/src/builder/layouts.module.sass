@@ -130,20 +130,17 @@ $zoom-transition: transform 0s ease
 
 .PhoneActions
   display: flex
-  justify-content: center
+  justify-content: flex-end
+  gap: size(1)
   visibility: hidden
   position: absolute
-  bottom: neg-size(48)
-  left: 0
+  top: neg-size(40)
   right: 0
   transition: $zoom-transition
   z-index: 1000
 
   &.active
     visibility: visible
-  // position: absolute
-  // bottom: neg-size(16)
-  // left: 0
 
 .Spacer
   flex: 0 0 auto
