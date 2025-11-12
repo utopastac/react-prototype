@@ -419,6 +419,8 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
   const [openModal, setOpenModal] = useState<null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates'>(null);
   // Welcome modal state
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  // Modal coordinates from button click
+  const [modalCoordinates, setModalCoordinates] = useState<{ x: number; y: number } | null>(null);
 
   // Show welcome modal if not seen
   useEffect(() => {
@@ -588,7 +590,12 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
       {/* Modal Handler */}
       <ModalHandler
         openModal={openModal}
-        setOpenModal={setOpenModal}
+        setOpenModal={(modal) => {
+          setOpenModal(modal);
+          if (!modal) {
+            setModalCoordinates(null);
+          }
+        }}
         showWelcomeModal={showWelcomeModal}
         setShowWelcomeModal={setShowWelcomeModal}
         saveName={localStorage.saveName}
@@ -612,11 +619,13 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             gridCols: data.gridCols,
           });
           setOpenModal(null);
+          setModalCoordinates(null);
           setToast('✅ Loaded flow');
         }}
         onClear={() => {
           handleReset();
         }}
+        modalCoordinates={modalCoordinates}
       />
 
       {/* Main Content Area */}
@@ -745,14 +754,27 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
       <AnimatePresence>
         <ToolbarPanel
           onHideAdminPanel={() => setShowAdminPanel(v => !v)}
-          onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
-          onOpenSave={() => setOpenModal('save')}
-          onOpenLoad={() => {
+          onShowKeyboardShortcuts={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('shortcuts');
+          }}
+          onOpenSave={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('save');
+          }}
+          onOpenLoad={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
             localStorage.setLoadList(localStorage.getLoadList());
             setOpenModal('load');
           }}
-          onShare={handleShareModal}
-          onOpenTemplates={() => setOpenModal('templates')}
+          onShare={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            handleShareModal();
+          }}
+          onOpenTemplates={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('templates');
+          }}
           onShowJsonPanel={() => setShowJsonPanel(v => !v)}
           showJsonPanel={showJsonPanel}
           zoomLevel={zoomLevel}

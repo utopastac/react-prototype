@@ -8,9 +8,11 @@ import { AdminTemplate } from '../Templates';
 import { LayoutData } from '../LayoutContext';
 import { LayoutsData } from '../hooks/useLayoutData';
 
+type ModalType = 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates';
+
 interface ModalHandlerProps {
-  openModal: null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates';
-  setOpenModal: (modal: null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates') => void;
+  openModal: ModalType | null;
+  setOpenModal: (modal: ModalType | null) => void;
   showWelcomeModal: boolean;
   setShowWelcomeModal: (show: boolean) => void;
   // Save modal props
@@ -30,13 +32,19 @@ interface ModalHandlerProps {
   onLoadComplete: (data: any) => void;
   // Clear modal props
   onClear: () => void;
-  // Common modal positioning (most modals use the same coordinates)
-  modalX?: number;
-  modalY?: number;
+  // Modal coordinates from button click
+  modalCoordinates?: { x: number; y: number } | null;
 }
 
-const DEFAULT_MODAL_X = 650;
+const MODAL_WIDTH = 320; // --builder-width: 320px
 const DEFAULT_MODAL_Y = 40;
+
+const getDefaultModalX = (): number => {
+  if (typeof window !== 'undefined') {
+    return window.innerWidth - MODAL_WIDTH;
+  }
+  return 650; // Fallback for SSR
+};
 
 const ModalHandler: React.FC<ModalHandlerProps> = ({
   openModal,
@@ -55,9 +63,10 @@ const ModalHandler: React.FC<ModalHandlerProps> = ({
   showToast,
   onLoadComplete,
   onClear,
-  modalX = DEFAULT_MODAL_X,
-  modalY = DEFAULT_MODAL_Y
+  modalCoordinates
 }) => {
+  const modalX = modalCoordinates?.x ?? getDefaultModalX();
+  const modalY = modalCoordinates?.y ?? DEFAULT_MODAL_Y;
   return (
     <>
       {/* Template Modal */}

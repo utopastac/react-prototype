@@ -7,11 +7,11 @@ import layoutsStyles from '../layouts.module.sass';
 
 interface ToolbarPanelProps {
   onHideAdminPanel: () => void;
-  onShowKeyboardShortcuts: () => void;
-  onOpenSave: () => void;
-  onOpenLoad: () => void;
-  onShare: () => void;
-  onOpenTemplates: () => void;
+  onShowKeyboardShortcuts: React.MouseEventHandler<HTMLButtonElement>;
+  onOpenSave: React.MouseEventHandler<HTMLButtonElement>;
+  onOpenLoad: React.MouseEventHandler<HTMLButtonElement>;
+  onShare: React.MouseEventHandler<HTMLButtonElement>;
+  onOpenTemplates: React.MouseEventHandler<HTMLButtonElement>;
   onShowJsonPanel: () => void;
   showJsonPanel: boolean;
   zoomLevel: number;
