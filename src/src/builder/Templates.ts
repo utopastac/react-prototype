@@ -952,7 +952,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Interventions Hub PIN',
-          left: { type: 'icon', icon: Icons.PasscodeFill24 },
+          left: { type: 'icon', icon: Icons.Passcode24 },
           right: { type: 'push' }
         }
       },
@@ -962,7 +962,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Synced contacts',
-          left: { type: 'icon', icon: Icons.ContactTrue },
+          left: { type: 'icon', icon: Icons.ContactCheck },
           right: { type: 'push' }
         }
       },

@@ -133,7 +133,7 @@ const ArrayEditor: React.FC<ArrayEditorProps> = ({
               <div className={styles.HeaderTitle}>
                 {/* Animated chevron icon that rotates when expanded */}
                 <Icon
-                  icon={Icons.SubtleExpand16}
+                  icon={Icons.Expand16}
                   size={"16"}
                   color={"standard"}
                   className={`${styles.chevron} ${isOpen ? styles.open : ''}`}

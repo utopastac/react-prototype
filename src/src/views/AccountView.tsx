@@ -61,7 +61,7 @@ const AccountView = () => {
             }}
             //onClick={openLayer}
             icon={{
-              type: Icons.SubtleExpand16,
+              type: Icons.Expand16,
               size: "16",
               color: "subtle"
             }}

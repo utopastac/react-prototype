@@ -10,19 +10,20 @@ import Copy16 from "src/assets/16/copy.svg";
 import Download16 from "src/assets/16/download.svg";
 import Failed16 from "src/assets/16/failed.svg";
 import Search16 from "src/assets/16/search.svg";
-import SubtleExpand16 from "src/assets/16/subtle-expand.svg";
-import SubtlePush16 from "src/assets/16/subtle-push.svg";
+import Expand16 from "src/assets/16/expand.svg";
+import Push16 from "src/assets/16/push.svg";
+import More16 from "src/assets/16/more.svg";
 
 // 24px icons
 import Alert24 from "src/assets/24/alert.svg";
 import Avatar24 from "src/assets/24/avatar.svg";
-import Email24 from "src/assets/24/comm-email.svg";
-import ContactTrue from "src/assets/24/contact-true.svg";
+import Email24 from "src/assets/24/email.svg";
+import ContactCheck from "src/assets/24/contact-check.svg";
 import CurrencyUsd24 from "src/assets/24/currency-usd.svg";
 import DeviceMobile24 from "src/assets/24/device-mobile.svg";
 import Help24 from "src/assets/24/help.svg";
 import Notifications24 from "src/assets/24/notifications.svg";
-import PasscodeFill24 from "src/assets/24/passcode-fill.svg";
+import Passcode24 from "src/assets/24/passcode.svg";
 import Search24 from "src/assets/24/search.svg";
 import Link24 from "src/assets/24/hyperlink.svg";
 import Keyboard24 from "src/assets/24/keyboard.svg";
@@ -45,19 +46,20 @@ export {
   Copy16,
   Download16,
   Failed16,
+  More16,
   Search16,
-  SubtleExpand16,
-  SubtlePush16,
+  Expand16,
+  Push16,
   // 24px icons
   Alert24,
   Avatar24,
   Email24,
-  ContactTrue,
+  ContactCheck,
   CurrencyUsd24,
   DeviceMobile24,
   Help24,
   Notifications24,
-  PasscodeFill24,
+  Passcode24,
   Search24,
   Link24,
   Keyboard24,
