@@ -11,9 +11,6 @@ import BounceEffect from 'src/components/PhoneEffects/BounceEffect';
 import ScaleContainer from 'src/components/PhoneEffects/ScaleContainer';
 import useStringEndsWith from 'src/hooks/useStringEndsWith';
 import { usePhoneEffects } from 'src/containers/PhoneEffectsContext';
-import Icon from 'src/components/Icon';
-import * as Icons from 'src/data/Icons';
-import { useNavigate } from 'react-router-dom';
 
 // Valid keyboard patterns for phone control shortcuts
 const VALID_KEYBOARD_PATTERNS = ['/', ',', 'wow', 'blur', 'bounce', 'scale'] as const;
@@ -51,8 +48,6 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
     toggleBounce,      // Toggle bounce effect
     toggleScale        // Toggle scale effect
   } = usePhoneEffects();
-  
-  const navigate = useNavigate();
 
   /**
    * Handles keyboard pattern matches for phone control shortcuts
@@ -120,15 +115,6 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
       data-text-scale={scale}
       data-device={device}
     >
-      {/* Home Button - Navigates to the main discover view */}
-      <button
-        className={styles.homeButton}
-        onClick={() => navigate('/flows/discover')}
-        aria-label="Go to home"
-        type="button"
-      >
-        <Icon icon={Icons.Discover} size="24" color="prominent" className={styles.homeIcon} />
-      </button>
       
       {/* Flows panel - left side */}
       <FlowsPanel />

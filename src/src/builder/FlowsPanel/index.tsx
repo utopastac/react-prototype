@@ -32,10 +32,6 @@ const FlowsPanel: React.FC = () => {
 
   return (
     <div className={styles.Main}>
-      <header className={styles.header}>
-        <h2>Flows</h2>
-      </header>
-      
       {/* Flows List - Scrollable, takes remaining space */}
       <div className={styles.flowsContent}>
         <div className={styles.routeLinks}>
