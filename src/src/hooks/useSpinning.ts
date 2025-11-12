@@ -5,14 +5,12 @@ import { TiltState } from 'src/containers/TiltContext';
  * Custom hook that manages a spinning animation effect for the phone interface
  * 
  * This hook is used in the PhoneEffectsContext to provide a spinning animation
- * that can be triggered via keyboard shortcuts (typing "wow") or through the
- * DevTools panel. The spinning effect creates a continuous rotation animation
- * with dynamic speed changes and blur effects.
+ * that can be triggered via keyboard shortcuts (typing "wow"). The spinning effect
+ * creates a continuous rotation animation with dynamic speed changes and blur effects.
  * 
  * Usage in the app:
  * - App.tsx: Used via PhoneEffectsContext to enable/disable spinning
  * - PhoneEffectsContext.tsx: Integrates spinning with other phone effects
- * - DevTools: Provides UI controls for toggling the spinning effect
  * - TiltContainer: Applies the spinning rotation via CSS transforms
  * 
  * The spinning effect overrides normal tilt controls when active and provides
@@ -95,7 +93,7 @@ export const useSpinning = () => {
 
   /**
    * Starts the spinning animation with a slow initial speed
-   * Called when user triggers spinning via keyboard shortcut or DevTools
+   * Called when user triggers spinning via keyboard shortcut
    */
   const startSpinning = () => {
     setIsSpinning(true);
@@ -113,7 +111,7 @@ export const useSpinning = () => {
 
   /**
    * Toggles the spinning animation on/off
-   * Used by keyboard shortcuts and DevTools controls
+   * Used by keyboard shortcuts
    */
   const toggleSpinning = () => {
     if (isSpinning) {

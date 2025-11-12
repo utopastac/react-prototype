@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import AnimatedRoutes from 'src/components/AnimatedRoutes';
 import TiltContainer from 'src/components/PhoneEffects/TiltContainer';
 import { TiltState } from 'src/containers/TiltContext';
@@ -6,7 +6,7 @@ import Layers from 'src/components/Layers';
 import styles from "./app.module.sass";
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
-import DevTools from 'src/builder/DevTools';
+import FlowsPanel from 'src/builder/FlowsPanel';
 import BounceEffect from 'src/components/PhoneEffects/BounceEffect';
 import ScaleContainer from 'src/components/PhoneEffects/ScaleContainer';
 import useStringEndsWith from 'src/hooks/useStringEndsWith';
@@ -14,7 +14,6 @@ import { usePhoneEffects } from 'src/containers/PhoneEffectsContext';
 import Icon from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 import { useNavigate } from 'react-router-dom';
-import { isEditingField } from 'src/helpers/Utils';
 
 // Valid keyboard patterns for phone control shortcuts
 const VALID_KEYBOARD_PATTERNS = ['/', ',', 'wow', 'blur', 'bounce', 'scale'] as const;
@@ -54,34 +53,6 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
   } = usePhoneEffects();
   
   const navigate = useNavigate();
-
-  // DevTools panel state management
-  const [isToolsOpen, setIsToolsOpen] = useState(true);
-  const toggleTools = useCallback(() => {
-    setIsToolsOpen(prev => !prev);
-  }, []);
-
-  /**
-   * Global keyboard shortcut handler for DevTools
-   * Opens/closes DevTools panel with Cmd+. (Mac) or Ctrl+. (Windows/Linux)
-   */
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger shortcuts when user is editing input fields
-      if (isEditingField()) return;
-      
-      // Cmd+. or Ctrl+. to toggle DevTools
-      if ((e.metaKey || e.ctrlKey) && e.key === '.') {
-        e.preventDefault();
-        toggleTools();
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [toggleTools]);
 
   /**
    * Handles keyboard pattern matches for phone control shortcuts
@@ -159,6 +130,9 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
         <Icon icon={Icons.Discover} size="24" color="prominent" className={styles.homeIcon} />
       </button>
       
+      {/* Flows panel - left side */}
+      <FlowsPanel />
+      
       <div className={styles.RootWrapper}>
         {/* Scale effect container - applies scaling animations */}
         <ScaleContainer enabled={scaleEnabled}>
@@ -181,9 +155,6 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
           </BounceEffect>
         </ScaleContainer>
       </div>
-      
-      {/* Development tools panel */}
-      <DevTools isToolsOpen={isToolsOpen} toggleTools={toggleTools} />
     </div>
   );
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import { ThemeProvider } from 'src/containers/ThemeContext';
 import { LayersProvider } from 'src/containers/LayersContext.js';
 import { UserProvider } from 'src/containers/UserContext.tsx';
-import { FeedProvider } from 'src/containers/FeedContext.tsx';
 import { TransitionProvider } from 'src/containers/TransitionContext';
 import { TiltProvider } from 'src/containers/TiltContext';
 import { PhoneEffectsProvider } from 'src/containers/PhoneEffectsContext';
@@ -21,7 +20,6 @@ interface ProvidersProps {
  * The providers are nested in a specific order to ensure proper dependency resolution:
  * - ThemeProvider: Provides theme context (light/dark mode, colors, etc.)
  * - UserProvider: Manages user state and authentication
- * - FeedProvider: Handles feed data and state
  * - LayersProvider: Manages UI layer stacking and z-index coordination
  * - TransitionProvider: Handles page transitions and animations
  * - TiltProvider: Manages tilt effects for interactive elements
@@ -31,17 +29,15 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider>
       <UserProvider>
-        <FeedProvider>
-          <LayersProvider>
-            <TransitionProvider>
-              <TiltProvider>
-                <PhoneEffectsProvider>
-                  {children}
-                </PhoneEffectsProvider>
-              </TiltProvider>
-            </TransitionProvider>
-          </LayersProvider>
-        </FeedProvider>
+        <LayersProvider>
+          <TransitionProvider>
+            <TiltProvider>
+              <PhoneEffectsProvider>
+                {children}
+              </PhoneEffectsProvider>
+            </TiltProvider>
+          </TransitionProvider>
+        </LayersProvider>
       </UserProvider>
     </ThemeProvider>
   );
