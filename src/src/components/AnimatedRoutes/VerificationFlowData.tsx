@@ -204,14 +204,6 @@ export const verificationFlowData = [
             body: "We'll send all your account notifications to the same email and phone number.",
             left: { type: 'icon', icon: Icons.Notifications24 }
           }
-        },
-        {
-          component: Components.Cell,
-          props: {
-            title: 'Security options',
-            body: 'Turn on security lock to require a PIN or Face ID to switch accounts.',
-            left: { type: 'icon', icon: Icons.SecurityLockOutline24 }
-          }
         }
       ],
       topBar: {
@@ -321,7 +313,7 @@ export const verificationFlowData = [
           props: {
             title: 'Mac',
             body: 'Honolulu, HI • Today',
-            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            left: { type: 'icon', icon: Icons.Alert24 },
             right: { title: 'Log out', type: 'button' }
           }
         },
@@ -330,7 +322,7 @@ export const verificationFlowData = [
           props: {
             title: 'Windows PC',
             body: 'New York, NY • June 24',
-            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            left: { type: 'icon', icon: Icons.Alert24 },
             right: { title: 'Log out', type: 'button' }
           }
         },
@@ -339,7 +331,7 @@ export const verificationFlowData = [
           props: {
             title: "Diogo's iPhone 12",
             body: 'New York, NY • Feb 3',
-            left: { type: 'icon', icon: Icons.AlertOutline24 },
+            left: { type: 'icon', icon: Icons.Alert24 },
             right: { title: 'Log out', type: 'button' }
           }
         }

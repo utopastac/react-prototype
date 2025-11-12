@@ -13,8 +13,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   const inverse = false;
 
   const tabData = [
-  {icon: Icons.Discover, url: "discover"},
-  {icon: Icons.Activity, url: "activity"}
+  {icon: Icons.Back, url: "discover"},
+  {icon: Icons.Push, url: "activity"}
   ];
 
   const tabs = tabData.map((tab, index) => (

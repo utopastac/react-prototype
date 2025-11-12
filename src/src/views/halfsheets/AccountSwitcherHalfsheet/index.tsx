@@ -59,7 +59,7 @@ const AccountSwitcherHalfsheet = () => {
         title="Add account"
         left={{
           type: "iconBg",
-          icon: Icons.Add24,
+          icon: Icons.Add16,
           theme: "grey"
         }}
         right={{

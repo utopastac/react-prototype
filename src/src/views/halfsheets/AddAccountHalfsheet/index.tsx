@@ -29,26 +29,11 @@ const AddAccountHalfsheet = () => {
           }}
         />
         <Cell
-          title="New business account"
-          body="Create an account to sell goods and services."
-          left={{
-            type: "iconBg",
-            icon: Icons.Business24,
-            theme: "grey"
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{
-            // TODO: Implement business account creation
-          }}
-        />
-        <Cell
           title="Existing account"
           body="Connect your accounts to switch seamlessly between them."
           left={{
             type: "iconBg",
-            icon: Icons.BankLinked24,
+            icon: Icons.Alert24,
             theme: "grey"
           }}
           right={{

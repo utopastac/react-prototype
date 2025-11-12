@@ -183,7 +183,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "icon",
-            icon: Icons.SecurityCheckFill
+            icon: Icons.Push
           }}
           right={{
             type: "button",
@@ -196,7 +196,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.SecurityCheckFill,
+            icon: Icons.Push,
             theme: "brand"
           }}
           right={{
@@ -224,7 +224,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.SecurityCheckFill,
+            icon: Icons.Push,
             theme: "grey"
           }}
           right={{
@@ -239,7 +239,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.ArrowLink,
+            icon: Icons.Add16,
             theme: "brand"
           }}
           right={{

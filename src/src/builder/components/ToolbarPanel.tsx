@@ -49,7 +49,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton
             onClick={onHideAdminPanel}
             title="Toggle admin panel (⌘.)"
-            icon={Icons.InterventionsHubCustomer16}
+            icon={Icons.Add16}
             iconSize={"24"}
             position="left"
           />
@@ -62,7 +62,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton 
             onClick={onOpenTemplates} 
             title="Flow library (⌘/)" 
-            icon={Icons.DocumentW224} 
+            icon={Icons.Add16} 
             position="left"
           />
           <ToolbarButton 
@@ -80,7 +80,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton 
             onClick={onShare} 
             title="Share (⌘p)" 
-            icon={Icons.Hyperlink24 || Icons.Download16} 
+            icon={Icons.Link24 || Icons.Download16} 
             position="left"
           />
           <ToolbarButton 
@@ -96,7 +96,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
             title="Zoom In (⌘ =)"
             onClick={onZoomIn}
             disabled={zoomLevel >= 3}
-            icon={Icons.Add24}
+            icon={Icons.Add16}
             iconColor={"admin"}
             position="left"
           />
@@ -104,21 +104,21 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
             title="Zoom Out (⌘ -)"
             onClick={onZoomOut}
             disabled={zoomLevel <= 0.1}
-            icon={Icons.Subtract32}
+            icon={Icons.Subtract16}
             iconColor={"admin"}
             position="left"
           />
           <ToolbarButton
             title="Reset Zoom (⌘ 0)"
             onClick={onZoomReset}
-            icon={Icons.Borrow24}
+            icon={Icons.Back}
             iconColor={"admin"}
             position="left"
           />
           <ToolbarButton
             title="Fit to Screen"
             onClick={onFitToScreen}
-            icon={Icons.NumberPad24}
+            icon={Icons.Add16}
             iconColor={"admin"}
             position="left"
           />

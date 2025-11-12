@@ -77,88 +77,10 @@ const AccountView = () => {
           size="betweenSectionExtraLargeCell"
         />
         <Cell
-          title="Security"
-          left={{
-            type: "icon",
-            icon: Icons.SecurityLockOutline24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Privacy"
-          left={{
-            type: "icon",
-            icon: Icons.SensitiveVisible24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Favorites"
-          left={{
-            type: "icon",
-            icon: Icons.Favorite24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
           title="Linked apps & businesses"
           left={{
             type: "icon",
-            icon: Icons.BankLinked24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Themes"
-          left={{
-            type: "icon",
-            icon: Icons.CustomizeBrushFill24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Documents & statements"
-          left={{
-            type: "icon",
-            icon: Icons.Document24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Support"
-          left={{
-            type: "icon",
-            icon: Icons.Help24,
+            icon: Icons.Alert24,
             size: '24',
             color: 'standard'
           }}

@@ -6,7 +6,6 @@ import ComponentsView from "src/views/ComponentsView";
 import DiscoverView from "src/views/DiscoverView";
 import AccountView from "src/views/AccountView";
 import ChavezView from "src/views/ChavezView";
-import ReceiptView from "src/views/ReceiptView";
 //
 import ParallaxButtonView from 'src/views/ParallaxButtonView';
 import FlowStartView from 'src/views/FlowStartView';
@@ -14,7 +13,6 @@ import FlowStartView from 'src/views/FlowStartView';
 //import VerificationLayout from './VerificationLayout';
 // Report flow
 import { reportFlowData } from './ReportFlowData';
-import { disputeFlowData } from './DisputeFlowData';
 import { verificationFlowData } from './VerificationFlowData';
 //
 import { useTransition } from 'src/containers/TransitionContext';
@@ -72,14 +70,12 @@ const AnimatedRoutes = () => {
           <Route path="components" element={withRouteContainer(ComponentsView)} />
           <Route path="discover" element={withRouteContainer(DiscoverView)} />
           <Route path="account" element={withRouteContainer(AccountView)} />
-          <Route path="receipt" element={withRouteContainer(ReceiptView)} />
           <Route path="chavez" element={withRouteContainer(ChavezView)} />
           <Route path="parallax" element={withRouteContainer(ParallaxButtonView)} />
           
           {/* Layout routes (Flows) - nested routes are handled within the layouts */}
           {/* <Route path="/account-linking/*" element={<VerificationLayout />} /> */}
 
-          {/* Dispute flow */}
           <Route path="account-linking/*" element={
             <Routes>
               {renderFlow(verificationFlowData)}
@@ -90,13 +86,6 @@ const AnimatedRoutes = () => {
           <Route path="report/*" element={
             <Routes>
               {renderFlow(reportFlowData)}
-            </Routes>
-          } />
-
-          {/* Dispute flow */}
-          <Route path="dispute/*" element={
-            <Routes>
-              {renderFlow(disputeFlowData)}
             </Routes>
           } />
           

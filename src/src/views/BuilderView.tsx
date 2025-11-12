@@ -661,7 +661,7 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           <ToolbarButton
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
-            icon={Icons.Wallet24}
+            icon={Icons.Back}
             iconSize={"24"}
           />
         </div>
@@ -777,7 +777,7 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           <ToolbarButton
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
-            icon={Icons.Wallet24}
+            icon={Icons.Back}
             iconSize={"24"}
           />
         </div>
