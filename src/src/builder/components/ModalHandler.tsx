@@ -65,7 +65,7 @@ const ModalHandler: React.FC<ModalHandlerProps> = ({
   onClear,
   modalCoordinates
 }) => {
-  const modalX = modalCoordinates?.x ?? getDefaultModalX();
+  const modalX = modalCoordinates?.x ? modalCoordinates.x - 24 : getDefaultModalX();
   const modalY = modalCoordinates?.y ?? DEFAULT_MODAL_Y;
   return (
     <>
