@@ -39,13 +39,13 @@ const JsonPanel: React.FC<JsonPanelProps> = ({ visible, onClose, getLayoutData, 
             onClick={handleDownloadJson} 
             icon={Icons.Download16} 
             title="Download JSON" 
-            position="bottom" 
+            position="left" 
           />
           <ToolbarButton 
             onClick={handleCopyJson} 
             icon={Icons.Copy16} 
             title="Copy JSON" 
-            position="bottom" 
+            position="left" 
           />
         </div>
         <div className={styles.JsonModalScroll}>

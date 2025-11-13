@@ -81,26 +81,26 @@
       font-size: var(--builder-font-size-s)
 .JsonModal
   width: 80vw
-  max-width: size(1200)
+  max-width: size(700)
   max-height: 80vh
   display: flex
   flex-direction: column
+  align-content: start
 .JsonModalContent
   display: flex
   flex-direction: column
   flex: 1
   min-height: 0
-  padding: var(--builder-padding)
+  position: relative
 .JsonModalActions
-  display: flex
-  gap: size(4)
-  margin-bottom: var(--builder-padding)
-  padding-bottom: var(--builder-padding)
-  border-bottom: 1px solid var(--builder-section-border)
+  position: absolute
+  top: var(--builder-padding)
+  right: var(--builder-padding)
 .JsonModalScroll
   flex: 1
   overflow-y: auto
   overflow-x: auto
+  padding: var(--builder-padding)
   pre
     font-family: monospace
     font-size: var(--builder-font-size-s)
