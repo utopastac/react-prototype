@@ -275,8 +275,8 @@ export const initialComponentProps: Record<string, any> = {
         placing: 'beginning'
       },
       {
-        label: "First Payment Sent",
-        body: "$20 to Jane",
+        label: "First Job Applied",
+        body: "At Google",
         value: "Jan 5",
         valueDescriptor: "Completed",
         state: 'done',

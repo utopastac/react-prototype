@@ -1,7 +1,6 @@
 import { useAdminLayoutContext } from '../AdminLayoutContext';
 import { LayoutData } from '../LayoutContext';
 import { InterventionScreenComponents } from 'src/data/Components';
-import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
 /**
  * LayoutsData Interface
@@ -59,11 +58,8 @@ export const useLayoutData = () => {
       description: layout.description
     }));
     
-    // Transform image URLs before returning to ensure they work in production
-    const transformedLayouts = transformLayoutsImageUrls(layouts);
-    
     return {
-      layouts: transformedLayouts,
+      layouts: layouts,
       layoutNames: state.layoutNames,
       activeLayoutIndex: state.activeLayoutIndex,
       layoutPositions: state.layoutPositions,

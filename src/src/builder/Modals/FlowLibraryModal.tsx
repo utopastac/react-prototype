@@ -6,8 +6,6 @@ import idvImg from 'src/assets/admin-layouts/idv.jpg';
 import nAuthImg from 'src/assets/admin-layouts/n-auth.jpg';
 import idvData from '../layouts/idv.json';
 import nAuthData from '../layouts/n-auth.json';
-import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
-
 interface FlowInfo {
   name: string;
   description?: string;
@@ -38,11 +36,8 @@ const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onC
     try {
       const data = tmpl.data;
       
-      // Transform image URLs in the layouts to work in both dev and production
-      const transformedLayouts = transformLayoutsImageUrls(data.layouts);
-      
       // Patch components array to add Component property
-      const layoutsWithComponents = transformedLayouts.map((layout: any) => ({
+      const layoutsWithComponents = data.layouts.map((layout: any) => ({
         ...layout,
         components: (layout.components || []).map((item: any) => ({
           ...item,

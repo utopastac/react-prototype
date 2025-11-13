@@ -13,8 +13,6 @@ A modern, interactive React application for our Interventions Hub.
 - **Complete Interventions Hub Interface**: Interventions Hub is the destination for the interventions platform
 - **Interactive Navigation**: Smooth animated transitions between screens with Framer Motion
 - **Mobile-First Design**: Responsive design optimized for mobile devices with iOS-style status bars and home indicators
-- **Real-time Balance Display**: Dynamic balance and transaction management
-- **Crypto Integration**: Crypto balance display and management interface
 
 ### Advanced UI/UX
 - **Theme Support**: Light and Dark themes with real-time switching
@@ -87,10 +85,8 @@ src/
 ├── containers/          # Context providers and state management
 │   ├── ThemeContext.tsx    # Theme management
 │   ├── UserContext.tsx     # User data management
-│   ├── ActivityContext.tsx # Activity/transaction data
 │   └── ...
 ├── views/              # Main application screens
-│   ├── ActivityView.tsx    # Transaction history
 │   ├── AccountView.tsx     # User profile
 │   └── ...
 ├── data/               # Static data and constants
