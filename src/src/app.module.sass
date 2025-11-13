@@ -17,23 +17,15 @@
     pointer-events: none
   &[data-theme="light"]
     &:before
-      @extend %patterned-background
+      @extend %patterned-background-shapes
     .Root
       box-shadow: rgba(50, 50, 93, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
   &[data-theme="dark"]
     &:before
-      background-color: #151515
-      //background-image: url("data:image/svg+xml;utf8,<svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='5' cy='5' r='2' fill='rgba(255,255,255,0.3)'/></svg>")
-      background-image: url("data:image/svg+xml;utf8,<svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='8' y1='8' x2='24' y2='24' stroke='rgba(255,255,255,0.12)' stroke-width='2' stroke-linecap='round'/></svg>")
-      background-repeat: repeat
-      background-size: 20px 20px
+      @extend %patterned-background-shapes
     .Root
       box-shadow: rgba(0, 0, 0, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
 .RootWrapper
-  // position: fixed
-  // left: 50%
-  // top: 50%
-  // transform: translate(calc(-50% - calc($dev-tools-width / 2)), -50%)
   flex: 1
   height: 100vh
   display: flex
@@ -41,7 +33,6 @@
   align-items: center
   transform-style: preserve-3d
   perspective: 1000px
-  //z-index: 2
   pointer-events: none
 .routes
   position: absolute

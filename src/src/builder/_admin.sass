@@ -69,7 +69,7 @@
     box-shadow: var(--builder-input-field-focus-shadow)
     border-color: var(--builder-gray-d2)
   &:active
-    background: var(--builder-input-field-active)
+    // background: var(--builder-input-field-active)
 
 %input-label
   display: block
@@ -158,20 +158,3 @@
 
 %admin-panel
   background: var(--builder-white)
-
-%dev-tools-dropdown
-  flex: 1
-  height: var(--builder-input-size)
-  border-radius: var(--builder-border-radius)
-  background: var(--builder-input-bg)
-  display: flex
-  justify-content: space-between
-  align-items: center
-  padding: 0 var(--builder-input-padding)
-  font-size: var(--builder-input-font-size)
-  cursor: pointer
-  color: var(--builder-text-dark)
-  &::after
-    content: "↓"
-  &:hover
-    background: var(--builder-input-focus)

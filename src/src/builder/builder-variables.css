@@ -3,7 +3,7 @@
   --builder-warning: #ff4444;
 
   /* Builder Input Colors */
-  --builder-input-bg: rgba(0, 0, 0, 0.1);
+  --builder-input-bg: white;
   --builder-input-focus: rgba(0, 0, 0, 0.12);
   --builder-input-hover: rgba(0, 0, 0, 0.12);
 
@@ -58,7 +58,7 @@
   --builder-dark-text: white;
 
   /* Builder Input Field Colors */
-  --builder-input-field-bg: #f4f4f4;
+  --builder-input-field-bg: white;
   --builder-input-field-active: #EFEFEF;
   --builder-input-field-focus-shadow: 0 0 0 2px #D2D2D2;
 

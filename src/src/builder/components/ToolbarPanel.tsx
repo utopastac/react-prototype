@@ -111,7 +111,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton
             title="Reset Zoom (⌘ 0)"
             onClick={onZoomReset}
-            icon={Icons.Reset16}
+            icon={Icons.Zoom16}
             iconColor={"admin"}
             position="left"
           />
