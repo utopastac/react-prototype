@@ -86,7 +86,7 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton 
             onClick={onShowJsonPanel} 
             title={`${!showJsonPanel ? "Show" : "Hide"} JSON`} 
-            icon={Icons.CategoryTechnology32} 
+            icon={Icons.Code16} 
             position="left"
           />
         </div>

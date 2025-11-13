@@ -76,10 +76,6 @@
       .actions
         display: flex
         gap: size(4)
-    .layoutJson
-      flex: 1
-      overflow-y: scroll
-      padding: var(--builder-padding)
     pre
       font-family: monospace
       font-size: var(--builder-font-size-s)
@@ -136,48 +132,6 @@
   flex-direction: column
   height: 100%
   width: 100%
-.AvailableComponents
-  display: flex
-  flex-direction: column
-  flex: 1 1 0
-  min-height: 0
-  overflow: hidden
-.ComponentStack
-  display: flex
-  flex-direction: column
-  flex: 1 1 0
-  min-height: 0
-  overflow-y: auto
-  overflow-x: hidden
-  padding: 0 var(--builder-padding) var(--builder-padding) var(--builder-padding)
-  gap: size(8)
-  container-type: inline-size
-
-  .grid
-    container-type: inline-size
-    display: grid
-    grid-template-columns: 1fr
-    gap: size(0)
-    margin: 0 neg-size(4)
-
-    @container (min-width: 280px)
-      grid-template-columns: 1fr 1fr
-
-    @container (min-width: 420px)
-      column-gap: size(2)
-      row-gap: size(8)
-      grid-template-columns: 1fr 1fr 1fr
-
-.CenterContainer
-  position: relative
-  flex: 1
-  display: flex
-  align-items: center
-  justify-content: center
-  height: 100vh
-  gap: size(24)
-  @extend %patterned-background-shapes
-  background-color: var(--builder-gray-f4)
 .PhonePreview
   position: relative
   width: var(--view-width)
@@ -192,9 +146,6 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
   transition: outline, transform 0.2s
   will-change: transform, box-shadow
-.PhonePreviewDragOver
-  outline: 8px solid var(--builder-highlight)
-  transform: scale(1.02)
 .PagePreview
   width: 100%
   height: 100%
@@ -206,6 +157,9 @@
   padding-top: size(47)
   &.offset
     padding-top: size(99)
+.DroppedComponent
+  position: relative
+
 .DroppedCard
   border-radius: 8px
   //background: var(--color-background)
@@ -227,36 +181,15 @@
   &:hover
     &::after
       display: block
-.DroppedStack > div
-  cursor: grab
-.DroppedStack > div:active
-  cursor: grabbing
-.DragOver
-  position: relative
-  background: var(--component-highlight)
-  //border: 3px dashed $admin-brand-highlight
-  &:after
-    content: ""
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    border-radius: size(8)
-    display: block !important
-    border: 2px dashed var(--builder-brand-highlight)
-    z-index: 10000
+
+.Highlighted
+  // Additional highlighting styles can be added here if needed
 .PanelBox
   border-top: 1px solid var(--builder-section-border)
   h4
     @extend %bold
     font-size: var(--builder-font-size-l)
     margin-bottom: size(24)
-.FlexRowSpaceBetween
-  display: flex
-  justify-content: space-between
-  align-items: center
-  margin-bottom: 12px
 .Input
   margin: size(8) 0
   width: 100%
@@ -264,14 +197,6 @@
     @extend %input-field
   label
     @extend %input-label
-.LabelRow
-  display: flex
-  width: 100%
-  align-items: center
-  gap: 8px
-  cursor: pointer
-  label
-    flex: 1
 .EmptyState
   color: var(--builder-gray-888)
   font-style: italic
@@ -281,10 +206,6 @@
   &:after
     border: 2px solid var(--builder-brand-highlight)
     display: block
-.Dragged
-  opacity: 0.5
-.DuplicateCursor
-  cursor: copy !important
 .ComponentNameOverlay
   position: absolute
   top: size(4)
@@ -302,8 +223,6 @@
   overflow-y: scroll
   .Fields
     padding: 0 var(--builder-padding) size(80) var(--builder-padding)
-.Editor
-  height: 100%
 .ArrayOptionsHeader
   display: flex
   align-items: center
@@ -342,18 +261,6 @@
   h4
     @extend %bold
     font-size: var(--builder-font-size-m)
-.ToolBar
-  display: flex
-  justify-content: space-between
-  align-items: center
-  gap: size(4)
-  padding: var(--builder-input-padding)
-  border-bottom: 1px solid var(--builder-section-border)
-  > div
-    display: flex
-    justify-content: space-between
-    align-items: center
-    gap: size(1)
 .ToolBarVertical
   display: flex
   flex-direction: column
@@ -380,19 +287,9 @@
   z-index: 200
 .Controls
   flex: 1
-.SearchTemplate
-  padding: size(0) var(--builder-padding)
-  display: flex
-  align-items: center
-  gap: size(8)
 .ToastContainer
   position: absolute
   bottom: size(32)
-  left: 0
-  right: 0
-.TopBar
-  position: absolute
-  top: 0
   left: 0
   right: 0
 .resizing

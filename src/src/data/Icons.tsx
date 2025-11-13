@@ -21,6 +21,8 @@ import Push16 from "src/assets/16/push.svg";
 import More16 from "src/assets/16/more.svg";
 import Mobile16 from "src/assets/16/mobile.svg";
 import Panel16 from "src/assets/16/panel.svg";
+import Code16 from "src/assets/16/code.svg";
+import Slack16 from "src/assets/16/slack.svg";
 
 // 24px icons
 import Alert24 from "src/assets/24/alert.svg";
@@ -65,6 +67,8 @@ export {
   Keyboard16,
   Link16,
   Panel16,
+  Code16,
+  Slack16,
   // 24px icons
   Alert24,
   Avatar24,

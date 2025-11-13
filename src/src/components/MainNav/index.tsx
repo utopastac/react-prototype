@@ -88,7 +88,7 @@ const MainNav: React.FC = () => {
       <Signature
         contact="Contact @pwright"
         buttonTitle="Slack"
-        buttonIcon={Icons.Mobile16}
+        buttonIcon={Icons.Slack16}
         buttonIconSize={"16"}
       />
     </nav>
