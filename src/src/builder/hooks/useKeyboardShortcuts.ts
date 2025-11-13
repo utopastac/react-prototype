@@ -90,7 +90,7 @@ export function useKeyboardShortcuts({
         }
       },
       {
-        key: 'k',
+        key: 'c',
         condition: (e?: KeyboardEvent) => !!e && (e.metaKey || e.ctrlKey) && !isEditingField(),
         action: () => {
           handleReset();
