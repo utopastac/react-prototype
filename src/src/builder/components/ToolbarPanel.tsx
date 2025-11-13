@@ -49,20 +49,20 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton
             onClick={onHideAdminPanel}
             title="Toggle admin panel (⌘.)"
-            icon={Icons.Add16}
+            icon={Icons.Panel16}
             iconSize={"24"}
             position="left"
           />
           <ToolbarButton 
             onClick={onShowKeyboardShortcuts} 
             title="Keyboard shortcuts (⌘k)" 
-            icon={Icons.Keyboard24} 
+            icon={Icons.Keyboard16} 
             position="left"
           />
           <ToolbarButton 
             onClick={onOpenTemplates} 
             title="Flow library (⌘/)" 
-            icon={Icons.Add16} 
+            icon={Icons.Library16} 
             position="left"
           />
           <ToolbarButton 
@@ -74,13 +74,13 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton 
             onClick={onOpenLoad} 
             title="Load (⌘l)" 
-            icon={Icons.Load24} 
+            icon={Icons.Load16} 
             position="left"
           />
           <ToolbarButton 
             onClick={onShare} 
             title="Share (⌘p)" 
-            icon={Icons.Link24 || Icons.Download16} 
+            icon={Icons.Link16 } 
             position="left"
           />
           <ToolbarButton 
@@ -111,14 +111,14 @@ const ToolbarPanel: React.FC<ToolbarPanelProps> = ({
           <ToolbarButton
             title="Reset Zoom (⌘ 0)"
             onClick={onZoomReset}
-            icon={Icons.Back}
+            icon={Icons.Reset16}
             iconColor={"admin"}
             position="left"
           />
           <ToolbarButton
             title="Fit to Screen"
             onClick={onFitToScreen}
-            icon={Icons.Add16}
+            icon={Icons.Fit16}
             iconColor={"admin"}
             position="left"
           />

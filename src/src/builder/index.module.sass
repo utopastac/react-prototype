@@ -36,6 +36,7 @@
     width: size(320)
     border-right: none
     border-left: 1px solid var(--builder-section-border)
+    overflow: hidden
   &.propEditor
     position: fixed
     top: var(--builder-side-offset)
@@ -397,5 +398,3 @@
 .resizing
   // This class is added when hovering or dragging the resize edge
   // The border color is set inline, but you can add more feedback here if desired
-  box-shadow: 0 0 0 2px rgba(0, 194, 68, 0.2) inset
-  transition: box-shadow 0.15s

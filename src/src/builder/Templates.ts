@@ -936,16 +936,6 @@ export const AdminTemplates: AdminTemplate[] = [
           right: { type: 'push' }
         }
       },
-      // Phone number
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Phone number',
-          left: { type: 'icon', icon: Icons.DeviceMobile24 },
-          right: { type: 'push' }
-        }
-      },
       // Interventions Hub PIN
       {
         name: 'Cell',

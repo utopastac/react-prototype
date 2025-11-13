@@ -40,7 +40,6 @@
 
 %button-tertiary
   @extend %button-base
-  margin-top: size(8)
   color: var(--builder-text-medium)
   border: 1px solid var(--builder-button-tertiary-border)
   background: var(--builder-white)
@@ -52,7 +51,7 @@
     background: var(--builder-button-tertiary-bg-hover)
 
 %input-field
-  border: none
+  border: 1px solid var(--builder-gray-d2)
   outline: none
   appearance: none
   -webkit-appearance: none
@@ -128,9 +127,9 @@
     
     background: var(--builder-tooltip-bg)
     color: var(--builder-tooltip-text)
-    padding: size(3) size(5)
-    border-radius: var(--builder-border-radius)
-    font-size: var(--builder-font-size-s)
+    padding: size(4) size(5)
+    border-radius: var(--builder-border-radius-s)
+    font-size: var(--builder-font-size-m)
     white-space: nowrap
     opacity: 0
     pointer-events: none

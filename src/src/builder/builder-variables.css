@@ -63,7 +63,7 @@
   --builder-input-field-focus-shadow: 0 0 0 2px #D2D2D2;
 
   /* Builder Tooltip Colors */
-  --builder-tooltip-bg: #222;
+  --builder-tooltip-bg: #1A1A1A;
   --builder-tooltip-text: #fff;
 
   /* Builder Primary Button Colors */
@@ -72,9 +72,9 @@
   --builder-primary-active: #444444;
 
   /* Builder Spacing */
-  --builder-padding: calc(var(--space-1x) * 2); /* 16px */
-  --builder-input-padding: var(--space-1x); /* 8px */
-  --builder-section-gap: calc(var(--space-1x) + 6px); /* 14px */
+  --builder-padding: 16px;
+  --builder-input-padding: 8px;
+  --builder-section-gap: 12px;
 
   /* Builder Sizes */
   --builder-width: calc(var(--space-1x) * 40); /* 320px */
@@ -84,17 +84,19 @@
   --builder-panel-size: calc(var(--space-1x) * 40); /* 320px */
 
   /* Builder Border Radius */
-  --builder-border-radius: var(--corner-radius-0_5x); /* 4px */
-  --builder-wrapper-border-radius: var(--corner-radius-1x); /* 8px */
+  --builder-border-radius: var(--corner-radius-1_5x);
+  --builder-border-radius-l: var(--corner-radius-2x);
+  --builder-border-radius-s: var(--corner-radius-0_5x);
+  --builder-wrapper-border-radius: var(--corner-radius-1x);
 
   /* Builder Font Sizes */
-  --builder-font-size-xs: 1rem;
-  --builder-font-size-s: 1.1rem;
-  --builder-font-size-m: 1.2rem;
-  --builder-font-size-l: 1.4rem;
-  --builder-font-size-xl: 1.5rem;
+  --builder-font-size-xs: 0.9rem;
+  --builder-font-size-s: 1rem;
+  --builder-font-size-m: 1.1rem;
+  --builder-font-size-l: 1.3rem;
+  --builder-font-size-xl: 1.4rem;
   --builder-input-font-size: var(--builder-font-size-s);
-  --builder-icon-font-size: 1.6rem;
+  --builder-icon-font-size: 1.5rem;
 }
 
 [data-theme="dark"] {

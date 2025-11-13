@@ -58,7 +58,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
             e.preventDefault();
             handleClear();
           }}
-          icon={Icons.Failed16}
+          icon={Icons.Close16}
           iconSize={"16"}
           className={styles.ClearButton}
           position="left"

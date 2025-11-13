@@ -17,11 +17,11 @@ interface SignatureProps {
 
 const Signature: React.FC<SignatureProps> = ({
   contact = 'Contact @peterwright',
-  buttonTitle = 'App preview',
+  buttonTitle = 'Slack',
   buttonIcon,
   buttonOnClick,
   path,
-  buttonIconSize = "24",
+  buttonIconSize = "16",
   children,
 }) => {
   const navigate = useNavigate();
@@ -87,9 +87,9 @@ const MainNav: React.FC = () => {
       </ul>
       <Signature
         contact="Contact @pwright"
-        buttonTitle="App preview"
-        buttonIcon={Icons.DeviceMobile24}
-        buttonIconSize={"24"}
+        buttonTitle="Slack"
+        buttonIcon={Icons.Mobile16}
+        buttonIconSize={"16"}
       />
     </nav>
   );
