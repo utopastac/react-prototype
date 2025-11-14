@@ -15,14 +15,14 @@
   align-items: center
   border-radius: var(--builder-border-radius)
   &:hover
-    background: var(--builder-input-hover)
+    background: var(--builder-brand-subtle)
+    color: var(--builder-brand-highlight)
   .content
     gap: size(2)
   .title
-    font-size: var(--builder-font-size-m)
-    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-l)
     @extend %medium
   .description
     font-size: var(--builder-font-size-m)
-    color: var(--builder-text-light)
-    @extend %regular 
+    @extend %regular
+    display: none

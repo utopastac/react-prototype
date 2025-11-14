@@ -454,7 +454,7 @@ const PhonePreview: React.FC<PhonePreviewProps> = (props) => {
                             e.stopPropagation();
                             handleDuplicateLayout(index);
                           }}
-                          icon={Icons.Copy16}
+                          icon={Icons.Duplicate16}
                           iconColor={"subtle"}
                           position="bottom"
                         />
@@ -465,7 +465,7 @@ const PhonePreview: React.FC<PhonePreviewProps> = (props) => {
                             e.stopPropagation();
                             dispatch({ type: 'REMOVE_LAYOUT', index });
                           }}
-                          icon={Icons.Clear16}
+                          icon={Icons.Trash16}
                           iconColor={"subtle"}
                           position="bottom"
                         />

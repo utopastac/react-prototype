@@ -405,6 +405,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
+          <h5>Screens</h5>
           <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
             {layoutNames.map((name, idx) => {
               const isActive = idx === activeLayoutIndex;

@@ -27,17 +27,27 @@ const SelectInput: React.FC<SelectInputProps> = ({
     .filter(Boolean)
     .map(opt => {
       if (typeof opt === 'string') {
-        return { value: opt, label: formatSelectOptionLabel(opt) };
+        const formattedLabel = formatSelectOptionLabel(opt);
+        return { 
+          value: opt, 
+          label: label ? `${label}: ${formattedLabel}` : formattedLabel 
+        };
       } else {
         // Always format the label, even if provided
-        return { ...opt, label: formatSelectOptionLabel(opt.label ?? opt.value) };
+        const formattedLabel = formatSelectOptionLabel(opt.label ?? opt.value);
+        return { 
+          ...opt, 
+          label: label ? `${label}: ${formattedLabel}` : formattedLabel 
+        };
       }
     });
+  const displayValue = value === undefined ? '' : value;
+
   return (
     <div className={styles.Input}>
-      {label && <label><span>{label}</span></label>}
+      {label && <label className={styles.hiddenLabel}><span>{label}</span></label>}
       <select
-        value={value === undefined ? '' : value}
+        value={displayValue}
         onChange={e => onChange(e.target.value)}
         style={inputStyle}
       >

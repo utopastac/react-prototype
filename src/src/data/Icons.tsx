@@ -24,6 +24,8 @@ import Panel16 from "src/assets/16/panel.svg";
 import Code16 from "src/assets/16/code.svg";
 import Slack16 from "src/assets/16/slack.svg";
 import Zoom16 from "src/assets/16/zoom.svg";
+import Trash16 from "src/assets/16/trash.svg";
+import Duplicate16 from "src/assets/16/duplicate.svg";
 
 // 24px icons
 import Alert24 from "src/assets/24/alert.svg";
@@ -71,6 +73,8 @@ export {
   Code16,
   Slack16,
   Zoom16,
+  Trash16,
+  Duplicate16,
   // 24px icons
   Alert24,
   Avatar24,
