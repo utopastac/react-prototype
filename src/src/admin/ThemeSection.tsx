@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme, useThemeDispatch, ThemeObject, UPDATE_THEME } from 'src/containers/ThemeContext';
-import { themes } from 'src/admin/DevTools/ThemeOptions';
+import { themes } from 'src/admin/ThemeOptions';
 import LabeledInput from 'src/admin/components/LabeledInput';
 
 const ThemeSection: React.FC = () => {

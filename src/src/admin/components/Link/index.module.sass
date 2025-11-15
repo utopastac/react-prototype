@@ -1,0 +1,44 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.link
+  text-decoration: none
+  color: inherit
+  display: block
+  cursor: pointer
+
+  &.selected
+    .Main
+      background: var(--builder-brand-subtle)
+      color: var(--builder-brand-highlight)
+
+  &.large
+    .Main
+      padding: size(10) size(12)
+      height: auto
+      min-height: size(40)
+      border-radius: 8px
+    .title
+      font-size: size(16)
+      @extend %regular
+
+  .Main
+    padding: size(4) size(8)
+    background: transparent
+    transition: background 0.2s ease, color 0.2s ease
+    height: size(32)
+    display: flex
+    align-items: center
+    border-radius: var(--builder-border-radius)
+    &:hover
+      background: var(--builder-brand-subtle)
+      color: var(--builder-brand-highlight)
+    .content
+      gap: size(2)
+    .title
+      font-size: var(--builder-font-size-l)
+      @extend %medium
+    .description
+      font-size: var(--builder-font-size-m)
+      @extend %regular
+      display: none

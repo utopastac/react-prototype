@@ -1,28 +1,7 @@
 import React from "react";
 import { AdminTemplates } from "src/builder/Templates";
+import Link from "src/admin/components/Link";
 import styles from "./index.module.sass";
-
-export interface PatternLinkProps {
-  name: string;
-  group?: string;
-  onClick: () => void;
-  isSelected: boolean;
-}
-
-const PatternLink: React.FC<PatternLinkProps> = ({ name, onClick, isSelected }) => {
-  return (
-    <div 
-      className={`${styles.link} ${isSelected ? styles.selected : ''}`} 
-      onClick={onClick}
-    >
-      <div className={styles.Main}>
-        <div className={styles.content}>
-          <h4 className={styles.title}>{name}</h4>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 /**
  * PatternsPanel Component
@@ -59,10 +38,9 @@ const PatternsPanel: React.FC<PatternsPanelProps> = ({ selectedTemplate, onTempl
             <h3 className={styles.groupTitle}>{group}</h3>
             <div className={styles.patternLinks}>
               {templates.map((template) => (
-                <PatternLink
+                <Link
                   key={template.name}
-                  name={template.name}
-                  group={template.group}
+                  title={template.name}
                   onClick={() => onTemplateSelect(template.name)}
                   isSelected={selectedTemplate === template.name}
                 />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from 'src/admin/components/LabeledInput/index.module.sass';
 import { AvatarsArray } from 'src/data/Avatars';
 import Avatar from 'src/components/Avatar';
-import Modal from 'src/admin/DevTools/Modal';
+import Modal from 'src/admin/Modal';
 
 interface AvatarSelectInputProps {
   label: string;

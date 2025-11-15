@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import ToolsSection from 'src/builder/components/ToolsSection';
 import ToolbarButton from 'src/admin/components/ToolbarButton';
-import ThemeSection from 'src/admin/DevTools/ThemeSection';
+import ThemeSection from 'src/admin/ThemeSection';
 import TextButton from 'src/admin/components/TextButton';
 import * as Icons from 'src/data/Icons';
 import styles from 'src/builder/index.module.sass';

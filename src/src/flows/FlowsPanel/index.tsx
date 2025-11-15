@@ -1,6 +1,6 @@
 import React from "react";
-import DevToolsLink, { DevToolsLinkProps } from "src/admin/DevTools/DevToolsLink";
-import ThemeSection from "src/admin/DevTools/ThemeSection";
+import Link, { LinkProps } from "src/admin/components/Link";
+import ThemeSection from "src/admin/ThemeSection";
 import styles from "src/flows/FlowsPanel/index.module.sass";
 
 /**
@@ -11,7 +11,7 @@ import styles from "src/flows/FlowsPanel/index.module.sass";
  */
 const FlowsPanel: React.FC = () => {
   // Navigation routes data for the Flows section
-  const routeData: DevToolsLinkProps[] = [
+  const routeData: LinkProps[] = [
     {title:"Components", path:"/flows/components", description:"All UI components"},
     {title:"App", path:"/flows/discover", description:"Main app interface"},
     {title:"Account", path:"/flows/account", description:"User profile settings"},
@@ -21,9 +21,9 @@ const FlowsPanel: React.FC = () => {
   ];
 
   // Generate navigation links from route data
-  const routeLinks = routeData.map((route: DevToolsLinkProps, index: number) => {
+  const routeLinks = routeData.map((route: LinkProps, index: number) => {
     return (
-      <DevToolsLink {...route} key={`route${index}`} />
+      <Link {...route} key={`route${index}`} />
     );
   });
 

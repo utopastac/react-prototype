@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'src/admin/DevTools/Modal';
+import Modal from 'src/admin/Modal';
 import styles from 'src/builder/Modals/index.module.sass';
 import { InterventionScreenComponents } from 'src/data/Components';
 import idvImg from 'src/assets/admin-layouts/idv.jpg';

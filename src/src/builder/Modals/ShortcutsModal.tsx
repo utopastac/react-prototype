@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'src/admin/DevTools/Modal';
+import Modal from 'src/admin/Modal';
 import KeyboardShortcutsPanel from 'src/admin/components/KeyboardShortcutsPanel';
 
 interface ShortcutsModalProps {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'src/admin/DevTools/Modal';
+import Modal from 'src/admin/Modal';
 import TextButton from 'src/admin/components/TextButton';
 import styles from 'src/builder/Modals/index.module.sass';
 

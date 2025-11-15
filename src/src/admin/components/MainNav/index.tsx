@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.sass';
 import ToolbarButton from 'src/admin/components/ToolbarButton';
+import Link from 'src/admin/components/Link';
 import { IconProps } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
 
@@ -57,32 +58,32 @@ const MainNav: React.FC = () => {
       <h1>Interventions Hub</h1>
       <ul className={styles.list}>
         <li>
-          <NavLink
-            to="/platform"
-            className={({ isActive }) => isActive ? styles.active : styles.link}
-          >
-            Platform
-          </NavLink>
+          <Link
+            title="Platform"
+            path="/platform"
+            size="large"
+          />
         </li>
         <li>
-          <NavLink
-            to="/patterns"
-            className={({ isActive }) => isActive ? styles.active : styles.link}
-          >
-            Patterns
-          </NavLink>
+          <Link
+            title="Patterns"
+            path="/patterns"
+            size="large"
+          />
         </li>
         <li>
-          <NavLink
-            to="/flows"
-            className={({ isActive }) => isActive ? styles.active : styles.link}
-          >
-            Flows
-          </NavLink>
+          <Link
+            title="Flows"
+            path="/flows"
+            size="large"
+          />
         </li>
-        <li className={styles.right}
-        >
-          <a href="#/builder" className={styles.link}>Builder</a>
+        <li className={styles.right}>
+          <Link
+            title="Builder"
+            path="/builder"
+            size="large"
+          />
         </li>
       </ul>
       <Signature
