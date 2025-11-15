@@ -106,7 +106,7 @@ const Modal = (({ title, close, x, y, children, showBackground = false, classNam
         data-modal-content
       >
         {/* Modal header with title and close button */}
-        <Header title={title} onClose={close} size="small" />
+        <Header title={title} onClose={close} size="small" showBorder={true} />
         
         {/* Modal content */}
         { children }

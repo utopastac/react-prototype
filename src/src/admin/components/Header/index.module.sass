@@ -2,8 +2,10 @@
 @use 'src/admin/styles/admin.sass' as *
 
 .Header
-  border-bottom: 1px solid var(--builder-section-border)
   background: var(--builder-white)
+  
+  &.withBorder
+    border-bottom: 1px solid var(--builder-section-border)
 
   .content
     display: flex

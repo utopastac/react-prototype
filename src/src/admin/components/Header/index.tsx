@@ -8,11 +8,12 @@ export interface HeaderProps {
   onClose?: () => void;
   actions?: React.ReactNode;
   size?: 'default' | 'small' | 'large' | 'section';
+  showBorder?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, onClose, actions, size = 'default' }) => {
+const Header: React.FC<HeaderProps> = ({ title, onClose, actions, size = 'default', showBorder = false }) => {
   return (
-    <header className={`${styles.Header} ${size === 'small' ? styles.small : ''} ${size === 'large' ? styles.large : ''} ${size === 'section' ? styles.section : ''}`}>
+    <header className={`${styles.Header} ${size === 'small' ? styles.small : ''} ${size === 'large' ? styles.large : ''} ${size === 'section' ? styles.section : ''} ${showBorder ? styles.withBorder : ''}`}>
       <div className={styles.content}>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.actions}>

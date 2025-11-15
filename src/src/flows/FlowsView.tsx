@@ -3,7 +3,7 @@ import AnimatedRoutes from 'src/components/AnimatedRoutes';
 import TiltContainer from 'src/components/PhoneEffects/TiltContainer';
 import { TiltState } from 'src/containers/TiltContext';
 import Layers from 'src/components/Layers';
-import styles from "./app.module.sass";
+import styles from "./FlowsView.module.sass";
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
 import FlowsPanel from 'src/flows/FlowsPanel';
@@ -17,20 +17,20 @@ const VALID_KEYBOARD_PATTERNS = ['/', ',', 'wow', 'blur', 'bounce', 'scale'] as 
 type KeyboardPattern = typeof VALID_KEYBOARD_PATTERNS[number];
 
 /**
- * Props interface for the main App component
- * These props control the visual appearance and behavior of the app
+ * Props interface for the FlowsView component
+ * These props control the visual appearance and behavior of the flows view
  */
-interface AppProps {
+interface FlowsViewProps {
   theme: string;        // Theme variant (light/dark)
   scale: string;        // Text scaling factor
   device: string;       // Device type for responsive design
 }
 
 /**
- * Main App component that serves as the root of the Interventions Hub interface
+ * FlowsView component that serves as the main view for the Interventions Hub flows
  * Handles phone effects, keyboard shortcuts, and navigation
  */
-const App: React.FC<AppProps> = ({ theme, scale, device }) => {
+const FlowsView: React.FC<FlowsViewProps> = ({ theme, scale, device }) => {
   // Phone effects context provides state and controls for phone visibility and animations
   const { 
     phoneVisible,      // Whether the phone interface is visible
@@ -145,4 +145,4 @@ const App: React.FC<AppProps> = ({ theme, scale, device }) => {
   );
 }
 
-export default App;
+export default FlowsView;

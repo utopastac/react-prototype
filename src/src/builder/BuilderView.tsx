@@ -628,54 +628,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
         modalCoordinates={modalCoordinates}
       />
 
-      {/* Main Content Area */}
-      <div
-        className={layoutsStyles.CenterContainer}
-        data-theme={theme}
-        data-text-scale={scale}
-        data-device={device}
-        data-font={font}
-        style={{ background: adminTheme.backgroundColor }}
-      >
-        {/* Phone Preview Grid */}
-        <div
-          className={layoutsStyles.PhonePreviewContainer}
-          ref={phonePreviewRef}
-        >
-          <PhonePreview
-            showLabels={true}
-            onPhoneSelect={handlePhoneSelect}
-            selected={selected}
-            setSelected={setSelected}
-            setSelectedSpecial={setSelectedSpecial}
-            selectedSpecial={selectedSpecial}
-            onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
-            layoutPositions={layoutState.layoutPositions}
-            gridRows={layoutState.gridRows}
-            gridCols={layoutState.gridCols}
-            onAddLayoutAt={handleAddLayoutAt}
-            onDuplicateLayoutAt={handleDuplicateLayoutAt}
-            zoomLevel={zoomLevel}
-            setZoomLevel={setZoomLevel}
-            onContainerRef={(ref) => {
-              phonePreviewContainerRef.current = ref;
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Toggle button for admin panel (top left, only when hidden) */}
-      {!showAdminPanel && (
-        <div className={styles.AdminToggle}>
-          <ToolbarButton
-            onClick={() => setShowAdminPanel(true)}
-            title="Show admin panel"
-            icon={Icons.Back}
-            iconSize={"24"}
-          />
-        </div>
-      )}
-
       {/* Global Settings Panel */}
       <AnimatePresence>
         {showAdminPanel && (
@@ -749,6 +701,54 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           />
         )}
       </AnimatePresence>
+
+      {/* Main Content Area */}
+      <div
+        className={layoutsStyles.CenterContainer}
+        data-theme={theme}
+        data-text-scale={scale}
+        data-device={device}
+        data-font={font}
+        style={{ background: adminTheme.backgroundColor }}
+      >
+        {/* Phone Preview Grid */}
+        <div
+          className={layoutsStyles.PhonePreviewContainer}
+          ref={phonePreviewRef}
+        >
+          <PhonePreview
+            showLabels={true}
+            onPhoneSelect={handlePhoneSelect}
+            selected={selected}
+            setSelected={setSelected}
+            setSelectedSpecial={setSelectedSpecial}
+            selectedSpecial={selectedSpecial}
+            onCanvasClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
+            layoutPositions={layoutState.layoutPositions}
+            gridRows={layoutState.gridRows}
+            gridCols={layoutState.gridCols}
+            onAddLayoutAt={handleAddLayoutAt}
+            onDuplicateLayoutAt={handleDuplicateLayoutAt}
+            zoomLevel={zoomLevel}
+            setZoomLevel={setZoomLevel}
+            onContainerRef={(ref) => {
+              phonePreviewContainerRef.current = ref;
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Toggle button for admin panel (top left, only when hidden) */}
+      {!showAdminPanel && (
+        <div className={styles.AdminToggle}>
+          <ToolbarButton
+            onClick={() => setShowAdminPanel(true)}
+            title="Show admin panel"
+            icon={Icons.Back}
+            iconSize={"24"}
+          />
+        </div>
+      )}
 
       {/* Toolbar Panel */}
       <AnimatePresence>

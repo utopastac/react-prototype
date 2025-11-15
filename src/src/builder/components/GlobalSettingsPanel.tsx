@@ -189,7 +189,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     initialWidth: 280,
     minWidth: 220,
     maxWidth: 480,
-    edge: 'left',
+    edge: 'right',
     width: rightPanelWidth,
     setWidth: setRightPanelWidth,
   });
@@ -399,7 +399,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
-          <h5>Screens</h5>
+          <Header title="Screens" />
           <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
             {layoutNames.map((name, idx) => {
               const isActive = idx === activeLayoutIndex;
@@ -492,17 +492,17 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   return (
     <motion.div
       className={`${styles.AdminPanel} ${styles.rightSide} ${styles.globalSettings} ${isHoveringEdge || isResizing ? ' ' + styles.resizing : ''}`}
-      style={{ width: width, borderLeftColor: (isHoveringEdge || isResizing) ? '#0017e6' : undefined }}
-      initial={{ x: '100%' }}
+      style={{ width: width, borderRightColor: (isHoveringEdge || isResizing) ? '#0017e6' : undefined }}
+      initial={{ x: '-100%' }}
       animate={{ 
         x: 0,
         scale: 1,
       }}
-      exit={{ x: '100%' }}
+      exit={{ x: '-100%' }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
       onClick={isPhoneSettingsVisible && !isPropEditorVisible ? onClosePhoneSettings : undefined}
     >
-      {/* Draggable left edge */}
+      {/* Draggable right edge */}
       {resizeHandle}
       <div style={{ height: '100%', position: 'relative' }}>
         <div 
