@@ -4,6 +4,7 @@ import ToolsSection from 'src/builder/components/ToolsSection';
 import ToolbarButton from 'src/admin/components/ToolbarButton';
 import ThemeSection from 'src/admin/ThemeSection';
 import TextButton from 'src/admin/components/TextButton';
+import Header from 'src/admin/components/Header';
 import * as Icons from 'src/data/Icons';
 import styles from 'src/builder/index.module.sass';
 import layoutsStyles from 'src/builder/layouts.module.sass';
@@ -330,17 +331,10 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     if (isPhoneSettingsVisible) {
       return (
         <>
-          <header className={styles.PanelHeader}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <h2 style={{ margin: 0 }}>{phoneName}</h2>
-              <ToolbarButton
-                onClick={onDeselectPhone}
-                icon={Icons.Close16}
-                title="Close"
-                position="bottom"
-              />
-            </div>
-          </header>
+          <Header 
+            title={phoneName} 
+            onClose={onDeselectPhone} 
+          />
           <div className={styles.Controls}>
             <ToolsSection>
               <LabeledInput

@@ -9,8 +9,7 @@ import React from 'react';
 import LabeledInput from 'src/admin/components/LabeledInput';
 import ArrayEditor from 'src/builder/ArrayEditor';
 import styles from 'src/builder/index.module.sass';
-import ToolbarButton from 'src/admin/components/ToolbarButton';
-import * as Icons from 'src/data/Icons';
+import Header from 'src/admin/components/Header';
 
 interface GenericPropEditorProps {
   title?: string;
@@ -152,13 +151,7 @@ const GenericPropEditor: React.FC<GenericPropEditorProps> = ({
 
   return (
     <div className={styles.PropEditor}>
-      <header className={styles.PanelHeader}>
-        <div>
-          {title && <h2>{title}</h2>}
-          {/* Dismiss/close button, if provided */}
-          {onDismiss && <ToolbarButton onClick={onDismiss} icon={Icons.Close16} title="Dismiss" position="left" />}
-        </div>
-      </header>
+      {title && <Header title={title} onClose={onDismiss} />}
       <div className={styles.Fields}>
         {/* Render all fields for the current meta/values */}
         {renderFields(meta, values, parentKey)}

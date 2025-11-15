@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./index.module.sass";
-import ToolbarButton from "src/admin/components/ToolbarButton";
-import * as Icons from "src/data/Icons";
+import Header from "src/admin/components/Header";
 
 /**
  * Modal component props interface
@@ -107,15 +106,7 @@ const Modal = (({ title, close, x, y, children, showBackground = false, classNam
         data-modal-content
       >
         {/* Modal header with title and close button */}
-        <header>
-          <h3>{ title }</h3>
-          <ToolbarButton
-            onClick={close}
-            title="Close"
-            icon={Icons.Close16}
-            position="left"
-          />
-        </header>
+        <Header title={title} onClose={close} size="small" />
         
         {/* Modal content */}
         { children }

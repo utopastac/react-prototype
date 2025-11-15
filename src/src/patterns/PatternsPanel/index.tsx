@@ -1,6 +1,7 @@
 import React from "react";
 import { AdminTemplates } from "src/builder/Templates";
 import Link from "src/admin/components/Link";
+import Header from "src/admin/components/Header";
 import styles from "./index.module.sass";
 
 /**
@@ -27,15 +28,13 @@ const PatternsPanel: React.FC<PatternsPanelProps> = ({ selectedTemplate, onTempl
 
   return (
     <div className={styles.Main}>
-      <div className={styles.header}>
-        <h2>Patterns</h2>
-      </div>
+      <Header title="Patterns" />
       
       {/* Templates List - Scrollable, takes remaining space */}
       <div className={styles.patternsContent}>
         {Object.entries(groupedTemplates).map(([group, templates]) => (
           <div key={group} className={styles.group}>
-            <h3 className={styles.groupTitle}>{group}</h3>
+            <Header title={group} size="section" />
             <div className={styles.patternLinks}>
               {templates.map((template) => (
                 <Link
