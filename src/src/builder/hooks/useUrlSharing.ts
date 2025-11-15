@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import lzString from 'lz-string';
-import { useLayoutData } from './useLayoutData';
+import { useLayoutData } from 'src/builder/hooks/useLayoutData';
 
 export const useUrlSharing = () => {
   const [shareUrl, setShareUrl] = useState('');

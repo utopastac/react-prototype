@@ -1,7 +1,7 @@
 import React from 'react';
-import Modal from '../DevTools/Modal';
-import TextButton from '../components/TextButton';
-import styles from './index.module.sass';
+import Modal from 'src/admin/DevTools/Modal';
+import TextButton from 'src/admin/components/TextButton';
+import styles from 'src/builder/Modals/index.module.sass';
 
 interface ClearModalProps {
   onClear: () => void;

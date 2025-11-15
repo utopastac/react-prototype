@@ -1,12 +1,12 @@
 import React from 'react';
-import SaveModal from '../Modals/SaveModal';
-import LoadModal from '../Modals/LoadModal';
-import ShareModal from '../Modals/ShareModal';
-import { ShortcutsModal, FlowLibraryModal, WelcomeModal } from '../Modals';
-import ClearModal from '../Modals/ClearModal';
-import { AdminTemplate } from '../Templates';
-import { LayoutData } from '../LayoutContext';
-import { LayoutsData } from '../hooks/useLayoutData';
+import SaveModal from 'src/builder/Modals/SaveModal';
+import LoadModal from 'src/builder/Modals/LoadModal';
+import ShareModal from 'src/builder/Modals/ShareModal';
+import { ShortcutsModal, FlowLibraryModal, WelcomeModal } from 'src/builder/Modals';
+import ClearModal from 'src/builder/Modals/ClearModal';
+import { AdminTemplate } from 'src/builder/Templates';
+import { LayoutData } from 'src/builder/LayoutContext';
+import { LayoutsData } from 'src/builder/hooks/useLayoutData';
 
 type ModalType = 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates';
 

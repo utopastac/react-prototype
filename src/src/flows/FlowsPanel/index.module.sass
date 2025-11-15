@@ -1,0 +1,50 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.Main
+  width: size(240)
+  height: 100vh
+  background: white
+  display: flex
+  flex-direction: column
+  border-right: 1px solid var(--builder-section-border)
+  font-family: $font-dev
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+  letter-spacing: -0.2px
+  z-index: 1000
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: size(12) var(--builder-padding) size(10) var(--builder-padding)
+  height: size(48)
+  color: var(--builder-text-medium)
+  border-bottom: 1px solid var(--builder-section-border)
+  flex-shrink: 0
+  h2
+    font-size: var(--builder-font-size-s)
+    @extend %medium
+    letter-spacing: 0.02rem
+    text-transform: uppercase
+
+.themeSection
+  flex-shrink: 0
+  border-top: 1px solid var(--builder-section-border)
+  .themeContent
+    padding: size(4) var(--builder-padding) size(8) var(--builder-padding)
+
+.flowsContent
+  flex: 1
+  overflow-y: auto
+  min-height: 0
+
+.routeLinks
+  display: flex
+  flex-direction: column
+  margin: 0 neg-size(8)
+  gap: size(2)
+  padding: var(--builder-padding)
+

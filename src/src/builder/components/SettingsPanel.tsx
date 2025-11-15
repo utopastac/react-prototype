@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ToolsSection from './ToolsSection';
-import ToolbarButton from 'src/builder/components/ToolbarButton';
-import ThemeSection from '../DevTools/ThemeSection';
-import BooleanInput from '../LabeledInput/BooleanInput';
-import TextButton from './TextButton';
+import ToolsSection from 'src/builder/components/ToolsSection';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
+import ThemeSection from 'src/admin/DevTools/ThemeSection';
+import BooleanInput from 'src/admin/components/LabeledInput/BooleanInput';
+import TextButton from 'src/admin/components/TextButton';
 import * as Icons from 'src/data/Icons';
-import styles from '../index.module.sass';
+import styles from 'src/builder/index.module.sass';
 
 /**
  * Props interface for the SettingsPanel component

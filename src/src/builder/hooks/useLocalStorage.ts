@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLayoutData, LayoutsData } from './useLayoutData';
+import { useLayoutData, LayoutsData } from 'src/builder/hooks/useLayoutData';
 
 export const useLocalStorage = () => {
   const [saveName, setSaveName] = useState('');

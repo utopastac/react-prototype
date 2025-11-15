@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Icon from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
-import styles from './index.module.sass';
-import ToolbarButton from './components/ToolbarButton';
+import styles from 'src/builder/index.module.sass';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 
 /**
  * Props interface for the ArrayEditor component

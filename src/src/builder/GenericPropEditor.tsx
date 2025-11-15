@@ -6,10 +6,10 @@
 // Used throughout the admin system for both regular and special components.
 
 import React from 'react';
-import LabeledInput from './LabeledInput';
-import ArrayEditor from './ArrayEditor';
-import styles from './index.module.sass';
-import ToolbarButton from './components/ToolbarButton';
+import LabeledInput from 'src/admin/components/LabeledInput';
+import ArrayEditor from 'src/builder/ArrayEditor';
+import styles from 'src/builder/index.module.sass';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
 
 interface GenericPropEditorProps {

@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from 'src/builder/AdminLayoutContext';
+import { AdminLayoutProvider, useAdminLayoutContext, useActiveLayout } from 'src/admin/contexts/AdminLayoutContext';
 import PhonePreview from 'src/builder/PhonePreview';
 import { useHistoryManager } from 'src/builder/hooks/useHistoryManager';
 import { useLayoutData } from 'src/builder/hooks/useLayoutData';
 import styles from 'src/builder/index.module.sass';
 import layoutsStyles from 'src/builder/layouts.module.sass';
-import AdminToast from 'src/builder/components/Toast';
-import ToolbarButton from 'src/builder/components/ToolbarButton';
+import AdminToast from 'src/admin/components/Toast';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
 import { AdminTemplate, AdminTemplates } from 'src/builder/Templates';
 import ModalHandler from 'src/builder/components/ModalHandler';
@@ -17,14 +17,14 @@ import JsonPanel from 'src/builder/components/JsonPanel';
 import GlobalSettingsPanel from 'src/builder/components/GlobalSettingsPanel';
 import ToolbarPanel from 'src/builder/components/ToolbarPanel';
 import { useKeyboardShortcuts } from 'src/builder/hooks/useKeyboardShortcuts';
-import SelectInput from 'src/builder/LabeledInput/SelectInput';
+import SelectInput from 'src/admin/components/LabeledInput/SelectInput';
 import {
   INITIAL_TOP_BAR_PROPS,
   INITIAL_BOTTOM_BUTTONS_PROPS,
   INITIAL_TOAST_PROPS,
   INITIAL_STATUS_BAR_PROPS,
 } from 'src/builder/LayoutContext';
-import { AdminThemeProvider, useAdminTheme, useAdminThemeDispatch } from 'src/builder/AdminThemeContext';
+import { AdminThemeProvider, useAdminTheme, useAdminThemeDispatch } from 'src/admin/contexts/AdminThemeContext';
 
 /**
  * BuilderView

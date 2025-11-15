@@ -3,14 +3,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App.tsx';
-import MainNav from 'src/components/MainNav';
-import PlatformView from 'src/views/PlatformView';
+import MainNav from 'src/admin/components/MainNav';
+import PlatformView from 'src/platform/PlatformView';
 import PatternsView from 'src/patterns/PatternsView';
 import { Providers } from './Providers';
 
 import './styles/globals.css';
 import './styles/variables.css';
-import './builder/builder-variables.css';
+import './admin/styles/admin-variables.css';
 import './index.sass';
 import styles from './layout.module.sass';
 

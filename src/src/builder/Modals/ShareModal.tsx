@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
-import Modal from '../DevTools/Modal';
-import ToolbarButton from '../components/ToolbarButton';
+import Modal from 'src/admin/DevTools/Modal';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
-import styles from './index.module.sass';
+import styles from 'src/builder/Modals/index.module.sass';
 import { downloadAsFile } from 'src/helpers/Utils';
-import { LayoutData } from '../LayoutContext';
-import { LayoutsData } from '../hooks/useLayoutData';
+import { LayoutData } from 'src/builder/LayoutContext';
+import { LayoutsData } from 'src/builder/hooks/useLayoutData';
 
 interface ShareModalProps {
   shareUrl: string;
