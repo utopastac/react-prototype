@@ -232,7 +232,7 @@ export const useHistoryManager = (props?: UseHistoryManagerProps) => {
     exportHistory,
     importHistory,
     
-    // History stack for advanced usage (like HistoryModal)
+    // History stack for advanced usage
     history,
   };
 }; 

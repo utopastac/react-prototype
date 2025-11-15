@@ -122,26 +122,118 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
   // Zoom state
   const [zoomLevel, setZoomLevel] = useState(0.8);
   const ZOOM_STEP = 1.3;
+  
+  // Ref to PhonePreview's container for fit-to-screen calculations
+  const phonePreviewContainerRef = useRef<HTMLDivElement | null>(null);
+  
+  // Track previous zoom for scroll position preservation
+  const lastCenterRef = useRef<{centerX: number, centerY: number, prevZoom: number} | null>(null);
 
   // Zoom handlers
   const handleZoomIn = () => {
+    const container = phonePreviewContainerRef.current;
+    if (container) {
+      lastCenterRef.current = {
+        centerX: container.scrollLeft + container.clientWidth / 2,
+        centerY: container.scrollTop + container.clientHeight / 2,
+        prevZoom: zoomLevel
+      };
+    }
     setZoomLevel(prev => Math.min(prev * ZOOM_STEP, 3));
   };
 
   const handleZoomOut = () => {
+    const container = phonePreviewContainerRef.current;
+    if (container) {
+      lastCenterRef.current = {
+        centerX: container.scrollLeft + container.clientWidth / 2,
+        centerY: container.scrollTop + container.clientHeight / 2,
+        prevZoom: zoomLevel
+      };
+    }
     setZoomLevel(prev => Math.max(prev / ZOOM_STEP, 0.1));
   };
 
   const handleZoomReset = () => {
+    const container = phonePreviewContainerRef.current;
+    if (container) {
+      lastCenterRef.current = {
+        centerX: container.scrollLeft + container.clientWidth / 2,
+        centerY: container.scrollTop + container.clientHeight / 2,
+        prevZoom: zoomLevel
+      };
+    }
     setZoomLevel(1);
   };
 
   const handleFitToScreen = () => {
-    // The fit to screen logic is handled in PhonePreview component
-    // We just need to trigger it via the callback
-    // The actual calculation needs access to PhonePreview's internal containerRef
-    // So we'll let PhonePreview handle it internally when onFitToScreen is called
+    // Use the calculated grid dimensions
+    if (layoutState.gridRows === 0 || layoutState.gridCols === 0) return;
+    
+    // Calculate the grid size needed (including the extra row/column)
+    const gridWidth = layoutState.gridCols * 300 + (layoutState.gridCols - 1) * 80; // 300px width + 80px gap
+    const gridHeight = layoutState.gridRows * 500 + (layoutState.gridRows - 1) * 80; // 500px height + 80px gap
+    
+    // Get container dimensions
+    const container = phonePreviewContainerRef.current;
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth - 112; // Account for padding
+    const containerHeight = container.clientHeight - 112;
+    
+    // Calculate zoom level to fit
+    const zoomX = containerWidth / gridWidth;
+    const zoomY = containerHeight / gridHeight;
+    const newZoom = Math.min(zoomX, zoomY, 1); // Don't zoom in beyond 100%
+    
+    // Ensure minimum zoom level to prevent labels from disappearing permanently
+    // Use 0.5 as minimum (same as zoomHideLevel threshold)
+    const minZoom = 0.5;
+    setZoomLevel(Math.max(newZoom, minZoom));
   };
+  
+  // Preserve scroll position when zoom changes
+  useEffect(() => {
+    if (!lastCenterRef.current) return;
+    const container = phonePreviewContainerRef.current;
+    if (container) {
+      const { centerX, centerY, prevZoom } = lastCenterRef.current;
+      const scale = zoomLevel / prevZoom;
+      const newCenterX = centerX * scale;
+      const newCenterY = centerY * scale;
+      // Set scroll position directly (no animation)
+      container.scrollLeft = newCenterX - container.clientWidth / 2;
+      container.scrollTop = newCenterY - container.clientHeight / 2;
+    }
+    lastCenterRef.current = null;
+  }, [zoomLevel]);
+  
+  // Keyboard shortcuts for zoom
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+          case '=':
+          case '+':
+            e.preventDefault();
+            handleZoomIn();
+            break;
+          case '-':
+            e.preventDefault();
+            handleZoomOut();
+            break;
+          case '0':
+            e.preventDefault();
+            handleZoomReset();
+            break;
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoomLevel]);
 
   // Panel dimensions (now in AdminThemeContext)
   const rightPanelWidth = adminTheme.settingsPanelWidth;
@@ -327,6 +419,8 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
   const [openModal, setOpenModal] = useState<null | 'save' | 'load' | 'share' | 'clearAll' | 'shortcuts' | 'templates'>(null);
   // Welcome modal state
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  // Modal coordinates from button click
+  const [modalCoordinates, setModalCoordinates] = useState<{ x: number; y: number } | null>(null);
 
   // Show welcome modal if not seen
   useEffect(() => {
@@ -496,7 +590,12 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
       {/* Modal Handler */}
       <ModalHandler
         openModal={openModal}
-        setOpenModal={setOpenModal}
+        setOpenModal={(modal) => {
+          setOpenModal(modal);
+          if (!modal) {
+            setModalCoordinates(null);
+          }
+        }}
         showWelcomeModal={showWelcomeModal}
         setShowWelcomeModal={setShowWelcomeModal}
         saveName={localStorage.saveName}
@@ -520,11 +619,13 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             gridCols: data.gridCols,
           });
           setOpenModal(null);
+          setModalCoordinates(null);
           setToast('✅ Loaded flow');
         }}
         onClear={() => {
           handleReset();
         }}
+        modalCoordinates={modalCoordinates}
       />
 
       {/* Main Content Area */}
@@ -556,10 +657,9 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
             onDuplicateLayoutAt={handleDuplicateLayoutAt}
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
-            onZoomIn={handleZoomIn}
-            onZoomOut={handleZoomOut}
-            onZoomReset={handleZoomReset}
-            onFitToScreen={handleFitToScreen}
+            onContainerRef={(ref) => {
+              phonePreviewContainerRef.current = ref;
+            }}
           />
         </div>
       </div>
@@ -570,7 +670,7 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           <ToolbarButton
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
-            icon={Icons.Wallet24}
+            icon={Icons.Back}
             iconSize={"24"}
           />
         </div>
@@ -654,14 +754,27 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
       <AnimatePresence>
         <ToolbarPanel
           onHideAdminPanel={() => setShowAdminPanel(v => !v)}
-          onShowKeyboardShortcuts={() => setOpenModal('shortcuts')}
-          onOpenSave={() => setOpenModal('save')}
-          onOpenLoad={() => {
+          onShowKeyboardShortcuts={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('shortcuts');
+          }}
+          onOpenSave={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('save');
+          }}
+          onOpenLoad={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
             localStorage.setLoadList(localStorage.getLoadList());
             setOpenModal('load');
           }}
-          onShare={handleShareModal}
-          onOpenTemplates={() => setOpenModal('templates')}
+          onShare={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            handleShareModal();
+          }}
+          onOpenTemplates={(e) => {
+            setModalCoordinates({ x: e.pageX, y: e.pageY });
+            setOpenModal('templates');
+          }}
           onShowJsonPanel={() => setShowJsonPanel(v => !v)}
           showJsonPanel={showJsonPanel}
           zoomLevel={zoomLevel}
@@ -686,7 +799,7 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
           <ToolbarButton
             onClick={() => setShowAdminPanel(true)}
             title="Show admin panel"
-            icon={Icons.Wallet24}
+            icon={Icons.Back}
             iconSize={"24"}
           />
         </div>

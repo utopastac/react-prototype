@@ -8,13 +8,8 @@ interface KeyboardShortcutsPanelProps {
 
 const KeyboardShortcutsPanel: React.FC<KeyboardShortcutsPanelProps> = ({ className }) => {
   const shortcuts = [
-    { key: ',', description: 'Toggle component names' },
     { key: '←', description: 'Select previous component' },
     { key: '→', description: 'Select next component' },
-    { key: '↑', description: 'Move selected component up' },
-    { key: '↓', description: 'Move selected component down' },
-    { key: '⌫', description: 'Delete selected component' },
-    { key: '⌥ Drag', description: 'Duplicate component' },
     { key: '⌘ c', description: 'Clear layouts' },
     { key: '⌘ z', description: 'Undo' },
     { key: '⌘ ⇧ z', description: 'Redo' },
@@ -22,7 +17,7 @@ const KeyboardShortcutsPanel: React.FC<KeyboardShortcutsPanelProps> = ({ classNa
     { key: '⌘ l', description: 'Load' },
     { key: '⌘ p', description: 'Share' },
     { key: '⌘ k', description: 'Show keyboard shortcuts' },
-    { key: '⌘ l', description: 'Show flow library' },
+    { key: '⌘ /', description: 'Show flow library' },
     { key: '⌘ .', description: 'Toggle admin panel' },
   ];
 

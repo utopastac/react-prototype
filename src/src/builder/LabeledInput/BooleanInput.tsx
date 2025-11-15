@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.sass';
-import Toggle from 'src/components/Toggle';
+import AdminToggle from 'src/builder/components/AdminToggle';
 
 interface BooleanInputProps {
   label: string;
@@ -17,7 +17,7 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
     <div className={styles.Input} onClick={() => onChange(!value)} style={{cursor: 'pointer'}}>
       <label>{label}</label>
       <div className={styles.Toggle}>
-        <Toggle checked={!!value} />
+        <AdminToggle checked={!!value} />
       </div>
     </div>
   );

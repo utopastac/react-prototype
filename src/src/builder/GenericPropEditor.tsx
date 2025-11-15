@@ -156,7 +156,7 @@ const GenericPropEditor: React.FC<GenericPropEditorProps> = ({
         <div>
           {title && <h2>{title}</h2>}
           {/* Dismiss/close button, if provided */}
-          {onDismiss && <ToolbarButton onClick={onDismiss} icon={Icons.Failed16} title="Dismiss" position="left" />}
+          {onDismiss && <ToolbarButton onClick={onDismiss} icon={Icons.Close16} title="Dismiss" position="left" />}
         </div>
       </header>
       <div className={styles.Fields}>

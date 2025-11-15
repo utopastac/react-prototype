@@ -2,7 +2,7 @@
 @use 'src/builder/admin.sass' as *
 
 .Main
-  width: var(--builder-width)
+  width: size(240)
   height: 100vh
   background: white
   display: flex
@@ -34,7 +34,7 @@
   flex-shrink: 0
   border-top: 1px solid var(--builder-section-border)
   .themeContent
-    padding: var(--builder-padding)
+    padding: size(4) var(--builder-padding) size(8) var(--builder-padding)
 
 .flowsContent
   flex: 1
@@ -45,6 +45,6 @@
   display: flex
   flex-direction: column
   margin: 0 neg-size(8)
-  gap: 0px
+  gap: size(2)
   padding: var(--builder-padding)
 

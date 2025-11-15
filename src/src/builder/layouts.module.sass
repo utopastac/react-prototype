@@ -40,19 +40,6 @@ $zoom-transition: transform 0s ease
   transform-origin: top left
   // transition: $zoom-transition
 
-.ZoomControls
-  position: absolute
-  bottom: size(16)
-  right: size(16)
-  display: flex
-  flex-direction: column
-  gap: size(4)
-  z-index: 1000
-  background: white
-  border-radius: var(--builder-wrapper-border-radius)
-  padding: size(4)
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
-
 .ZoomLevel
   text-align: center
   font-size: var(--builder-font-size-xs)
@@ -130,24 +117,17 @@ $zoom-transition: transform 0s ease
 
 .PhoneActions
   display: flex
-  justify-content: center
+  justify-content: flex-end
+  gap: size(1)
   visibility: hidden
   position: absolute
-  bottom: neg-size(48)
-  left: 0
+  top: neg-size(40)
   right: 0
   transition: $zoom-transition
   z-index: 1000
 
   &.active
     visibility: visible
-  // position: absolute
-  // bottom: neg-size(16)
-  // left: 0
-
-.Spacer
-  flex: 0 0 auto
-  width: 50%
 
 .templatePicker
   display: flex
@@ -266,39 +246,3 @@ $zoom-transition: transform 0s ease
   background-color: var(--builder-brand-mid) !important
   box-shadow: 0px 8px 32px rgba(0, 192, 38, 0.3) !important
   scale: 1.05
-
-.DragOverGridPosition
-  border: 2px solid var(--builder-brand-highlight)
-  background-color: rgba(0, 192, 38, 0.05)
-
-.LayoutDragHandle
-  position: absolute
-  top: size(-32)
-  right: size(0)
-  padding: size(8) size(12) size(8) size(12)
-  background: var(--builder-gray-f4)
-  border: 1px solid var(--builder-section-border)
-  border-radius: var(--builder-border-radius)
-  cursor: grab
-  display: flex
-  align-items: center
-  justify-content: center
-  z-index: 1001
-  transition: all 0.2s ease
-  opacity: 0
-  font-family: $font-dev
-  color: var(--builder-text-medium)
-  font-size: var(--builder-font-size-m)
-  @extend %medium
-  gap: size(8)
-
-  &:hover
-    border-color: var(--builder-gray-e4)
-    background: var(--builder-gray-e4)
-    opacity: 1
-
-  &:active
-    cursor: grabbing
-
-.PhoneItem:hover .LayoutDragHandle
-  opacity: 1

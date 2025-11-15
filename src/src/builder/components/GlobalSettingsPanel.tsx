@@ -335,7 +335,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
               <h2 style={{ margin: 0 }}>{phoneName}</h2>
               <ToolbarButton
                 onClick={onDeselectPhone}
-                icon={Icons.Failed16}
+                icon={Icons.Close16}
                 title="Close"
                 position="bottom"
               />
@@ -405,6 +405,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
+          <h5>Screens</h5>
           <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
             {layoutNames.map((name, idx) => {
               const isActive = idx === activeLayoutIndex;
@@ -475,16 +476,18 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
               />
             </ToolsSection>
             <ToolsSection>
-              <TextButton
-                onClick={onOpenClearAllLayoutsModal}
-                variant="secondary"
-                text="Clear All Layouts"
-              />
-              <TextButton 
-                onClick={onResetWelcomeModal} 
-                variant="tertiary" 
-                text="Reset Welcome Modal" 
-              />
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <TextButton
+                  onClick={onOpenClearAllLayoutsModal}
+                  variant="secondary"
+                  text="Clear all"
+                />
+                <TextButton 
+                  onClick={onResetWelcomeModal} 
+                  variant="tertiary" 
+                  text="Reset intro" 
+                />
+              </div>
             </ToolsSection>
           </div>
         </div>
@@ -494,13 +497,12 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
 
   return (
     <motion.div
-      className={`${styles.AdminPanel} ${styles.rightSide} ${styles.globalSettings}${isHoveringEdge || isResizing ? ' ' + styles.resizing : ''}`}
-      style={{ width: width, borderLeftColor: (isHoveringEdge || isResizing) ? '#00C244' : undefined }}
+      className={`${styles.AdminPanel} ${styles.rightSide} ${styles.globalSettings} ${isHoveringEdge || isResizing ? ' ' + styles.resizing : ''}`}
+      style={{ width: width, borderLeftColor: (isHoveringEdge || isResizing) ? '#0017e6' : undefined }}
       initial={{ x: '100%' }}
       animate={{ 
         x: 0,
         scale: 1,
-        borderRadius: 0,
       }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}

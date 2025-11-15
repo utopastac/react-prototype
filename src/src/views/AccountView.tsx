@@ -12,9 +12,7 @@ import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import Button from 'src/components/Buttons/Button';
 import Cell from 'src/components/Cell';
-import AvatarRow from 'src/components/AvatarRow';
 import ButtonGroup from 'src/components/ButtonGroup';
-import Disclaimer from 'src/components/Disclaimer';
 import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
@@ -63,7 +61,7 @@ const AccountView = () => {
             }}
             //onClick={openLayer}
             icon={{
-              type: Icons.SubtleExpand16,
+              type: Icons.Expand16,
               size: "16",
               color: "subtle"
             }}
@@ -77,88 +75,10 @@ const AccountView = () => {
           size="betweenSectionExtraLargeCell"
         />
         <Cell
-          title="Security"
-          left={{
-            type: "icon",
-            icon: Icons.SecurityLockOutline24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Privacy"
-          left={{
-            type: "icon",
-            icon: Icons.SensitiveVisible24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Favorites"
-          left={{
-            type: "icon",
-            icon: Icons.Favorite24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
           title="Linked apps & businesses"
           left={{
             type: "icon",
-            icon: Icons.BankLinked24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Themes"
-          left={{
-            type: "icon",
-            icon: Icons.CustomizeBrushFill24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Documents & statements"
-          left={{
-            type: "icon",
-            icon: Icons.Document24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Support"
-          left={{
-            type: "icon",
-            icon: Icons.Help24,
+            icon: Icons.Alert24,
             size: '24',
             color: 'standard'
           }}
@@ -180,7 +100,6 @@ const AccountView = () => {
             {title: "Sign out", type: "destructive", onClick:()=>{}}
           ]}
         />
-        <Disclaimer />
       </ScrollContainer>
     </PageWrapper>
     

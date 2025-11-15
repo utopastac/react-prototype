@@ -112,7 +112,7 @@ const Modal = (({ title, close, x, y, children, showBackground = false, classNam
           <ToolbarButton
             onClick={close}
             title="Close"
-            icon={Icons.Failed16}
+            icon={Icons.Close16}
             position="left"
           />
         </header>

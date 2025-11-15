@@ -220,7 +220,7 @@ export const AdminTemplates: AdminTemplate[] = [
         props: {
           title: 'Your info is secure',
           body: 'We use bank-level encryption to protect your data.',
-          left: { type: 'icon', icon: Icons.SecurityCheckFill },
+          left: { type: 'icon', icon: Icons.Push },
           right: { type: 'none' }
         }
       },
@@ -231,7 +231,7 @@ export const AdminTemplates: AdminTemplate[] = [
         props: {
           title: 'Why we ask',
           body: 'We need your legal name to verify your identity.',
-          left: { type: 'icon', icon: Icons.Information16 },
+          left: { type: 'icon', icon: Icons.Add16 },
           right: { type: 'none' }
         }
       },
@@ -562,7 +562,7 @@ export const AdminTemplates: AdminTemplate[] = [
           size: 'page',
           accessory: {
             type: 'icon',
-            icon: Icons.Alert32,
+            icon: Icons.Alert24,
             theme: 'error'
           }
         }
@@ -616,7 +616,7 @@ export const AdminTemplates: AdminTemplate[] = [
           size: 'page',
           accessory: {
             type: 'icon',
-            icon: Icons.AccountVerified32,
+            icon: Icons.Push,
             theme: 'brand'
           }
         }
@@ -932,17 +932,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Email',
-          left: { type: 'icon', icon: Icons.CommEmail24 },
-          right: { type: 'push' }
-        }
-      },
-      // Phone number
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Phone number',
-          left: { type: 'icon', icon: Icons.DeviceMobile24 },
+          left: { type: 'icon', icon: Icons.Email24 },
           right: { type: 'push' }
         }
       },
@@ -952,7 +942,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Interventions Hub PIN',
-          left: { type: 'icon', icon: Icons.PasscodeFill24 },
+          left: { type: 'icon', icon: Icons.Passcode24 },
           right: { type: 'push' }
         }
       },
@@ -962,7 +952,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Synced contacts',
-          left: { type: 'icon', icon: Icons.ContactTrue },
+          left: { type: 'icon', icon: Icons.ContactCheck },
           right: { type: 'push' }
         }
       },
@@ -972,7 +962,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Linked debit card',
-          left: { type: 'icon', icon: Icons.BankLinked24 },
+          left: { type: 'icon', icon: Icons.Alert24 },
           right: { type: 'push' }
         }
       },

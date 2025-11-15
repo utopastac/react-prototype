@@ -3,15 +3,9 @@ import Modal from '../DevTools/Modal';
 import styles from './index.module.sass';
 import { InterventionScreenComponents } from 'src/data/Components';
 import idvImg from 'src/assets/admin-layouts/idv.jpg';
-import disputesImg from 'src/assets/admin-layouts/disputes.jpg';
-import accountLinkingImg from 'src/assets/admin-layouts/account-linking.jpg';
 import nAuthImg from 'src/assets/admin-layouts/n-auth.jpg';
 import idvData from '../layouts/idv.json';
-import disputesData from '../layouts/disputes.json';
-import accountLinkingData from '../layouts/account-linking.json';
 import nAuthData from '../layouts/n-auth.json';
-import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
-
 interface FlowInfo {
   name: string;
   description?: string;
@@ -27,8 +21,6 @@ interface FlowLibraryModalProps {
 
 const templates: (FlowInfo & { data: any })[] = [
   { name: 'IDV', description: 'ID verification flow', data: idvData, image: idvImg },
-  { name: 'Disputes', description: 'Disputes happy path flow', data: disputesData, image: disputesImg },
-  { name: 'Account Linking', description: 'Account linking flows', data: accountLinkingData, image: accountLinkingImg },
   { name: 'N Auth', description: 'Account recovery flows', data: nAuthData, image: nAuthImg },
 ];
 
@@ -44,11 +36,8 @@ const FlowLibraryModal: React.FC<FlowLibraryModalProps> = ({ onLoadComplete, onC
     try {
       const data = tmpl.data;
       
-      // Transform image URLs in the layouts to work in both dev and production
-      const transformedLayouts = transformLayoutsImageUrls(data.layouts);
-      
       // Patch components array to add Component property
-      const layoutsWithComponents = transformedLayouts.map((layout: any) => ({
+      const layoutsWithComponents = data.layouts.map((layout: any) => ({
         ...layout,
         components: (layout.components || []).map((item: any) => ({
           ...item,

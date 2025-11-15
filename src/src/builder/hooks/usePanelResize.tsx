@@ -68,7 +68,7 @@ export function usePanelResize({
         height: '100%',
         cursor: 'col-resize',
         zIndex: 10,
-        background: isHoveringEdge || isResizing ? 'rgba(0,194,68,0.08)' : 'transparent',
+        background: isHoveringEdge || isResizing ? 'rgba(0, 3, 192, 0.07)' : 'transparent',
         transition: 'background 0.15s',
       }}
       onMouseDown={handleMouseDown}

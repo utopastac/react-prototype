@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import lzString from 'lz-string';
 import { useLayoutData } from './useLayoutData';
-import { transformLayoutsImageUrls } from 'src/utils/imageUrlTransformer';
 
 export const useUrlSharing = () => {
   const [shareUrl, setShareUrl] = useState('');
@@ -9,12 +8,7 @@ export const useUrlSharing = () => {
 
   const handleShare = () => {
     const layout = layoutData.getLayoutData();
-    // Transform image URLs before sharing to ensure they work in production
-    const transformedLayout = {
-      ...layout,
-      layouts: transformLayoutsImageUrls(layout.layouts || [])
-    };
-    const json = JSON.stringify(transformedLayout);
+    const json = JSON.stringify(layout);
     const compressed = lzString.compressToEncodedURIComponent(json);
     const base = `${window.location.origin}${window.location.pathname}${window.location.hash.split('?')[0]}`;
     const url = `${base}?layout=${compressed}`;

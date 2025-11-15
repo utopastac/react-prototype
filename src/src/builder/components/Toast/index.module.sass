@@ -3,21 +3,20 @@
 @use 'src/builder/admin.sass' as *
 .Main
   position: fixed
-  left: size(32)
-  bottom: size(32)
+  left: size(24)
+  bottom: size(24)
   max-width: size(320)
-  background: rgba(30, 30, 30, 0.7)
-  backdrop-filter: blur(2px)
+  background: #1A1A1A
   color: white
   padding: size(12) size(16)
-  border-radius: var(--builder-border-radius)
+  border-radius: var(--builder-border-radius-s)
   box-shadow: 0 4px 16px rgba(0,0,0,0.18)
   font-size: var(--builder-font-size-l)
   z-index: 9999
   transform: translateY(0)
   transition: opacity 0.3s, bottom 0.3s
 .toastVisible
-  left: size(32)
+  left: size(24)
   opacity: 1
 .toastHidden
   bottom: size(0)

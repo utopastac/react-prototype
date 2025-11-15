@@ -60,7 +60,7 @@ export interface UserObject {
  */
 const defaultParams: UserObject = {
   name: "Peter Wright",
-  headline: "Design Lead at ExampleCo | Building delightful products",
+  headline: "Open halfsheet",
   avatar: Avatars.NinaD,
   title: "Design Lead",
   company: "ExampleCo",

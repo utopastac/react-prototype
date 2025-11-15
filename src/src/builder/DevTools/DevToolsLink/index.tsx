@@ -22,8 +22,8 @@ const DevToolsLink: React.FC<DevToolsLinkProps> = ({ title, path, description })
     <div to={path} className={styles.link} onClick={handleNavigation}>
       <div className={styles.Main}>
         <div className={styles.content}>
-          <span className={styles.title}>{title}</span>
-          <span className={styles.description}>{description}</span>
+          <h4 className={styles.title}>{title}</h4>
+          <p className={styles.description}>{description}</p>
         </div>
       </div>
     </div>

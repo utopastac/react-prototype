@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
             { accessory && (
               <div className={styles.showMore}>
                 <p>{accessory.text ? accessory.text : 'Show more'}</p>
-                <Icon icon={Icons.SubtlePush16} size="16" color="standard" />
+                <Icon icon={Icons.Push16} size="16" color="standard" />
               </div>
             )}
           </div>

@@ -40,7 +40,6 @@
 
 %button-tertiary
   @extend %button-base
-  margin-top: size(8)
   color: var(--builder-text-medium)
   border: 1px solid var(--builder-button-tertiary-border)
   background: var(--builder-white)
@@ -52,7 +51,7 @@
     background: var(--builder-button-tertiary-bg-hover)
 
 %input-field
-  border: none
+  border: 1px solid var(--builder-gray-d2)
   outline: none
   appearance: none
   -webkit-appearance: none
@@ -70,7 +69,7 @@
     box-shadow: var(--builder-input-field-focus-shadow)
     border-color: var(--builder-gray-d2)
   &:active
-    background: var(--builder-input-field-active)
+    // background: var(--builder-input-field-active)
 
 %input-label
   display: block
@@ -88,8 +87,6 @@
   text-overflow: ellipsis
   white-space: nowrap
   box-sizing: border-box
-
-%signature
 
 @mixin tooltip($title, $position: 'top', $delay: 0.1s)
   &:after
@@ -130,9 +127,9 @@
     
     background: var(--builder-tooltip-bg)
     color: var(--builder-tooltip-text)
-    padding: size(3) size(5)
-    border-radius: var(--builder-border-radius)
-    font-size: var(--builder-font-size-s)
+    padding: size(4) size(5)
+    border-radius: var(--builder-border-radius-s)
+    font-size: var(--builder-font-size-m)
     white-space: nowrap
     opacity: 0
     pointer-events: none
@@ -161,20 +158,3 @@
 
 %admin-panel
   background: var(--builder-white)
-
-%dev-tools-dropdown
-  flex: 1
-  height: var(--builder-input-size)
-  border-radius: var(--builder-border-radius)
-  background: var(--builder-input-bg)
-  display: flex
-  justify-content: space-between
-  align-items: center
-  padding: 0 var(--builder-input-padding)
-  font-size: var(--builder-input-font-size)
-  cursor: pointer
-  color: var(--builder-text-dark)
-  &::after
-    content: "↓"
-  &:hover
-    background: var(--builder-input-focus)

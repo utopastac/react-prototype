@@ -13,18 +13,16 @@
   height: size(32)
   display: flex
   align-items: center
-  font-size: var(--builder-input-font-size)
   border-radius: var(--builder-border-radius)
   &:hover
-    background: var(--builder-input-hover)
+    background: var(--builder-brand-subtle)
+    color: var(--builder-brand-highlight)
   .content
-    display: flex
-    flex: 1
-    justify-content: space-between
     gap: size(2)
   .title
-    color: var(--builder-text-medium)
+    font-size: var(--builder-font-size-l)
     @extend %medium
   .description
-    color: var(--builder-text-light)
-    @extend %regular 
+    font-size: var(--builder-font-size-m)
+    @extend %regular
+    display: none

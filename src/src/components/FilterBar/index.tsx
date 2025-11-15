@@ -31,7 +31,7 @@ const FilterChip: React.FC<FilterChipProps> = ({ title, active, icon }) => {
   return (
     <div className={`${styles.FilterChip} ${active ? styles.active : ""}`}>
       {title}
-      {icon ? <Icon icon={Icons.SubtleExpand16} size="16" color="standard" /> : null}
+      {icon ? <Icon icon={Icons.Expand16} size="16" color="standard" /> : null}
     </div>
   );
 };

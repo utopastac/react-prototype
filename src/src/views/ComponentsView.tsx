@@ -33,46 +33,46 @@ const ComponentsView = () => {
 
   const navigate = useNavigate();
 
-  // Dummy transaction data
-  const transaction = {
-    merchant: "Starbucks",
-    amount: "$4.50",
+  // Dummy job application data
+  const application = {
+    company: "Tech Corp",
+    position: "Senior Software Engineer",
     date: "March 15, 2024",
     time: "2:30 PM",
-    location: "123 Main St, San Francisco, CA",
-    card: "Interventions Hub Card",
-    status: "Completed",
-    transactionId: "TX123456789"
+    location: "San Francisco, CA",
+    recruiter: "Sarah Johnson",
+    status: "In Review",
+    applicationId: "APP123456789"
   };
 
   const rowData: TimelineRowProps[] = [
     { 
-      label: 'Transaction Initiated', 
-      body: transaction.time,
-      value: transaction.amount,
+      label: 'Application Submitted', 
+      body: application.time,
+      value: application.position,
       state: 'done', 
       placing: 'beginning' 
     },
     { 
-      label: 'Payment Processing', 
-      value: 'Processing',
+      label: 'Application Reviewed', 
+      value: 'Under Review',
       state: 'skipped', 
       placing: 'middle' 
     },
     { 
-      label: 'Merchant Verification', 
-      value: transaction.merchant,
+      label: 'Recruiter Contacted', 
+      value: application.recruiter,
       state: 'done', 
       placing: 'middle' 
     },
     { 
-      label: 'Location Confirmed', 
-      value: transaction.location,
+      label: 'Interview Scheduled', 
+      value: application.location,
       state: 'collapsed', 
       placing: 'middle' 
     },
     { 
-      label: 'Transaction Completed', 
+      label: 'Decision Made', 
       value: '4 May 2025',
       state: 'notStarted', 
       placing: 'end' 
@@ -183,7 +183,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "icon",
-            icon: Icons.SecurityCheckFill
+            icon: Icons.Push
           }}
           right={{
             type: "button",
@@ -196,7 +196,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.SecurityCheckFill,
+            icon: Icons.Push,
             theme: "brand"
           }}
           right={{
@@ -224,7 +224,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.SecurityCheckFill,
+            icon: Icons.Push,
             theme: "grey"
           }}
           right={{
@@ -239,7 +239,7 @@ const ComponentsView = () => {
           body="Cell default can be used in a wide variety of use casee"
           left={{
             type: "iconBg",
-            icon: Icons.ArrowLink,
+            icon: Icons.Add16,
             theme: "brand"
           }}
           right={{
