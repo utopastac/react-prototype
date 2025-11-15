@@ -7,6 +7,7 @@ interface EditableLabelProps {
   onRenameCancel: () => void;
   className?: string;
   inputClassName?: string;
+  size?: 'default' | 'header';
 }
 
 const EditableLabel: React.FC<EditableLabelProps> = ({
@@ -15,11 +16,19 @@ const EditableLabel: React.FC<EditableLabelProps> = ({
   onRenameCancel,
   className,
   inputClassName,
+  size = 'default',
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(label);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const sizerRef = useRef<HTMLSpanElement | null>(null);
+
+  // Update inputValue when label prop changes (but not while editing)
+  useEffect(() => {
+    if (!isEditing) {
+      setInputValue(label);
+    }
+  }, [label, isEditing]);
 
   // Enter edit mode on double click
   const handleDoubleClick = (e: React.MouseEvent) => {
@@ -61,7 +70,7 @@ const EditableLabel: React.FC<EditableLabelProps> = ({
 
   return (
     <div
-      className={[styles.EditableLabel].filter(Boolean).join(' ')}
+      className={`${styles.EditableLabel} ${size === 'header' ? styles.header : ''}`}
       onDoubleClick={handleDoubleClick}
       style={{ display: 'inline-block', position: 'relative' }}
     >

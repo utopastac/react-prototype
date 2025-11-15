@@ -50,3 +50,48 @@
   font-size: inherit
   font-family: inherit
   font-weight: inherit
+
+  &.header
+    font-size: inherit
+    font-family: inherit
+    font-weight: inherit
+
+.EditableLabel.header
+  font-size: var(--builder-font-size-xl)
+  @extend %medium
+  color: var(--builder-text-dark)
+  background: transparent
+  cursor: pointer
+  user-select: none
+
+  .label
+    display: inline-block
+    height: auto
+    padding: 0
+    background: transparent
+    border-radius: 0
+    cursor: pointer
+    max-width: 100%
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    font-size: inherit
+    @extend %medium
+    color: inherit
+
+  .EditableLabelInput
+    height: auto !important
+    line-height: inherit
+    padding: 0
+    box-sizing: border-box
+    appearance: none
+    outline: none
+    border: none
+    background: transparent
+    border-radius: 0
+    font-size: inherit
+    @extend %medium
+    outline: 1px solid var(--builder-brand-highlight)
+    max-width: 100%
+    width: auto
+    color: inherit

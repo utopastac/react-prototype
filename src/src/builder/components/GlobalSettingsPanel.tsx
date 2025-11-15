@@ -1,13 +1,10 @@
 import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import ToolsSection from 'src/builder/components/ToolsSection';
-import ToolbarButton from 'src/admin/components/ToolbarButton';
 import ThemeSection from 'src/admin/ThemeSection';
 import TextButton from 'src/admin/components/TextButton';
 import Header from 'src/admin/components/Header';
-import * as Icons from 'src/data/Icons';
 import styles from 'src/builder/index.module.sass';
-import layoutsStyles from 'src/builder/layouts.module.sass';
 import SliderInput from 'src/admin/components/LabeledInput/SliderInput';
 import { useAdminTheme, useAdminThemeDispatch } from 'src/admin/contexts/AdminThemeContext';
 import { lerpColor, hexToRgb } from 'src/helpers/Utils';
@@ -24,8 +21,7 @@ import { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import { ToastPropMeta } from 'src/components/Toast';
 import { IOSStatusBarPropMeta } from 'src/components/IOSStatusBar';
 import { useLayoutData } from 'src/builder/hooks/useLayoutData';
-import { formatComponentName } from 'src/builder/formatComponentName';
-import EditableLabel from 'src/admin/components/EditableLabel';
+import Link from 'src/admin/components/Link';
 
 interface GlobalSettingsPanelProps {
   isPropEditorVisible: boolean;
@@ -58,9 +54,6 @@ interface GlobalSettingsPanelProps {
   onShowStatusBarChange: () => void;
   onClearLayout: () => void;
   onDeselectPhone: () => void;
-  // Layout list props
-  onDroppedComponentClick?: (layoutIdx: number, droppedIdx: number) => void;
-  selectedLayout?: { layoutIdx: number, droppedIdx: number } | null;
 }
 
 const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
@@ -91,9 +84,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
   onShowToastChange,
   onShowStatusBarChange,
   onClearLayout,
-  onDeselectPhone,
-  onDroppedComponentClick,
-  selectedLayout
+  onDeselectPhone
 }) => {
   const adminTheme = useAdminTheme();
   const setAdminTheme = useAdminThemeDispatch();
@@ -179,10 +170,6 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     setAdminTheme({ type: 'Update', payload: { layoutOutline: sliderToOutline(t) } });
   }, [setAdminTheme]);
 
-  // Handler for renaming a layout
-  const handleRenameLayout = (idx: number, newName: string) => {
-    dispatch({ type: 'RENAME_LAYOUT', index: idx, name: newName });
-  };
 
   // --- Resizing logic ---
   const [width, resizeHandle, isResizing, , isHoveringEdge] = usePanelResize({
@@ -333,7 +320,12 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
         <>
           <Header 
             title={phoneName} 
-            onClose={onDeselectPhone} 
+            onClose={onDeselectPhone}
+            onRenameFinish={(newName) => {
+              if (activeIndex >= 0) {
+                dispatch({ type: 'RENAME_LAYOUT', index: activeIndex, name: newName });
+              }
+            }}
           />
           <div className={styles.Controls}>
             <ToolsSection>
@@ -400,46 +392,16 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
           <Header title="Screens" />
-          <div className={layoutsStyles.LayoutList} style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 'var(--builder-padding)', display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {layoutNames.map((name, idx) => {
               const isActive = idx === activeLayoutIndex;
-              const components = layoutState.layouts[idx]?.components || [];
-              const selectedComponentIdx = selectedLayout && selectedLayout.layoutIdx === idx ? selectedLayout.droppedIdx : null;
               return (
-                <div
+                <Link
                   key={name + idx}
-                  className={`${layoutsStyles.LayoutListItem} ${isActive ? layoutsStyles.active : ''}`}
+                  title={name}
                   onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
-                >
-                  <h4>
-                    <EditableLabel
-                      label={name}
-                      onRenameFinish={newName => handleRenameLayout(idx, newName)}
-                      onRenameCancel={() => {}}
-                      className={layoutsStyles.LayoutName}
-                      inputClassName={layoutsStyles.LayoutName}
-                    />
-                  </h4>
-                  {/* Show components if this layout is active */}
-                  {isActive && components.length > 0 && (
-                    <ul>
-                      {components.map((item: any, cidx: number) => (
-                        <li
-                          key={item.name + cidx}
-                          className={selectedComponentIdx === cidx ? layoutsStyles.active : ''}
-                          onClick={e => {
-                            e.stopPropagation();
-                            if (onDroppedComponentClick) {
-                              onDroppedComponentClick(idx, cidx);
-                            }
-                          }}
-                        >
-                          {formatComponentName(item.name)}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                  isSelected={isActive}
+                />
               );
             })}
           </div>

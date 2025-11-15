@@ -696,8 +696,6 @@ const BuilderViewContent: React.FC<BuilderViewProps> = ({
               }
             }}
             onDeselectPhone={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: -1 })}
-            onDroppedComponentClick={(layoutIdx, droppedIdx) => setSelected({ phoneIndex: layoutIdx, componentIndex: droppedIdx })}
-            selectedLayout={selected ? { layoutIdx: selected.phoneIndex, droppedIdx: selected.componentIndex } : null}
           />
         )}
       </AnimatePresence>
