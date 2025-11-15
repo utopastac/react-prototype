@@ -1,0 +1,25 @@
+@use 'src/styles/site' as *
+@use 'src/builder/admin.sass' as *
+
+.container
+  display: flex
+  flex-direction: row
+  height: 100vh
+  width: 100%
+  overflow: hidden
+
+.previewArea
+  flex: 1
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: var(--builder-gray-f4)
+  overflow: auto
+  padding: size(48)
+
+.emptyState
+  color: var(--builder-text-light)
+  font-size: var(--builder-font-size-l)
+  text-align: center
+  padding: size(48)
+

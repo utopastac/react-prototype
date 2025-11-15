@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import MainNav from 'src/components/MainNav';
 import PlatformView from 'src/views/PlatformView';
-import PatternsView from 'src/views/PatternsView';
+import PatternsView from 'src/patterns/PatternsView';
 import { Providers } from './Providers';
 
 import './styles/globals.css';
