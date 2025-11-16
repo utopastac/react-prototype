@@ -3,7 +3,6 @@ import StringInput from 'src/admin/components/LabeledInput/StringInput';
 import BooleanInput from 'src/admin/components/LabeledInput/BooleanInput';
 import SelectInput from 'src/admin/components/LabeledInput/SelectInput';
 import SearchInput from 'src/admin/components/LabeledInput/SearchInput';
-import AvatarSelectInput from 'src/admin/components/LabeledInput/AvatarSelectInput';
 import TextAreaInput from 'src/admin/components/LabeledInput/TextAreaInput'; // Added import for TextAreaInput
 import SliderInput from 'src/admin/components/LabeledInput/SliderInput';
 
@@ -12,7 +11,7 @@ import SliderInput from 'src/admin/components/LabeledInput/SliderInput';
  * Defines the structure and options for each input type
  */
 interface LabeledInputConfig {
-  type: 'string' | 'boolean' | 'select' | 'avatar-select' | 'textarea' | 'slider'; // Type of input to render
+  type: 'string' | 'boolean' | 'select' | 'textarea' | 'slider'; // Type of input to render
   label?: string; // Optional label text to display
   options?: (string | { value: string; label: string })[]; // Options for select inputs
   placeholder?: string; // Optional placeholder for text/textarea inputs
@@ -41,7 +40,6 @@ interface LabeledInputProps {
  * - string: Text input field
  * - boolean: Checkbox or toggle input
  * - select: Dropdown selection with options
- * - avatar-select: Avatar selection interface
  * 
  * @param config - Configuration object defining the input type and properties
  * @param value - Current value of the input
@@ -85,17 +83,6 @@ const LabeledInput: React.FC<LabeledInputProps> = ({ config, value, onChange, in
           label={label || ''}
           value={value || ''}
           options={options}
-          onChange={onChange}
-          inputStyle={inputStyle}
-        />
-      );
-    
-    case 'avatar-select':
-      // Render an avatar selection interface
-      return (
-        <AvatarSelectInput
-          label={label || ''}
-          value={value || ''}
           onChange={onChange}
           inputStyle={inputStyle}
         />

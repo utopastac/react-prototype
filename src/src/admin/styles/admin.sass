@@ -18,14 +18,14 @@
 %button-primary
   @extend %button-base
   color: var(--admin-button-text)
-  background: var(--admin-primary-bg)
+  background: var(--admin-button-bg)
   width: 100%
   height: size(40)
   &:hover, &:focus
-    background: var(--admin-primary-hover)
+    background: var(--admin-button-hover)
     color: var(--admin-button-text)
   &:active
-    background: var(--admin-primary-active)
+    background: var(--admin-button-active)
 
 %button-secondary
   @extend %button-base
@@ -66,10 +66,10 @@
   min-width: 0
   &:focus
     outline: none
-    box-shadow: var(--admin-input-field-focus-shadow)
     border-color: var(--admin-gray-40)
+    background: var(--admin-input-field-active)
   &:active
-    // background: var(--admin-input-field-active)
+    background: var(--admin-input-field-active)
 
 %input-label
   display: block
