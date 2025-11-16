@@ -6,6 +6,7 @@ import ButtonGroup from 'src/components/ButtonGroup';
 import Toast from 'src/components/Toast';
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
+import Markdown from 'src/admin/components/Markdown';
 import builderStyles from 'src/builder/index.module.sass';
 import styles from './patterns.module.sass';
 
@@ -34,33 +35,40 @@ const TemplatePreview: React.FC<TemplatePreviewProps> = ({ template }) => {
   const showStatusBar = !!template.statusBarProps;
 
   return (
-    <div className={builderStyles.PhonePreview}>
-      <PhonePreviewContent
-        components={template.components}
-        selectedIdx={null}
-        setSelectedIdx={() => {}}
-        showTopBar={showTopBar}
-        topBarProps={template.topBarProps || {}}
-        setSelectedSpecial={() => {}}
-        showBottomButtons={showBottomButtons}
-        bottomButtonsProps={template.bottomButtonsProps || {}}
-        setComponents={() => {}}
-        styles={builderStyles}
-        zoomLevel={1}
-        isZoomedOut={false}
-        TopBar={TopBar}
-        ButtonGroup={ButtonGroup}
-        IOSStatusBar={IOSStatusBar}
-        showNotch={false}
-        IOSHomeIndicator={IOSHomeIndicator}
-        showComponentNames={false}
-        selectedSpecial={null}
-        showToast={showToast}
-        toastProps={template.toastProps || {}}
-        Toast={Toast}
-        showStatusBar={showStatusBar}
-        statusBarProps={template.statusBarProps || {}}
-      />
+    <div className={styles.previewContainer}>
+      <div className={builderStyles.PhonePreview}>
+        <PhonePreviewContent
+          components={template.components}
+          selectedIdx={null}
+          setSelectedIdx={() => {}}
+          showTopBar={showTopBar}
+          topBarProps={template.topBarProps || {}}
+          setSelectedSpecial={() => {}}
+          showBottomButtons={showBottomButtons}
+          bottomButtonsProps={template.bottomButtonsProps || {}}
+          setComponents={() => {}}
+          styles={builderStyles}
+          zoomLevel={1}
+          isZoomedOut={false}
+          TopBar={TopBar}
+          ButtonGroup={ButtonGroup}
+          IOSStatusBar={IOSStatusBar}
+          showNotch={false}
+          IOSHomeIndicator={IOSHomeIndicator}
+          showComponentNames={false}
+          selectedSpecial={null}
+          showToast={showToast}
+          toastProps={template.toastProps || {}}
+          Toast={Toast}
+          showStatusBar={showStatusBar}
+          statusBarProps={template.statusBarProps || {}}
+        />
+      </div>
+      {template.description && (
+        <div className={styles.description}>
+          <Markdown copy={template.description} />
+        </div>
+      )}
     </div>
   );
 };

@@ -17,6 +17,31 @@
   overflow: auto
   padding: size(48)
 
+.previewContainer
+  display: flex
+  flex-direction: row
+  align-items: flex-start
+  gap: size(48)
+  max-width: 100%
+  width: 100%
+
+  @media (max-width: 1200px)
+    flex-direction: column
+    align-items: center
+
+.description
+  flex: 1
+  max-width: 500px
+  padding: size(24)
+  background-color: var(--admin-white)
+  border-radius: var(--admin-border-radius)
+  color: var(--admin-text-dark)
+  font-size: var(--admin-font-size-s)
+
+  @media (max-width: 1200px)
+    max-width: 100%
+    width: 100%
+
 .emptyState
   color: var(--admin-text-light)
   font-size: var(--admin-font-size-l)

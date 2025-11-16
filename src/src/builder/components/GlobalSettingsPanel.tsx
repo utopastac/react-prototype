@@ -399,7 +399,7 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
-          <LinkList title="Screens" links={layoutLinks} />
+          <LinkList links={layoutLinks} />
           <div style={{ flexShrink: 0 }}>
             <ToolsSection>
               <ThemeSection />

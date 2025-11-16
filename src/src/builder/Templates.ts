@@ -39,6 +39,7 @@ import { Images } from 'src/data/Images';
 export interface AdminTemplate {
   name: string;
   group?: string,
+  description?: string;
   components: { name: string; Component: React.ComponentType<any>; props: any }[];
   topBarProps?: TopBarProps;
   bottomButtonsProps?: ButtonGroupProps;
@@ -70,6 +71,14 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Blank',
     group: 'Information',
+    description: `## Blank Template
+
+An empty canvas template with no components or special UI elements. Use this as a starting point for custom layouts or to clear the current layout.
+
+**Use cases:**
+- Starting from scratch
+- Clearing existing layouts
+- Building custom patterns`,
     components: [],
     topBarProps: {
       title: '',
@@ -90,6 +99,14 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Loading',
     group: 'Information',
+    description: `## Loading Template
+
+A simple loading state with a circular progress indicator. Perfect for showing users that content is being fetched or processed.
+
+**Use cases:**
+- Data fetching screens
+- Processing states
+- Transition screens in multi-step flows`,
     components: [
       {
         name: 'ProgressCircular',
@@ -115,6 +132,22 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Simple List',
     group: 'Information',
+    description: `## Simple List Template
+
+A basic list layout with dividers, headers, and informational content. Includes a top bar with navigation and a bottom continue button.
+
+**Features:**
+- Page header for context
+- Unordered list items
+- Section headers for organization
+- Upsell card for additional content
+- Bottom action button
+
+**Use cases:**
+- Information display screens
+- Simple forms
+- Settings pages
+- Feature lists`,
     components: [
       {
         name: 'Divider',
@@ -193,6 +226,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Promo Page',
     group: 'Information',
+    description: `## Promo Page Template
+
+A welcome or onboarding screen designed to introduce features or collect user information. Features a hero header with an image accessory and informational cells.
+
+**Features:**
+- Hero header with image accessory
+- Multiple informational cells with icons
+- Transparent top bar
+- Prominent call-to-action button
+
+**Use cases:**
+- App onboarding
+- Feature introductions
+- Welcome screens
+- Information collection flows`,
     components: [
       {
         name: 'Header',
@@ -287,6 +335,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Radio options',
     group: 'Form',
+    description: `## Radio Options Template
+
+A single-choice selection interface using radio buttons. Perfect for questions where users need to select one option from multiple choices.
+
+**Features:**
+- Page header with question
+- Multiple radio button options
+- Back and Continue navigation buttons
+- Clean, scannable layout
+
+**Use cases:**
+- Survey questions
+- Preference selection
+- Multi-step forms
+- Decision points in flows`,
     components: [
       {
         name: 'Divider',
@@ -380,6 +443,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Checkbox options',
     group: 'Form',
+    description: `## Checkbox Options Template
+
+A multi-choice selection interface using checkboxes. Allows users to select multiple options from a list, unlike radio buttons which only allow single selection.
+
+**Features:**
+- Page header with question
+- Multiple checkbox options
+- Back and Continue navigation buttons
+- Clean, scannable layout
+
+**Use cases:**
+- Multi-select surveys
+- Preference selection (select all that apply)
+- Feature selection
+- Tag selection`,
     components: [
       {
         name: 'Divider',
@@ -474,6 +552,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Input Fields',
     group: 'Form',
+    description: `## Input Fields Template
+
+A form with standard text input fields for collecting user information. Features a clear header with explanation text and multiple input fields.
+
+**Features:**
+- Page header with explanation text
+- Multiple text input fields
+- Clean, focused layout
+- Single action button
+
+**Use cases:**
+- User registration
+- Profile forms
+- Data collection
+- Personal information entry`,
     components: [
       {
         name: 'Divider',
@@ -547,6 +640,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Error Message',
     group: 'Information',
+    description: `## Error Message Template
+
+An error state screen designed to clearly communicate problems to users. Features an alert icon and actionable buttons to resolve the issue.
+
+**Features:**
+- Error icon with themed styling
+- Clear error title and description
+- Multiple action buttons (alternative method, retry)
+- Close button in top bar
+
+**Use cases:**
+- Validation errors
+- Failed operations
+- Network errors
+- Authentication failures`,
     components: [
       {
         name: 'Divider',
@@ -601,6 +709,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Success Message',
     group: 'Information',
+    description: `## Success Message Template
+
+A success state screen that confirms completed actions to users. Features a success icon and a clear completion message.
+
+**Features:**
+- Success icon with brand theming
+- Clear success title and message
+- Single "Done" action button
+- Close button in top bar
+
+**Use cases:**
+- Action confirmations
+- Completion screens
+- Success feedback
+- Transaction confirmations`,
     components: [
       {
         name: 'Divider',
@@ -653,6 +776,22 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Address Form',
     group: 'Form',
+    description: `## Address Form Template
+
+A comprehensive address collection form with multiple input fields. Uses a stacked horizontal input for state and ZIP code to optimize space.
+
+**Features:**
+- Page header with prompt
+- Street address input
+- City input
+- Stacked horizontal inputs for State and ZIP
+- Single "Next" action button
+
+**Use cases:**
+- Shipping address collection
+- Billing address forms
+- Location registration
+- Profile address updates`,
     components: [
       {
         name: 'Divider',
@@ -733,6 +872,22 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Long Form Text',
     group: 'Form',
+    description: `## Long Form Text Template
+
+A form for collecting longer text input from users using a textarea component. Perfect for open-ended questions and detailed responses.
+
+**Features:**
+- Page header with prompt and explanation
+- Large textarea for multi-line input
+- Single "Submit" action button
+- Clean, focused layout
+
+**Use cases:**
+- Feedback forms
+- Comments and reviews
+- Detailed descriptions
+- Open-ended questions
+- Support requests`,
     components: [
       {
         name: 'Divider',
@@ -793,6 +948,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'PIN Entry',
     group: 'Authentication',
+    description: `## PIN Entry Template
+
+A secure PIN entry screen for authentication. Features a specialized PIN input component that displays dots for entered digits.
+
+**Features:**
+- Page header with username context
+- PIN input component (4-digit display)
+- Close and help buttons in top bar
+- Subtle "I don't have this info" button
+
+**Use cases:**
+- Account authentication
+- Transaction verification
+- Secure access
+- Two-factor authentication`,
     components: [
       {
         name: 'Divider',
@@ -852,6 +1022,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Code Verification',
     group: 'Authentication',
+    description: `## Code Verification Template
+
+A code entry screen for email or SMS verification. Features a formatted input field and disabled state until code is entered.
+
+**Features:**
+- Page header with masked email/phone
+- Formatted code input field
+- Back and help buttons in top bar
+- Disabled "Continue" button until code entered
+
+**Use cases:**
+- Email verification
+- SMS code verification
+- Two-factor authentication
+- Account recovery`,
     components: [
       {
         name: 'Divider',
@@ -906,6 +1091,21 @@ export const AdminTemplates: AdminTemplate[] = [
   {
     name: 'Account Verification Options',
     group: 'Authentication',
+    description: `## Account Verification Options Template
+
+A selection screen that presents multiple verification methods to users. Each option is displayed as a tappable cell with an icon.
+
+**Features:**
+- Page header with explanation
+- List of verification method cells with icons
+- Push indicators for navigation
+- Fallback option button
+
+**Use cases:**
+- Account verification flows
+- Identity verification
+- Multi-factor authentication setup
+- Security verification`,
     components: [
       {
         name: 'Divider',

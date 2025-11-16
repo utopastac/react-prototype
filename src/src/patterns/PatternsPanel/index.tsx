@@ -37,7 +37,7 @@ const PatternsPanel: React.FC<PatternsPanelProps> = ({ selectedTemplate, onTempl
 
   return (
     <div className={styles.Main}>
-      <LinkList title="Patterns" sections={sections} />
+      <LinkList sections={sections} />
     </div>
   );
 };
