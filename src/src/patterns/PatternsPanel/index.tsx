@@ -1,7 +1,6 @@
 import React from "react";
 import { AdminTemplates } from "src/builder/Templates";
-import Link from "src/admin/components/Link";
-import Header from "src/admin/components/Header";
+import LinkList, { LinkListSection } from "src/admin/components/LinkList";
 import styles from "./index.module.sass";
 
 /**
@@ -26,28 +25,19 @@ const PatternsPanel: React.FC<PatternsPanelProps> = ({ selectedTemplate, onTempl
     return acc;
   }, {} as Record<string, typeof AdminTemplates>);
 
+  // Convert grouped templates to sections format for LinkList
+  const sections: LinkListSection[] = Object.entries(groupedTemplates).map(([group, templates]) => ({
+    title: group,
+    links: templates.map((template) => ({
+      title: template.name,
+      onClick: () => onTemplateSelect(template.name),
+      isSelected: selectedTemplate === template.name,
+    })),
+  }));
+
   return (
     <div className={styles.Main}>
-      <Header title="Patterns" />
-      
-      {/* Templates List - Scrollable, takes remaining space */}
-      <div className={styles.patternsContent}>
-        {Object.entries(groupedTemplates).map(([group, templates]) => (
-          <div key={group} className={styles.group}>
-            <Header title={group} size="section" />
-            <div className={styles.patternLinks}>
-              {templates.map((template) => (
-                <Link
-                  key={template.name}
-                  title={template.name}
-                  onClick={() => onTemplateSelect(template.name)}
-                  isSelected={selectedTemplate === template.name}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <LinkList title="Patterns" sections={sections} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import Link, { LinkProps } from "src/admin/components/Link";
+import { LinkProps } from "src/admin/components/Link";
+import LinkList from "src/admin/components/LinkList";
 import ThemeSection from "src/admin/ThemeSection";
 import styles from "src/flows/FlowsPanel/index.module.sass";
 
@@ -20,21 +21,9 @@ const FlowsPanel: React.FC = () => {
     {title:"Parallax", path:"/flows/parallax", description:"Animation showcase"}
   ];
 
-  // Generate navigation links from route data
-  const routeLinks = routeData.map((route: LinkProps, index: number) => {
-    return (
-      <Link {...route} key={`route${index}`} />
-    );
-  });
-
   return (
     <div className={styles.Main}>
-      {/* Flows List - Scrollable, takes remaining space */}
-      <div className={styles.flowsContent}>
-        <div className={styles.routeLinks}>
-          {routeLinks}
-        </div>
-      </div>
+      <LinkList links={routeData} />
       
       {/* Theme Settings Section - Always open, at bottom */}
       <div className={styles.themeSection}>

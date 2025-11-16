@@ -21,7 +21,8 @@ import { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
 import { ToastPropMeta } from 'src/components/Toast';
 import { IOSStatusBarPropMeta } from 'src/components/IOSStatusBar';
 import { useLayoutData } from 'src/builder/hooks/useLayoutData';
-import Link from 'src/admin/components/Link';
+import LinkList from 'src/admin/components/LinkList';
+import { LinkProps } from 'src/admin/components/Link';
 
 interface GlobalSettingsPanelProps {
   isPropEditorVisible: boolean;
@@ -387,24 +388,18 @@ const GlobalSettingsPanel: React.FC<GlobalSettingsPanelProps> = ({
     }
 
     // Default: Global settings
+    // Convert layout names to LinkProps format
+    const layoutLinks: LinkProps[] = layoutNames.map((name, idx) => ({
+      title: name,
+      onClick: () => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx }),
+      isSelected: idx === activeLayoutIndex,
+    }));
+
     return (
       <>
         <div className={styles.Controls} style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
           {/* Layout List */}
-          <Header title="Screens" />
-          <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 'var(--builder-padding)', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            {layoutNames.map((name, idx) => {
-              const isActive = idx === activeLayoutIndex;
-              return (
-                <Link
-                  key={name + idx}
-                  title={name}
-                  onClick={() => dispatch({ type: 'SET_ACTIVE_LAYOUT', index: idx })}
-                  isSelected={isActive}
-                />
-              );
-            })}
-          </div>
+          <LinkList title="Screens" links={layoutLinks} />
           <div style={{ flexShrink: 0 }}>
             <ToolsSection>
               <ThemeSection />

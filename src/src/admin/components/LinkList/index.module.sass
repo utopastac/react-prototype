@@ -1,0 +1,25 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.linkList
+  display: flex
+  flex-direction: column
+  flex: 1
+  min-height: 0
+
+.content
+  flex: 1
+  overflow-y: auto
+  min-height: 0
+  padding: var(--builder-padding)
+
+.section
+  margin-bottom: size(16)
+  &:last-child
+    margin-bottom: 0
+
+.links
+  display: flex
+  flex-direction: column
+  gap: size(2)
+
