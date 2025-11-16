@@ -392,7 +392,7 @@ const PhonePreview: React.FC<PhonePreviewProps> = (props) => {
                     ].filter((v): v is string => Boolean(v)).join(' ')}
                     style={{ 
                       boxShadow: adminTheme.phoneShadow,
-                      outline: adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : 'none'
+                      outline: !isActive && adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : undefined
                     }}
                   >
                     <PhonePreviewContent

@@ -4,16 +4,16 @@
 .Tabs
   display: flex
   gap: size(4)
-  padding: var(--builder-input-padding) var(--builder-padding)
-  border-bottom: 1px solid var(--builder-section-border)
+  padding: var(--admin-input-padding) var(--admin-padding)
+  border-bottom: 1px solid var(--admin-section-border)
 
 .Tab
   background: white
   border: none
   border-radius: 500px
   padding: size(6) size(12)
-  font-size: var(--builder-font-size-s)
-  color: var(--builder-text-light)
+  font-size: var(--admin-font-size-s)
+  color: var(--admin-text-light)
   cursor: pointer
   flex: 0 0 auto
   // width: min-content
@@ -21,9 +21,9 @@
 
   &:hover
     &:not(&.active)
-      background: var(--builder-gray-ef)
+      background: var(--admin-gray-20)
 
   &.active
-    background: var(--builder-gray-ef)
-    color: var(--builder-text-dark)
+    background: var(--admin-gray-20)
+    color: var(--admin-text-dark)
     @extend %medium

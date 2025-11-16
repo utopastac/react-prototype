@@ -10,8 +10,8 @@
 
   &.selected
     .Main
-      background: var(--builder-brand-subtle)
-      color: var(--builder-brand-highlight)
+      background: var(--admin-brand-subtle)
+      color: var(--admin-brand-highlight)
 
   &.large
     .Main
@@ -19,9 +19,9 @@
       height: auto
       min-height: size(40)
       border-radius: 8px
-    .title
-      font-size: size(16)
-      @extend %regular
+      .title
+        font-size: var(--admin-font-size-xxl)
+        @extend %regular
 
   .Main
     padding: size(4) size(8)
@@ -30,16 +30,16 @@
     height: size(32)
     display: flex
     align-items: center
-    border-radius: var(--builder-border-radius)
+    border-radius: var(--admin-border-radius)
     &:hover
-      background: var(--builder-brand-subtle)
-      color: var(--builder-brand-highlight)
+      background: var(--admin-brand-subtle)
+      color: var(--admin-brand-highlight)
     .content
       gap: size(2)
     .title
-      font-size: var(--builder-font-size-l)
+      font-size: var(--admin-font-size-m)
       @extend %medium
     .description
-      font-size: var(--builder-font-size-m)
+      font-size: var(--admin-font-size-m)
       @extend %regular
       display: none

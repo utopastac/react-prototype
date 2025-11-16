@@ -2,16 +2,16 @@
 
 @use 'src/admin/styles/admin.sass' as *
 .SaveModal
-  padding: var(--builder-padding)
+  padding: var(--admin-padding)
   input
     @extend %input-field
     width: 100%
 .LoadModal
-  padding: var(--builder-input-padding)
+  padding: var(--admin-input-padding)
   p
-    color: var(--builder-text-medium)
-    font-size: var(--builder-font-size-m)
-    padding: var(--builder-input-padding)
+    color: var(--admin-text-medium)
+    font-size: var(--admin-font-size-m)
+    padding: var(--admin-input-padding)
   li
     @extend %button-base
     h4
@@ -19,45 +19,45 @@
       height: size(32)
       @extend %button-base
       justify-content: flex-start
-      color: var(--builder-text-medium)
-      font-size: var(--builder-font-size-m)
+      color: var(--admin-text-medium)
+      font-size: var(--admin-font-size-m)
       padding: size(4) size(12)
       &:hover
-        background: var(--builder-gray-e4)
+        background: var(--admin-gray-30)
 .ShareModal
-  padding: var(--builder-padding)
+  padding: var(--admin-padding)
   input
     @extend %input-field
   > div
     display: flex
-    gap: var(--builder-input-padding)
+    gap: var(--admin-input-padding)
     align-items: center
   p
-    color: var(--builder-text-medium)
-    font-size: var(--builder-font-size-m)
+    color: var(--admin-text-medium)
+    font-size: var(--admin-font-size-m)
 .ConfirmModal
-  padding: var(--builder-padding)
+  padding: var(--admin-padding)
   > div
     display: flex
-    gap: var(--builder-input-padding)
-    margin-top: var(--builder-padding)
+    gap: var(--admin-input-padding)
+    margin-top: var(--admin-padding)
   p
-    color: var(--builder-text-medium)
-    font-size: var(--builder-font-size-m)
+    color: var(--admin-text-medium)
+    font-size: var(--admin-font-size-m)
 .WelcomeModal
   width: size(500)
 .WelcomeContent
-  padding: var(--builder-padding)
+  padding: var(--admin-padding)
 .WelcomeSection
   margin-bottom: size(24)
   h4
-    color: var(--builder-text-dark)
-    font-size: var(--builder-font-size-l)
+    color: var(--admin-text-dark)
+    font-size: var(--admin-font-size-l)
     font-weight: 600
-    margin-bottom: var(--builder-input-padding)
+    margin-bottom: var(--admin-input-padding)
   p
-    color: var(--builder-text-medium)
-    font-size: var(--builder-font-size-m)
+    color: var(--admin-text-medium)
+    font-size: var(--admin-font-size-m)
     line-height: 1.5
     margin-bottom: size(12)
   ul
@@ -65,59 +65,59 @@
     padding: 0
     margin: 0
   li
-    color: var(--builder-text-medium)
-    font-size: var(--builder-font-size-m)
+    color: var(--admin-text-medium)
+    font-size: var(--admin-font-size-m)
     line-height: 1.6
     margin-bottom: size(6)
-    padding-left: var(--builder-padding)
+    padding-left: var(--admin-padding)
     position: relative
     &:before
       content: "•"
       position: absolute
       left: 0
-      color: var(--builder-text-light)
+      color: var(--admin-text-light)
       
 .WelcomeFooter
   text-align: center
-  margin-top: var(--builder-input-padding)
+  margin-top: var(--admin-input-padding)
 
 .FlowLibraryModal
   // Templates Tab
   .tabContent
     // Tab content container
   ul
-    padding: var(--builder-input-padding)
+    padding: var(--admin-input-padding)
     display: flex
     flex-direction: column
-    gap: var(--builder-input-padding)
+    gap: var(--admin-input-padding)
 
     li
-      border-radius: var(--builder-border-radius)
+      border-radius: var(--admin-border-radius)
       cursor: pointer
       display: flex
       align-items: center
       gap: size(4)
       
       &:hover
-        background: var(--builder-gray-f4)
+        background: var(--admin-gray-20)
 
       .image
         width: size(100)
         height: size(56)
-        background: var(--builder-gray-f4)
+        background: var(--admin-gray-20)
 
         img
           width: 100%
-          border-radius: var(--builder-border-radius)
+          border-radius: var(--admin-border-radius)
 
       .content
         flex: 1
-        padding: var(--builder-input-padding)
+        padding: var(--admin-input-padding)
 
         h4
           @extend %medium
-          font-size: var(--builder-font-size-m)
+          font-size: var(--admin-font-size-m)
           margin-bottom: size(4)
         
         p
-          font-size: var(--builder-font-size-s)
+          font-size: var(--admin-font-size-s)

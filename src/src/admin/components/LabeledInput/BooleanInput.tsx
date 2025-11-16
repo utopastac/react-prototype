@@ -14,7 +14,7 @@ const BooleanInput: React.FC<BooleanInputProps> = ({
   onChange
 }) => {
   return (
-    <div className={styles.Input} onClick={() => onChange(!value)} style={{cursor: 'pointer'}}>
+    <div className={`${styles.Input} ${styles.BooleanInput}`} onClick={() => onChange(!value)} style={{cursor: 'pointer'}}>
       <label>{label}</label>
       <div className={styles.Toggle}>
         <AdminToggle checked={!!value} />

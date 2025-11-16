@@ -36,7 +36,7 @@ interface ModalHandlerProps {
   modalCoordinates?: { x: number; y: number } | null;
 }
 
-const MODAL_WIDTH = 320; // --builder-width: 320px
+const MODAL_WIDTH = 320; // --admin-width: 320px
 const DEFAULT_MODAL_Y = 40;
 
 const getDefaultModalX = (): number => {

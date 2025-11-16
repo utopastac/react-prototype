@@ -15,9 +15,14 @@
   align-items: flex-start
 
   > h1
-    @extend %typography-heading-l
-    margin: 0
-    padding: size(22) size(12)
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--admin-font-size-s);
+    border-radius: var(--admin-border-radius-s);
+    margin: size(22) size(12)
+    padding: size(4) size(8)
+    color: white
+    background: var(--admin-button-bg)
 
 .list
   display: flex

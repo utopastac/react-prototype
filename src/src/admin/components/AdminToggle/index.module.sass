@@ -1,13 +1,14 @@
 @use 'src/styles/site' as *
 
 $knobSize: size(20)
-$knobPadding: size(2)
+$knobPadding: size(4)
+$knobRadius: size(5)
 
 .Main
   width: size(48)
   height: calc($knobSize + ($knobPadding * 2))
-  background: var(--builder-gray-ef)
-  border-radius: $radius-pill
+  background: var(--admin-gray-40)
+  border-radius: calc($knobRadius + $knobPadding)
   position: relative
   .knob
     position: absolute
@@ -15,12 +16,12 @@ $knobPadding: size(2)
     left: $knobPadding
     width: $knobSize
     height: $knobSize
-    background: var(--builder-white)
-    border-radius: $radius-pill
+    background: var(--admin-white)
+    border-radius: $knobRadius
   &.checked
-    background: var(--builder-brand-highlight)
+    background: var(--admin-brand-highlight)
     border: none
     .knob
       position: absolute
-      right: size(2)
+      right: $knobPadding
       left: auto

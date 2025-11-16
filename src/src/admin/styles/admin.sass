@@ -7,74 +7,74 @@
   position: relative
   border: none
   cursor: pointer
-  border-radius: var(--builder-border-radius)
+  border-radius: var(--admin-border-radius)
   display: flex
   align-items: center
   justify-content: center
   transition: opacity 0.2s
-  font-size: var(--builder-font-size-m)
+  font-size: var(--admin-font-size-m)
   @extend %bold
 
 %button-primary
   @extend %button-base
-  color: var(--builder-button-text)
-  background: var(--builder-primary-bg)
+  color: var(--admin-button-text)
+  background: var(--admin-primary-bg)
   width: 100%
   height: size(40)
   &:hover, &:focus
-    background: var(--builder-primary-hover)
-    color: var(--builder-button-text)
+    background: var(--admin-primary-hover)
+    color: var(--admin-button-text)
   &:active
-    background: var(--builder-primary-active)
+    background: var(--admin-primary-active)
 
 %button-secondary
   @extend %button-base
-  color: var(--builder-text-medium)
-  background: var(--builder-button-secondary-bg)
+  color: var(--admin-text-medium)
+  background: var(--admin-button-secondary-bg)
   width: 100%
   height: size(40)
   &:hover, &:focus
-    background: var(--builder-button-secondary-hover)
+    background: var(--admin-button-secondary-hover)
   &:active
-    background: var(--builder-button-secondary-active)
+    background: var(--admin-button-secondary-active)
 
 %button-tertiary
   @extend %button-base
-  color: var(--builder-text-medium)
-  border: 1px solid var(--builder-button-tertiary-border)
-  background: var(--builder-white)
+  color: var(--admin-text-medium)
+  border: 1px solid var(--admin-button-tertiary-border)
+  background: var(--admin-white)
   width: 100%
   height: size(40)
   &:hover, &:focus
-    border-color: var(--builder-button-tertiary-border-hover)
+    border-color: var(--admin-button-tertiary-border-hover)
   &:active
-    background: var(--builder-button-tertiary-bg-hover)
+    background: var(--admin-button-tertiary-bg-hover)
 
 %input-field
-  border: 1px solid var(--builder-gray-d2)
+  border: 1px solid var(--admin-gray-40)
   outline: none
   appearance: none
   -webkit-appearance: none
   -moz-appearance: none
-  background: var(--builder-input-field-bg)
-  border-radius: var(--builder-wrapper-border-radius)
+  background: var(--admin-input-field-bg)
+  border-radius: var(--admin-wrapper-border-radius)
   height: size(32)
   padding: 0 size(12)
-  font-size: var(--builder-input-font-size)
+  font-size: var(--admin-input-font-size)
   box-sizing: border-box
   width: 100%
   min-width: 0
   &:focus
     outline: none
-    box-shadow: var(--builder-input-field-focus-shadow)
-    border-color: var(--builder-gray-d2)
+    box-shadow: var(--admin-input-field-focus-shadow)
+    border-color: var(--admin-gray-40)
   &:active
-    // background: var(--builder-input-field-active)
+    // background: var(--admin-input-field-active)
 
 %input-label
   display: block
   @extend %bold
-  font-size: var(--builder-font-size-s)
+  font-size: var(--admin-font-size-s)
 
 %dev-tools-select
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>') 
@@ -82,7 +82,7 @@
   background-position: right size(12) center
   padding-right: size(32)
   align-items: center
-  font-size: var(--builder-font-size-s)
+  font-size: var(--admin-font-size-s)
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
@@ -125,11 +125,11 @@
       top: 100%
       transform: translateX(0) translateY(0)
     
-    background: var(--builder-tooltip-bg)
-    color: var(--builder-tooltip-text)
+    background: var(--admin-tooltip-bg)
+    color: var(--admin-tooltip-text)
     padding: size(4) size(5)
-    border-radius: var(--builder-border-radius-s)
-    font-size: var(--builder-font-size-m)
+    border-radius: var(--admin-border-radius-s)
+    font-size: var(--admin-font-size-m)
     white-space: nowrap
     opacity: 0
     pointer-events: none
@@ -157,4 +157,4 @@
         transform: translateX(-8px) translateY(8px)
 
 %admin-panel
-  background: var(--builder-white)
+  background: var(--admin-white)

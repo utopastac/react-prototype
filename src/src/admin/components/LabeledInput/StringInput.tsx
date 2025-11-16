@@ -21,7 +21,7 @@ const StringInput: React.FC<StringInputProps> = ({
   };
 
   return (
-    <div className={styles.Input}>
+    <div className={`${styles.Input} ${styles.StringInput}`}>
       <label>{label}</label>
       <input
         ref={inputRef}

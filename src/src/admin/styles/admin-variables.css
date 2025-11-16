@@ -1,109 +1,110 @@
 :root {
-  /* Builder Base Colors - Reference system colors */
-  --builder-white: var(--white-a100);
-  --builder-black: var(--black-a100);
+  /* Admin Base Colors - Reference system colors */
+  --admin-white: var(--white-a100);
+  --admin-black: var(--black-a100);
   
-  /* Builder Gray Colors - Reference system grays */
-  --builder-light-gray: var(--system-gray-40);
-  --builder-gray-e4: var(--system-gray-30);
-  --builder-gray-f4: var(--system-gray-20);
-  --builder-gray-ef: var(--system-gray-20);
-  --builder-gray-888: var(--system-gray-60);
-  --builder-gray-d2: var(--system-gray-40);
+  /* Admin Gray Colors - Reference system grays */
+  --admin-gray-20: var(--system-gray-20);
+  --admin-gray-30: var(--system-gray-30);
+  --admin-gray-40: var(--system-gray-40);
+  --admin-gray-50: var(--system-gray-50);
+  --admin-gray-60: var(--system-gray-60);
+ 
 
-  /* Builder Warning Colors */
-  --builder-warning: #ff4444;
+  /* Admin Warning Colors */
+  --admin-warning: #ff4444;
 
-  /* Builder Input Colors */
-  --builder-input-bg: var(--builder-white);
-  --builder-input-focus: var(--black-a12);
-  --builder-input-hover: var(--black-a12);
+  /* Admin Input Colors */
+  --admin-input-bg: var(--admin-white);
+  --admin-input-focus: var(--black-a12);
+  --admin-input-hover: var(--black-a12);
 
-  /* Builder Button Colors */
-  --builder-button-bg: var(--black-a90);
-  --builder-button-hover: var(--builder-black);
-  --builder-button-secondary-bg: var(--builder-gray-e4);
-  --builder-button-secondary-hover: var(--system-gray-30);
-  --builder-button-secondary-active: var(--system-gray-30);
-  --builder-button-tertiary-border: var(--builder-gray-e4);
-  --builder-button-tertiary-border-hover: var(--system-gray-50);
-  --builder-button-tertiary-bg-hover: var(--builder-gray-f4);
-  --builder-button-text: var(--builder-white);
+  /* Admin Button Colors */
+  --admin-button-bg: var(--black-a90);
+  --admin-button-hover: var(--admin-black);
+  --admin-button-secondary-bg: var(--admin-gray-30);
+  --admin-button-secondary-hover: var(--system-gray-30);
+  --admin-button-secondary-active: var(--system-gray-30);
+  --admin-button-tertiary-border: var(--admin-gray-30);
+  --admin-button-tertiary-border-hover: var(--system-gray-50);
+  --admin-button-tertiary-bg-hover: var(--admin-gray-20);
+  --admin-button-text: var(--admin-white);
 
-  /* Builder Text Colors */
-  --builder-text-dark: var(--builder-black);
-  --builder-text-medium: var(--black-a75);
-  --builder-text-light: var(--black-a60);
-  --builder-text-lightest: var(--black-a30);
+  /* Admin Text Colors */
+  --admin-text-dark: var(--admin-black);
+  --admin-text-medium: var(--black-a75);
+  --admin-text-light: var(--black-a60);
+  --admin-text-lightest: var(--black-a30);
 
-  /* Builder Chip Colors */
-  --builder-chip-border: var(--black-a30);
-  --builder-chip-hover: var(--black-a08);
+  /* Admin Chip Colors */
+  --admin-chip-border: var(--black-a30);
+  --admin-chip-hover: var(--black-a08);
 
-  /* Builder Section Colors */
-  --builder-section-border: var(--black-a08);
+  /* Admin Section Colors */
+  --admin-section-border: var(--black-a08);
 
-  /* Builder Brand Colors - Using blue scale */
-  --builder-brand-highlight: var(--blue-70);
-  --builder-brand-mid: var(--blue-50);
-  --builder-brand-light: var(--blue-20);
-  --builder-brand-subtle: var(--blue-10);
-  --builder-brand-green-light: var(--blue-20);
-  --builder-brand-green-border: var(--blue-40);
+  /* Admin Brand Colors - Using blue scale */
+  --admin-brand-highlight: var(--blue-70);
+  --admin-brand-mid: var(--blue-50);
+  --admin-brand-light: var(--blue-20);
+  --admin-brand-subtle: var(--blue-10);
+  --admin-brand-green-light: var(--blue-20);
+  --admin-brand-green-border: var(--blue-40);
 
-  /* Builder Dark Theme Colors */
-  --builder-dark-bg: #1A1A1A;
-  --builder-dark-border: var(--white-a30);
-  --builder-dark-text: var(--builder-white);
+  /* Admin Dark Theme Colors */
+  --admin-dark-bg: #1A1A1A;
+  --admin-dark-border: var(--white-a30);
+  --admin-dark-text: var(--admin-white);
   
   /* Note: rgba(255, 255, 255, 0.25) approximated as --white-a30 (0.3) */
   /* Note: #1A1A1A is a custom dark shade, kept as specific value */
 
-  /* Builder Input Field Colors */
-  --builder-input-field-bg: var(--builder-white);
-  --builder-input-field-active: var(--builder-gray-ef);
-  --builder-input-field-focus-shadow: 0 0 0 2px var(--builder-gray-d2);
+  /* Admin Input Field Colors */
+  --admin-input-field-bg: var(--admin-white);
+  --admin-input-field-active: var(--admin-gray-20);
+  --admin-input-field-focus-shadow: 0 0 0 2px var(--admin-gray-40);
 
-  /* Builder Tooltip Colors */
-  --builder-tooltip-bg: var(--builder-dark-bg);
-  --builder-tooltip-text: var(--builder-white);
+  /* Admin Tooltip Colors */
+  --admin-tooltip-bg: var(--admin-dark-bg);
+  --admin-tooltip-text: var(--admin-white);
 
-  /* Builder Primary Button Colors */
-  --builder-primary-bg: var(--builder-dark-bg);
-  --builder-primary-hover: #222222;
-  --builder-primary-active: var(--system-gray-80);
+  /* Admin Primary Button Colors */
+  --admin-primary-bg: var(--admin-dark-bg);
+  --admin-primary-hover: #222222;
+  --admin-primary-active: var(--system-gray-80);
   
   /* Note: #222222 and #1A1A1A are custom dark shades, kept as specific values */
 
-  /* Builder Spacing */
-  --builder-padding: var(--space-m);
-  --builder-input-padding: var(--space-s);
-  --builder-section-gap: 12px;
+  /* Admin Spacing */
+  --admin-padding: var(--space-m);
+  --admin-input-padding: var(--space-s);
+  --admin-section-gap: 12px;
 
-  /* Builder Sizes */
-  --builder-width: 320px;
-  --builder-input-size: 28px;
-  --builder-section-header-height: 56px;
-  --builder-side-offset: 0px;
-  --builder-panel-size: 320px;
+  /* Admin Sizes */
+  --admin-width: 320px;
+  --admin-input-size: 28px;
+  --admin-section-header-height: 56px;
+  --admin-side-offset: 0px;
+  --admin-panel-size: 320px;
 
-  /* Builder Border Radius */
-  --builder-border-radius: var(--corner-radius-1_5x);
-  --builder-border-radius-l: var(--corner-radius-2x);
-  --builder-border-radius-s: var(--corner-radius-0_5x);
-  --builder-wrapper-border-radius: var(--corner-radius-1x);
+  /* Admin Border Radius */
+  --admin-border-radius: var(--corner-radius-1_5x);
+  --admin-border-radius-l: var(--corner-radius-2x);
+  --admin-border-radius-s: var(--corner-radius-0_5x);
+  --admin-wrapper-border-radius: var(--corner-radius-1x);
 
-  /* Builder Font Sizes */
-  --builder-font-size-xs: 0.9rem;
-  --builder-font-size-s: 1rem;
-  --builder-font-size-m: 1.1rem;
-  --builder-font-size-l: 1.3rem;
-  --builder-font-size-xl: 1.4rem;
-  --builder-input-font-size: var(--builder-font-size-s);
-  --builder-icon-font-size: 1.5rem;
+  /* Admin Font Sizes */
+  --admin-font-size-xs: 1rem;
+  --admin-font-size-s: 1.1rem;
+  --admin-font-size-m: 1.2rem;
+  --admin-font-size-l: 1.4rem;
+  --admin-font-size-xl: 1.5rem;
+  --admin-font-size-xxl: 1.7rem;
+  --admin-input-font-size: var(--admin-font-size-s);
+  --admin-icon-font-size: 1.5rem;
 }
 
 [data-theme="dark"] {
-  --builder-component-highlight: var(--white-a30);
+  --admin-component-highlight: var(--white-a30);
 }
 

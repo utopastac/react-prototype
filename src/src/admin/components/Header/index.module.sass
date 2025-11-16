@@ -2,23 +2,23 @@
 @use 'src/admin/styles/admin.sass' as *
 
 .Header
-  background: var(--builder-white)
+  background: var(--admin-white)
   
   &.withBorder
-    border-bottom: 1px solid var(--builder-section-border)
+    border-bottom: 1px solid var(--admin-section-border)
 
   .content
     display: flex
     align-items: center
     justify-content: space-between
-    padding: var(--builder-padding)
+    padding: var(--admin-padding)
     height: size(48)
 
   .title
     margin: 0
-    font-size: var(--builder-font-size-xl)
+    font-size: var(--admin-font-size-xl)
     @extend %medium
-    color: var(--builder-text-dark)
+    color: var(--admin-text-dark)
 
   .actions
     display: flex
@@ -38,7 +38,7 @@
     .content
       height: size(56)
     .title
-      font-size: var(--builder-font-size-xl)
+      font-size: var(--admin-font-size-xl)
 
   &.section
     border-bottom: none
@@ -50,9 +50,9 @@
       min-height: auto
       justify-content: flex-start
     .title
-      font-size: var(--builder-font-size-xs)
+      font-size: var(--admin-font-size-xs)
       @extend %medium
-      color: var(--builder-text-light)
+      color: var(--admin-text-light)
       text-transform: uppercase
       letter-spacing: 0.02rem
 

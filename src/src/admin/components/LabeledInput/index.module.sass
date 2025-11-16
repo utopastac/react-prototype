@@ -10,7 +10,7 @@ $inputWidth: size(160)
   align-items: center 
   justify-content: space-between
   gap: 8px
-  margin: size(8) 0
+  margin: size(8) 0 size(16) 0
   select, ::picker(select)
     appearance: base-select
   select::picker-icon
@@ -28,10 +28,9 @@ $inputWidth: size(160)
     transition: 0.1s
     border-radius: size(4)
     &:hover
-      background: var(--builder-brand-highlight)
+      background: var(--admin-brand-highlight)
   label
     @extend %input-label
-    max-width: size(150)
     flex: 0.7
     &.hiddenLabel
       position: absolute
@@ -48,6 +47,10 @@ $inputWidth: size(160)
     flex: 1
   select
     @extend %dev-tools-select
+    
+.BooleanInput
+  margin: 0 0 size(8) 0
+
 .Toggle
   display: block
   scale: 0.8
@@ -92,10 +95,22 @@ $inputWidth: size(160)
   border-radius: 8px
   transition: background-color 0.2s
   &:hover
-    background: var(--builder-gray-f4)
+    background: var(--admin-gray-20)
   &.active
     background: var(--blue-20)
     border: 2px solid var(--blue-60)
+
+.StringInput
+  flex-direction: column
+  align-items: flex-start
+  label
+    margin-top: 0
+    margin-bottom: 0
+    max-width: 100%
+    flex: none
+  input
+    width: 100%
+    flex: none
 
 .TextAreaInput
   flex-direction: column
@@ -119,6 +134,7 @@ $thumbSize: size(12)
 .SliderInput
   display: flex
   gap: size(8)
+  margin: size(8) 0
 
   label
     flex: 1
@@ -144,7 +160,7 @@ $thumbSize: size(12)
     right: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: var(--builder-gray-e4)
+    background: var(--admin-gray-30)
     transition: height 0.3s
 
   .track
@@ -154,7 +170,7 @@ $thumbSize: size(12)
     left: 0
     transform: translateY(-50%)
     border-radius: 500px
-    background: var(--builder-brand-highlight)
+    background: var(--admin-brand-highlight)
     transition: height 0.3s
     
   .thumb
@@ -164,6 +180,6 @@ $thumbSize: size(12)
     height: $thumbSize
     width: calc($thumbSize + 4px)
     border-radius: 500px
-    background: var(--builder-brand-highlight)
+    background: var(--admin-brand-highlight)
     transform: translateY(-50%)
     cursor: pointer
