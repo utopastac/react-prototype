@@ -1,0 +1,236 @@
+@use 'src/styles/site' as *
+
+.Main
+  position: relative
+  overflow: visible
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+
+  .entity
+    border-radius: $radius-pill
+    overflow: hidden
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .label
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      color: var(--color-background) !important
+
+  // Diagonal layout (2 entities, overlapped)
+  &.layout_diagonal
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      bottom: 0
+      z-index: 2
+      outline: 3px solid var(--color-border-knockout)
+
+  // Triangular layout (3 entities)
+  &.layout_triangular
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+      outline: 3px solid var(--color-border-knockout)
+    .entity_2
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
+      z-index: 3
+      outline: 3px solid var(--color-border-knockout)
+
+  // Grid layout (4 entities, 2x2)
+  &.layout_grid
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+      outline: 3px solid var(--color-border-knockout)
+    .entity_2
+      position: absolute
+      left: 0
+      bottom: 0
+      z-index: 3
+      outline: 3px solid var(--color-border-knockout)
+    .entity_3
+      position: absolute
+      right: 0
+      bottom: 0
+      z-index: 4
+      outline: 3px solid var(--color-border-knockout)
+
+  // Diagonal with badge layout (2 entities + badge)
+  &.layout_diagonalWithBadge
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+      outline: 3px solid var(--color-border-knockout)
+
+    .badge
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
+      padding: size(4) size(8)
+      border-radius: var(--radius-s)
+      background-color: var(--color-background-neutral-soft)
+      color: var(--color-text)
+      font-size: size(12)
+      font-weight: 500
+      white-space: nowrap
+      z-index: 5
+
+  // Size variants
+  &.a_64
+    width: size(64)
+    height: size(64)
+
+    &.layout_diagonalWithBadge
+      height: size(80)
+
+    .entity
+      width: size(48)
+      height: size(48)
+
+      .label
+        @extend %avatar-64
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(40)
+        height: size(40)
+      .entity_2
+        width: size(44)
+        height: size(44)
+
+    &.layout_grid
+      .entity
+        width: size(32)
+        height: size(32)
+
+    .entity_1, .entity_2, .entity_3
+      outline: 3px solid var(--color-border-knockout)
+
+  &.a_48
+    width: size(48)
+    height: size(48)
+
+    &.layout_diagonalWithBadge
+      height: size(64)
+
+    .entity
+      width: size(32)
+      height: size(32)
+
+      .label
+        @extend %avatar-48
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(28)
+        height: size(28)
+      .entity_2
+        width: size(32)
+        height: size(32)
+
+    &.layout_grid
+      .entity
+        width: size(24)
+        height: size(24)
+
+    .entity_1, .entity_2, .entity_3
+      outline: 2px solid var(--color-border-knockout)
+
+  &.a_32
+    width: size(32)
+    height: size(32)
+
+    &.layout_diagonalWithBadge
+      height: size(48)
+
+    .entity
+      width: size(24)
+      height: size(24)
+
+      .label
+        @extend %avatar-32
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(20)
+        height: size(20)
+      .entity_2
+        width: size(22)
+        height: size(22)
+
+    &.layout_grid
+      .entity
+        width: size(16)
+        height: size(16)
+
+    .entity_1, .entity_2, .entity_3
+      outline: 2px solid var(--color-border-knockout)
+
+  &.a_24
+    width: size(24)
+    height: size(24)
+
+    &.layout_diagonalWithBadge
+      height: size(36)
+
+    .entity
+      width: size(16)
+      height: size(16)
+
+      .label
+        @extend %avatar-24
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(14)
+        height: size(14)
+      .entity_2
+        width: size(16)
+        height: size(16)
+
+    &.layout_grid
+      .entity
+        width: size(12)
+        height: size(12)
+
+    .entity_1, .entity_2, .entity_3
+      outline: 1px solid var(--color-border-knockout)
+

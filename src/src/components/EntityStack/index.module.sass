@@ -1,0 +1,46 @@
+@use 'src/styles/site' as *
+
+.Main
+  white-space: nowrap
+  overflow-x: scroll
+  width: 100%
+  padding: 0 $margin-default
+  display: flex
+  align-items: center
+  &::-webkit-scrollbar
+    display: none
+  
+  &.stacked
+    overflow-x: visible
+
+.AvatarInstance
+  vertical-align: top
+  display: inline-flex
+  border-radius: $radius-pill
+  outline: 3px solid var(--color-background)
+  flex-shrink: 0
+  position: relative
+  
+  &:not(.stacked)
+    margin-right: size(8)
+  
+  &.stacked
+    margin-right: neg-size(16)
+    position: relative
+
+.OverflowIndicator
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  width: size(40)
+  height: size(40)
+  border-radius: $radius-pill
+  background-color: var(--color-background-neutral-soft)
+  border: 1px solid var(--color-background-neutral-strong)
+  color: var(--color-text)
+  font-size: size(12)
+  font-weight: 500
+  flex-shrink: 0
+  margin-left: neg-size(16)
+  position: relative
+  outline: 3px solid var(--color-background)

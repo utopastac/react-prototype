@@ -19,12 +19,12 @@ import TimelineRow, {
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
 import SearchBar from 'src/components/SearchBar';
-import AvatarCarousel from 'src/components/AvatarCarousel';
 // Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
 import Button from 'src/components/Buttons/Button';
 import IconBg from 'src/components/IconBg';
 import Entity from 'src/components/Entity';
+import EntityStack from 'src/components/EntityStack';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 
@@ -260,38 +260,6 @@ const ComponentsView = () => {
         {/* Applet components removed */}
         <Divider size='extraLarge' />
         <SearchBar placeholder="Search" />
-        <AvatarCarousel
-          avatars={[
-            {
-              avatar: {size: "64"},
-              title: "Jane"
-            },
-            {
-              avatar: {size: "64"},
-              title: "Nigel"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Chavez},
-              title: "Chavez"
-            },
-            {
-              avatar: {size: "64", image:Avatars.James},
-              title: "James"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Nina},
-              title: "Lisa"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Darren},
-              title: "Darren"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Kevin},
-              title: "Kevin"
-            }
-          ]}
-        />
         <Divider size="large" />
         {/* DiscoverPromo removed */}
         <Divider size="extraLarge" />
@@ -299,6 +267,41 @@ const ComponentsView = () => {
           <Badge type="dot" />
           <Badge type="text">99+</Badge>
         </div>
+        <Divider size="extraLarge" />
+        <EntityStack
+          avatars={[
+            { avatar: { size: '40', image: Avatars.Karen } },
+            { avatar: { size: '40', image: Avatars.Darren } },
+            { avatar: { size: '40', image: Avatars.James } },
+          ]}
+          stacked={false}
+        />
+        <Divider size="large" />
+        <EntityStack
+          avatars={[
+            { avatar: { size: '40', image: Avatars.Karen } },
+            { avatar: { size: '40', image: Avatars.Darren } },
+            { avatar: { size: '40', image: Avatars.James } },
+          ]}
+          stacked={true}
+        />
+        <Divider size="large" />
+        <EntityStack
+          avatars={[
+            { avatar: { size: '40', image: Avatars.Karen } },
+            { avatar: { size: '40', image: Avatars.Darren } },
+            { avatar: { size: '40', image: Avatars.James } },
+            { avatar: { size: '40', image: Avatars.Kevin } },
+            { avatar: { size: '40', image: Avatars.Nina } },
+            { avatar: { size: '40', image: Avatars.Paul } },
+            { avatar: { size: '40', image: Avatars.Isaac } },
+            { avatar: { size: '40', image: Avatars.Peter } },
+            { avatar: { size: '40', image: Avatars.Chavez } },
+            { avatar: { size: '40', image: Avatars.Barber } },
+            { avatar: { size: '40', image: Avatars.NinaD } },
+          ]}
+          stacked={true}
+        />
         <Divider size="extraLarge" />
         <Accordion heading="Heading">
           <p>Content that shows when open</p>

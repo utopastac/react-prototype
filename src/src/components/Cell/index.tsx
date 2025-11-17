@@ -2,7 +2,7 @@ import React from "react";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 import styles from "./index.module.sass";
 import Entity, { EntityProps } from "src/components/Entity";
-import AvatarStackedDiagonal, { AvatarStackedDiagonalProps } from "src/components/AvatarStackedDiagonal";
+import EntityGrid, { EntityGridProps } from "src/components/EntityGrid";
 import Icon, { IconProps } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
 import IconBg, { IconBgProps } from "src/components/IconBg";
@@ -11,7 +11,7 @@ import Radio, { RadioProps } from "src/components/Radio";
 import Checkbox, { CheckboxProps } from "src/components/Checkbox";
 import Toggle, { ToggleProps } from "src/components/Toggle";
 import { EntityPropMeta } from "src/components/Entity";
-import { AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
+import { EntityGridPropMeta } from "src/components/EntityGrid";
 import { IconPropMeta } from "src/components/Icon";
 import { IconBgPropMeta } from "src/components/IconBg";
 //
@@ -30,8 +30,8 @@ interface EntityCell extends BaseCell, EntityProps {
   type: 'entity';
 }
 
-interface AvatarStackedCell extends BaseCell, AvatarStackedDiagonalProps {
-  type: 'avatarStacked';
+interface EntityGridCell extends BaseCell, EntityGridProps {
+  type: 'entityGrid';
 }
 
 interface IconCell extends BaseCell, IconProps {
@@ -77,7 +77,7 @@ interface LabelPushCell extends BaseCell {
 }
 
 // Union types for left and right cells
-export type LeftCell = EntityCell | AvatarStackedCell | IconCell | IconBgCell | NoneCell;
+export type LeftCell = EntityCell | EntityGridCell | IconCell | IconBgCell | NoneCell;
 export type RightCell = PushCell | ButtonCell | RadioCell | CheckboxCell | ToggleCell | LabelPushCell | NoneCell;
 
 export interface CellProps {
@@ -88,6 +88,7 @@ export interface CellProps {
   right?: RightCell;
   onClick?: () => void;
   search?: boolean;
+  disabled?: boolean;
 }
 
 const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, search, disabled }) => {
@@ -100,8 +101,8 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
     switch (left.type) {
       case 'entity':
         return <Entity {...(left as EntityCell)} size="64" />;
-      case 'avatarStacked':
-        return <AvatarStackedDiagonal {...(left as AvatarStackedCell)} size="64" />;
+      case 'entityGrid':
+        return <EntityGrid {...(left as EntityGridCell)} size={(left as EntityGridCell).size || "64"} />;
       case 'icon':
         const iconCell = left as IconCell;
         return <Icon icon={iconCell.icon} size={iconCell.size} color={disabled ? 'disabled' : iconCell.color || 'standard'} />;
@@ -184,7 +185,7 @@ export const CellPropMeta = {
     options: [
       { label: 'None', value: 'none', type: 'none' },
       { label: 'Entity', value: 'entity', type: 'entity', fields: EntityPropMetaNoSize },
-      { label: 'Avatar Stacked', value: 'avatarStacked', type: 'avatarStacked', fields: AvatarStackedDiagonalPropMeta },
+      { label: 'Entity Grid', value: 'entityGrid', type: 'entityGrid', fields: EntityGridPropMeta },
       { label: 'Icon', value: 'icon', type: 'icon', fields: IconPropMeta },
       { label: 'Icon with Background', value: 'iconBg', type: 'iconBg', fields: IconBgPropMeta },
     ],

@@ -42,12 +42,11 @@ import Entity, {
   EntityPropMeta
 } from 'src/components/Entity';
 //
-import AvatarCarousel, { AvatarCarouselPropMeta } from "src/components/AvatarCarousel";
-import AvatarRow, { AvatarRowPropMeta } from "src/components/AvatarRow";
+import EntityStack, { EntityStackPropMeta } from "src/components/EntityStack";
 //
-import AvatarStackedDiagonal, {
-  AvatarStackedDiagonalPropMeta
-} from 'src/components/AvatarStackedDiagonal';
+import EntityGrid, {
+  EntityGridPropMeta
+} from 'src/components/EntityGrid';
 
 // Applet Components
 // Removed Applet components (DiscoverPromo, BalanceApplet, SavingsApplet, CryptoApplet, SecondaryApplet, TertiaryApplet)
@@ -128,9 +127,8 @@ export const Components = {
 
   // Entity Components
   Entity,
-  AvatarCarousel,
-  AvatarRow,
-  AvatarStackedDiagonal,
+  EntityStack,
+  EntityGrid,
 
   // Applet Components removed
 
@@ -175,9 +173,6 @@ export const InterventionScreenComponents = {
   Cell,
   CellActivity,
 
-  // Entity Components
-  AvatarCarousel,
-
   // UI Components
   Divider,
   SegmentedControl,
@@ -215,9 +210,8 @@ export const ComponentPropMeta = {
   Cell: CellPropMeta,
   CellActivity: CellActivityPropMeta,
   Entity: EntityPropMeta,
-  AvatarCarousel: AvatarCarouselPropMeta,
-  AvatarRow: AvatarRowPropMeta,
-  AvatarStackedDiagonal: AvatarStackedDiagonalPropMeta,
+  EntityStack: EntityStackPropMeta,
+  EntityGrid: EntityGridPropMeta,
   // DiscoverPromo removed
   IconBg: IconBgPropMeta,
   Button: ButtonPropMeta,
@@ -261,18 +255,6 @@ export const initialComponentProps: Record<string, any> = {
   Cell: { title: 'Cell', body: 'Body' },
   CellActivity: { title: 'Cell Activity', body: 'Body', date: 'Today', left: {}, right: {}, onClick: () => {} },
   Text: { text: 'Text', size: 'body', color: 'standard' },
-  AvatarCarousel: { avatars: [  {
-    avatar: {size: '64', image: null},
-    title: "Jane"
-  },
-  {
-    avatar: {size: '64', image: null},
-    title: "Nigel"
-  },
-  {
-    avatar: {size: '64', image:Avatars.Chavez},
-    title: "Chavez"
-  },] },
   Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
   Slider: { onDrop: () => {} },
