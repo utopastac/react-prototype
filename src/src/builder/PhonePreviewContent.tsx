@@ -166,8 +166,10 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
         >
           <Toast
             headline={toastProps.headline}
-            body={toastProps.body}
-            button={toastProps.button}
+            timestamp={toastProps.timestamp}
+            currentIndex={toastProps.currentIndex}
+            totalCount={toastProps.totalCount}
+            onClose={toastProps.onClose}
             icon={toastProps.icon}
           />
         </div>

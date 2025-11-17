@@ -6,25 +6,39 @@
     background: var(--color-background)
     box-shadow: var(--elevation-raised)
     border: var(--size-border-width-standard) solid var(--color-border-faint)
-    display: flex
-    align-items: flex-start
     border-radius: $radius-s
     padding: size(8)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+  .topLine
+    display: flex
+    align-items: center
+    gap: size(8)
+    padding-left: size(8)
     position: relative
-  .content
-    flex: 1
-    padding: size(8)
   .icon
-    padding: size(8)
-  .closeButton
-    position: absolute
-    top: size(8)
-    right: size(8)
-  h4, p
-    color: var(--color-text)
-  h4
+    flex-shrink: 0
+  .headline
+    flex: 1
     @extend %typography-supportive-m
-  p
+    color: var(--color-text)
+    p
+      margin: 0
+      display: inline
+    a
+      color: var(--color-action)
+      text-decoration: underline
+  .closeButton
+    flex-shrink: 0
+  .bottomLine
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-top: size(4) size(8) size(0) size(40)
+  .timestamp
     @extend %typography-supportive-s
     color: var(--color-text-meta)
-    margin-top: size(4)
+  .counter
+    @extend %typography-supportive-s
+    color: var(--color-text-meta)
