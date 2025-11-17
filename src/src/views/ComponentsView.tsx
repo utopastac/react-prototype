@@ -26,6 +26,7 @@ import Button from 'src/components/Buttons/Button';
 import IconBg from 'src/components/IconBg';
 import Avatar from 'src/components/Avatar';
 import Badge from 'src/components/Badge';
+import Accordion from 'src/components/Accordion';
 
 import styles from "./index.module.sass";
 //
@@ -292,6 +293,10 @@ const ComponentsView = () => {
           <Badge type="dot" />
           <Badge type="text">99+</Badge>
         </div>
+        <Divider size="betweenSectionExtraLarge" />
+        <Accordion heading="Heading">
+          <p>Content that shows when open</p>
+        </Accordion>
       </ScrollContainer>
       <ButtonGroup
         buttons={[

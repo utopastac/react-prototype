@@ -1,0 +1,31 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: flex
+  flex-direction: column
+  width: 100%
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  cursor: pointer
+  padding: size(12) size(16)
+  @include animate(0.1s)
+
+  &:hover
+    background: var(--color-background-neutral-soft)
+
+.heading
+  @extend %typography-heading-m
+  color: var(--color-text)
+  flex: 1
+
+.chevron
+  margin-left: size(8)
+  @include animate(0.2s)
+  transition: transform 0.2s ease
+
+.content
+  padding: 0 size(16) size(16) size(16)
+

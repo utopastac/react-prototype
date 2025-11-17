@@ -92,6 +92,10 @@ import Badge, {
   BadgePropMeta
 } from 'src/components/Badge';
 
+import Accordion, {
+  AccordionPropMeta
+} from 'src/components/Accordion';
+
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
 import MarketingCardSmall, { MarketingCardSmallPropMeta } from 'src/components/MarketingCardSmall';
@@ -147,6 +151,7 @@ export const Components = {
   MarketingCardSmall,
   MarketingCardLarge,
   Badge,
+  Accordion,
 };
 
 
@@ -230,7 +235,8 @@ export const ComponentPropMeta = {
   InputStackedHorizontal: InputStackedHorizontalPropMeta,
   ProgressCircular: ProgressCircularPropMeta,
   Modal: ModalPropMeta,
-  Badge: BadgePropMeta
+  Badge: BadgePropMeta,
+  Accordion: AccordionPropMeta
   // Add more component meta objects here as you build them
 };
 
@@ -364,6 +370,11 @@ export const initialComponentProps: Record<string, any> = {
   Badge: {
     type: 'text',
     children: '99+'
+  },
+  Accordion: {
+    heading: 'Heading',
+    defaultOpen: false,
+    children: 'Content that shows when open'
   }
 };
 

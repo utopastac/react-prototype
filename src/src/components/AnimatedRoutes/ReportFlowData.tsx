@@ -209,7 +209,7 @@ export const reportFlowData = [
           {
             title: 'Done',
             type: 'standard',
-            action: { path: 'discover', type: BUTTON_ACTION_PATH },
+            action: { path: '/flows/discover', type: BUTTON_ACTION_PATH },
           }
         ]
       }
