@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ToolbarButton from './ToolbarButton';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
-import styles from '../index.module.sass';
-import layoutsStyles from '../layouts.module.sass';
+import styles from 'src/builder/index.module.sass';
+import layoutsStyles from 'src/builder/layouts.module.sass';
 
 interface ToolbarPanelProps {
   onHideAdminPanel: () => void;

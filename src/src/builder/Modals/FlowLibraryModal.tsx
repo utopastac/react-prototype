@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Modal from '../DevTools/Modal';
-import styles from './index.module.sass';
+import Modal from 'src/admin/Modal';
+import styles from 'src/builder/Modals/index.module.sass';
 import { InterventionScreenComponents } from 'src/data/Components';
 import idvImg from 'src/assets/admin-layouts/idv.jpg';
 import nAuthImg from 'src/assets/admin-layouts/n-auth.jpg';
-import idvData from '../layouts/idv.json';
-import nAuthData from '../layouts/n-auth.json';
+import idvData from 'src/builder/layouts/idv.json';
+import nAuthData from 'src/builder/layouts/n-auth.json';
 interface FlowInfo {
   name: string;
   description?: string;

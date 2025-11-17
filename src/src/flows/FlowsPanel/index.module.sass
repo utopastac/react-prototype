@@ -1,0 +1,23 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.Main
+  width: size(240)
+  height: 100vh
+  background: white
+  display: flex
+  flex-direction: column
+  border-right: 1px solid var(--admin-section-border)
+  font-family: $font-dev
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+  letter-spacing: -0.2px
+  z-index: 1000
+
+.themeSection
+  flex-shrink: 0
+  border-top: 1px solid var(--admin-section-border)
+  .themeContent
+    padding: size(4) var(--admin-padding) size(8) var(--admin-padding)
+

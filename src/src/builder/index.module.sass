@@ -1,5 +1,5 @@
 @use 'src/styles/site' as *
-@use 'src/builder/admin.sass' as *
+@use 'src/admin/styles/admin.sass' as *
 
 .Main
   display: flex
@@ -7,78 +7,75 @@
 .ComponentPreview
   position: relative
   overflow: hidden
-  background: var(--builder-gray-f4)
-  padding: var(--builder-input-padding)
-  border-radius: var(--builder-border-radius)
+  background: var(--admin-gray-20)
+  padding: var(--admin-input-padding)
+  border-radius: var(--admin-border-radius)
 .AdminPanel
   position: relative
   -webkit-user-select: none
   -ms-user-select: none
   user-select: none
-  width: var(--builder-panel-size)
+  width: var(--admin-panel-size)
   height: 100vh//calc(100vh - size(32))
   overflow: hidden
   @extend %admin-panel
   z-index: 100
-  border-right: 1px solid var(--builder-section-border)
+  border-right: 1px solid var(--admin-section-border)
 
   .PanelHeader
     > div
       display: flex
       align-items: center
       justify-content: space-between
-      padding: var(--builder-padding)
-      border-bottom: 1px solid var(--builder-section-border)
+      padding: var(--admin-padding)
+      border-bottom: 1px solid var(--admin-section-border)
       height: size(48)
-      background: var(--builder-white)
+      background: var(--admin-white)
       
   &.rightSide
     width: size(320)
-    border-right: none
-    border-left: 1px solid var(--builder-section-border)
+    border-left: none
+    border-right: 1px solid var(--admin-section-border)
     overflow: hidden
   &.propEditor
     position: fixed
-    top: var(--builder-side-offset)
-    right: var(--builder-side-offset)
+    top: var(--admin-side-offset)
+    right: var(--admin-side-offset)
     width: size(296)
     border-right: none
-    border-left: 1px solid var(--builder-section-border)
+    border-left: 1px solid var(--admin-section-border)
     box-shadow: -12px 0 24px -8px var(--black-a12)
   &.globalSettings
-    // position: fixed
-    top: var(--builder-side-offset)
-    right: var(--builder-side-offset)
     z-index: 90
   &.phoneSettings
     position: fixed
-    top: var(--builder-side-offset)
-    right: var(--builder-side-offset)
+    top: var(--admin-side-offset)
+    right: var(--admin-side-offset)
     z-index: 95
   &.toolbarPanel
     // position: fixed
     // top: 0
     // right: 0
     width: size(48)
-    border-left: 1px solid var(--builder-section-border)
+    border-left: 1px solid var(--admin-section-border)
     border-right: none
     z-index: 500
     overflow: visible
   &.JsonPanel
     display: flex
     flex-direction: column
-    background-color: var(--builder-dark-bg)
-    color: var(--builder-dark-text)
+    background-color: var(--admin-dark-bg)
+    color: var(--admin-dark-text)
     .PanelHeader
-      background-color: var(--builder-dark-bg)
-      color: var(--builder-dark-text)
-      border-bottom: 1px solid var(--builder-dark-border)
+      background-color: var(--admin-dark-bg)
+      color: var(--admin-dark-text)
+      border-bottom: 1px solid var(--admin-dark-border)
       .actions
         display: flex
         gap: size(4)
     pre
       font-family: monospace
-      font-size: var(--builder-font-size-s)
+      font-size: var(--admin-font-size-s)
 .JsonModal
   width: 80vw
   max-width: size(700)
@@ -94,16 +91,16 @@
   position: relative
 .JsonModalActions
   position: absolute
-  top: var(--builder-padding)
-  right: var(--builder-padding)
+  top: var(--admin-padding)
+  right: var(--admin-padding)
 .JsonModalScroll
   flex: 1
   overflow-y: auto
   overflow-x: auto
-  padding: var(--builder-padding)
+  padding: var(--admin-padding)
   pre
     font-family: monospace
-    font-size: var(--builder-font-size-s)
+    font-size: var(--admin-font-size-s)
     margin: 0
     white-space: pre-wrap
     word-wrap: break-word
@@ -111,10 +108,10 @@
     display: flex
     align-items: center
     justify-content: space-between
-    padding: var(--builder-padding)
-    border-bottom: 1px solid var(--builder-section-border)
+    padding: var(--admin-padding)
+    border-bottom: 1px solid var(--admin-section-border)
     height: size(48)
-    background: var(--builder-white)
+    background: var(--admin-white)
     position: sticky
     z-index: 10000
     top: 0
@@ -123,10 +120,10 @@
       flex: 1
       align-items: center
       justify-content: space-between
-      gap: var(--builder-input-padding)
+      gap: var(--admin-input-padding)
     h2
       @extend %medium
-      font-size: var(--builder-font-size-xl)
+      font-size: var(--admin-font-size-xl)
 .Tools
   display: flex
   flex-direction: column
@@ -185,10 +182,10 @@
 .Highlighted
   // Additional highlighting styles can be added here if needed
 .PanelBox
-  border-top: 1px solid var(--builder-section-border)
+  border-top: 1px solid var(--admin-section-border)
   h4
     @extend %bold
-    font-size: var(--builder-font-size-l)
+    font-size: var(--admin-font-size-l)
     margin-bottom: size(24)
 .Input
   margin: size(8) 0
@@ -198,23 +195,23 @@
   label
     @extend %input-label
 .EmptyState
-  color: var(--builder-gray-888)
+  color: var(--admin-gray-60)
   font-style: italic
   text-align: center
   padding: 16px
 .Selected
   &:after
-    border: 2px solid var(--builder-brand-highlight)
+    border: 2px solid var(--admin-brand-highlight)
     display: block
 .ComponentNameOverlay
   position: absolute
   top: size(4)
   right: size(12)
   background: var(--black-a75)
-  color: var(--builder-white)
+  color: var(--admin-white)
   padding: size(4) size(8)
-  border-radius: var(--builder-border-radius)
-  font-size: var(--builder-font-size-s)
+  border-radius: var(--admin-border-radius)
+  font-size: var(--admin-font-size-s)
   @extend %medium
   text-align: center
   z-index: 1000
@@ -222,7 +219,13 @@
   height: 100%
   overflow-y: scroll
   .Fields
-    padding: 0 var(--builder-padding) size(80) var(--builder-padding)
+    padding: 0 var(--admin-padding) size(80) var(--admin-padding)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
+  .themeItem
+    width: 100%
 .ArrayOptionsHeader
   display: flex
   align-items: center
@@ -230,19 +233,23 @@
   padding: size(16) 0 size(8) 0
   h3
     @extend %bold
-    font-size: var(--builder-font-size-l)
+    font-size: var(--admin-font-size-l)
 // ArrayEditor item box
 .ArrayItemBox
-  border: 1px solid var(--builder-section-border)
-  border-radius: var(--builder-wrapper-border-radius)
-  margin-bottom: 16px
-  background: var(--builder-white)
+  border: 1px solid var(--admin-section-border)
+  border-radius: var(--admin-wrapper-border-radius)
+  margin-bottom: size(8)
+  background: var(--admin-white)
   .content
-    padding: var(--builder-input-padding) var(--builder-padding)
-    border-top: 1px solid var(--builder-section-border)
+    padding: var(--admin-input-padding) var(--admin-padding)
+    border-top: 1px solid var(--admin-section-border)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
   &:not(&.Open)
     header:hover
-      background: var(--builder-gray-f4)
+      background: var(--admin-gray-20)
   header
     display: flex
     align-items: center
@@ -260,38 +267,38 @@
       transform: rotate(0deg)
   h4
     @extend %bold
-    font-size: var(--builder-font-size-m)
+    font-size: var(--admin-font-size-m)
 .ToolBarVertical
   display: flex
   flex-direction: column
   align-items: center
   gap: size(4)
-  padding: var(--builder-input-padding)
+  padding: var(--admin-input-padding)
   height: 100%
   justify-content: space-between
 .ToolBarTopSection
   display: flex
   flex-direction: column
-  gap: var(--builder-input-padding)
+  gap: var(--admin-input-padding)
 .ToolBarZoomSection
   display: flex
   flex-direction: column
   gap: size(1)
-  padding-bottom: var(--builder-input-padding)
+  padding-bottom: var(--admin-input-padding)
 .AdminToggle
   position: fixed
-  top: var(--builder-input-padding)
-  left: var(--builder-input-padding)
-  background: var(--builder-gray-f4)
+  top: var(--admin-input-padding)
+  left: var(--admin-input-padding)
+  background: var(--admin-gray-20)
   border-radius: size(8)
   z-index: 200
 .Controls
   flex: 1
   h5
     @extend %bold
-    font-size: var(--builder-font-size-m)
+    font-size: var(--admin-font-size-m)
     text-transform: uppercase
-    padding: var(--builder-padding) var(--builder-padding) 0 var(--builder-padding)
+    padding: var(--admin-padding) var(--admin-padding) 0 var(--admin-padding)
 .ToastContainer
   position: absolute
   bottom: size(32)

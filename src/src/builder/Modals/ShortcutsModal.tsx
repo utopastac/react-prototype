@@ -1,6 +1,6 @@
 import React from 'react';
-import Modal from '../DevTools/Modal';
-import KeyboardShortcutsPanel from 'src/builder/components/KeyboardShortcutsPanel';
+import Modal from 'src/admin/Modal';
+import KeyboardShortcutsPanel from 'src/admin/components/KeyboardShortcutsPanel';
 
 interface ShortcutsModalProps {
   onClose: () => void;

@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ToolsSection from './ToolsSection';
-import ToolbarButton from 'src/builder/components/ToolbarButton';
-import ThemeSection from '../DevTools/ThemeSection';
-import BooleanInput from '../LabeledInput/BooleanInput';
-import TextButton from './TextButton';
+import ToolsSection from 'src/builder/components/ToolsSection';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
+import ThemeSection from 'src/admin/components/ThemeSection';
+import BooleanInput from 'src/admin/components/LabeledInput/BooleanInput';
+import TextButton from 'src/admin/components/TextButton';
+import Header from 'src/admin/components/Header';
 import * as Icons from 'src/data/Icons';
-import styles from '../index.module.sass';
+import styles from 'src/builder/index.module.sass';
 
 /**
  * Props interface for the SettingsPanel component
@@ -88,15 +89,17 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
     >
       <div className={styles.Tools}>
         {/* Panel header with title and JSON toggle button */}
-        <header className={styles.PanelHeader}>
-          <h2>Settings</h2>
-          <ToolbarButton 
-            onClick={onShowJsonPanel} 
-            icon={Icons.CategoryTechnology32} 
-            title={`${!showJsonPanel ? "Show" : "Hide"} layout JSON`} 
-            position="left" 
-          />
-        </header>
+        <Header 
+          title="Settings" 
+          actions={
+            <ToolbarButton 
+              onClick={onShowJsonPanel} 
+              icon={Icons.CategoryTechnology32} 
+              title={`${!showJsonPanel ? "Show" : "Hide"} layout JSON`} 
+              position="left" 
+            />
+          }
+        />
         
         <div className={styles.Controls}>
           {/* Theme customization section */}

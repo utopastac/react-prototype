@@ -1,0 +1,99 @@
+:root {
+  /* Admin Base Colors - Reference system colors */
+  --admin-white: var(--white-a100);
+  --admin-black: var(--black-a100);
+  
+  /* Admin Gray Colors - Reference system grays */
+  --admin-gray-10: var(--system-gray-10);
+  --admin-gray-20: var(--system-gray-20);
+  --admin-gray-30: var(--system-gray-30);
+  --admin-gray-40: var(--system-gray-40);
+  --admin-gray-50: var(--system-gray-50);
+  --admin-gray-60: var(--system-gray-60);
+ 
+
+  /* Admin Warning Colors */
+  --admin-warning: var(--system-red-60);
+
+  /* Admin Button Colors */
+  --admin-button-bg: var(--black-a90);
+  --admin-button-hover: var(--admin-black);
+  --admin-button-secondary-bg: var(--admin-gray-30);
+  --admin-button-secondary-hover: var(--system-gray-30);
+  --admin-button-secondary-active: var(--system-gray-30);
+  --admin-button-tertiary-border: var(--admin-gray-30);
+  --admin-button-tertiary-border-hover: var(--system-gray-50);
+  --admin-button-tertiary-bg-hover: var(--admin-gray-20);
+  --admin-button-text: var(--admin-white);
+
+  /* Admin Text Colors */
+  --admin-text-dark: var(--admin-black);
+  --admin-text-medium: var(--black-a75);
+  --admin-text-light: var(--black-a60);
+  --admin-text-lightest: var(--black-a30);
+
+  /* Admin Chip Colors */
+  --admin-chip-border: var(--admin-gray-30);
+  --admin-chip-hover: var(--admin-gray-40);
+
+  /* Admin Section Colors */
+  --admin-section-border: var(--admin-gray-30);
+
+  /* Admin Brand Colors - Using blue scale */
+  --admin-brand-highlight: var(--blue-70);
+  --admin-brand-mid: var(--blue-50);
+  --admin-brand-light: var(--blue-20);
+  --admin-brand-subtle: var(--blue-10);
+
+  /* Admin Dark Theme Colors */
+  --admin-dark-bg: var(--black-a90);
+  --admin-dark-border: var(--white-a30);
+  --admin-dark-text: var(--admin-white);
+  
+  /* Note: rgba(255, 255, 255, 0.25) approximated as --white-a30 (0.3) */
+  /* Note: #1A1A1A is a custom dark shade, kept as specific value */
+
+  /* Admin Input Field Colors */
+  --admin-input-field-bg: var(--admin-white);
+  --admin-input-field-active: var(--admin-gray-10);
+
+  /* Admin Tooltip Colors */
+  --admin-tooltip-bg: var(--admin-dark-bg);
+  --admin-tooltip-text: var(--admin-white);
+
+  
+  /* Note: #222222 and #1A1A1A are custom dark shades, kept as specific values */
+
+  /* Admin Spacing */
+  --admin-padding: 16px;
+  --admin-input-padding: 8px;
+  --admin-section-gap: 12px;
+
+  /* Admin Sizes */
+  --admin-width: 320px;
+  --admin-input-size: 28px;
+  --admin-section-header-height: 56px;
+  --admin-side-offset: 0px;
+  --admin-panel-size: 320px;
+
+  /* Admin Border Radius */
+  --admin-border-radius: 12px;
+  --admin-border-radius-l: 16px;
+  --admin-border-radius-s: 4px;
+  --admin-wrapper-border-radius: 8px;
+
+  /* Admin Font Sizes */
+  --admin-font-size-xs: 1rem;
+  --admin-font-size-s: 1.1rem;
+  --admin-font-size-m: 1.2rem;
+  --admin-font-size-l: 1.4rem;
+  --admin-font-size-xl: 1.5rem;
+  --admin-font-size-xxl: 1.6rem;
+  --admin-input-font-size: var(--admin-font-size-s);
+  --admin-icon-font-size: 1.5rem;
+}
+
+[data-theme="dark"] {
+  --admin-component-highlight: var(--white-a30);
+}
+

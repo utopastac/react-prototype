@@ -1,0 +1,160 @@
+@use 'src/styles/site' as *
+
+// All variables are now defined in builder-variables.css
+// This file provides placeholders and mixins that use CSS variables
+
+%button-base
+  position: relative
+  border: none
+  cursor: pointer
+  border-radius: var(--admin-border-radius)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: opacity 0.2s
+  font-size: var(--admin-font-size-m)
+  @extend %bold
+
+%button-primary
+  @extend %button-base
+  color: var(--admin-button-text)
+  background: var(--admin-button-bg)
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    background: var(--admin-button-hover)
+    color: var(--admin-button-text)
+  &:active
+    background: var(--admin-button-active)
+
+%button-secondary
+  @extend %button-base
+  color: var(--admin-text-medium)
+  background: var(--admin-button-secondary-bg)
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    background: var(--admin-button-secondary-hover)
+  &:active
+    background: var(--admin-button-secondary-active)
+
+%button-tertiary
+  @extend %button-base
+  color: var(--admin-text-medium)
+  border: 1px solid var(--admin-button-tertiary-border)
+  background: var(--admin-white)
+  width: 100%
+  height: size(40)
+  &:hover, &:focus
+    border-color: var(--admin-button-tertiary-border-hover)
+  &:active
+    background: var(--admin-button-tertiary-bg-hover)
+
+%input-field
+  border: 1px solid var(--admin-gray-40)
+  outline: none
+  appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  background: var(--admin-input-field-bg)
+  border-radius: var(--admin-wrapper-border-radius)
+  height: size(32)
+  padding: 0 size(12)
+  font-size: var(--admin-input-font-size)
+  box-sizing: border-box
+  width: 100%
+  min-width: 0
+  &:focus
+    outline: none
+    border-color: var(--admin-gray-40)
+    background: var(--admin-input-field-active)
+  &:active
+    background: var(--admin-input-field-active)
+
+%input-label
+  display: block
+  @extend %bold
+  font-size: var(--admin-font-size-s)
+
+%dev-tools-select
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>') 
+  background-repeat: no-repeat
+  background-position: right size(12) center
+  padding-right: size(32)
+  align-items: center
+  font-size: var(--admin-font-size-s)
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  box-sizing: border-box
+
+@mixin tooltip($title, $position: 'top', $delay: 0.1s)
+  &:after
+    content: $title
+    position: absolute
+    @if $position == 'top'
+      left: 50%
+      top: neg-size(8)
+      transform: translateX(-50%) translateY(0)
+    @if $position == 'bottom'
+      left: 50%
+      bottom: neg-size(12)
+      transform: translateX(-50%) translateY(0)
+    @else if $position == 'left'
+      right: 100%
+      top: 50%
+      transform: translateX(0) translateY(-50%)
+    @else if $position == 'right'
+      left: 100%
+      top: 50%
+      transform: translateX(0) translateY(-50%)
+    @else if $position == 'top-right'
+      left: 100%
+      top: neg-size(8)
+      transform: translateX(0) translateY(0)
+    @else if $position == 'top-left'
+      right: 100%
+      top: neg-size(8)
+      transform: translateX(0) translateY(0)
+    @else if $position == 'bottom-right'
+      left: 100%
+      top: 100%
+      transform: translateX(0) translateY(0)
+    @else if $position == 'bottom-left'
+      right: 100%
+      top: 100%
+      transform: translateX(0) translateY(0)
+    
+    background: var(--admin-tooltip-bg)
+    color: var(--admin-tooltip-text)
+    padding: size(4) size(5)
+    border-radius: var(--admin-border-radius-s)
+    font-size: var(--admin-font-size-m)
+    white-space: nowrap
+    opacity: 0
+    pointer-events: none
+    transition: opacity 0.2s, transform 0.2s
+    transition-delay: $delay
+    z-index: 10000
+  &:hover
+    &::after
+      opacity: 1
+      @if $position == 'top'
+        transform: translateX(-50%) translateY(-8px)
+      @if $position == 'bottom'
+        transform: translateX(-50%) translateY(8px)
+      @else if $position == 'left'
+        transform: translateX(-8px) translateY(-50%)
+      @else if $position == 'right'
+        transform: translateX(8px) translateY(-50%)
+      @else if $position == 'top-right'
+        transform: translateX(8px) translateY(-8px)
+      @else if $position == 'top-left'
+        transform: translateX(-8px) translateY(-8px)
+      @else if $position == 'bottom-right'
+        transform: translateX(8px) translateY(8px)
+      @else if $position == 'bottom-left'
+        transform: translateX(-8px) translateY(8px)
+
+%admin-panel
+  background: var(--admin-white)

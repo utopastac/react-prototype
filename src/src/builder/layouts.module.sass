@@ -1,5 +1,5 @@
 @use 'src/styles/site' as *
-@use 'src/builder/admin.sass' as *
+@use 'src/admin/styles/admin.sass' as *
 
 $zoom-transition: transform 0s ease
 
@@ -11,7 +11,7 @@ $zoom-transition: transform 0s ease
   justify-content: center
   height: 100vh
   gap: size(24)
-  background-color: var(--builder-gray-f4)
+  background-color: var(--admin-gray-20)
 
 .PhonePreviewContainer
   position: absolute
@@ -42,10 +42,10 @@ $zoom-transition: transform 0s ease
 
 .ZoomLevel
   text-align: center
-  font-size: var(--builder-font-size-xs)
-  color: var(--builder-text-light)
+  font-size: var(--admin-font-size-xs)
+  color: var(--admin-text-light)
   margin: size(4) 0
-  margin-top: var(--builder-input-padding)
+  margin-top: var(--admin-input-padding)
 
 .PhoneItem
   position: relative
@@ -64,7 +64,7 @@ $zoom-transition: transform 0s ease
   justify-content: center
   height: 100%
   min-height: 500px
-  border: 2px dashed var(--builder-section-border)
+  border: 2px dashed var(--admin-section-border)
   border-radius: size(40)
   // background-color: $gray-ef
   cursor: pointer
@@ -73,7 +73,7 @@ $zoom-transition: transform 0s ease
 
   &:hover
     border: none
-    background-color: var(--builder-gray-f4)
+    background-color: var(--admin-gray-20)
     box-shadow: var(--elevation-2)
     scale: 1.02
 
@@ -82,13 +82,13 @@ $zoom-transition: transform 0s ease
 
   .EmptySpaceIcon
     font-size: size(48)
-    color: var(--builder-text-light)
+    color: var(--admin-text-light)
 
   .EmptySpaceText
     opacity: 0
     transition: all 0.2s ease
-    font-size: var(--builder-font-size-l)
-    color: var(--builder-brand-highlight)
+    font-size: var(--admin-font-size-l)
+    color: var(--admin-brand-highlight)
     text-align: center
     transition: $zoom-transition
 
@@ -99,7 +99,7 @@ $zoom-transition: transform 0s ease
 .ActivePhone
   border-width: size(0)
   //box-shadow: none !important
-  outline: 3px solid var(--builder-brand-highlight)
+  outline: 3px solid var(--blue-70)
 
 .PhoneLabel
   position: absolute
@@ -113,7 +113,7 @@ $zoom-transition: transform 0s ease
   display: none
 
 .ActiveLabel
-  color: var(--builder-brand-highlight)
+  color: var(--blue-70)
 
 .PhoneActions
   display: flex
@@ -143,9 +143,9 @@ $zoom-transition: transform 0s ease
 
 .templateRow
   width: calc(100% + size(24))
-  font-size: var(--builder-font-size-l)
+  font-size: var(--admin-font-size-l)
   padding: 0 size(12)
-  border-radius: var(--builder-border-radius)
+  border-radius: var(--admin-border-radius)
   // background: $gray-ef
   margin: 0 neg-size(12)
   display: flex
@@ -161,10 +161,10 @@ $zoom-transition: transform 0s ease
     display: none
     font-size: size(24)
     line-height: size(24)
-    color: var(--builder-text-light)
+    color: var(--admin-text-light)
 
   &:hover
-    background: var(--builder-gray-f4)
+    background: var(--admin-gray-20)
     &::after
       display: block
 
@@ -174,62 +174,62 @@ $zoom-transition: transform 0s ease
   display: flex
   flex-direction: column
   gap: size(4)
-  padding: var(--builder-input-padding) var(--builder-padding)
+  padding: var(--admin-input-padding) var(--admin-padding)
   cursor: default
   height: 100%
   overflow-y: scroll
-  border-bottom: 1px solid var(--builder-section-border)
+  border-bottom: 1px solid var(--admin-section-border)
 
 .LayoutListItem
   border-radius: size(6)
   background: transparent
   cursor: pointer
-  font-size: var(--builder-font-size-s)
-  color: var(--builder-text-medium)
+  font-size: var(--admin-font-size-s)
+  color: var(--admin-text-medium)
   transition: background 0.15s
 
   h4
     padding: size(4) size(8)
-      border-radius: var(--builder-border-radius)
+      border-radius: var(--admin-border-radius)
 
   ul
     padding: 0
 
     li
-      font-size: var(--builder-font-size-s)
+      font-size: var(--admin-font-size-s)
       padding: size(8) size(12) size(8) size(32)
-      border-radius: var(--builder-border-radius)
+      border-radius: var(--admin-border-radius)
       width: 100%
       white-space: nowrap
       overflow: hidden
       text-overflow: ellipsis
 
       &.active
-        background: var(--builder-brand-mid)
+        background: var(--admin-brand-mid)
 
       &:hover
-        background: var(--builder-brand-mid)
+        background: var(--admin-brand-mid)
 
   &:hover
     &:not(&.active)
-      background: var(--builder-gray-e4)
+      background: var(--admin-gray-30)
 
   &.active
-    background: var(--builder-brand-subtle)
+    background: var(--admin-brand-subtle)
     font-weight: 600
 
     h4
-      background: var(--builder-brand-light)
+      background: var(--admin-brand-light)
 
 .templateGroupHeader
   @extend %medium
-  color: var(--builder-text-lightest)
-  font-size: var(--builder-font-size-m)
+  color: var(--admin-text-lightest)
+  font-size: var(--admin-font-size-m)
   margin: size(24) 0 0 0
 
 .LayoutName
   background: none !important
-  color: var(--builder-text-medium)
+  color: var(--admin-text-medium)
 
 // Layout Drag and Drop Styles
 .DraggedLayout
@@ -242,7 +242,7 @@ $zoom-transition: transform 0s ease
     pointer-events: none
 
 .DropTarget
-  border: 3px solid var(--builder-brand-highlight) !important
-  background-color: var(--builder-brand-mid) !important
+  border: 3px solid var(--admin-brand-highlight) !important
+  background-color: var(--admin-brand-mid) !important
   box-shadow: 0px 8px 32px rgba(0, 192, 38, 0.3) !important
   scale: 1.05

@@ -2,21 +2,20 @@ import React from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './App.tsx';
-import MainNav from 'src/components/MainNav';
-import PlatformView from 'src/views/PlatformView';
-import PatternsView from 'src/views/PatternsView';
+import FlowsView from 'src/flows/FlowsView';
+import MainNav from 'src/admin/components/MainNav';
+import PlatformView from 'src/platform/PlatformView';
+import PatternsView from 'src/patterns/PatternsView';
+import BuilderView from 'src/builder/BuilderView';
 import { Providers } from './Providers';
 
 import './styles/globals.css';
 import './styles/variables.css';
-import './builder/builder-variables.css';
+import './admin/styles/admin-variables.css';
 import './index.sass';
 import styles from './layout.module.sass';
 
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-
-import BuilderView from 'src/views/BuilderView';
 import { useTheme } from './containers/ThemeContext';
 
 // Wrapper to inject theme-related props
@@ -48,7 +47,7 @@ function AppWrapper() {
           <Route path="/patterns" element={<WithThemeProps Component={PatternsView} />} />
 
           {/* Flows (phone interface) */}
-          <Route path="/flows/*" element={<WithThemeProps Component={App} />} />
+          <Route path="/flows/*" element={<WithThemeProps Component={FlowsView} />} />
         </Routes>
       </div>
     </div>

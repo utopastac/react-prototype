@@ -1,8 +1,8 @@
 import React from 'react';
-import Modal from '../DevTools/Modal';
-import ToolbarButton from 'src/builder/components/ToolbarButton';
+import Modal from 'src/admin/Modal';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import * as Icons from 'src/data/Icons';
-import styles from '../index.module.sass';
+import styles from 'src/builder/index.module.sass';
 import { downloadAsFile } from 'src/helpers/Utils';
 
 interface JsonPanelProps {

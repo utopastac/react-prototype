@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAdminLayoutContext, useActiveLayout } from './AdminLayoutContext';
-import PhonePreviewContent from './PhonePreviewContent';
-import styles from './index.module.sass';
-import layoutsStyles from './layouts.module.sass';
+import { useAdminLayoutContext, useActiveLayout } from 'src/admin/contexts/AdminLayoutContext';
+import PhonePreviewContent from 'src/builder/PhonePreviewContent';
+import styles from 'src/builder/index.module.sass';
+import layoutsStyles from 'src/builder/layouts.module.sass';
 import TopBar from 'src/components/TopBar';
 import ButtonGroup from 'src/components/ButtonGroup';
 import Toast from 'src/components/Toast';
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
 import * as Icons from 'src/data/Icons';
-import ToolbarButton from './components/ToolbarButton';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 import gsap from "gsap";
-import { AdminTemplates } from './Templates';
-import EditableLabel from './components/EditableLabel';
-import { useAdminTheme } from './AdminThemeContext';
+import { AdminTemplates } from 'src/builder/Templates';
+import EditableLabel from 'src/admin/components/EditableLabel';
+import { useAdminTheme } from 'src/admin/contexts/AdminThemeContext';
 
 /**
  * PhonePreview
@@ -392,7 +392,7 @@ const PhonePreview: React.FC<PhonePreviewProps> = (props) => {
                     ].filter((v): v is string => Boolean(v)).join(' ')}
                     style={{ 
                       boxShadow: adminTheme.phoneShadow,
-                      outline: adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : 'none'
+                      outline: !isActive && adminTheme.layoutOutline !== '0px' ? `${adminTheme.layoutOutline} solid rgba(0, 0, 0, 0.2)` : undefined
                     }}
                   >
                     <PhonePreviewContent

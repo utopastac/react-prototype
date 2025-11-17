@@ -1,0 +1,27 @@
+@use 'src/styles/site' as *
+
+$knobSize: size(20)
+$knobPadding: size(2)
+$knobRadius: size(5)
+
+.Main
+  width: size(48)
+  height: calc($knobSize + ($knobPadding * 2))
+  background: var(--admin-gray-40)
+  border-radius: calc($knobRadius + $knobPadding)
+  position: relative
+  .knob
+    position: absolute
+    top: $knobPadding
+    left: $knobPadding
+    width: $knobSize
+    height: $knobSize
+    background: var(--admin-white)
+    border-radius: $knobRadius
+  &.checked
+    background: var(--admin-brand-highlight)
+    border: none
+    .knob
+      position: absolute
+      right: $knobPadding
+      left: auto

@@ -1,0 +1,185 @@
+@use 'src/styles/site' as *
+
+@use 'src/admin/styles/admin.sass' as *
+
+$inputWidth: size(160)
+
+.Input
+  position: relative
+  display: flex
+  align-items: center 
+  justify-content: space-between
+  gap: 8px
+  select, ::picker(select)
+    appearance: base-select
+  select::picker-icon
+    display: none
+  ::picker(select)
+    border: none
+    background: #1A1A1A
+    border-radius: size(12)
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
+    padding: size(8)
+  option
+    background: #1A1A1A
+    color: white
+    padding: 10px
+    transition: 0.1s
+    border-radius: size(4)
+    &:hover
+      background: var(--admin-brand-highlight)
+  label
+    @extend %input-label
+    flex: 0 0 auto
+    min-width: size(80)
+    max-width: size(200)
+    &.hiddenLabel
+      position: absolute
+      width: 1px
+      height: 1px
+      padding: 0
+      margin: -1px
+      overflow: hidden
+      clip: rect(0, 0, 0, 0)
+      white-space: nowrap
+      border-width: 0
+  input
+    @extend %input-field
+    flex: 1
+    min-width: 0
+    border: none
+    background: var(--admin-gray-20)
+    &:focus
+      background: var(--admin-gray-30)
+      border: none
+    &:active
+      background: var(--admin-gray-30)
+  select
+    @extend %input-field
+    @extend %dev-tools-select
+    flex: 1
+    min-width: 0
+    border: none
+    background-color: var(--admin-gray-20)
+    &:focus
+      background-color: var(--admin-gray-30)
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>')
+      background-repeat: no-repeat
+      background-position: right size(12) center
+      border: none
+    &:active
+      background-color: var(--admin-gray-30)
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>')
+      background-repeat: no-repeat
+      background-position: right size(12) center
+    
+.BooleanInput
+
+.Toggle
+  display: block
+  scale: 0.8
+.SearchInput
+  flex: 1
+  input
+    padding-left: 32px
+    width: 100%
+.ClearButton
+  position: absolute !important
+  right: 0
+  top: 50%
+  transform: translateY(-50%)
+.SearchIcon
+  position: absolute
+  left: 8px
+  top: 50%
+  transform: translateY(-50%)
+  pointer-events: none
+.selectInput
+  @extend %input-field
+  @extend %dev-tools-select
+  display: flex
+  align-items: center
+  gap: 8px
+  cursor: pointer
+  user-select: none
+
+.StringInput
+  // Uses base .Input styles for consistent width
+
+.TextAreaInput
+  flex-direction: column
+  align-items: flex-start
+  label
+    margin-top: 0
+    margin-bottom: 0
+    max-width: 100%
+    flex: none
+  textarea
+    @extend %input-field
+    //min-width: $inputWidth
+    width: 100%
+    height: size(120)
+    padding: size(8)
+    font-family: $font-dev
+    border: none
+    background: var(--admin-gray-20)
+    &:focus
+      background: var(--admin-gray-30)
+      border: none
+    &:active
+      background: var(--admin-gray-30)
+
+$trackHeight: size(3)
+$thumbSize: size(12)
+
+.SliderInput
+  display: flex
+  gap: size(8)
+
+  label
+    flex: 1
+
+  .sliderOuter
+    position: relative
+    flex: 1
+    //min-width: $inputWidth
+    height: calc($thumbSize + size(8))
+    cursor: pointer
+
+    &:hover
+      .trackBackground, .track
+        height: $trackHeight
+
+  .trackBackground
+    position: absolute
+    flex: 1
+    //min-width: $inputWidth
+    height: calc($trackHeight - size(1))
+    top: 50%
+    left: 0
+    right: 0
+    transform: translateY(-50%)
+    border-radius: 500px
+    background: var(--admin-gray-30)
+    transition: height 0.3s
+
+  .track
+    position: absolute
+    height: calc($trackHeight - size(1))
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+    border-radius: 500px
+    background: var(--admin-brand-highlight)
+    transition: height 0.3s
+    
+  .thumb
+    position: absolute
+    top: 50%
+    left: 0
+    height: $thumbSize
+    width: calc($thumbSize + 4px)
+    border-radius: 500px
+    background: var(--admin-brand-highlight)
+    transform: translateY(-50%)
+    cursor: pointer

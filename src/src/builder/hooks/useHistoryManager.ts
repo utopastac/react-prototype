@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import useHistoryStack from './useHistoryStack';
-import { useLayoutData, LayoutsData } from './useLayoutData';
+import useHistoryStack from 'src/builder/hooks/useHistoryStack';
+import { useLayoutData, LayoutsData } from 'src/builder/hooks/useLayoutData';
 
 /**
  * LayoutHistory Interface

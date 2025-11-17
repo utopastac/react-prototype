@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Icon from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
-import styles from './index.module.sass';
-import ToolbarButton from './components/ToolbarButton';
+import styles from 'src/builder/index.module.sass';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 
 /**
  * Props interface for the ArrayEditor component
@@ -145,7 +145,7 @@ const ArrayEditor: React.FC<ArrayEditorProps> = ({
               <div style={{ display: 'flex', gap: 4 }}>
                 <ToolbarButton
                   title="Duplicate"
-                  icon={Icons.Copy16}
+                  icon={Icons.Duplicate16}
                   onClick={() => {
                     // Insert a copy of the current item after it
                     const newArray = [...arrayValue];

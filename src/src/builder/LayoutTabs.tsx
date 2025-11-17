@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAdminLayoutContext } from './AdminLayoutContext';
-import styles from './index.module.sass';
+import { useAdminLayoutContext } from 'src/admin/contexts/AdminLayoutContext';
+import styles from 'src/builder/index.module.sass';
 import Icon from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
-import ToolbarButton from './components/ToolbarButton';
+import ToolbarButton from 'src/admin/components/ToolbarButton';
 
 /**
  * LayoutTabs

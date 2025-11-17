@@ -1,0 +1,59 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.Header
+  background: var(--admin-white)
+  
+  &.withBorder
+    border-bottom: 1px solid var(--admin-section-border)
+    padding: 0 size(8) 0 var(--admin-padding)
+
+  .content
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: var(--admin-padding)
+    height: size(48)
+
+  .title
+    margin: 0
+    font-size: var(--admin-font-size-xl)
+    @extend %medium
+    color: var(--admin-text-dark)
+
+  .actions
+    display: flex
+    align-items: center
+    gap: size(8)
+
+  &.small
+    .content
+      padding: 0
+      height: size(40)
+      min-height: size(40)
+      max-height: size(40)
+    .title
+      font-size: 1.4rem
+
+  &.large
+    .content
+      height: size(56)
+    .title
+      font-size: var(--admin-font-size-xl)
+
+  &.section
+    border-bottom: none
+    background: transparent
+    margin-bottom: size(8)
+    .content
+      padding: 0
+      height: auto
+      min-height: auto
+      justify-content: flex-start
+    .title
+      font-size: var(--admin-font-size-xs)
+      @extend %medium
+      color: var(--admin-text-light)
+      text-transform: uppercase
+      letter-spacing: 0.02rem
+

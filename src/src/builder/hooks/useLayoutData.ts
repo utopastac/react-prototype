@@ -1,5 +1,5 @@
-import { useAdminLayoutContext } from '../AdminLayoutContext';
-import { LayoutData } from '../LayoutContext';
+import { useAdminLayoutContext } from 'src/admin/contexts/AdminLayoutContext';
+import { LayoutData } from 'src/builder/LayoutContext';
 import { InterventionScreenComponents } from 'src/data/Components';
 
 /**

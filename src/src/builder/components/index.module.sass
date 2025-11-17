@@ -1,12 +1,9 @@
 @use 'src/styles/site' as *
-@use 'src/builder/admin.sass' as *
+@use 'src/admin/styles/admin.sass' as *
 
 .ToolsSection
-  border-bottom: 1px solid var(--builder-section-border)
-  padding: var(--builder-input-padding) var(--builder-padding)
-  h3
-    display: flex
-    justify-content: space-between
-    align-items: center
-    font-size: var(--builder-font-size-l)
-    @extend %medium
+  border-bottom: 1px solid var(--admin-section-border)
+  padding: var(--admin-input-padding) var(--admin-padding)
+  display: flex
+  flex-direction: column
+  gap: size(8)

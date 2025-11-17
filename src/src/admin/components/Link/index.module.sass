@@ -1,0 +1,45 @@
+@use 'src/styles/site' as *
+@use 'src/admin/styles/admin.sass' as *
+
+.link
+  text-decoration: none
+  color: inherit
+  display: block
+  cursor: pointer
+  margin-left: neg-size(8)
+
+  &.selected
+    .Main
+      background: var(--admin-brand-subtle)
+      color: var(--admin-brand-highlight)
+
+  &.large
+    .Main
+      padding: size(10) size(12)
+      height: auto
+      min-height: size(40)
+      border-radius: 8px
+      .title
+        font-size: var(--admin-font-size-xxl)
+        @extend %regular
+
+  .Main
+    padding: size(4) size(8)
+    background: transparent
+    transition: background 0.2s ease, color 0.2s ease
+    height: size(32)
+    display: flex
+    align-items: center
+    border-radius: var(--admin-border-radius)
+    &:hover
+      background: var(--admin-brand-subtle)
+      color: var(--admin-brand-highlight)
+    .content
+      gap: size(2)
+    .title
+      font-size: var(--admin-font-size-m)
+      @extend %medium
+    .description
+      font-size: var(--admin-font-size-m)
+      @extend %regular
+      display: none
