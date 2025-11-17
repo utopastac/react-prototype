@@ -1,23 +1,23 @@
 import React from "react";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps } from "src/components/Avatar";
+import Entity, { EntityProps } from "src/components/Entity";
 import IconBg, { IconBgProps }  from "src/components/IconBg";
 import Button, { ButtonProps } from "src/components/Buttons/Button";
-import { AvatarPropMeta } from "src/components/Avatar";
+import { EntityPropMeta } from "src/components/Entity";
 import { IconBgPropMeta } from "src/components/IconBg";
 import { ButtonPropMeta } from "src/components/Buttons/Button";
 
 // Type definitions for the left element
-export interface CellActivityAvatarProps extends AvatarProps {
-  type: 'avatar';
+export interface CellActivityEntityProps extends EntityProps {
+  type: 'entity';
 }
 
 export interface CellActivityIconBgProps extends IconBgProps {
   type: 'iconBg';
 }
 
-export type LeftElementProps = CellActivityAvatarProps | CellActivityIconBgProps;
+export type LeftElementProps = CellActivityEntityProps | CellActivityIconBgProps;
 
 // Type definitions for the right element
 export interface CellButtonProps extends ButtonProps {
@@ -56,9 +56,9 @@ const CellActivity: React.FC<CellActivityProps> = ({
 
   const leftElement = () => {
     switch(left.type){
-      case 'avatar':
+      case 'entity':
         return (
-          <Avatar {...left} size="64" />
+          <Entity {...left} size="64" />
         );
       case 'iconBg':
         return (
@@ -101,8 +101,8 @@ const CellActivity: React.FC<CellActivityProps> = ({
 
 export default CellActivity;
 
-// Omit 'size' from AvatarPropMeta for use in cell activity fields
-const { size: _avatarSize, ...AvatarPropMetaNoSize } = AvatarPropMeta;
+// Omit 'size' from EntityPropMeta for use in cell activity fields
+const { size: _entitySize, ...EntityPropMetaNoSize } = EntityPropMeta;
 
 export const CellActivityPropMeta = {
   title: { type: 'string', label: 'Title' },
@@ -113,7 +113,7 @@ export const CellActivityPropMeta = {
     type: 'object',
     label: 'Left',
     options: [
-      { label: 'Avatar', value: 'avatar', type: 'avatar', fields: AvatarPropMetaNoSize },
+      { label: 'Entity', value: 'entity', type: 'entity', fields: EntityPropMetaNoSize },
       { label: 'Icon with Background', value: 'iconBg', type: 'iconBg', fields: IconBgPropMeta },
     ],
   },

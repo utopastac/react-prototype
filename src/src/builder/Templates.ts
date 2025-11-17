@@ -156,7 +156,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -177,7 +177,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionExtraLargeCell' }
+        props: { size: 'extraLarge' }
       },
       {
         name: 'Header',
@@ -191,7 +191,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'UpsellCard',
@@ -264,7 +264,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       // Informational Cell 1
       {
@@ -360,7 +360,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -370,7 +370,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'InputCard',
@@ -386,7 +386,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -402,7 +402,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -469,7 +469,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -479,7 +479,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'InputCard',
@@ -495,7 +495,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -511,7 +511,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -579,7 +579,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -593,7 +593,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -668,7 +668,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -738,7 +738,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -807,7 +807,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -820,7 +820,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -904,7 +904,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -918,7 +918,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'TextArea',
@@ -980,7 +980,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -994,7 +994,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'PINCheck',
@@ -1055,7 +1055,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -1069,7 +1069,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -1125,7 +1125,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -1139,7 +1139,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       // Email
       {

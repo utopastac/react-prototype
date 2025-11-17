@@ -1,14 +1,14 @@
 import React from "react";
 import { useTransitionNavigate, transitions } from 'src/hooks/useTransitionNavigate';
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps } from "src/components/Avatar";
+import Entity, { EntityProps } from "src/components/Entity";
 import Icon, { IconPropMeta as IconPropMetaImport } from "src/components/Icon";
 import { useUser } from 'src/containers/UserContext';
 
 export interface TitleBarProps {
   title?: string;
   icon?: string;
-  right?: AvatarProps;
+  right?: EntityProps;
   inverse?: boolean;
 }
 
@@ -29,7 +29,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ title, icon, right, inverse }) => {
     <div className={`${styles.Main} ${inverse ? styles.inverse : ""}`}>
       {element}
       <div className={styles.avatar} onClick={()=>{transitionNavigate('account', transitions.slideInOver)}}>
-        <Avatar image={avatar} size="32" {...right} />
+        <Entity image={avatar} size="32" {...right} />
       </div>
     </div>
   );
@@ -40,14 +40,14 @@ export default TitleBar;
 export const TitleBarPropMeta = {
   title: { type: 'string', label: 'Title' },
   icon: IconPropMetaImport.icon,
-  right: { type: 'object', label: 'Right Avatar', fields: {
+  right: { type: 'object', label: 'Right Entity', fields: {
     image: { type: 'string', label: 'Image URL' },
-    initial: { type: 'string', label: 'Initial' },
     size: {
       type: 'select',
-      options: ['64', '48', '32', '28', '24'],
+      options: ['16', '24', '32', '40', '48', '64', '80', '96', '128', '160'],
     },
     border: { type: 'boolean', label: 'Border' },
+    company: { type: 'boolean', label: 'Company' },
   }},
   inverse: { type: 'boolean', label: 'Inverse' },
 };

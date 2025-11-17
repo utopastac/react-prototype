@@ -10,7 +10,7 @@ export interface ScrollContainerProps {
 const ScrollContainer: React.FC<ScrollContainerProps> = ({ children, className }) => {
   return (
     <div className={styles.Main}>
-      <Divider size="withinSectionMedium" />
+      <Divider size="medium" />
       <div className={className}>{children}</div>
     </div>
   );

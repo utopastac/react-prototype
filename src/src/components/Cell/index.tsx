@@ -1,7 +1,7 @@
 import React from "react";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps } from "src/components/Avatar";
+import Entity, { EntityProps } from "src/components/Entity";
 import AvatarStackedDiagonal, { AvatarStackedDiagonalProps } from "src/components/AvatarStackedDiagonal";
 import Icon, { IconProps } from "src/components/Icon";
 import * as Icons from "src/data/Icons";
@@ -10,13 +10,13 @@ import Button, { ButtonProps } from "src/components/Buttons/Button";
 import Radio, { RadioProps } from "src/components/Radio";
 import Checkbox, { CheckboxProps } from "src/components/Checkbox";
 import Toggle, { ToggleProps } from "src/components/Toggle";
-import { AvatarPropMeta } from "src/components/Avatar";
+import { EntityPropMeta } from "src/components/Entity";
 import { AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
 import { IconPropMeta } from "src/components/Icon";
 import { IconBgPropMeta } from "src/components/IconBg";
 //
-// Omit 'size' from AvatarPropMeta for use in cell fields
-const { size: _avatarSize, ...AvatarPropMetaNoSize } = AvatarPropMeta;
+// Omit 'size' from EntityPropMeta for use in cell fields
+const { size: _entitySize, ...EntityPropMetaNoSize } = EntityPropMeta;
 //
 // Base cell interface
 interface BaseCell {
@@ -26,8 +26,8 @@ interface BaseCell {
 }
 
 // Left cell interfaces
-interface AvatarCell extends BaseCell, AvatarProps {
-  type: 'avatar';
+interface EntityCell extends BaseCell, EntityProps {
+  type: 'entity';
 }
 
 interface AvatarStackedCell extends BaseCell, AvatarStackedDiagonalProps {
@@ -77,7 +77,7 @@ interface LabelPushCell extends BaseCell {
 }
 
 // Union types for left and right cells
-export type LeftCell = AvatarCell | AvatarStackedCell | IconCell | IconBgCell | NoneCell;
+export type LeftCell = EntityCell | AvatarStackedCell | IconCell | IconBgCell | NoneCell;
 export type RightCell = PushCell | ButtonCell | RadioCell | CheckboxCell | ToggleCell | LabelPushCell | NoneCell;
 
 export interface CellProps {
@@ -98,8 +98,8 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
     if (!left) return null;
     
     switch (left.type) {
-      case 'avatar':
-        return <Avatar {...(left as AvatarCell)} size="64" />;
+      case 'entity':
+        return <Entity {...(left as EntityCell)} size="64" />;
       case 'avatarStacked':
         return <AvatarStackedDiagonal {...(left as AvatarStackedCell)} size="64" />;
       case 'icon':
@@ -183,7 +183,7 @@ export const CellPropMeta = {
     label: 'Left',
     options: [
       { label: 'None', value: 'none', type: 'none' },
-      { label: 'Avatar', value: 'avatar', type: 'avatar', fields: AvatarPropMetaNoSize },
+      { label: 'Entity', value: 'entity', type: 'entity', fields: EntityPropMetaNoSize },
       { label: 'Avatar Stacked', value: 'avatarStacked', type: 'avatarStacked', fields: AvatarStackedDiagonalPropMeta },
       { label: 'Icon', value: 'icon', type: 'icon', fields: IconPropMeta },
       { label: 'Icon with Background', value: 'iconBg', type: 'iconBg', fields: IconBgPropMeta },

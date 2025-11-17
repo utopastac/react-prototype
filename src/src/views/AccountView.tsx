@@ -43,13 +43,13 @@ const AccountView = () => {
           title={name}
           size="page"
           accessory={{
-            type: "avatar",
+            type: "entity",
             size: "48",
             image: avatar
           }}
         />
         <Divider
-          size="withinSectionMedium"
+          size="medium"
         />
         <div className={styles.buttonRow}>
           <Button 
@@ -61,7 +61,7 @@ const AccountView = () => {
             }}
             //onClick={openLayer}
             icon={{
-              type: Icons.Expand16,
+              icon: Icons.Expand16,
               size: "16",
               color: "subtle"
             }}
@@ -72,7 +72,7 @@ const AccountView = () => {
           />
         </div>
         <Divider
-          size="betweenSectionExtraLargeCell"
+          size="extraLarge"
         />
         <Cell
           title="Linked apps & businesses"
@@ -88,11 +88,11 @@ const AccountView = () => {
           onClick={()=>{}}
         />
         <Divider
-          size="betweenSectionExtraLargeCell"
+          size="extraLarge"
         />
        
         <Divider
-          size="withinSectionMedium"
+          size="medium"
         />
         <ButtonGroup
           buttons={[

@@ -37,10 +37,10 @@ import CellActivity, {
   CellActivityPropMeta
 } from 'src/components/CellActivity';
 
-// Avatar Components
-import Avatar, {
-  AvatarPropMeta
-} from 'src/components/Avatar';
+// Entity Components
+import Entity, {
+  EntityPropMeta
+} from 'src/components/Entity';
 //
 import AvatarCarousel, { AvatarCarouselPropMeta } from "src/components/AvatarCarousel";
 import AvatarRow, { AvatarRowPropMeta } from "src/components/AvatarRow";
@@ -126,8 +126,8 @@ export const Components = {
   ListUnordered,
   ListOrdered,
 
-  // Avatar Components
-  Avatar,
+  // Entity Components
+  Entity,
   AvatarCarousel,
   AvatarRow,
   AvatarStackedDiagonal,
@@ -175,7 +175,7 @@ export const InterventionScreenComponents = {
   Cell,
   CellActivity,
 
-  // Avatar Components
+  // Entity Components
   AvatarCarousel,
 
   // UI Components
@@ -214,7 +214,7 @@ export const ComponentPropMeta = {
   MarketingCardLarge: MarketingCardLargePropMeta,
   Cell: CellPropMeta,
   CellActivity: CellActivityPropMeta,
-  Avatar: AvatarPropMeta,
+  Entity: EntityPropMeta,
   AvatarCarousel: AvatarCarouselPropMeta,
   AvatarRow: AvatarRowPropMeta,
   AvatarStackedDiagonal: AvatarStackedDiagonalPropMeta,
@@ -261,19 +261,19 @@ export const initialComponentProps: Record<string, any> = {
   Cell: { title: 'Cell', body: 'Body' },
   CellActivity: { title: 'Cell Activity', body: 'Body', date: 'Today', left: {}, right: {}, onClick: () => {} },
   Text: { text: 'Text', size: 'body', color: 'standard' },
-  AvatarCarousel: { avatars: [{
-    avatar: {size: '64', initial: "J", image: null},
+  AvatarCarousel: { avatars: [  {
+    avatar: {size: '64', image: null},
     title: "Jane"
   },
   {
-    avatar: {size: '64', initial:"N", image: null},
+    avatar: {size: '64', image: null},
     title: "Nigel"
   },
   {
-    avatar: {size: '64', image:Avatars.Chavez, initial: undefined},
+    avatar: {size: '64', image:Avatars.Chavez},
     title: "Chavez"
   },] },
-  Divider: { size: 'withinSectionMedium' },
+  Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
   Slider: { onDrop: () => {} },
   Timeline: {

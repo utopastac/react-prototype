@@ -24,7 +24,7 @@ import AvatarCarousel from 'src/components/AvatarCarousel';
 import ButtonGroup from 'src/components/ButtonGroup';
 import Button from 'src/components/Buttons/Button';
 import IconBg from 'src/components/IconBg';
-import Avatar from 'src/components/Avatar';
+import Entity from 'src/components/Entity';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 
@@ -100,7 +100,7 @@ const ComponentsView = () => {
           body = "If you don't go by your legal first name, you can change it here. We'll use this name on your profile. "
           size="page"
         />
-        <Divider size="withinSectionMedium" />
+        <Divider size="medium" />
         <FilterBar
           filterChips = {[
             {title: "Chip 1", active: false},
@@ -111,7 +111,7 @@ const ComponentsView = () => {
           ]}
         />
         <Divider
-          size="betweenSectionExtraLargeCell"
+          size="extraLarge"
         />
         <SegmentedControl
           left={{title: "Control left", active: true}}
@@ -119,17 +119,23 @@ const ComponentsView = () => {
           onClick={(segment) => {}}
         />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <Slider
           onDrop={()=>{}}
         />
+        <Slider
+          onDrop={()=>{}}
+          segmented={10}
+          leftLabel="Left"
+          rightLabel="Right"
+        />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <Timeline rowData={rowData} />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <Input
           label="Preferred first name"
@@ -142,7 +148,7 @@ const ComponentsView = () => {
           placeholder="Wright"
         />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <InputCard
           title="Last name"
@@ -154,7 +160,7 @@ const ComponentsView = () => {
           onClick={() => {}}
         />
         <Divider
-          size='withinSectionMedium'
+          size='medium'
         />
         <InputCard
           title="Last name"
@@ -166,13 +172,13 @@ const ComponentsView = () => {
           onClick={() => {}}
         />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <Cell
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: "avatar",
+            type: "entity",
             image: Avatars.Karen
           }}
           right={{
@@ -211,7 +217,7 @@ const ComponentsView = () => {
           title="Cell"
           body="Cell default can be used in a wide variety of use casee"
           left={{
-            type: "avatar",
+            type: "entity",
             image: undefined,
           }}
           right={{
@@ -252,16 +258,16 @@ const ComponentsView = () => {
           onClick={()=>{}}
         />
         {/* Applet components removed */}
-        <Divider size='betweenSectionExtraLargeCell' />
+        <Divider size='extraLarge' />
         <SearchBar placeholder="Search" />
         <AvatarCarousel
           avatars={[
             {
-              avatar: {size: "64", initial: "J"},
+              avatar: {size: "64"},
               title: "Jane"
             },
             {
-              avatar: {size: "64", initial:"N"},
+              avatar: {size: "64"},
               title: "Nigel"
             },
             {
@@ -286,14 +292,14 @@ const ComponentsView = () => {
             }
           ]}
         />
-        <Divider size="betweenSectionLarge" />
+        <Divider size="large" />
         {/* DiscoverPromo removed */}
-        <Divider size="betweenSectionExtraLarge" />
+        <Divider size="extraLarge" />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
           <Badge type="dot" />
           <Badge type="text">99+</Badge>
         </div>
-        <Divider size="betweenSectionExtraLarge" />
+        <Divider size="extraLarge" />
         <Accordion heading="Heading">
           <p>Content that shows when open</p>
         </Accordion>

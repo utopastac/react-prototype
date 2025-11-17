@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps } from "src/components/Avatar";
+import Entity, { EntityProps } from "src/components/Entity";
 
 export interface AvatarData {
-  avatar: AvatarProps;
+  avatar: EntityProps;
 }
 
 export interface AvatarRowProps {
@@ -25,13 +25,13 @@ const AvatarRow: React.FC<AvatarRowProps> = ({ avatars }) => {
 };
 
 interface AvatarInstanceProps {
-  avatar: AvatarProps;
+  avatar: EntityProps;
 }
 
 const AvatarInstance: React.FC<AvatarInstanceProps> = ({ avatar }) => {
   return (
     <div className={styles.AvatarInstance}>
-      <Avatar {...avatar} />
+      <Entity {...avatar} />
     </div>
   );
 };
@@ -39,12 +39,12 @@ const AvatarInstance: React.FC<AvatarInstanceProps> = ({ avatar }) => {
 export const AvatarRowPropMeta = {
   avatars: { type: 'array', label: 'Avatars', itemFields: {
     image: { type: 'string', label: 'Image URL' },
-    initial: { type: 'string', label: 'Initial' },
     size: {
       type: 'select',
-      options: ['64', '48', '32', '28', '24'],
+      options: ['16', '24', '32', '40', '48', '64', '80', '96', '128', '160'],
     },
     border: { type: 'boolean', label: 'Border' },
+    company: { type: 'boolean', label: 'Company' },
   }},
 };
 

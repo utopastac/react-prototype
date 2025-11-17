@@ -1,4 +1,4 @@
-import Icon, { IconPropMeta } from "src/components/Icon";
+import Icon, { IconPropMeta, IconProps } from "src/components/Icon";
 import styles from "./index.module.sass";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 //
@@ -9,11 +9,7 @@ export interface ButtonProps {
   action?: ButtonAction;
   type?: 'primary' | 'secondary' | 'ghost';
   size?: 'small' | 'medium';
-  icon?: {
-    type: string;
-    size: '32' | '24' | '16';
-    color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin';
-  };
+  icon?: Omit<IconProps, 'className'>;
   disabled?: boolean;
   emphasised?: boolean;
 }
@@ -57,7 +53,7 @@ export default function Button({ title, type='secondary', size, onClick, action,
     <div className={`${styles.Main} ${styleClass()} ${sizeClass()} ${disabled ? styles.disabled : ''} ${emphasised ? styles.emphasised : ''} ${isIconOnly ? styles.iconOnly : ''}`} onClick={clickHandler}>
       {title && <span>{title}</span>}
       {icon &&
-        <Icon icon={icon.type} size={icon.size} color={icon.color} />
+        <Icon icon={icon.icon} size={icon.size} color={icon.color} />
       }
     </div>
   );

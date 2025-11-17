@@ -22,15 +22,15 @@ const DiscoverView = () => {
       <ScrollContainer>
         <TitleBar title="Discover" />
         <SearchBar placeholder="Search" />
-        <Divider size="withinSectionSmall" />
+        <Divider size="small" />
         <AvatarCarousel
           avatars={[
             {
-              avatar: {size: "64", initial: "J"},
+              avatar: {size: "64"},
               title: "Jane"
             },
             {
-              avatar: {size: "64", initial:"N"},
+              avatar: {size: "64"},
               title: "Nigel"
             },
             {

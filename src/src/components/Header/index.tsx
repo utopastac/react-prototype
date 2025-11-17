@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar, { AvatarProps, AvatarPropMeta } from "src/components/Avatar";
+import Entity, { EntityProps, EntityPropMeta } from "src/components/Entity";
 import AvatarStackedDiagonal, { AvatarStackedDiagonalProps, AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
 import IconBg, { IconBgProps } from "src/components/IconBg";
 import Icon, { IconPropMeta } from "src/components/Icon";
@@ -8,15 +8,15 @@ import styles from "./index.module.sass";
 import * as Icons from "src/data/icons";
 
 export interface HeaderAccessory {
-  type: 'avatar' | 'avatarStackedDiagonal' | 'icon' | 'image' | 'showMore';
+  type: 'entity' | 'avatarStackedDiagonal' | 'icon' | 'image' | 'showMore';
 }
 
-export interface HeaderAvatarAccessory extends HeaderAccessory {
-  type: 'avatar';
+export interface HeaderEntityAccessory extends HeaderAccessory {
+  type: 'entity';
   image?: string;
-  initial?: string;
-  size: AvatarProps['size'];
+  size: EntityProps['size'];
   border?: boolean;
+  company?: boolean;
 }
 
 export interface HeaderAvatarStackedDiagonalAccessory extends HeaderAccessory {
@@ -49,7 +49,7 @@ export interface HeaderShowMoreAccessory extends HeaderAccessory {
 }
 
 export type HeaderAccessoryProps = 
-  | HeaderAvatarAccessory 
+  | HeaderEntityAccessory 
   | HeaderAvatarStackedDiagonalAccessory 
   | HeaderIconAccessory
   | HeaderImageAccessory
@@ -107,8 +107,8 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
     if (!accessory) return null;
     
     switch(accessory.type) {
-      case 'avatar':
-        return <Avatar {...accessory} size="64" />;
+      case 'entity':
+        return <Entity {...accessory} size="64" />;
       case 'avatarStackedDiagonal':
         return <AvatarStackedDiagonal {...accessory} size="64" />;
       case 'icon':
@@ -133,8 +133,8 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
 
 export default Header;
 
-// Omit 'size' from AvatarPropMeta and AvatarStackedDiagonalPropMeta for use in HeaderPropMeta
-const { size: _avatarSize, ...AvatarPropMetaNoSize } = AvatarPropMeta;
+// Omit 'size' from EntityPropMeta and AvatarStackedDiagonalPropMeta for use in HeaderPropMeta
+const { size: _entitySize, ...EntityPropMetaNoSize } = EntityPropMeta;
 const { size: _stackedSize, ...AvatarStackedDiagonalPropMetaNoSize } = AvatarStackedDiagonalPropMeta;
 
 export const HeaderPropMeta = {
@@ -151,9 +151,9 @@ export const HeaderPropMeta = {
     options: [
       { type: null, label: 'None' },
       {
-        type: 'avatar',
-        label: 'Avatar',
-        fields: AvatarPropMetaNoSize,
+        type: 'entity',
+        label: 'Entity',
+        fields: EntityPropMetaNoSize,
       },
       {
         type: 'avatarStackedDiagonal',

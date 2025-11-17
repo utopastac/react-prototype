@@ -62,7 +62,7 @@ export const reportFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: 'withinSectionMedium'}
+          props: {size: 'medium'}
         },
         {
           component: Components.InputCard,
@@ -74,7 +74,7 @@ export const reportFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: 'withinSectionMedium'}
+          props: {size: 'medium'}
         },
         {
           component: Components.InputCard,
@@ -86,7 +86,7 @@ export const reportFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: 'withinSectionMedium'}
+          props: {size: 'medium'}
         },
         {
           component: Components.InputCard,
@@ -98,7 +98,7 @@ export const reportFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: 'withinSectionMedium'}
+          props: {size: 'medium'}
         },
         {
           component: Components.InputCard,
@@ -139,7 +139,7 @@ export const reportFlowData = [
         },
         {
           component: Components.Divider,
-          props: {size: 'withinSectionMedium'}
+          props: {size: 'medium'}
         },
         {
           component: Components.TextArea,

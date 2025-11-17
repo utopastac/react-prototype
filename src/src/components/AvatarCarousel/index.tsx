@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./index.module.sass";
-import Avatar, { AvatarProps, AvatarPropMeta } from "src/components/Avatar";
+import Entity, { EntityProps, EntityPropMeta } from "src/components/Entity";
 
 export interface AvatarData {
-  avatar: AvatarProps;
+  avatar: EntityProps;
   title: string;
 }
 
@@ -26,14 +26,14 @@ const AvatarCarousel: React.FC<AvatarCarouselProps> = ({ avatars }) => {
 };
 
 interface AvatarInstanceProps {
-  avatar: AvatarProps;
+  avatar: EntityProps;
   title: string;
 }
 
 const AvatarInstance: React.FC<AvatarInstanceProps> = ({ avatar, title }) => {
   return (
     <div className={styles.AvatarInstance}>
-      <Avatar {...avatar} size='64' />
+      <Entity {...avatar} size='64' />
       {title}
     </div>
   );
@@ -50,10 +50,10 @@ export const AvatarCarouselPropMeta = {
         type: 'object',
         label: 'Avatar',
         fields: {
-          image: AvatarPropMeta.image,
-          initial: AvatarPropMeta.initial,
-          size: AvatarPropMeta.size,
-          // border: AvatarPropMeta.border, // Uncomment if you want to include border
+          image: EntityPropMeta.image,
+          size: EntityPropMeta.size,
+          border: EntityPropMeta.border,
+          company: EntityPropMeta.company,
         },
       },
       title: { type: 'string', label: 'Title' },
