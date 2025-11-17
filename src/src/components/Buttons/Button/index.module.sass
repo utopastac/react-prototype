@@ -19,7 +19,7 @@ $nav-bottom-border: 3px
     width: 20px
     height: 20px
     background: white
-  &.prominent
+  &.primary
     background: var(--color-action)
     color: var(--color-label-knockout)
     &:hover
@@ -27,35 +27,33 @@ $nav-bottom-border: 3px
     &.disabled
       color: var(--color-background)
       opacity: 0.11
-
-  &.destructive
-    background: var(--color-background-neutral-soft)
-    color: var(--color-negative)
-  &.inverse
-    background: var(--white-a100)
+  &.secondary
+    background: var(--color-background-knockout)
     color: var(--color-text)
-  &.standard
-    background: var(--color-background-neutral-soft)
-    color: var(--color-text)
+    border: var(--size-border-width-standard) solid var(--color-border)
     &.disabled
-      background: var(--color-background-neutral-soft)
+      background: var(--color-background-knockout)
       color: var(--color-text-disabled)
-  &.subtle
+      border-color: var(--color-border-disabled)
+  &.ghost
     background: var(--color-background-transparent)
     color: var(--color-text)
     text-decoration: underline
     &.disabled
       color: var(--color-text-disabled)
-  &.brand
-    background: var(--color-action)
-    color: var(--color-text-solid)
-  &.compact
+  &.small
     height: size(32)
     display: inline-flex
-    @extend %typography-title-s
-  &.cta
-    height: size(52)
-    @extend %typography-title-l
-  &.default
+    @extend %typography-supportive-m-bold
+    &.iconOnly
+      width: size(32)
+      padding: 0
+  &.medium
     height: size(44)
-    @extend %typography-title-l
+    @extend %typography-supportive-l-bold
+    &.iconOnly
+      width: size(44)
+      padding: 0
+  &.emphasised
+    border: var(--size-border-width-selected) solid var(--color-border)
+    box-shadow: var(--elevation-2)

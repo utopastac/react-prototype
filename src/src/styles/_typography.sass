@@ -63,9 +63,19 @@ $font-dev: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
   @extend %regular
   @include fontSize(var(--font-size-supportive-m), var(--line-height-supportive-m), 0)
 
+%typography-supportive-m-bold
+  @extend %paragraph
+  @extend %bold
+  @include fontSize(var(--font-size-supportive-m), var(--line-height-supportive-m), 0)
+
 %typography-supportive-l
   @extend %paragraph
   @extend %regular
+  @include fontSize(var(--font-size-supportive-l), var(--line-height-supportive-l), 0)
+
+%typography-supportive-l-bold
+  @extend %paragraph
+  @extend %bold
   @include fontSize(var(--font-size-supportive-l), var(--line-height-supportive-l), 0)
 
 %typography-title-s

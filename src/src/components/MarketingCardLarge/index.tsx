@@ -20,7 +20,7 @@ const MarketingCardLarge: React.FC<UpsellCardProps> = ({ title, body, image, but
       <header>
         <h5>{title}</h5>
         <p>{body}</p>
-        { button && <Button title={button} type="inverse" size="compact" /> }
+        { button && <Button title={button} type="primary" size="small" /> }
       </header>
     </div>
   );

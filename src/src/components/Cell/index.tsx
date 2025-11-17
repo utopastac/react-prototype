@@ -127,7 +127,7 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
         );
       case 'button':
         const buttonCell = right as ButtonCell;
-        return <Button title={buttonCell.title} size="compact" {...buttonCell.props} />;
+        return <Button title={buttonCell.title} size="small" {...buttonCell.props} />;
       case 'radio':
         const radioCell = right as RadioCell;
         return <Radio checked={radioCell.checked} />;

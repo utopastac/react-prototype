@@ -1,24 +1,24 @@
-import React from "react";
 import Icon, { IconPropMeta } from "src/components/Icon";
 import styles from "./index.module.sass";
 import { useButtonAction, ButtonAction } from 'src/hooks/useButtonAction';
 //
 
 export interface ButtonProps {
-  title: string;
+  title?: string;
   onClick?: () => void;
   action?: ButtonAction;
-  type?: 'standard' | 'prominent' | 'destructive' | 'subtle' | 'inverse' | 'brand';
-  size?: 'compact' | 'default' | 'cta';
+  type?: 'primary' | 'secondary' | 'ghost';
+  size?: 'small' | 'medium';
   icon?: {
     type: string;
     size: '32' | '24' | '16';
     color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin';
   };
   disabled?: boolean;
+  emphasised?: boolean;
 }
 
-export default function Button({ title, type='standard', size, onClick, action, icon, disabled }: ButtonProps) {
+export default function Button({ title, type='secondary', size, onClick, action, icon, disabled, emphasised }: ButtonProps) {
 
   const buttonActionHandler = useButtonAction({ action, onClick });
 
@@ -29,39 +29,33 @@ export default function Button({ title, type='standard', size, onClick, action, 
 
   const styleClass = () =>{
     switch(type){
-      case 'standard':
-        return styles.standard;
-      case 'prominent':
-        return styles.prominent;
-      case 'destructive':
-        return styles.destructive;
-      case 'subtle':
-        return styles.subtle;
-      case 'inverse':
-        return styles.inverse;
-      case 'brand':
-        return styles.brand;
+      case 'primary':
+        return styles.primary;
+      case 'secondary':
+        return styles.secondary;
+      case 'ghost':
+        return styles.ghost;
       default:
-        return styles.standard;
+        return styles.secondary;
     }
   } 
 
   const sizeClass = () => {
     switch(size){
-      case 'compact':
-        return styles.compact;
-      case 'default':
-        return styles.default;
-      case 'cta':
-        return styles.cta;
+      case 'small':
+        return styles.small;
+      case 'medium':
+        return styles.medium;
       default:
-        return styles.default;
+        return styles.medium;
     }
   }
 
+  const isIconOnly = icon && !title;
+
   return (
-    <div className={`${styles.Main} ${styleClass()} ${sizeClass()} ${disabled ? styles.disabled : ''}`} onClick={clickHandler}>
-      <span>{title}</span>
+    <div className={`${styles.Main} ${styleClass()} ${sizeClass()} ${disabled ? styles.disabled : ''} ${emphasised ? styles.emphasised : ''} ${isIconOnly ? styles.iconOnly : ''}`} onClick={clickHandler}>
+      {title && <span>{title}</span>}
       {icon &&
         <Icon icon={icon.type} size={icon.size} color={icon.color} />
       }
@@ -77,23 +71,21 @@ export const ButtonPropMeta = {
     type: 'select',
     label: 'Type',
     options: [
-      'prominent',
-      'standard',
-      'destructive',
-      'subtle',
-      'brand',
+      'primary',
+      'secondary',
+      'ghost',
     ],
   },
   size: {
     type: 'select',
     label: 'Size',
     options: [
-      'compact',
-      'cta',
-      'default',
+      'small',
+      'medium',
     ],
   },
   disabled: { type: 'boolean', label: 'Disabled' },
+  emphasised: { type: 'boolean', label: 'Emphasised' },
   icon: {
     type: 'object',
     label: 'Icon',

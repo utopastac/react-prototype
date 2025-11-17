@@ -40,7 +40,7 @@ export const reportFlowData = [
           },
           {
             title: 'Start Report',
-            type: 'prominent',
+            type: 'primary',
             action: { path: '/flows/report/type', type: BUTTON_ACTION_PATH },
           },
         ]
@@ -116,7 +116,7 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Continue',
-            type: 'prominent',
+            type: 'primary',
             action: { path: '/flows/report/details', type: BUTTON_ACTION_PATH },
           }
         ],
@@ -156,7 +156,7 @@ export const reportFlowData = [
         buttons: [
           {
             title: 'Submit Report',
-            type: 'prominent',
+            type: 'primary',
             action: { path: '/flows/report/loading', type: BUTTON_ACTION_PATH },
           }
         ]

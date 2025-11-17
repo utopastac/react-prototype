@@ -311,7 +311,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -426,7 +426,7 @@ export const AdminTemplates: AdminTemplate[] = [
     bottomButtonsProps: {
       buttons: [
         { title: 'Back', type: 'standard' },
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -535,7 +535,7 @@ export const AdminTemplates: AdminTemplate[] = [
     bottomButtonsProps: {
       buttons: [
         { title: 'Back', type: 'standard' },
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -623,7 +623,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: 'prominent' }
+        { title: 'Next', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -695,7 +695,7 @@ export const AdminTemplates: AdminTemplate[] = [
     bottomButtonsProps: {
       buttons: [
         { title: 'Confirm another way', type: 'standard' },
-        { title: 'Try again', type: 'prominent' }
+        { title: 'Try again', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -764,7 +764,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Done', type: 'prominent' }
+        { title: 'Done', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -861,7 +861,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: 'prominent' }
+        { title: 'Next', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -939,7 +939,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Submit', type: 'prominent' }
+        { title: 'Submit', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -1088,7 +1088,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: 'prominent', disabled: true }
+        { title: 'Continue', type: 'primary', disabled: true }
       ],
       horizontal: false,
       inComponent: false,

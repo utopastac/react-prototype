@@ -74,7 +74,7 @@ const CellActivity: React.FC<CellActivityProps> = ({
       case 'button':
         return (
           <div className={styles.button}>
-            <Button title={right.title} size="compact" type="prominent" />
+            <Button title={right.title} size="small" type="primary" />
           </div>
         );
       case 'info':

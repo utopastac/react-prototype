@@ -8,7 +8,7 @@ export interface ButtonGroupProps {
   inComponent?: boolean;
   showHairline?: boolean;
   disclaimer?: string;
-  size?: 'compact' | 'default' | 'cta';
+  size?: 'small' | 'medium';
 }
 
 const ButtonGroup = ({ 
@@ -17,7 +17,7 @@ const ButtonGroup = ({
   inComponent, 
   showHairline, 
   disclaimer, 
-  size = "cta" 
+  size = "medium" 
 }: ButtonGroupProps) => {
   const buttonsRender = buttons.map((button, index) => {
     return <Button {...button} key={`ButtonGroup${index}`} size={size} />
@@ -50,9 +50,8 @@ export const ButtonGroupPropMeta = {
     type: 'select', 
     label: 'Button Size',
     options: [
-      'compact',
-      'cta',
-      'default',
+      'small',
+      'medium',
     ]
   },
 };

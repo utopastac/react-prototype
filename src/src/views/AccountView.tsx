@@ -54,7 +54,7 @@ const AccountView = () => {
         <div className={styles.buttonRow}>
           <Button 
             title={headline}
-            size="compact"
+            size="small"
             action={{
               type: BUTTON_ACTION_HALFSHEET,
               halfSheet: AccountSwitcherHalfsheet
@@ -68,7 +68,7 @@ const AccountView = () => {
           />
           <Button 
             title="Edit profile"
-            size="compact"
+            size="small"
           />
         </div>
         <Divider
@@ -97,7 +97,7 @@ const AccountView = () => {
         <ButtonGroup
           buttons={[
             {title: "Create a jobs account", onClick: ()=>{}},
-            {title: "Sign out", type: "destructive", onClick:()=>{}}
+            {title: "Sign out", type: "secondary", onClick:()=>{}}
           ]}
         />
       </ScrollContainer>
