@@ -89,6 +89,10 @@ import Accordion, {
   AccordionPropMeta
 } from 'src/components/Accordion';
 
+import Tag, {
+  TagPropMeta
+} from 'src/components/Tag';
+
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
 
@@ -138,6 +142,7 @@ export const Components = {
   Modal,
   Badge,
   Accordion,
+  Tag,
 };
 
 
@@ -210,7 +215,8 @@ export const ComponentPropMeta = {
   ProgressCircular: ProgressCircularPropMeta,
   Modal: ModalPropMeta,
   Badge: BadgePropMeta,
-  Accordion: AccordionPropMeta
+  Accordion: AccordionPropMeta,
+  Tag: TagPropMeta
   // Add more component meta objects here as you build them
 };
 
@@ -338,6 +344,11 @@ export const initialComponentProps: Record<string, any> = {
     title: 'Button',
     type: 'secondary',
     size: 'medium'
+  },
+  Tag: {
+    children: 'Label',
+    size: 'small',
+    type: 'default'
   }
 };
 

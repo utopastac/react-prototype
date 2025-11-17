@@ -28,6 +28,7 @@ import EntityStack from 'src/components/EntityStack';
 import EntityGrid from 'src/components/EntityGrid';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
+import Tag from 'src/components/Tag';
 
 import styles from "./index.module.sass";
 //
@@ -267,6 +268,22 @@ const ComponentsView = () => {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
           <Badge type="dot" />
           <Badge type="text">99+</Badge>
+        </div>
+        <Divider size="extraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Tag size="small" type="default">Label</Tag>
+          <Tag size="small" type="positive">Label</Tag>
+          <Tag size="small" type="negative">Label</Tag>
+          <Tag size="small" type="caution">Label</Tag>
+          <Tag size="small" type="neutral">Label</Tag>
+        </div>
+        <Divider size="large" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Tag size="large" type="default">Label</Tag>
+          <Tag size="large" type="positive">Label</Tag>
+          <Tag size="large" type="negative">Label</Tag>
+          <Tag size="large" type="caution">Label</Tag>
+          <Tag size="large" type="neutral">Label</Tag>
         </div>
         <Divider size="extraLarge" />
         <EntityStack
