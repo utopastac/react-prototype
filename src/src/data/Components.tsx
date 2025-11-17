@@ -88,6 +88,10 @@ import Icon, {
   IconPropMeta
 } from 'src/components/Icon';
 
+import Badge, {
+  BadgePropMeta
+} from 'src/components/Badge';
+
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
 import MarketingCardSmall, { MarketingCardSmallPropMeta } from 'src/components/MarketingCardSmall';
@@ -142,6 +146,7 @@ export const Components = {
   Modal,
   MarketingCardSmall,
   MarketingCardLarge,
+  Badge,
 };
 
 
@@ -224,7 +229,8 @@ export const ComponentPropMeta = {
   ListOrdered: ListOrderedPropMeta,
   InputStackedHorizontal: InputStackedHorizontalPropMeta,
   ProgressCircular: ProgressCircularPropMeta,
-  Modal: ModalPropMeta
+  Modal: ModalPropMeta,
+  Badge: BadgePropMeta
   // Add more component meta objects here as you build them
 };
 
@@ -354,6 +360,10 @@ export const initialComponentProps: Record<string, any> = {
     icon: '',
     primaryButton: { label: 'OK' },
     secondaryButton: { label: 'Cancel' }
+  },
+  Badge: {
+    type: 'text',
+    children: '99+'
   }
 };
 

@@ -25,6 +25,7 @@ import ButtonGroup from 'src/components/ButtonGroup';
 import Button from 'src/components/Buttons/Button';
 import IconBg from 'src/components/IconBg';
 import Avatar from 'src/components/Avatar';
+import Badge from 'src/components/Badge';
 
 import styles from "./index.module.sass";
 //
@@ -286,6 +287,11 @@ const ComponentsView = () => {
         />
         <Divider size="betweenSectionLarge" />
         {/* DiscoverPromo removed */}
+        <Divider size="betweenSectionExtraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Badge type="dot" />
+          <Badge type="text">99+</Badge>
+        </div>
       </ScrollContainer>
       <ButtonGroup
         buttons={[
