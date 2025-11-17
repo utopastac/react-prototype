@@ -9,9 +9,10 @@
     flex: 1
     display: flex
     align-items: top
-    padding: size(16)
+    gap: size(8)
     cursor: pointer
     position: relative
+    padding: size(8) 0
   h5
     @extend %typography-title-l
     color: var(--color-text)
@@ -21,4 +22,6 @@
     margin-top: size(4)
   .textContent
     flex: 1
-    padding-right: size(16)
+  &.leftOriented
+    .textContent
+      padding-right: 0

@@ -251,7 +251,7 @@ export const initialComponentProps: Record<string, any> = {
     placeholder2: 'Placeholder 2'
   },
   TextArea: { label: 'Label', placeholder: 'Placeholder' },
-  InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, checked: false },
+  InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, orientation: 'right', checked: false },
   ButtonGroup: { buttons: [{ title: 'Button' }] },
   SearchBar: { placeholder: 'Search...' },
   PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
@@ -375,6 +375,11 @@ export const initialComponentProps: Record<string, any> = {
     heading: 'Heading',
     defaultOpen: false,
     children: 'Content that shows when open'
+  },
+  Button: {
+    title: 'Button',
+    type: 'secondary',
+    size: 'medium'
   }
 };
 
