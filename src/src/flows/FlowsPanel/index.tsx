@@ -1,7 +1,7 @@
 import React from "react";
 import { LinkProps } from "src/admin/components/Link";
 import LinkList from "src/admin/components/LinkList";
-import ThemeSection from "src/admin/ThemeSection";
+import ThemeSection from "src/admin/components/ThemeSection";
 import styles from "src/flows/FlowsPanel/index.module.sass";
 
 /**

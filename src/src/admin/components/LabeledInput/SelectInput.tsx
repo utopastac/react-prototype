@@ -30,14 +30,14 @@ const SelectInput: React.FC<SelectInputProps> = ({
         const formattedLabel = formatSelectOptionLabel(opt);
         return { 
           value: opt, 
-          label: label ? `${label}: ${formattedLabel}` : formattedLabel 
+          label: formattedLabel 
         };
       } else {
         // Always format the label, even if provided
         const formattedLabel = formatSelectOptionLabel(opt.label ?? opt.value);
         return { 
           ...opt, 
-          label: label ? `${label}: ${formattedLabel}` : formattedLabel 
+          label: formattedLabel 
         };
       }
     });
@@ -45,7 +45,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 
   return (
     <div className={styles.Input}>
-      {label && <label className={styles.hiddenLabel}><span>{label}</span></label>}
+      {label && <label><span>{label}</span></label>}
       <select
         value={displayValue}
         onChange={e => onChange(e.target.value)}

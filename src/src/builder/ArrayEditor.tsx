@@ -145,7 +145,7 @@ const ArrayEditor: React.FC<ArrayEditorProps> = ({
               <div style={{ display: 'flex', gap: 4 }}>
                 <ToolbarButton
                   title="Duplicate"
-                  icon={Icons.Copy16}
+                  icon={Icons.Duplicate16}
                   onClick={() => {
                     // Insert a copy of the current item after it
                     const newArray = [...arrayValue];

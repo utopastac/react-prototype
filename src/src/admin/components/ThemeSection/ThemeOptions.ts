@@ -36,4 +36,5 @@ export const themes = [
   }
 ];
 
-export type ThemeOption = typeof themes[number]; 
+export type ThemeOption = typeof themes[number];
+

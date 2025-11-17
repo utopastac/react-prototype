@@ -220,6 +220,12 @@
   overflow-y: scroll
   .Fields
     padding: 0 var(--admin-padding) size(80) var(--admin-padding)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
+  .themeItem
+    width: 100%
 .ArrayOptionsHeader
   display: flex
   align-items: center
@@ -232,11 +238,15 @@
 .ArrayItemBox
   border: 1px solid var(--admin-section-border)
   border-radius: var(--admin-wrapper-border-radius)
-  margin-bottom: 16px
+  margin-bottom: size(8)
   background: var(--admin-white)
   .content
     padding: var(--admin-input-padding) var(--admin-padding)
     border-top: 1px solid var(--admin-section-border)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
   &:not(&.Open)
     header:hover
       background: var(--admin-gray-20)

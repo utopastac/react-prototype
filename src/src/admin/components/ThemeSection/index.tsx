@@ -1,7 +1,8 @@
 import React from "react";
 import { useTheme, useThemeDispatch, ThemeObject, UPDATE_THEME } from 'src/containers/ThemeContext';
-import { themes } from 'src/admin/ThemeOptions';
+import { themes } from './ThemeOptions';
 import LabeledInput from 'src/admin/components/LabeledInput';
+import styles from './index.module.sass';
 
 const ThemeSection: React.FC = () => {
   const themeDispatch = useThemeDispatch();
@@ -13,7 +14,7 @@ const ThemeSection: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={styles.ThemeSection}>
       {themes.map((themeContent, index) => {
         const { title, type, data } = themeContent;
         let match = '';
@@ -22,7 +23,7 @@ const ThemeSection: React.FC = () => {
         else if (type === 'scale') match = scale;
         const options = data.map((item: { label: string; themeName: string }) => ({ value: item.themeName, label: item.label }));
         return (
-          <div key={`themeSection-${index}`}>
+          <div key={`themeSection-${index}`} className={styles.themeItem}>
             <LabeledInput
               config={{ type: 'select', label: title, options }}
               value={match}
@@ -31,8 +32,9 @@ const ThemeSection: React.FC = () => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
-export default ThemeSection; 
+export default ThemeSection;
+

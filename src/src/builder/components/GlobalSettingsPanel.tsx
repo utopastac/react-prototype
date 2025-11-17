@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import ToolsSection from 'src/builder/components/ToolsSection';
-import ThemeSection from 'src/admin/ThemeSection';
+import ThemeSection from 'src/admin/components/ThemeSection';
 import TextButton from 'src/admin/components/TextButton';
 import Header from 'src/admin/components/Header';
 import styles from 'src/builder/index.module.sass';

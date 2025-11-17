@@ -6,7 +6,7 @@ import ButtonGroup from 'src/components/ButtonGroup';
 import Toast from 'src/components/Toast';
 import IOSStatusBar from 'src/components/IOSStatusBar';
 import IOSHomeIndicator from 'src/components/IOSHomeIndicator';
-import Markdown from 'src/admin/components/Markdown';
+import PatternDescription from './PatternDescription';
 import builderStyles from 'src/builder/index.module.sass';
 import styles from './patterns.module.sass';
 
@@ -66,7 +66,7 @@ const TemplatePreview: React.FC<TemplatePreviewProps> = ({ template }) => {
       </div>
       {template.description && (
         <div className={styles.description}>
-          <Markdown copy={template.description} />
+          <PatternDescription description={template.description} />
         </div>
       )}
     </div>

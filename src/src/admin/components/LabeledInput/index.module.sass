@@ -10,7 +10,6 @@ $inputWidth: size(160)
   align-items: center 
   justify-content: space-between
   gap: 8px
-  margin: size(8) 0 size(16) 0
   select, ::picker(select)
     appearance: base-select
   select::picker-icon
@@ -31,7 +30,9 @@ $inputWidth: size(160)
       background: var(--admin-brand-highlight)
   label
     @extend %input-label
-    flex: 0.7
+    flex: 0 0 auto
+    min-width: size(80)
+    max-width: size(200)
     &.hiddenLabel
       position: absolute
       width: 1px
@@ -42,14 +43,37 @@ $inputWidth: size(160)
       clip: rect(0, 0, 0, 0)
       white-space: nowrap
       border-width: 0
-  input, select
+  input
     @extend %input-field
     flex: 1
+    min-width: 0
+    border: none
+    background: var(--admin-gray-20)
+    &:focus
+      background: var(--admin-gray-30)
+      border: none
+    &:active
+      background: var(--admin-gray-30)
   select
+    @extend %input-field
     @extend %dev-tools-select
+    flex: 1
+    min-width: 0
+    border: none
+    background-color: var(--admin-gray-20)
+    &:focus
+      background-color: var(--admin-gray-30)
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>')
+      background-repeat: no-repeat
+      background-position: right size(12) center
+      border: none
+    &:active
+      background-color: var(--admin-gray-30)
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>')
+      background-repeat: no-repeat
+      background-position: right size(12) center
     
 .BooleanInput
-  margin: 0 0 size(8) 0
 
 .Toggle
   display: block
@@ -80,16 +104,7 @@ $inputWidth: size(160)
   user-select: none
 
 .StringInput
-  flex-direction: column
-  align-items: flex-start
-  label
-    margin-top: 0
-    margin-bottom: 0
-    max-width: 100%
-    flex: none
-  input
-    width: 100%
-    flex: none
+  // Uses base .Input styles for consistent width
 
 .TextAreaInput
   flex-direction: column
@@ -106,6 +121,13 @@ $inputWidth: size(160)
     height: size(120)
     padding: size(8)
     font-family: $font-dev
+    border: none
+    background: var(--admin-gray-20)
+    &:focus
+      background: var(--admin-gray-30)
+      border: none
+    &:active
+      background: var(--admin-gray-30)
 
 $trackHeight: size(3)
 $thumbSize: size(12)
@@ -113,7 +135,6 @@ $thumbSize: size(12)
 .SliderInput
   display: flex
   gap: size(8)
-  margin: size(8) 0
 
   label
     flex: 1

@@ -19,11 +19,14 @@ const Link: React.FC<LinkProps> = ({ title, path, description, onClick, isSelect
 
   // Auto-detect selected state if path matches current location
   // Handle both regular paths and hash-based routing (HashRouter)
+  // Also match subpages by checking if pathname starts with the path followed by '/'
   const isActive = isSelected !== undefined 
     ? isSelected 
     : path ? (
         location.pathname === path || 
+        location.pathname.startsWith(path + '/') ||
         location.hash === `#${path}` ||
+        location.hash.startsWith(`#${path}/`) ||
         (location.pathname === '/' && location.hash === `#${path}`)
       ) : false;
 
