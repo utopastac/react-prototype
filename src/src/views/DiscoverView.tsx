@@ -5,7 +5,7 @@ import { useLayersDispatch } from 'src/containers/LayersContext';
 
 // Direct component imports
 import TitleBar from 'src/components/TitleBar';
-import SearchBar from 'src/components/SearchBar';
+import SearchInput from 'src/components/SearchInput';
 import Divider from 'src/components/Divider';
 // DiscoverPromo removed
 import NavigationBar from 'src/components/NavigationBar';
@@ -20,7 +20,7 @@ const DiscoverView = () => {
     <PageWrapper background>
       <ScrollContainer>
         <TitleBar title="Discover" />
-        <SearchBar placeholder="Search" />
+        <SearchInput placeholder="Search" />
         <Divider size="small" />
         {/* DiscoverPromo removed */}
       </ScrollContainer>

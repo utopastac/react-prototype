@@ -18,7 +18,7 @@ import Timeline, { TimelineProps} from "src/components/Timeline";
 import TimelineRow, {
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
-import SearchBar from 'src/components/SearchBar';
+import SearchInput from 'src/components/SearchInput';
 // Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
 import Button from 'src/components/Buttons/Button';
@@ -260,7 +260,7 @@ const ComponentsView = () => {
         />
         {/* Applet components removed */}
         <Divider size='extraLarge' />
-        <SearchBar placeholder="Search" />
+        <SearchInput placeholder="Search" />
         <Divider size="large" />
         {/* DiscoverPromo removed */}
         <Divider size="extraLarge" />
@@ -270,35 +270,35 @@ const ComponentsView = () => {
         </div>
         <Divider size="extraLarge" />
         <EntityStack
-          avatars={[
-            { avatar: { image: Avatars.Karen } },
-            { avatar: { image: Avatars.Darren } },
-            { avatar: { image: Avatars.James } },
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
           ]}
           stacked={false}
           size="24"
         />
         <Divider size="large" />
         <EntityStack
-          avatars={[
-            { avatar: { image: Avatars.Karen } },
-            { avatar: { image: Avatars.Darren } },
-            { avatar: { image: Avatars.James } },
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
           ]}
           stacked={true}
           size="40"
         />
         <Divider size="large" />
         <EntityStack
-          avatars={[
-            { avatar: { image: Avatars.Karen } },
-            { avatar: { image: Avatars.Darren } },
-            { avatar: { image: Avatars.James } },
-            { avatar: { image: Avatars.Kevin } },
-            { avatar: { image: Avatars.Nina } },
-            { avatar: { image: Avatars.Paul } },
-            { avatar: { image: Avatars.Isaac } },
-            { avatar: { image: Avatars.Peter } },
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
+            { entity: { image: Avatars.Kevin } },
+            { entity: { image: Avatars.Nina } },
+            { entity: { image: Avatars.Paul } },
+            { entity: { image: Avatars.Isaac } },
+            { entity: { image: Avatars.Peter } },
           ]}
           stacked={true}
           size="40"
@@ -307,33 +307,33 @@ const ComponentsView = () => {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '0 16px', alignItems: 'center' }}>
           <EntityGrid
             entities={[
-              { image: Avatars.Karen },
-              { image: Avatars.Darren }
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } }
             ]}
           />
           <EntityGrid
             entities={[
-              { image: Avatars.Karen },
-              { image: Avatars.Darren },
-              { image: Avatars.James }
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } }
             ]}
           />
           <EntityGrid
             entities={[
-              { image: Avatars.Karen },
-              { image: Avatars.Darren },
-              { image: Avatars.James },
-              { image: Avatars.Kevin }
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } },
+              { entity: { image: Avatars.Kevin } }
             ]}
           />
           <EntityGrid
             entities={[
-              { image: Avatars.Karen },
-              { image: Avatars.Darren },
-              { image: Avatars.James },
-              { image: Avatars.Kevin },
-              { image: Avatars.Nina },
-              { image: Avatars.Paul }
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } },
+              { entity: { image: Avatars.Kevin } },
+              { entity: { image: Avatars.Nina } },
+              { entity: { image: Avatars.Paul } }
             ]}
           />
         </div>

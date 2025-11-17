@@ -3,18 +3,19 @@
 .Main
   padding: size(6) $margin-default
   label
-    @extend %typography-title-l
-    color: var(--color-text)
+    @extend %typography-supportive-m
+    color: var(--color-label)
     margin-bottom: size(4)
     display: block
 
   input
     outline: none
     width: 100%
-    border: var(--size-border-width-standard) solid var(--color-border-subtle)
-    border-radius: $radius-s
-    padding: size(12) size(16)
-    @extend %typography-body
+    border: var(--size-border-width-standard) solid var(--color-border)
+    border-radius: var(--corner-radius-0_5x)
+    padding: size(12) size(8)
+    @extend %typography-supportive-m
+    height: size(32)
     background: var(--color-background)
     color: var(--color-text)
     &:placeholder
@@ -28,8 +29,8 @@
     margin-top: size(4)
     gap: size(4)
     p
-      @extend %typography-body
-      color: var(--color-text)
+      @extend %typography-supportive-s
+      color: var(--color-text-meta)
 
   .inputWrapper
     position: relative

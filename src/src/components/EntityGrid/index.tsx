@@ -5,8 +5,9 @@ import Entity, { EntityProps } from "src/components/Entity";
 
 export type EntityGridLayout = 'diagonal' | 'triangular' | 'grid' | 'diagonalWithBadge';
 
-// EntityData is EntityProps with size made optional (since EntityGrid auto-determines size)
-export type EntityData = Omit<EntityProps, 'size'> & { size?: EntityProps['size'] };
+export interface EntityData {
+  entity: EntityProps;
+}
 
 export interface EntityGridProps {
   entities: EntityData[];
@@ -44,7 +45,8 @@ const EntityGrid: React.FC<EntityGridProps> = ({
     }
   };
 
-  const renderEntity = (entity: EntityData, index: number) => {
+  const renderEntity = (entityData: EntityData, index: number) => {
+    const entity = entityData.entity;
     // Use entity's size if specified, otherwise use calculated size
     const entitySize = entity.size || size;
     

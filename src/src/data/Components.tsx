@@ -21,7 +21,7 @@ import InputCard, {
 } from 'src/components/InputCard';
 //
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
-import SearchBar, { SearchBarPropMeta } from 'src/components/SearchBar';
+import SearchInput, { SearchInputPropMeta } from 'src/components/SearchInput';
 //
 //
 // Removed MoneyInputDisplay
@@ -114,7 +114,7 @@ export const Components = {
   TextArea,
   InputCard,
   ButtonGroup,
-  SearchBar,
+  SearchInput,
   PINCheck,
   UpsellCard,
   InputStackedHorizontal,
@@ -164,7 +164,7 @@ export const InterventionScreenComponents = {
   TextArea,
   InputCard,
   ButtonGroup,
-  SearchBar,
+  SearchInput,
   UpsellCard,
   InputStackedHorizontal,
   PINCheck,
@@ -202,7 +202,7 @@ export const ComponentPropMeta = {
   TextArea: TextAreaPropMeta,
   InputCard: InputCardPropMeta,
   ButtonGroup: ButtonGroupPropMeta,
-  SearchBar: SearchBarPropMeta,
+  SearchInput: SearchInputPropMeta,
   PINCheck: PINCheckPropMeta,
   UpsellCard: UpsellCardPropMeta,
   MarketingCardSmall: MarketingCardSmallPropMeta,
@@ -247,7 +247,7 @@ export const initialComponentProps: Record<string, any> = {
   TextArea: { label: 'Label', placeholder: 'Placeholder' },
   InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, orientation: 'right', checked: false },
   ButtonGroup: { buttons: [{ title: 'Button' }] },
-  SearchBar: { placeholder: 'Search...' },
+  SearchInput: { placeholder: 'Search...' },
   PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
   UpsellCard: { title: 'Info Card', body: 'Body', size: 'small' },
   MarketingCardSmall: { title: 'Marketing Card Small', body: 'Body', image: Images.Collaboration, button: 'Button text' },
