@@ -256,7 +256,7 @@ export const AdminTemplates: AdminTemplate[] = [
           size: 'hero',
           accessory: {
             type: 'image',
-            image: Images.Security,
+            image: Images.Conversation,
             offset: true
           }
         }

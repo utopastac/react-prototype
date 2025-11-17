@@ -45,7 +45,7 @@ import Load24 from "src/assets/24/load.svg";
 import Check32 from "src/assets/32/check.svg";
 
 // Root assets
-import Push from "src/assets/push.svg";
+import Push from "src/assets/icons/system/Arrow left.svg";
 
 export {
   // Navigation icons

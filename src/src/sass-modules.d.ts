@@ -10,3 +10,9 @@ declare module '*.sass' {
   export default classes;
 }
 
+// Type declarations for SVG imports
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}
+
