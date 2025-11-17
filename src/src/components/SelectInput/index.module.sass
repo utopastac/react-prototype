@@ -2,11 +2,6 @@
 
 .Main
   padding: size(6) $margin-default
-  label
-    @extend %typography-supportive-m
-    color: var(--color-label)
-    margin-bottom: size(4)
-    display: block
 
   input
     outline: none
@@ -18,19 +13,12 @@
     height: size(32)
     background: var(--color-background)
     color: var(--color-text)
+    cursor: pointer
     &:placeholder
       color: var(--color-text-disabled)
     &:focus
       border-color: var(--color-border)
       border-width: var(--size-border-width-selected)
-  .helpText
-    display: flex
-    align-items: center
-    margin-top: size(4)
-    gap: size(4)
-    p
-      @extend %typography-supportive-s
-      color: var(--color-text-meta)
 
   .inputWrapper
     position: relative
@@ -39,12 +27,5 @@
       right: size(12)
       top: 50%
       transform: translateY(-50%)
+      pointer-events: none
 
-.Wrapper
-  display: flex
-  gap: size(12)
-  padding: size(6) $margin-default
-
-  > *
-    flex: 1
-    padding: 0 !important

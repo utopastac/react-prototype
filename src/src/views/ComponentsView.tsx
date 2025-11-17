@@ -11,7 +11,8 @@ import Divider from 'src/components/Divider';
 import FilterBar from 'src/components/FilterBar';
 import SegmentedControl from 'src/components/SegmentedControl';
 import Slider from 'src/components/Slider';
-import Input from 'src/components/Input';
+import TextInput from 'src/components/TextInput';
+import SelectInput from 'src/components/SelectInput';
 import InputCard from 'src/components/InputCard';
 import Cell from 'src/components/Cell';
 import Timeline, { TimelineProps} from "src/components/Timeline";
@@ -29,6 +30,7 @@ import EntityGrid from 'src/components/EntityGrid';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 import Tag from 'src/components/Tag';
+import InlineFeedback from 'src/components/InlineFeedback';
 
 import styles from "./index.module.sass";
 //
@@ -139,15 +141,20 @@ const ComponentsView = () => {
         <Divider
           size="extraLarge"
         />
-        <Input
+        <TextInput
           label="Preferred first name"
           body="Choose the name you prefer to be called"
           placeholder="Enter a name"
         />
-        <Input
+        <TextInput
           label="Last name"
           body="Your last name must match your legal last name and cannot be edited. Please contact support to change your legal name"
           placeholder="Wright"
+        />
+        <SelectInput
+          label="Country"
+          body="Select your country of residence"
+          placeholder="Select a country"
         />
         <Divider
           size="extraLarge"
@@ -358,6 +365,26 @@ const ComponentsView = () => {
         <Accordion heading="Heading">
           <p>Content that shows when open</p>
         </Accordion>
+        <Divider size="extraLarge" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="positive" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="negative" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="neutral" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="caution" 
+        />
       </ScrollContainer>
       <ButtonGroup
         buttons={[

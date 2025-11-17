@@ -8,11 +8,12 @@ import TitleBar, { TitleBarPropMeta } from 'src/components/TitleBar';
 import NavigationBar from 'src/components/NavigationBar';
 import FilterBar, { FilterBarPropMeta } from 'src/components/FilterBar';
 // Input Components
-import Input, {
+import TextInput, {
   InputStackedHorizontal,
   InputStackedHorizontalPropMeta,
-  InputPropMeta
-} from 'src/components/Input';
+  TextInputPropMeta
+} from 'src/components/TextInput';
+import SelectInput, { SelectInputPropMeta } from 'src/components/SelectInput';
 import TextArea, { TextAreaPropMeta } from 'src/components/TextArea';
 //
 import InputCard, {
@@ -93,6 +94,10 @@ import Tag, {
   TagPropMeta
 } from 'src/components/Tag';
 
+import InlineFeedback, {
+  InlineFeedbackPropMeta
+} from 'src/components/InlineFeedback';
+
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
 
@@ -106,7 +111,8 @@ export const Components = {
   FilterBar,
 
   // Input Components
-  Input,
+  TextInput,
+  SelectInput,
   TextArea,
   InputCard,
   ButtonGroup,
@@ -143,6 +149,7 @@ export const Components = {
   Badge,
   Accordion,
   Tag,
+  InlineFeedback,
 };
 
 
@@ -153,7 +160,8 @@ export const InterventionScreenComponents = {
   FilterBar,
 
   // Input Components
-  Input,
+  TextInput,
+  SelectInput,
   TextArea,
   InputCard,
   ButtonGroup,
@@ -187,7 +195,8 @@ export const ComponentPropMeta = {
   Header: HeaderPropMeta,
   TitleBar: TitleBarPropMeta,
   FilterBar: FilterBarPropMeta,
-  Input: InputPropMeta,
+  TextInput: TextInputPropMeta,
+  SelectInput: SelectInputPropMeta,
   TextArea: TextAreaPropMeta,
   InputCard: InputCardPropMeta,
   ButtonGroup: ButtonGroupPropMeta,
@@ -216,14 +225,16 @@ export const ComponentPropMeta = {
   Modal: ModalPropMeta,
   Badge: BadgePropMeta,
   Accordion: AccordionPropMeta,
-  Tag: TagPropMeta
+  Tag: TagPropMeta,
+  InlineFeedback: InlineFeedbackPropMeta
   // Add more component meta objects here as you build them
 };
 
 export const initialComponentProps: Record<string, any> = {
   Header: { title: 'Header', body: 'Body copy', size: 'page' },
   FilterBar: { filterChips: [{ title: 'Chip', active: true }] },
-  Input: { label: 'Label', placeholder: 'Placeholder' },
+  TextInput: { label: 'Label', placeholder: 'Placeholder' },
+  SelectInput: { label: 'Label', placeholder: 'Select an option' },
   InputStackedHorizontal: {
     label1: 'Label 1',
     placeholder1: 'Placeholder 1',
@@ -349,6 +360,10 @@ export const initialComponentProps: Record<string, any> = {
     children: 'Label',
     size: 'small',
     type: 'default'
+  },
+  InlineFeedback: {
+    label: 'Feedback Text. [Link](https://example.com)',
+    type: 'positive'
   }
 };
 

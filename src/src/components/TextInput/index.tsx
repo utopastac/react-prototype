@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./index.module.sass";
 import Icon, { IconPropMeta } from "src/components/Icon";
+import InputLabel from "src/components/InputLabel";
+import InputHelpText from "src/components/InputHelpText";
 
-export interface InputProps {
+export interface TextInputProps {
   label?: string;
   body?: string;
   helpIcon?: string;
@@ -10,24 +12,19 @@ export interface InputProps {
   placeholder: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, body, helpIcon, trailingIcon, placeholder }) => {
+const TextInput: React.FC<TextInputProps> = ({ label, body, helpIcon, trailingIcon, placeholder }) => {
   return (
     <div className={styles.Main}>
-      { label && <label>{label}</label> }
+      {label && <InputLabel>{label}</InputLabel>}
       <div className={styles.inputWrapper}>
         <input placeholder={placeholder} />
-        { trailingIcon && (
+        {trailingIcon && (
           <div className={styles.trailingIcon}>
             <Icon icon={trailingIcon} size="24" color="standard" />
           </div>
-         )}
+        )}
       </div>
-      { body && (
-        <div className={styles.helpText}>
-          { helpIcon && <Icon icon={helpIcon} size="16" color="standard" /> }
-          <p>{body}</p>
-        </div>
-      )}
+      {body && <InputHelpText helpIcon={helpIcon}>{body}</InputHelpText>}
     </div>
   );
 };
@@ -47,16 +44,16 @@ const InputStackedHorizontal: React.FC<InputStackedHorizontalProps> = ({
 }) => {
   return (
     <div className={styles.Wrapper}>
-      <Input label={label1} body={body1} placeholder={placeholder1} />
-      <Input label={label2} body={body2} placeholder={placeholder2} />
+      <TextInput label={label1} body={body1} placeholder={placeholder1} />
+      <TextInput label={label2} body={body2} placeholder={placeholder2} />
     </div>
   );
 };
 
-export default Input;
+export default TextInput;
 export { InputStackedHorizontal };
 
-export const InputPropMeta = {
+export const TextInputPropMeta = {
   label: { type: 'string', label: 'Label' },
   body: { type: 'string', label: 'Body' },
   helpIcon: IconPropMeta.icon,

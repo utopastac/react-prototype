@@ -1,0 +1,38 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: flex
+  align-items: flex-start
+  gap: size(8)
+
+  .icon
+    flex-shrink: 0
+    margin-top: size(2)
+
+  .content
+    flex: 1
+    @extend %typography-supportive-m
+
+    p
+      margin: 0
+
+    a
+      text-decoration: underline
+
+  // Type variants
+  &.positive
+    .content
+      color: var(--color-positive)
+
+  &.negative
+    .content
+      color: var(--color-negative)
+
+  &.neutral
+    .content
+      color: var(--color-text-meta)
+
+  &.caution
+    .content
+      color: var(--color-caution)
+

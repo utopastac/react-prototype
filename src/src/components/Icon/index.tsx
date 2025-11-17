@@ -5,7 +5,7 @@ import * as Icons from "src/data/Icons";
 export interface IconProps {
   icon: string | (typeof Icons)[keyof typeof Icons];
   size: '32' | '24' | '16';
-  color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure' | 'admin';
+  color: 'brand' | 'prominent' | 'standard' | 'subtle' | 'extraSubtle' | 'disabled' | 'inverse' | 'white' | 'success' | 'failure'  | 'caution'| 'admin';
   className?: string;
 }
 
@@ -44,6 +44,8 @@ const Icon: React.FC<IconProps> = ({ icon, size, color, className }) => {
         return styles.success;
       case 'failure':
         return styles.failure;
+      case 'caution':
+        return styles.caution;
       case 'admin':
         return styles.admin;
       default:
@@ -107,7 +109,7 @@ export const IconPropMeta = {
     label: 'Color',
     options: [
       'brand', 'prominent', 'standard', 'subtle', 'extraSubtle',
-      'disabled', 'inverse', 'white', 'success', 'failure'
+      'disabled', 'inverse', 'white', 'success', 'failure', 'caution'
     ]
   },
   className: { type: 'string', label: 'CSS Class' }
