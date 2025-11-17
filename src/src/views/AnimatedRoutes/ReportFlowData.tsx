@@ -20,10 +20,11 @@ export const reportFlowData = [
           }
         },
         {
-          component: Components.UpsellCard,
+          component: Components.Header,
           props: {
             title: 'About Reporting',
-            body: 'If you believe an account is violating our community guidelines or engaging in inappropriate behavior, please let us know. Your report will be reviewed by our team and kept confidential.'
+            body: 'If you believe an account is violating our community guidelines or engaging in inappropriate behavior, please let us know. Your report will be reviewed by our team and kept confidential.',
+            size: 'section',
           }
         }
       ],
@@ -193,10 +194,11 @@ export const reportFlowData = [
           }
         },
         {
-          component: Components.UpsellCard,
+          component: Components.Header,
           props: {
             title: 'What happens next?',
-            body: 'Our team will review your report and take appropriate action. We may contact you if we need additional information.'
+            body: 'Our team will review your report and take appropriate action. We may contact you if we need additional information.',
+            size: 'section',
           }
         }
       ],

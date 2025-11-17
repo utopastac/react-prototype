@@ -1,4 +1,3 @@
-import { Images } from "src/data/Images";
 // Header Components
 import Header, { 
   HeaderPropMeta
@@ -25,17 +24,12 @@ import SearchInput, { SearchInputPropMeta } from 'src/components/SearchInput';
 //
 //
 // Removed MoneyInputDisplay
-import UpsellCard, { UpsellCardPropMeta } from 'src/components/UpsellCard';
 import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
 
 // Cell Components
 import Cell, {
   CellPropMeta
 } from 'src/components/Cell';
-//
-import CellActivity, {
-  CellActivityPropMeta
-} from 'src/components/CellActivity';
 
 // Entity Components
 import Entity, {
@@ -97,8 +91,6 @@ import Accordion, {
 
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
-import MarketingCardSmall, { MarketingCardSmallPropMeta } from 'src/components/MarketingCardSmall';
-import MarketingCardLarge, { MarketingCardLargePropMeta } from "src/components/MarketingCardLarge";
 
 // Component Exports
 export const Components = {
@@ -116,12 +108,10 @@ export const Components = {
   ButtonGroup,
   SearchInput,
   PINCheck,
-  UpsellCard,
   InputStackedHorizontal,
 
   // Cell Components
   Cell,
-  CellActivity,
   ListUnordered,
   ListOrdered,
 
@@ -146,8 +136,6 @@ export const Components = {
   IOSStatusBar,
   Text,
   Modal,
-  MarketingCardSmall,
-  MarketingCardLarge,
   Badge,
   Accordion,
 };
@@ -165,13 +153,11 @@ export const InterventionScreenComponents = {
   InputCard,
   ButtonGroup,
   SearchInput,
-  UpsellCard,
   InputStackedHorizontal,
   PINCheck,
 
   // Cell Components
   Cell,
-  CellActivity,
 
   // UI Components
   Divider,
@@ -184,9 +170,7 @@ export const InterventionScreenComponents = {
   ListUnordered,
   ListOrdered,
   ProgressCircular,
-  Modal,
-  MarketingCardSmall,
-  MarketingCardLarge
+  Modal
 };
 
 // InterventionScreen Component Exports
@@ -204,11 +188,7 @@ export const ComponentPropMeta = {
   ButtonGroup: ButtonGroupPropMeta,
   SearchInput: SearchInputPropMeta,
   PINCheck: PINCheckPropMeta,
-  UpsellCard: UpsellCardPropMeta,
-  MarketingCardSmall: MarketingCardSmallPropMeta,
-  MarketingCardLarge: MarketingCardLargePropMeta,
   Cell: CellPropMeta,
-  CellActivity: CellActivityPropMeta,
   Entity: EntityPropMeta,
   EntityStack: EntityStackPropMeta,
   EntityGrid: EntityGridPropMeta,
@@ -249,11 +229,7 @@ export const initialComponentProps: Record<string, any> = {
   ButtonGroup: { buttons: [{ title: 'Button' }] },
   SearchInput: { placeholder: 'Search...' },
   PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
-  UpsellCard: { title: 'Info Card', body: 'Body', size: 'small' },
-  MarketingCardSmall: { title: 'Marketing Card Small', body: 'Body', image: Images.Collaboration, button: 'Button text' },
-  MarketingCardLarge: { title: 'Marketing Card Large', body: 'Body', image: Images.Broadcast, button: 'Button text' },
   Cell: { title: 'Cell', body: 'Body' },
-  CellActivity: { title: 'Cell Activity', body: 'Body', date: 'Today', left: {}, right: {}, onClick: () => {} },
   Text: { text: 'Text', size: 'body', color: 'standard' },
   Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },

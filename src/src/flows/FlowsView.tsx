@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import AnimatedRoutes from 'src/components/AnimatedRoutes';
+import AnimatedRoutes from 'src/views/AnimatedRoutes';
 import TiltContainer from 'src/components/PhoneEffects/TiltContainer';
 import { TiltState } from 'src/containers/TiltContext';
 import Layers from 'src/components/Layers';

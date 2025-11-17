@@ -193,11 +193,6 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: 'large' }
       },
-      {
-        name: 'UpsellCard',
-        Component: (InterventionScreenComponents as any)['UpsellCard'],
-        props: initialComponentProps['UpsellCard']
-      },
     ],
     topBarProps: {
       title: 'Simple List',
