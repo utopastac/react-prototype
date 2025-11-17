@@ -25,6 +25,7 @@ import Button from 'src/components/Buttons/Button';
 import IconBg from 'src/components/IconBg';
 import Entity from 'src/components/Entity';
 import EntityStack from 'src/components/EntityStack';
+import EntityGrid from 'src/components/EntityGrid';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 
@@ -270,38 +271,72 @@ const ComponentsView = () => {
         <Divider size="extraLarge" />
         <EntityStack
           avatars={[
-            { avatar: { size: '40', image: Avatars.Karen } },
-            { avatar: { size: '40', image: Avatars.Darren } },
-            { avatar: { size: '40', image: Avatars.James } },
+            { avatar: { image: Avatars.Karen } },
+            { avatar: { image: Avatars.Darren } },
+            { avatar: { image: Avatars.James } },
           ]}
           stacked={false}
+          size="24"
         />
         <Divider size="large" />
         <EntityStack
           avatars={[
-            { avatar: { size: '40', image: Avatars.Karen } },
-            { avatar: { size: '40', image: Avatars.Darren } },
-            { avatar: { size: '40', image: Avatars.James } },
+            { avatar: { image: Avatars.Karen } },
+            { avatar: { image: Avatars.Darren } },
+            { avatar: { image: Avatars.James } },
           ]}
           stacked={true}
+          size="40"
         />
         <Divider size="large" />
         <EntityStack
           avatars={[
-            { avatar: { size: '40', image: Avatars.Karen } },
-            { avatar: { size: '40', image: Avatars.Darren } },
-            { avatar: { size: '40', image: Avatars.James } },
-            { avatar: { size: '40', image: Avatars.Kevin } },
-            { avatar: { size: '40', image: Avatars.Nina } },
-            { avatar: { size: '40', image: Avatars.Paul } },
-            { avatar: { size: '40', image: Avatars.Isaac } },
-            { avatar: { size: '40', image: Avatars.Peter } },
-            { avatar: { size: '40', image: Avatars.Chavez } },
-            { avatar: { size: '40', image: Avatars.Barber } },
-            { avatar: { size: '40', image: Avatars.NinaD } },
+            { avatar: { image: Avatars.Karen } },
+            { avatar: { image: Avatars.Darren } },
+            { avatar: { image: Avatars.James } },
+            { avatar: { image: Avatars.Kevin } },
+            { avatar: { image: Avatars.Nina } },
+            { avatar: { image: Avatars.Paul } },
+            { avatar: { image: Avatars.Isaac } },
+            { avatar: { image: Avatars.Peter } },
           ]}
           stacked={true}
+          size="40"
         />
+        <Divider size="extraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '0 16px', alignItems: 'center' }}>
+          <EntityGrid
+            entities={[
+              { image: Avatars.Karen },
+              { image: Avatars.Darren }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { image: Avatars.Karen },
+              { image: Avatars.Darren },
+              { image: Avatars.James }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { image: Avatars.Karen },
+              { image: Avatars.Darren },
+              { image: Avatars.James },
+              { image: Avatars.Kevin }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { image: Avatars.Karen },
+              { image: Avatars.Darren },
+              { image: Avatars.James },
+              { image: Avatars.Kevin },
+              { image: Avatars.Nina },
+              { image: Avatars.Paul }
+            ]}
+          />
+        </div>
         <Divider size="extraLarge" />
         <Accordion heading="Heading">
           <p>Content that shows when open</p>

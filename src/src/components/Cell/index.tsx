@@ -102,7 +102,7 @@ const Cell: React.FC<CellProps> = ({ title, body, action, left, right, onClick, 
       case 'entity':
         return <Entity {...(left as EntityCell)} size="64" />;
       case 'entityGrid':
-        return <EntityGrid {...(left as EntityGridCell)} size={(left as EntityGridCell).size || "64"} />;
+        return <EntityGrid {...(left as EntityGridCell)} />;
       case 'icon':
         const iconCell = left as IconCell;
         return <Icon icon={iconCell.icon} size={iconCell.size} color={disabled ? 'disabled' : iconCell.color || 'standard'} />;

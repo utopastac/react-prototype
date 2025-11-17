@@ -1,46 +1,108 @@
 @use 'src/styles/site' as *
 
 .Main
-  white-space: nowrap
-  overflow-x: scroll
-  width: 100%
-  padding: 0 $margin-default
   display: flex
   align-items: center
-  &::-webkit-scrollbar
-    display: none
-  
-  &.stacked
-    overflow-x: visible
-
-.AvatarInstance
-  vertical-align: top
-  display: inline-flex
-  border-radius: $radius-pill
-  outline: 3px solid var(--color-background)
-  flex-shrink: 0
-  position: relative
   
   &:not(.stacked)
-    margin-right: size(8)
+    gap: size(8)
   
   &.stacked
-    margin-right: neg-size(16)
-    position: relative
+    &.stacked_size_16
+      > *
+        margin-left: neg-size(8)
+    
+    &.stacked_size_24
+      > *
+        margin-left: neg-size(12)
+    
+    &.stacked_size_32
+      > *
+        margin-left: neg-size(16)
+    
+    &.stacked_size_40
+      > *
+        margin-left: neg-size(20)
+    
+    &.stacked_size_48
+      > *
+        margin-left: neg-size(24)
+    
+    &.stacked_size_64
+      > *
+        margin-left: neg-size(32)
+    
+    &.stacked_size_80
+      > *
+        margin-left: neg-size(40)
+    
+    &.stacked_size_96
+      > *
+        margin-left: neg-size(48)
+    
+    &.stacked_size_128
+      > *
+        margin-left: neg-size(64)
+    
+    &.stacked_size_160
+      > *
+        margin-left: neg-size(80)
+    
+    > *:first-child
+      margin-left: 0
 
 .OverflowIndicator
   display: inline-flex
   align-items: center
   justify-content: center
-  width: size(40)
-  height: size(40)
   border-radius: $radius-pill
-  background-color: var(--color-background-neutral-soft)
-  border: 1px solid var(--color-background-neutral-strong)
-  color: var(--color-text)
-  font-size: size(12)
-  font-weight: 500
-  flex-shrink: 0
-  margin-left: neg-size(16)
+  background-color: var(--color-background)
+  color: var(--color-text-meta)
+  @extend %typography-supportive-s;
   position: relative
-  outline: 3px solid var(--color-background)
+  border: 1px solid var(--color-border-faint)
+  
+  &.size_24
+    width: size(24)
+    height: size(24)
+    margin-left: neg-size(12)
+  
+  &.size_32
+    width: size(32)
+    height: size(32)
+    margin-left: neg-size(16)
+  
+  &.size_40
+    width: size(40)
+    height: size(40)
+    margin-left: neg-size(20)
+  
+  &.size_48
+    width: size(48)
+    height: size(48)
+    margin-left: neg-size(24)
+  
+  &.size_64
+    width: size(64)
+    height: size(64)
+    margin-left: neg-size(32)
+  
+  &.size_80
+    width: size(80)
+    height: size(80)
+    margin-left: neg-size(40)
+  
+  &.size_96
+    width: size(96)
+    height: size(96)
+    margin-left: neg-size(48)
+  
+  &.size_128
+    width: size(128)
+    height: size(128)
+    margin-left: neg-size(64)
+  
+  &.size_160
+    width: size(160)
+    height: size(160)
+    margin-left: neg-size(80)

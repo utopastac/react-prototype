@@ -22,9 +22,6 @@ export interface HeaderEntityAccessory extends HeaderAccessory {
 export interface HeaderEntityGridAccessory extends HeaderAccessory {
   type: 'entityGrid';
   entities: EntityGridProps['entities'];
-  layout: EntityGridProps['layout'];
-  size: EntityGridProps['size'];
-  badgeCount?: number;
 }
 
 export interface HeaderIconAccessory extends HeaderAccessory {
@@ -109,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
       case 'entity':
         return <Entity {...accessory} size="64" />;
       case 'entityGrid':
-        return <EntityGrid {...accessory} size={accessory.size || "64"} />;
+        return <EntityGrid {...accessory} />;
       case 'icon':
         return <IconBg {...accessory} iconSize="32" size="64" />;
       case 'image':

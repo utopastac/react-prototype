@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./index.module.sass";
 import { AvatarsArray } from "src/data/Avatars";
 import entityPerson from "src/assets/entity-person.png";
@@ -5,12 +6,14 @@ import entityCompany from "src/assets/entity-company.png";
 
 export interface EntityProps {
   image?: string,
-  size: '16' | '24' | '32' | '40' | '48' | '64' | '80' | '96' | '128' | '160',
+  size?: '16' | '24' | '32' | '40' | '48' | '64' | '80' | '96' | '128' | '160',
   border?: boolean,
-  company?: boolean
+  company?: boolean,
+  outline?: boolean;
+  style?: React.CSSProperties;
 }
 
-const Entity = (({ image, size, border, company }: EntityProps) => {
+const Entity = (({ image, size = '40', border, company, outline, style }: EntityProps) => {
   const styleClass = (): string => {
     switch(size){
       case '16':
@@ -34,14 +37,16 @@ const Entity = (({ image, size, border, company }: EntityProps) => {
       case '160':
         return styles.e_160;
       default:
-        return styles.e_24;
+        return styles.e_40;
     }
   }
 
   const defaultImage = company ? entityCompany : entityPerson;
 
   return (
-    <div className={`${styles.Main} ${styleClass()} ${border ? styles.border : ""} ${company ? styles.company : ""}`}>
+    <div 
+      className={`${styles.Main} ${styleClass()} ${border ? styles.border : ""} ${company ? styles.company : ""} ${outline ? styles.outline : ""}`}
+    >
       <img src={image || defaultImage} alt="Entity" />
     </div>
   );
@@ -57,5 +62,6 @@ export const EntityPropMeta = {
   },
   border: { type: 'boolean', label: 'Border' },
   company: { type: 'boolean', label: 'Company' },
+  outline: { type: 'boolean', label: 'Outline' },
 };
 
