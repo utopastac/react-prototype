@@ -22,11 +22,6 @@
   --semantic-border-light: 1px solid rgba(0, 0, 0, 0.3);
   --overlay-bg: rgba(0, 0, 0, 0.2);
 
-  /* Elevations */
-  --elevation-1: 0px 40px 50px -40px rgba(0, 0, 0, 0.08);
-  --elevation-2: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  --elevation-3: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
   /* Spacing */
   --space-xs: 4px;
   --space-s: 8px;

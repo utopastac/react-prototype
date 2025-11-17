@@ -1,24 +1,30 @@
 @use 'src/styles/site' as *
 
 .Main
-  padding: size(8)
+  padding: size(12)
   > div
-    background: var(--color-background-neutral-strong)
+    background: var(--color-background)
+    box-shadow: var(--elevation-raised)
+    border: var(--size-border-width-standard) solid var(--color-border-faint)
     display: flex
-    align-items: center
+    align-items: flex-start
     border-radius: $radius-s
     padding: size(8)
+    position: relative
   .content
     flex: 1
     padding: size(8)
   .icon
     padding: size(8)
-  h4, p, h5
-    color: var(--color-text-solid)
+  .closeButton
+    position: absolute
+    top: size(8)
+    right: size(8)
+  h4, p
+    color: var(--color-text)
   h4
-    @extend %typography-title-l
+    @extend %typography-supportive-m
   p
-    @extend %typography-body
-  h5
-    @extend %typography-title-s
-    margin: size(8)
+    @extend %typography-supportive-s
+    color: var(--color-text-meta)
+    margin-top: size(4)
