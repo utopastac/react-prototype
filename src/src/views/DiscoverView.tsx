@@ -25,7 +25,7 @@ const DiscoverView = () => {
         {/* DiscoverPromo removed */}
       </ScrollContainer>
       <NavigationBar
-        activeIndex={3}
+        activeIndex={0}
       />
       
     </PageWrapper>

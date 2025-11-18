@@ -4,7 +4,7 @@ import { useTransition, noTransition } from 'src/containers/TransitionContext';
 import styles from "./index.module.sass";
 import Icon from "src/components/Icon";
 import Text from "src/components/Text";
-import * as Icons from "src/data/Icons";
+import * as AllIcons from "src/data/AllIcons";
 
 export interface NavigationBarProps {
   activeIndex: number;
@@ -14,8 +14,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   const inverse = false;
 
   const tabData = [
-  {icon: Icons.Back, url: "discover", label: "Discover"},
-  {icon: Icons.Push, url: "activity", label: "Activity"}
+    {icon: AllIcons.Navigation.HomeActive, url: "/flows/discover", label: "Home"},
+    {icon: AllIcons.Navigation.Video, url: "/flows/activity", label: "Video"},
+    {icon: AllIcons.Navigation.People, url: "/flows/activity", label: "My Network"},
+    {icon: AllIcons.Navigation.BellFill, url: "/flows/activity", label: "Notifications"},
+    {icon: AllIcons.Navigation.Job, url: "/flows/activity", label: "Jobs"}
   ];
 
   const tabs = tabData.map((tab, index) => (
@@ -56,11 +59,9 @@ const Tab: React.FC<TabProps> = ({ icon, url, label, active, inverse }) => {
   };
 
   return (
-    <div onClick={() => handleNavigation(url)}>
-      <div className={`${styles.Tab} ${active ? styles.active : ""}`}>
-        <Icon icon={icon} size="24" color={inverse ? "prominent" : active ? "prominent" : "extraSubtle"} />
-        <p>{label}</p>
-      </div>
+    <div className={`${styles.Tab} ${active ? styles.active : ""}`} onClick={() => handleNavigation(url)}>
+      <Icon icon={icon} size="24" color={inverse ? "prominent" : active ? "prominent" : "extraSubtle"} />
+      <p>{label}</p>
     </div>
   );
 };
