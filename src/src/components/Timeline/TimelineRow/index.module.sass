@@ -3,127 +3,57 @@
 .Main
   margin: 0 $margin-default
   display: flex
-  &.skipped
-    .value
-      text-decoration: line-through
-  &.pending
-    .value
-      color: var(--color-text-meta)
-  &.collapsed
-    .body, .value, .valueDescriptor
-      display: none
   .content
     flex: 1
-    padding: size(16) 0
-    display: flex
-    justify-content: space-between
+    padding: 0 0 size(24) 0
   .label
     @extend %typography-title-l
     color: var(--color-text)
   .body
-    @extend %typography-body
+    @extend %typography-supportive-m
     color: var(--color-text)
-  .value
-    @extend %typography-title-l
-    color: var(--color-text)
-    text-align: right
-  .valueDescriptor
-    @extend %typography-body
-    color: var(--color-text)
-    text-align: right
+  .metadata
+    display: flex
+    flex-direction: column
+    gap: size(4)
+  .metadataTime
+    @extend %typography-supportive-m
+    color: var(--color-text-meta)
+  .metadataLocation
+    @extend %typography-supportive-m
+    color: var(--color-text-meta)
+  .children
+    margin-top: size(12)
   .indicator
-    position: relative
-  // STATES
-  .notStarted
-    position: relative
-  .inProgress
-    position: relative
-  .pending
-    position: relative
-  .done
-    position: relative
-  .skipped
-    position: relative
-  .collapsed
     position: relative
 .RowIndicator
   display: flex
   flex-direction: column
   align-items: center
-  gap: size(4)
-  margin-right: size(16)
-  width: size(12)
+  gap: size(8)
+  margin-right: size(24)
+  padding-top: size(8)
+  width: size(16)
   height: 100%
   .initialLine
     height: size(18)
     width: size(2)
-    border-radius: $radius-pill
   .endLine
     flex: 1
     width: size(2)
-    border-radius: $radius-pill
   .dot
-    width: size(12)
-    height: size(12)
+    width: size(8)
+    height: size(8)
     border-radius: $radius-pill
-  .collapsedDots
-    height: size(20)
-    display: none
-    flex-direction: column
-    justify-content: space-between
-    width: size(4)
-    span
-      width: size(4)
-      height: size(4)
-      border-radius: $radius-pill
-      background: var(--color-icon)
   &.beginning
     .initialLine
       opacity: 0
   &.end
     .endLine
       opacity: 0
-  &.notStarted
-    .initialLine
-      background: var(--color-background-neutral-soft)
-    .dot
-      background: var(--color-background-neutral-soft)
-    .endLine
-      background: var(--color-background-neutral-soft)
-  &.inProgress
-    .initialLine
-      background: var(--color-border)
-    .dot
-      border: 2px solid var(--color-border)
-    .endLine
-      background: var(--color-background-neutral-soft)
-  &.done
-    .initialLine
-      background: var(--color-border)
-    .dot
-      background: var(--color-icon)
-    .endLine
-      background: var(--color-border)
-  &.pending
-    .initialLine
-      background: var(--color-border)
-    .dot
-      background: var(--color-icon)
-    .endLine
-      background: var(--color-border)
-  &.skipped
-    .initialLine
-      background: var(--color-border)
-    .dot
-      background: var(--color-icon)
-    .endLine
-      background: var(--color-border)
-  &.collapsed
-    .initialLine
-      background: var(--color-border)
-    .dot
-      display: none
-    .collapsedDots
-      display: flex
-    .endLine
-      background: var(--color-border)
+  .initialLine
+    background: var(--color-border-faint)
+  .dot
+    background: var(--color-indicator-solid-disabled)
+  .endLine
+    background: var(--color-border-faint)

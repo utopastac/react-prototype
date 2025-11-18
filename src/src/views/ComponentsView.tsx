@@ -54,33 +54,28 @@ const ComponentsView = () => {
   const rowData: TimelineRowProps[] = [
     { 
       label: 'Application Submitted', 
-      body: application.time,
-      value: application.position,
-      state: 'done', 
+      body: application.position,
+      metadataTime: application.time,
       placing: 'beginning' 
     },
     { 
       label: 'Application Reviewed', 
-      value: 'Under Review',
-      state: 'skipped', 
+      metadataTime: 'Under Review',
       placing: 'middle' 
     },
     { 
       label: 'Recruiter Contacted', 
-      value: application.recruiter,
-      state: 'done', 
+      metadataLocation: application.recruiter,
       placing: 'middle' 
     },
     { 
       label: 'Interview Scheduled', 
-      value: application.location,
-      state: 'collapsed', 
+      metadataLocation: application.location,
       placing: 'middle' 
     },
     { 
       label: 'Decision Made', 
-      value: '4 May 2025',
-      state: 'notStarted', 
+      metadataTime: '4 May 2025',
       placing: 'end' 
     },
   ];

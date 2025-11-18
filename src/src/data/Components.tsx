@@ -290,9 +290,8 @@ export const initialComponentProps: Record<string, any> = {
   TimelineRow: {
     label: "Card Ordered",
     body: "Card",
-    value: "Jan 10",
-    valueDescriptor: "In Progress",
-    state: 'inProgress',
+    metadataTime: "Jan 10",
+    metadataLocation: "New York, NY",
     placing: 'middle'
   },
   Toast: {
