@@ -161,6 +161,7 @@ export const InterventionScreenComponents = {
 
   // Input Components
   TextInput,
+  Input: TextInput, // Alias for TextInput (used in templates)
   SelectInput,
   TextArea,
   InputCard,
