@@ -76,7 +76,6 @@ A modern, interactive React application for our Interventions Hub.
 src/
 ├── components/           # Reusable UI components
 │   ├── Buttons/         # Button components (Standard, Prominent, etc.)
-│   ├── Cell/            # Cell components for lists
 │   ├── Input/           # Input components
 │   ├── NavigationBar/   # Bottom navigation
 │   ├── TitleBar/        # Header components
@@ -152,7 +151,6 @@ See `src/builder/LayoutContext.tsx` and `src/builder/AdminView.tsx` for more det
 The project uses a comprehensive component system that includes:
 
 - **Button**: Multiple button styles (Standard, Prominent, Destructive, etc.)
-- **Cell**: List items with various layouts
 - **Input**: Form inputs with validation
 - **NavigationBar**: Bottom navigation with animations
 - **TitleBar**: Headers with customizable actions

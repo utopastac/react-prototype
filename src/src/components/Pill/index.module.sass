@@ -1,25 +1,22 @@
 @use 'src/styles/site' as *
 
-.Main
-  white-space: nowrap
-  overflow-x: scroll
-  width: 100%
-  padding: 0 $margin-default
-  &::-webkit-scrollbar
-    display: none
-.FilterChip
+.Pill
   border-radius: $radius-pill
   background: var(--color-background)
+  border: var(--size-border-width-standard) solid var(--color-border-subtle)
   height: size(32)
   display: inline-flex
   align-items: center
   justify-content: center
-  @extend %typography-title-s
-  color: var(--color-text)
+  @extend %typography-supportive-m-bold
+  color: var(--color-label)
   padding: 0 size(16)
   margin-right: size(8)
   gap: size(4)
   cursor: pointer
-  &.active
-    background: var(--color-background-neutral-soft)
+  &.checked
+    background: var(--color-checked)
     cursor: auto
+    color: var(--color-label-knockout)
+    border-color: var(--color-checked)
+

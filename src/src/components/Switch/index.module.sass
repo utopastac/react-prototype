@@ -1,0 +1,58 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  gap: size(12)
+  padding: size(4) $margin-default
+
+  .textContent
+    flex: 1
+    display: flex
+    flex-direction: column
+    gap: size(4)
+
+    .title
+      @extend %typography-supportive-m
+      color: var(--color-label)
+      margin: 0
+
+    .helperText
+      @extend %typography-supportive-s
+      color: var(--color-text-meta)
+      margin: 0
+
+  .switchWrapper
+    display: flex
+    align-items: center
+    gap: size(8)
+    flex-shrink: 0
+
+    .label
+      @extend %typography-supportive-s
+      color: var(--color-text)
+
+    .switch
+      width: size(52)
+      height: size(32)
+      background: var(--color-background-neutral-soft)
+      border-radius: $radius-pill
+      position: relative
+      .knob
+        position: absolute
+        top: size(2)
+        left: size(2)
+        width: size(28)
+        height: size(28)
+        background: var(--white-a100)
+        border-radius: $radius-pill
+      &.checked
+        background: var(--color-icon)
+        border: none
+        .knob
+          position: absolute
+          right: size(2)
+          left: auto
+

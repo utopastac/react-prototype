@@ -21,84 +21,6 @@
           "props": {
             "size": "large"
           }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
         }
       ],
       "topBarProps": {
@@ -257,7 +179,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -266,86 +188,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
           }
         }
       ],
@@ -410,7 +252,7 @@
         {
           "name": "InputCard",
           "props": {
-            "title": "•••-•••-4567",
+            "title": "\u2022\u2022\u2022-\u2022\u2022\u2022-4567",
             "body": "",
             "right": {
               "type": "CELL_RADIO"
@@ -427,7 +269,7 @@
         {
           "name": "InputCard",
           "props": {
-            "title": "•••-•••-4321",
+            "title": "\u2022\u2022\u2022-\u2022\u2022\u2022-4321",
             "body": "",
             "right": {
               "type": "CELL_RADIO"
@@ -493,7 +335,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Enter the code sent to •••-•••-4321",
+            "title": "Enter the code sent to \u2022\u2022\u2022-\u2022\u2022\u2022-4321",
             "body": "",
             "size": "HEADER_PAGE"
           }
@@ -562,7 +404,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -571,73 +413,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
           }
         }
       ],
@@ -688,7 +463,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Enter the code sent to d••••••z@gmail.com",
+            "title": "Enter the code sent to d\u2022\u2022\u2022\u2022\u2022\u2022z@gmail.com",
             "body": "",
             "size": "HEADER_PAGE"
           }
@@ -801,7 +576,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -810,73 +585,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
           }
         }
       ],
@@ -927,8 +635,8 @@
         {
           "name": "Header",
           "props": {
-            "title": "Let’s check your contacts",
-            "body": "We need permission to access your device’s contacts. We’ll only use it to confirm that this is your account.",
+            "title": "Let\u2019s check your contacts",
+            "body": "We need permission to access your device\u2019s contacts. We\u2019ll only use it to confirm that this is your account.",
             "size": "HEADER_PAGE",
             "accessory": {
               "type": "HEADER_ICON",
@@ -1029,7 +737,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -1038,73 +746,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
           }
         }
       ],
@@ -1156,7 +797,7 @@
           "name": "Header",
           "props": {
             "title": "Enter your linked debit card number starting with 1421",
-            "body": "We’ll check to make sure it matches what’s on file.",
+            "body": "We\u2019ll check to make sure it matches what\u2019s on file.",
             "size": "HEADER_PAGE"
           }
         },
@@ -1264,7 +905,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -1273,73 +914,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
           }
         }
       ],
@@ -1499,7 +1073,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "Almost done—select 1 more way to verify",
+            "title": "Almost done\u2014select 1 more way to verify",
             "body": "For extra security, we want to make sure it's really you.",
             "size": "HEADER_PAGE"
           }
@@ -1508,86 +1082,6 @@
           "name": "Divider",
           "props": {
             "size": "large"
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Email",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/comm-email.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Phone number",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/device-mobile.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Interventions Hub PIN",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/passcode-fill.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Synced contacts",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/contact-true.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Linked debit card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/bank-linked.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            }
-          }
-        },
-        {
-          "name": "Cell",
-          "props": {
-            "title": "Card",
-            "left": {
-              "type": "CELL_ICON",
-              "icon": "/sites/interventions-hub/src/assets/24/card-basic.svg"
-            },
-            "right": {
-              "type": "CELL_PUSH"
-            },
-            "disabled": true,
-            "body": "Already verified"
           }
         }
       ],
@@ -1762,8 +1256,8 @@
         {
           "name": "Header",
           "props": {
-            "title": "Contacts don’t match",
-            "body": "Your device’s contacts don’t match what’s synced with Interventions Hub.",
+            "title": "Contacts don\u2019t match",
+            "body": "Your device\u2019s contacts don\u2019t match what\u2019s synced with Interventions Hub.",
             "size": "HEADER_PAGE",
             "accessory": {
               "type": "HEADER_ICON",
@@ -1940,7 +1434,7 @@
         {
           "name": "Header",
           "props": {
-            "title": "You’ve entered your PIN incorrectly too many times",
+            "title": "You\u2019ve entered your PIN incorrectly too many times",
             "body": "Please verify another way.",
             "size": "HEADER_PAGE",
             "accessory": {

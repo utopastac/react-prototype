@@ -6,7 +6,7 @@ import Header, {
 import TopBar from 'src/components/TopBar';
 import TitleBar, { TitleBarPropMeta } from 'src/components/TitleBar';
 import NavigationBar from 'src/components/NavigationBar';
-import FilterBar, { FilterBarPropMeta } from 'src/components/FilterBar';
+import PillGroup, { PillGroupPropMeta } from 'src/components/PillGroup';
 // Input Components
 import TextInput, {
   InputStackedHorizontal,
@@ -27,11 +27,6 @@ import SearchInput, { SearchInputPropMeta } from 'src/components/SearchInput';
 // Removed MoneyInputDisplay
 import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
 
-// Cell Components
-import Cell, {
-  CellPropMeta
-} from 'src/components/Cell';
-
 // Entity Components
 import Entity, {
   EntityPropMeta
@@ -42,6 +37,10 @@ import EntityStack, { EntityStackPropMeta } from "src/components/EntityStack";
 import EntityGrid, {
   EntityGridPropMeta
 } from 'src/components/EntityGrid';
+//
+import EntityLockup, {
+  EntityLockupPropMeta
+} from 'src/components/EntityLockup';
 
 // Applet Components
 // Removed Applet components (DiscoverPromo, BalanceApplet, SavingsApplet, CryptoApplet, SecondaryApplet, TertiaryApplet)
@@ -66,6 +65,7 @@ import Divider, {
 //
 import SegmentedControl, { SegmentedControlPropMeta } from 'src/components/SegmentedControl';
 import Slider, { SliderPropMeta } from 'src/components/Slider';
+import Switch, { SwitchPropMeta } from 'src/components/Switch';
 import ProgressIndicatorCircular, { ProgressIndicatorCircularPropMeta } from 'src/components/ProgressIndicatorCircular';
 import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
@@ -108,7 +108,7 @@ export const Components = {
   TopBar,
   TitleBar,
   NavigationBar,
-  FilterBar,
+  PillGroup,
 
   // Input Components
   TextInput,
@@ -120,8 +120,7 @@ export const Components = {
   PINCheck,
   InputStackedHorizontal,
 
-  // Cell Components
-  Cell,
+  // List Components
   ListUnordered,
   ListOrdered,
 
@@ -129,6 +128,7 @@ export const Components = {
   Entity,
   EntityStack,
   EntityGrid,
+  EntityLockup,
 
   // Applet Components removed
 
@@ -138,6 +138,7 @@ export const Components = {
   Divider,
   SegmentedControl,
   Slider,
+  Switch,
   Icon,
   ProgressIndicatorCircular,
   Timeline,
@@ -157,7 +158,7 @@ export const Components = {
 export const InterventionScreenComponents = {
   // Header Components
   Header,
-  FilterBar,
+  PillGroup,
 
   // Input Components
   TextInput,
@@ -169,9 +170,6 @@ export const InterventionScreenComponents = {
   SearchInput,
   InputStackedHorizontal,
   PINCheck,
-
-  // Cell Components
-  Cell,
 
   // UI Components
   Divider,
@@ -195,7 +193,7 @@ export const UiComponents = {
 export const ComponentPropMeta = {
   Header: HeaderPropMeta,
   TitleBar: TitleBarPropMeta,
-  FilterBar: FilterBarPropMeta,
+  PillGroup: PillGroupPropMeta,
   TextInput: TextInputPropMeta,
   SelectInput: SelectInputPropMeta,
   TextArea: TextAreaPropMeta,
@@ -203,16 +201,17 @@ export const ComponentPropMeta = {
   ButtonGroup: ButtonGroupPropMeta,
   SearchInput: SearchInputPropMeta,
   PINCheck: PINCheckPropMeta,
-  Cell: CellPropMeta,
   Entity: EntityPropMeta,
   EntityStack: EntityStackPropMeta,
   EntityGrid: EntityGridPropMeta,
+  EntityLockup: EntityLockupPropMeta,
   // DiscoverPromo removed
   IconBg: IconBgPropMeta,
   Button: ButtonPropMeta,
   Divider: DividerPropMeta,
   SegmentedControl: SegmentedControlPropMeta,
   Slider: SliderPropMeta,
+  Switch: SwitchPropMeta,
   Timeline: TimelinePropMeta,
   TimelineRow: TimelineRowPropMeta,
   Icon: IconPropMeta,
@@ -233,7 +232,7 @@ export const ComponentPropMeta = {
 
 export const initialComponentProps: Record<string, any> = {
   Header: { title: 'Header', body: 'Body copy', size: 'page' },
-  FilterBar: { filterChips: [{ title: 'Chip', active: true }] },
+  PillGroup: { filterChips: [{ title: 'Chip', checked: true, type: 'choice' }] },
   TextInput: { label: 'Label', placeholder: 'Placeholder' },
   SelectInput: { label: 'Label', placeholder: 'Select an option' },
   InputStackedHorizontal: {
@@ -247,11 +246,20 @@ export const initialComponentProps: Record<string, any> = {
   ButtonGroup: { buttons: [{ title: 'Button' }] },
   SearchInput: { placeholder: 'Search...' },
   PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
-  Cell: { title: 'Cell', body: 'Body' },
+  EntityLockup: {
+    entity: { size: '40' },
+    title: 'Firstname Lastname',
+    badge: true,
+    degree: '1st',
+    tag: { label: 'Label', size: 'small', type: 'default' },
+    subtitle: 'Subheading',
+    metadata: 'Timestamp'
+  },
   Text: { text: 'Text', size: 'body', color: 'standard' },
   Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
   Slider: { onDrop: () => {} },
+  Switch: { checked: false, title: 'Switch Label', helperText: 'Helper text for the switch' },
   Timeline: {
     rowData: [
       {

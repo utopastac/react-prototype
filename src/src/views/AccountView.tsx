@@ -11,7 +11,6 @@ import TopBar from 'src/components/TopBar';
 import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import Button from 'src/components/Buttons/Button';
-import Cell from 'src/components/Cell';
 import ButtonGroup from 'src/components/ButtonGroup';
 import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
@@ -73,19 +72,6 @@ const AccountView = () => {
         </div>
         <Divider
           size="extraLarge"
-        />
-        <Cell
-          title="Linked apps & businesses"
-          left={{
-            type: "icon",
-            icon: Icons.Alert24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
         />
         <Divider
           size="extraLarge"

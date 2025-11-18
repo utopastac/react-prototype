@@ -8,13 +8,13 @@ import * as Icons from "src/data/Icons";
 import TopBar from 'src/components/TopBar';
 import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
-import FilterBar from 'src/components/FilterBar';
+import PillGroup from 'src/components/PillGroup';
 import SegmentedControl from 'src/components/SegmentedControl';
 import Slider from 'src/components/Slider';
+import Switch from 'src/components/Switch';
 import TextInput from 'src/components/TextInput';
 import SelectInput from 'src/components/SelectInput';
 import InputCard from 'src/components/InputCard';
-import Cell from 'src/components/Cell';
 import Timeline, { TimelineProps} from "src/components/Timeline";
 import TimelineRow, {
   TimelineRowProps
@@ -27,6 +27,7 @@ import IconBg from 'src/components/IconBg';
 import Entity from 'src/components/Entity';
 import EntityStack from 'src/components/EntityStack';
 import EntityGrid from 'src/components/EntityGrid';
+import EntityLockup from 'src/components/EntityLockup';
 import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 import Tag from 'src/components/Tag';
@@ -100,13 +101,13 @@ const ComponentsView = () => {
           size="page"
         />
         <Divider size="medium" />
-        <FilterBar
+        <PillGroup
           filterChips = {[
-            {title: "Chip 1", active: false},
-            {title: "Chip title", active: false},
-            {title: "Chip 3", active: true, icon: true},
-            {title: "Chip 4", active: false},
-            {title: "Chipmunks", active: false},
+            {title: "Chip 1", checked: false, type: 'choice'},
+            {title: "Chip title", checked: false, type: 'choice'},
+            {title: "Chip 3", checked: true, type: 'toggle'},
+            {title: "Chip 4", checked: false, type: 'input'},
+            {title: "Chipmunks", checked: false, type: 'select'},
           ]}
         />
         <Divider
@@ -128,6 +129,22 @@ const ComponentsView = () => {
           segmented={10}
           leftLabel="Left"
           rightLabel="Right"
+        />
+        <Divider
+          size="extraLarge"
+        />
+        <Switch
+          checked={false}
+          title="Enable notifications"
+          helperText="Receive push notifications for important updates"
+        />
+        <Switch
+          checked={true}
+          title="Dark mode"
+          helperText="Switch to dark theme"
+        />
+        <Switch
+          checked={false}
         />
         <Divider
           size="extraLarge"
@@ -177,89 +194,6 @@ const ComponentsView = () => {
         />
         <Divider
           size="extraLarge"
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "entity",
-            image: Avatars.Karen
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "icon",
-            icon: Icons.Push
-          }}
-          right={{
-            type: "button",
-            title: "Button"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Push,
-            theme: "brand"
-          }}
-          right={{
-            type: "labelPush",
-            title: "Label"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "entity",
-            image: undefined,
-          }}
-          right={{
-            type: "toggle",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Push,
-            theme: "grey"
-          }}
-          right={{
-            type: "checkbox",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Add16,
-            theme: "brand"
-          }}
-          right={{
-            type: "radio",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
         />
         {/* Applet components removed */}
         <Divider size='extraLarge' />
@@ -322,6 +256,28 @@ const ComponentsView = () => {
           stacked={true}
           size="40"
         />
+        <Divider size="extraLarge" />
+        <div style={{ padding: '0 16px' }}>
+          <EntityLockup
+            entity={{ image: Avatars.Karen, size: '40' }}
+            title="Firstname Lastname"
+            badge={true}
+            degree="1st"
+            tag={{ label: 'Label', size: 'small', type: 'default' }}
+            subtitle="Subheading"
+            metadata="Timestamp"
+          />
+        </div>
+        <Divider size="large" />
+        <div style={{ padding: '0 16px' }}>
+          <EntityLockup
+            entity={{ image: Avatars.Darren, size: '40', company: true }}
+            title="Firstname Lastname"
+            tag={{ label: 'Label', size: 'small', type: 'default' }}
+            subtitle="Subheading"
+            metadata="Timestamp"
+          />
+        </div>
         <Divider size="extraLarge" />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '0 16px', alignItems: 'center' }}>
           <EntityGrid

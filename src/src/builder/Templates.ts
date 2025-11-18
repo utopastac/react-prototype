@@ -227,10 +227,9 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Information',
     description: {
       title: 'Promo Page Template',
-      overview: 'A welcome or onboarding screen designed to introduce features or collect user information. Features a hero header with an image accessory and informational cells.',
+      overview: 'A welcome or onboarding screen designed to introduce features or collect user information. Features a hero header with an image accessory.',
       features: [
         'Hero header with image accessory',
-        'Multiple informational cells with icons',
         'Transparent top bar',
         'Prominent call-to-action button'
       ],
@@ -260,39 +259,6 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: 'large' }
-      },
-      // Informational Cell 1
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Your info is secure',
-          body: 'We use industry-standard encryption to protect your data.',
-          left: { type: 'icon', icon: Icons.Push },
-          right: { type: 'none' }
-        }
-      },
-      // Informational Cell 2
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Why we ask',
-          body: 'This information helps us personalize your experience.',
-          left: { type: 'icon', icon: Icons.Add16 },
-          right: { type: 'none' }
-        }
-      },
-      // Informational Cell 3
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Need help?',
-          body: 'Contact support if you have any questions.',
-          left: { type: 'icon', icon: Icons.Help24 },
-          right: { type: 'none' }
-        }
       },
       
     ],
@@ -1102,10 +1068,9 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Authentication',
     description: {
       title: 'Account Verification Options Template',
-      overview: 'A selection screen that presents multiple verification methods to users. Each option is displayed as a tappable cell with an icon.',
+      overview: 'A selection screen that presents multiple verification methods to users.',
       features: [
         'Page header with explanation',
-        'List of verification method cells with icons',
         'Push indicators for navigation',
         'Fallback option button'
       ],
@@ -1135,46 +1100,6 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
         props: { size: 'large' }
-      },
-      // Email
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Email',
-          left: { type: 'icon', icon: Icons.Email24 },
-          right: { type: 'push' }
-        }
-      },
-      // PIN code
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'PIN code',
-          left: { type: 'icon', icon: Icons.Passcode24 },
-          right: { type: 'push' }
-        }
-      },
-      // Synced contacts
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Phone contacts',
-          left: { type: 'icon', icon: Icons.ContactCheck },
-          right: { type: 'push' }
-        }
-      },
-      // Linked account
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Linked account',
-          left: { type: 'icon', icon: Icons.Alert24 },
-          right: { type: 'push' }
-        }
       },
     ],
     topBarProps: {
