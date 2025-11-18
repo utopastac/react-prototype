@@ -19,11 +19,7 @@ const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span 
-      className={[
-        styles.Main,
-        typeClass,
-        className
-      ].filter(Boolean).join(' ')}
+      className={[styles.Main, typeClass, className].filter(Boolean).join(' ')}
     >
       {badgeType === 'text' && children}
     </span>

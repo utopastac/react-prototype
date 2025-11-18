@@ -1,0 +1,27 @@
+@use 'src/styles/site' as *
+
+.Main
+  flex: 1
+
+  .inputWrapper
+    position: relative
+    input
+      outline: none
+      width: 100%
+      border: none
+      border-radius: var(--corner-radius-full)
+      height: size(36)
+      padding: 0 size(16) 0 size(32)
+      @extend %typography-supportive-m
+      border: var(--size-border-width-standard) solid var(--color-border-subtle)
+      color: var(--color-text)
+      &:placeholder
+        color: var(--color-text-disabled)
+      &:focus
+        border-color: var(--color-action)
+    .icon
+      position: absolute
+      left: size(8)
+      top: 50%
+      transform: translateY(-50%)
+

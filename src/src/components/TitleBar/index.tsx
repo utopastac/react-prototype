@@ -4,32 +4,32 @@ import styles from "./index.module.sass";
 import Entity, { EntityProps } from "src/components/Entity";
 import Icon, { IconPropMeta as IconPropMetaImport } from "src/components/Icon";
 import { useUser } from 'src/containers/UserContext';
+import GlobalSearchInput from "src/components/GlobalSearchInput";
+import * as AllIcons from "src/data/AllIcons";
+import Badge from "src/components/Badge";
 
 export interface TitleBarProps {
-  title?: string;
   icon?: string;
   right?: EntityProps;
   inverse?: boolean;
 }
 
-const TitleBar: React.FC<TitleBarProps> = ({ title, icon, right, inverse }) => {
+const TitleBar: React.FC<TitleBarProps> = ({ icon, right, inverse }) => {
 
   const transitionNavigate = useTransitionNavigate();
 
   const userObject = useUser();
   const { avatar } = userObject;
 
-  const element = 
-    title ?
-      <div className={styles.title}><h4>{title}</h4></div>
-    :
-      icon ? <Icon icon={icon} size="24" color="prominent" /> : null;
-
   return (
     <div className={`${styles.Main} ${inverse ? styles.inverse : ""}`}>
-      {element}
       <div className={styles.avatar} onClick={()=>{transitionNavigate('account', transitions.slideInOver)}}>
         <Entity image={avatar} size="32" {...right} />
+      </div>
+      <GlobalSearchInput placeholder="Search" />
+      <div className={styles.right}>
+        <Icon icon={AllIcons.Navigation.Messages} size="24" color="prominent" />
+        <Badge type="text" className={styles.badge}>4</Badge>
       </div>
     </div>
   );
