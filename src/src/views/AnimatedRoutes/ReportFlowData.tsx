@@ -171,7 +171,7 @@ export const reportFlowData = [
     data: {
       sections: [
         {
-          component: Components.ProgressCircular,
+          component: Components.ProgressIndicatorCircular,
           props: {
             label: "Submitting report..."
           }

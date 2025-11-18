@@ -112,9 +112,9 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     components: [
       {
-        name: 'ProgressCircular',
-        Component: (InterventionScreenComponents as any)['ProgressCircular'],
-        props: initialComponentProps['ProgressCircular']
+        name: 'ProgressIndicatorCircular',
+        Component: (InterventionScreenComponents as any)['ProgressIndicatorCircular'],
+        props: initialComponentProps['ProgressIndicatorCircular']
       },
     ],
     topBarProps: undefined,

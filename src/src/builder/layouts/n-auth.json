@@ -205,7 +205,7 @@
     {
       "components": [
         {
-          "name": "ProgressCircular",
+          "name": "ProgressIndicatorCircular",
           "props": {
             "fullHeight": true,
             "width": 56,
@@ -749,7 +749,7 @@
     {
       "components": [
         {
-          "name": "ProgressCircular",
+          "name": "ProgressIndicatorCircular",
           "props": {
             "fullHeight": true,
             "width": 56,
@@ -977,7 +977,7 @@
     {
       "components": [
         {
-          "name": "ProgressCircular",
+          "name": "ProgressIndicatorCircular",
           "props": {
             "fullHeight": true,
             "width": 56,
@@ -1212,7 +1212,7 @@
     {
       "components": [
         {
-          "name": "ProgressCircular",
+          "name": "ProgressIndicatorCircular",
           "props": {
             "fullHeight": true,
             "width": 56,
@@ -1447,7 +1447,7 @@
     {
       "components": [
         {
-          "name": "ProgressCircular",
+          "name": "ProgressIndicatorCircular",
           "props": {
             "fullHeight": true,
             "width": 56,

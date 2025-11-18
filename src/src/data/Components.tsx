@@ -66,7 +66,7 @@ import Divider, {
 //
 import SegmentedControl, { SegmentedControlPropMeta } from 'src/components/SegmentedControl';
 import Slider, { SliderPropMeta } from 'src/components/Slider';
-import ProgressCircular, { ProgressCircularPropMeta } from 'src/components/ProgressCircular';
+import ProgressIndicatorCircular, { ProgressIndicatorCircularPropMeta } from 'src/components/ProgressIndicatorCircular';
 import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
   TimelineRowPropMeta
@@ -139,7 +139,7 @@ export const Components = {
   SegmentedControl,
   Slider,
   Icon,
-  ProgressCircular,
+  ProgressIndicatorCircular,
   Timeline,
   TimelineRow,
   Toast,
@@ -183,7 +183,7 @@ export const InterventionScreenComponents = {
   Text,
   ListUnordered,
   ListOrdered,
-  ProgressCircular,
+  ProgressIndicatorCircular,
   Modal
 };
 
@@ -222,7 +222,7 @@ export const ComponentPropMeta = {
   ListUnordered: ListUnorderedPropMeta,
   ListOrdered: ListOrderedPropMeta,
   InputStackedHorizontal: InputStackedHorizontalPropMeta,
-  ProgressCircular: ProgressCircularPropMeta,
+  ProgressIndicatorCircular: ProgressIndicatorCircularPropMeta,
   Modal: ModalPropMeta,
   Badge: BadgePropMeta,
   Accordion: AccordionPropMeta,
@@ -329,7 +329,7 @@ export const initialComponentProps: Record<string, any> = {
     prominence: 'standard',
     size: 'compact',
   },
-  ProgressCircular: {
+  ProgressIndicatorCircular: {
     fullHeight: true,
     width: 56,
     height: 56,

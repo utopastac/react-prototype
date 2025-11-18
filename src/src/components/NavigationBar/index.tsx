@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTransition, noTransition } from 'src/containers/TransitionContext';
 import styles from "./index.module.sass";
 import Icon from "src/components/Icon";
+import Text from "src/components/Text";
 import * as Icons from "src/data/Icons";
 
 export interface NavigationBarProps {
@@ -13,8 +14,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
   const inverse = false;
 
   const tabData = [
-  {icon: Icons.Back, url: "discover"},
-  {icon: Icons.Push, url: "activity"}
+  {icon: Icons.Back, url: "discover", label: "Discover"},
+  {icon: Icons.Push, url: "activity", label: "Activity"}
   ];
 
   const tabs = tabData.map((tab, index) => (
@@ -22,6 +23,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
       key={`NavigationTab${index}`} 
       icon={tab.icon} 
       url={tab.url} 
+      label={tab.label}
       active={index === activeIndex} 
       inverse={inverse} 
     />
@@ -39,11 +41,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeIndex }) => {
 export interface TabProps {
   icon: string;
   url: string;
+  label: string;
   active: boolean;
   inverse: boolean;
 }
 
-const Tab: React.FC<TabProps> = ({ icon, url, active, inverse }) => {
+const Tab: React.FC<TabProps> = ({ icon, url, label, active, inverse }) => {
   const navigate = useNavigate();
   const { setTransition } = useTransition();
 
@@ -56,6 +59,7 @@ const Tab: React.FC<TabProps> = ({ icon, url, active, inverse }) => {
     <div onClick={() => handleNavigation(url)}>
       <div className={`${styles.Tab} ${active ? styles.active : ""}`}>
         <Icon icon={icon} size="24" color={inverse ? "prominent" : active ? "prominent" : "extraSubtle"} />
+        <p>{label}</p>
       </div>
     </div>
   );
