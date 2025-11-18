@@ -246,8 +246,8 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "Get direct Deposit",
-          body: 'We need to collect some info to confirm that you are really you.',
+          title: "Get started",
+          body: 'We need to collect some information to set up your account.',
           size: 'hero',
           accessory: {
             type: 'image',
@@ -267,7 +267,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Your info is secure',
-          body: 'We use bank-level encryption to protect your data.',
+          body: 'We use industry-standard encryption to protect your data.',
           left: { type: 'icon', icon: Icons.Push },
           right: { type: 'none' }
         }
@@ -278,7 +278,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Why we ask',
-          body: 'We need your legal name to verify your identity.',
+          body: 'This information helps us personalize your experience.',
           left: { type: 'icon', icon: Icons.Add16 },
           right: { type: 'none' }
         }
@@ -289,7 +289,7 @@ export const AdminTemplates: AdminTemplate[] = [
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
           title: 'Need help?',
-          body: 'Contact support if you have questions about verification.',
+          body: 'Contact support if you have any questions.',
           left: { type: 'icon', icon: Icons.Help24 },
           right: { type: 'none' }
         }
@@ -580,8 +580,8 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "What's your legal name?",
-          body: 'We need to collect some info to confirm that you are really you.',
+          title: "What's your name?",
+          body: 'We need to collect some information to set up your profile.',
           size: 'page'
         }
       },
@@ -669,8 +669,8 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "Card numbers don't match",
-          body: "The card number you entered doesn't match what's on file.",
+          title: "Information doesn't match",
+          body: "The information you entered doesn't match our records.",
           size: 'page',
           accessory: {
             type: 'icon',
@@ -689,7 +689,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Confirm another way', type: 'standard' },
+        { title: 'Use another method', type: 'standard' },
         { title: 'Try again', type: 'primary' }
       ],
       horizontal: false,
@@ -981,8 +981,8 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: 'Enter your Interventions Hub PIN for $diogomartinez',
-          body: '',
+          title: 'Enter your PIN',
+          body: 'Please enter your PIN to continue.',
           size: 'page'
         }
       },
@@ -1146,12 +1146,12 @@ export const AdminTemplates: AdminTemplate[] = [
           right: { type: 'push' }
         }
       },
-      // Interventions Hub PIN
+      // PIN code
       {
         name: 'Cell',
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
-          title: 'Interventions Hub PIN',
+          title: 'PIN code',
           left: { type: 'icon', icon: Icons.Passcode24 },
           right: { type: 'push' }
         }
@@ -1161,17 +1161,17 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Cell',
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
-          title: 'Synced contacts',
+          title: 'Phone contacts',
           left: { type: 'icon', icon: Icons.ContactCheck },
           right: { type: 'push' }
         }
       },
-      // Linked debit card
+      // Linked account
       {
         name: 'Cell',
         Component: (InterventionScreenComponents as any)['Cell'],
         props: {
-          title: 'Linked debit card',
+          title: 'Linked account',
           left: { type: 'icon', icon: Icons.Alert24 },
           right: { type: 'push' }
         }
