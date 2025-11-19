@@ -50,11 +50,13 @@ export default function Button({ title, type='secondary', size, onClick, action,
   const isIconOnly = icon && !title;
 
   return (
-    <div className={`${styles.Main} ${styleClass()} ${sizeClass()} ${disabled ? styles.disabled : ''} ${emphasised ? styles.emphasised : ''} ${isIconOnly ? styles.iconOnly : ''}`} onClick={clickHandler}>
-      {title && <span>{title}</span>}
-      {icon &&
-        <Icon icon={icon.icon} size={icon.size} color={icon.color} />
-      }
+    <div className={`${styles.hitbox} ${disabled ? styles.hitboxDisabled : ''}`} onClick={clickHandler}>
+      <div className={`${styles.Main} ${styleClass()} ${sizeClass()} ${disabled ? styles.disabled : ''} ${emphasised ? styles.emphasised : ''} ${isIconOnly ? styles.iconOnly : ''}`}>
+        {title && <span>{title}</span>}
+        {icon &&
+          <Icon icon={icon.icon} size={icon.size} color={icon.color} />
+        }
+      </div>
     </div>
   );
 }

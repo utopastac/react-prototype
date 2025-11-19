@@ -1,0 +1,112 @@
+@use 'src/styles/site' as *
+
+$stepper-size-large: size(14)
+$stepper-size-small: size(8)
+
+.Main
+  display: flex
+  margin: 0 $margin-default
+  position: relative
+
+  .indicator
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-right: size(24)
+    position: relative
+    gap: size(8)
+
+  .iconContainer
+    display: flex
+    height: size(18)
+    align-items: center
+    justify-content: center
+
+  .content
+    flex: 1
+    padding-bottom: size(24)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+
+  .title
+    @extend %typography-title-s
+    color: var(--color-text)
+
+  .defaultText
+    @extend %typography-supportive-m
+    color: var(--color-text-meta)
+
+  .connector
+    width: size(2)
+    flex: 1
+    background: var(--color-border-faint)
+    border-radius: $radius-pill
+
+  // Large size icons
+  &.large
+    .iconCircle
+      width: $stepper-size-large
+      height: $stepper-size-large
+      border-radius: $radius-pill
+      background: var(--color-checked)
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-shrink: 0
+
+    .iconCircleOutline
+      width: $stepper-size-large
+      height: $stepper-size-large
+      border-radius: $radius-pill
+      border: size(3) solid var(--color-checked)
+      background: transparent
+      flex-shrink: 0
+
+    .iconCircleOutlineFuture
+      width: $stepper-size-large
+      height: $stepper-size-large
+      border-radius: $radius-pill
+      border: size(2) solid var(--color-border-faint)
+      background: transparent
+      flex-shrink: 0
+
+  // Small size icons
+  &.small
+    .iconDot
+      width: $stepper-size-small
+      height: $stepper-size-small
+      border-radius: $radius-pill
+      background: var(--color-checked)
+      flex-shrink: 0
+
+    .iconDotCurrent
+      width: $stepper-size-small
+      height: $stepper-size-small
+      border-radius: $radius-pill
+      border: size(3) solid var(--color-checked)
+      flex-shrink: 0
+
+    .iconDotFuture
+      width: $stepper-size-small
+      height: $stepper-size-small
+      border-radius: $radius-pill
+      background: var(--color-border-faint)
+      flex-shrink: 0
+
+  // State-specific connector styles
+  &.checked
+    .connector
+      width: size(2)
+      background: var(--color-checked)
+
+  &.current
+    .connector
+      width: size(2)
+      background: var(--color-border-faint)
+
+  &.future
+    .connector
+      width: size(2)
+      background: var(--color-border-faint)
+

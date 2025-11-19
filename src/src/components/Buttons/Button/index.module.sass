@@ -1,8 +1,21 @@
 @use 'src/styles/site' as *
 
 $nav-bottom-border: 3px
+$hitbox-height: size(48)
+
+.hitbox
+  display: flex
+  flex: 1
+  align-items: center
+  height: $hitbox-height
+  cursor: pointer
+  width: 100%
+  &.hitboxDisabled
+    cursor: not-allowed
+
 .Main
   cursor: pointer
+  flex: 1
   display: flex
   align-items: center
   justify-content: center
@@ -10,7 +23,7 @@ $nav-bottom-border: 3px
   // background: var(--text-standard)
   // color: var(--color-text-solid)
   border-radius: $radius-pill
-  padding: 0 size(16)
+  padding: 0 size(20)
 
   &.disabled
     cursor: not-allowed
@@ -35,25 +48,28 @@ $nav-bottom-border: 3px
       background: var(--color-background-knockout)
       color: var(--color-text-disabled)
       border-color: var(--color-border-disabled)
+    &.emphasised
+      border-color: var(--color-action)
+      color: var(--color-action)
   &.ghost
     background: var(--color-background-transparent)
     color: var(--color-text)
-    text-decoration: underline
     &.disabled
       color: var(--color-text-disabled)
+    &.emphasised
+      color: var(--color-action)
   &.small
     height: size(32)
     display: inline-flex
     @extend %typography-supportive-m-bold
     &.iconOnly
       width: size(32)
+      height: size(32)
       padding: 0
   &.medium
-    height: size(44)
+    height: size(48)
     @extend %typography-supportive-l-bold
     &.iconOnly
       width: size(44)
+      height: size(44)
       padding: 0
-  &.emphasised
-    border: var(--size-border-width-selected) solid var(--color-border)
-    box-shadow: var(--elevation-2)

@@ -1,7 +1,7 @@
-import React from "react";
 import { useNavigate } from 'react-router-dom'
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
+import { Images } from "src/data/Images";
 import * as Icons from "src/data/Icons";
 
 // Direct component imports
@@ -16,16 +16,14 @@ import Switch from 'src/components/Switch';
 import TextInput from 'src/components/TextInput';
 import SelectInput from 'src/components/SelectInput';
 import InputCard from 'src/components/InputCard';
-import Timeline, { TimelineProps} from "src/components/Timeline";
-import TimelineRow, {
+import Timeline from "src/components/Timeline";
+import {
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
+import Stepper from 'src/components/Stepper';
 import SearchInput from 'src/components/SearchInput';
 // Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
-import Button from 'src/components/Buttons/Button';
-import IconBg from 'src/components/IconBg';
-import Entity from 'src/components/Entity';
 import EntityStack from 'src/components/EntityStack';
 import EntityGrid from 'src/components/EntityGrid';
 import EntityLockup from 'src/components/EntityLockup';
@@ -35,8 +33,7 @@ import Tag from 'src/components/Tag';
 import InlineFeedback from 'src/components/InlineFeedback';
 import Menu from 'src/components/Menu';
 import { System } from 'src/data/AllIcons';
-
-import styles from "./index.module.sass";
+import LinkPreview from 'src/components/LinkPreview';
 //
 
 const ComponentsView = () => {
@@ -119,7 +116,7 @@ const ComponentsView = () => {
         <SegmentedControl
           left={{title: "Control left", active: true}}
           right={{title: "Control right", active: false}}
-          onClick={(segment) => {}}
+          onClick={(_segment) => {}}
         />
         <Divider
           size="extraLarge"
@@ -168,6 +165,24 @@ const ComponentsView = () => {
         <Divider
           size="extraLarge"
         />
+        <Stepper
+          items={[
+            { state: 'checked', size: 'large' },
+            { state: 'current', size: 'large' },
+            { state: 'future', size: 'large' },
+          ]}
+        />
+        <Divider size="large" />
+        <Stepper
+          items={[
+            { state: 'checked', size: 'small' },
+            { state: 'current', size: 'small' },
+            { state: 'future', size: 'small' },
+          ]}
+        />
+        <Divider
+          size="extraLarge"
+        />
         <TextInput
           label="Preferred first name"
           body="Choose the name you prefer to be called"
@@ -206,6 +221,23 @@ const ComponentsView = () => {
           }}
           checked={false}
           onClick={() => {}}
+        />
+        <Divider
+          size="extraLarge"
+        />
+        <LinkPreview
+          title="Design better link cards"
+          source="product.design"
+          metadata="Shared · 1 hour ago"
+          size="compact"
+        />
+        <Divider size="large" />
+        <LinkPreview
+          title="Five ways to ship faster than you planned"
+          source="newsletter.example"
+          metadata="Saved by you · 3 min read"
+          size="expanded"
+          imageSrc={Images.Collaboration}
         />
         <Divider
           size="extraLarge"
@@ -394,7 +426,7 @@ const ComponentsView = () => {
       </ScrollContainer>
       <ButtonGroup
         buttons={[
-          {title: "Save", type: "prominent", onClick:()=>{}}
+          {title: "Save", type: "primary", onClick:()=>{}}
         ]}
       />      
     </PageWrapper>

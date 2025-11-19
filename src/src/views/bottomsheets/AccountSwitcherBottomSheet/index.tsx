@@ -3,11 +3,11 @@ import { Avatars } from "src/data/Avatars";
 import * as Icons from "src/data/Icons";
 import { useLayersDispatch, CHANGE_LAYER } from 'src/containers/LayersContext';
 import { useUser } from 'src/containers/UserContext';
-import AddAccountHalfsheet from "src/views/halfsheets/AddAccountHalfsheet";
-import HalfSheet from 'src/components/HalfSheet';
+import AddAccountBottomSheet from "src/views/bottomsheets/AddAccountBottomSheet";
+import BottomSheet from 'src/components/BottomSheet';
 //
 
-const AccountSwitcherHalfsheet = () => {
+const AccountSwitcherBottomSheet = () => {
 
   const layersDispatch = useLayersDispatch();
 
@@ -18,16 +18,16 @@ const AccountSwitcherHalfsheet = () => {
     if (layersDispatch) {
       layersDispatch({
         type: CHANGE_LAYER,
-        component: AddAccountHalfsheet,
+        component: AddAccountBottomSheet,
         props: {}
       });
     }
   }
 
   return (
-    <HalfSheet>
-    </HalfSheet>
+    <BottomSheet>
+    </BottomSheet>
   );
 };
 
-export default AccountSwitcherHalfsheet;
+export default AccountSwitcherBottomSheet;

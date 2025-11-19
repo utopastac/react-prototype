@@ -72,6 +72,10 @@ import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
   TimelineRowPropMeta
 } from 'src/components/Timeline/TimelineRow';
+import Stepper, { StepperPropMeta } from 'src/components/Stepper';
+import StepperItem, {
+  StepperItemPropMeta
+} from 'src/components/Stepper/StepperItem';
 
 import Toast, { ToastPropMeta } from 'src/components/Toast';
 import ListOrdered, { ListOrderedPropMeta } from 'src/components/ListOrdered';
@@ -102,8 +106,11 @@ import InlineFeedback, {
 import Menu, {
   MenuPropMeta
 } from 'src/components/Menu';
+import LinkPreview, {
+  LinkPreviewPropMeta
+} from 'src/components/LinkPreview';
 
-import { Avatars } from './Avatars';
+import { Images } from './Images';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
 
 // Component Exports
@@ -149,6 +156,8 @@ export const Components = {
   ProgressIndicatorCircular,
   Timeline,
   TimelineRow,
+  Stepper,
+  StepperItem,
   Toast,
   IOSStatusBar,
   Text,
@@ -158,6 +167,7 @@ export const Components = {
   Tag,
   InlineFeedback,
   Menu,
+  LinkPreview,
 };
 
 
@@ -185,6 +195,8 @@ export const InterventionScreenComponents = {
   Slider,
   Timeline,
   TimelineRow,
+  Stepper,
+  StepperItem,
   Toast,
   Text,
   ListUnordered,
@@ -223,6 +235,8 @@ export const ComponentPropMeta = {
   Switch: SwitchPropMeta,
   Timeline: TimelinePropMeta,
   TimelineRow: TimelineRowPropMeta,
+  Stepper: StepperPropMeta,
+  StepperItem: StepperItemPropMeta,
   Icon: IconPropMeta,
   Toast: ToastPropMeta,
   IOSStatusBar: IOSStatusBarPropMeta,
@@ -236,7 +250,8 @@ export const ComponentPropMeta = {
   Accordion: AccordionPropMeta,
   Tag: TagPropMeta,
   InlineFeedback: InlineFeedbackPropMeta,
-  Menu: MenuPropMeta
+  Menu: MenuPropMeta,
+  LinkPreview: LinkPreviewPropMeta
   // Add more component meta objects here as you build them
 };
 
@@ -313,6 +328,26 @@ export const initialComponentProps: Record<string, any> = {
     metadataTime: "Jan 10",
     metadataLocation: "New York, NY",
     placing: 'middle'
+  },
+  Stepper: {
+    items: [
+      {
+        state: 'checked',
+        size: 'large'
+      },
+      {
+        state: 'current',
+        size: 'large'
+      },
+      {
+        state: 'future',
+        size: 'large'
+      }
+    ]
+  },
+  StepperItem: {
+    state: 'current',
+    size: 'large'
   },
   Toast: {
     headline: "Headline",
@@ -402,6 +437,13 @@ export const initialComponentProps: Record<string, any> = {
         ]
       }
     ]
+  },
+  LinkPreview: {
+    title: 'Linked content headline',
+    source: 'example.com',
+    metadata: 'Saved by you · 2 min read',
+    size: 'compact',
+    imageSrc: Images.Broadcast
   }
 };
 

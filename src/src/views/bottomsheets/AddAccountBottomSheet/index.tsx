@@ -1,18 +1,18 @@
 import React from "react";
 import styles from "./index.module.sass";
 import * as Icons from "src/data/Icons";
-import HalfSheet from 'src/components/HalfSheet';
+import BottomSheet from 'src/components/BottomSheet';
 //
 
-const AddAccountHalfsheet = () => {
+const AddAccountBottomSheet = () => {
 
   return (
-    <HalfSheet>
+    <BottomSheet>
       <div className={styles.content}>
         <h1>Add an account</h1>
       </div>
-    </HalfSheet>
+    </BottomSheet>
   );
 };
 
-export default AddAccountHalfsheet;
+export default AddAccountBottomSheet;

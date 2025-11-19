@@ -12,7 +12,7 @@ import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import Button from 'src/components/Buttons/Button';
 import ButtonGroup from 'src/components/ButtonGroup';
-import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
+import AccountSwitcherBottomSheet from 'src/views/bottomsheets/AccountSwitcherBottomSheet';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
 const AccountView = () => {
@@ -56,7 +56,7 @@ const AccountView = () => {
             size="small"
             action={{
               type: BUTTON_ACTION_HALFSHEET,
-              halfSheet: AccountSwitcherHalfsheet
+              halfSheet: AccountSwitcherBottomSheet
             }}
             //onClick={openLayer}
             icon={{

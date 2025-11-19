@@ -3,17 +3,17 @@ import styles from './index.module.sass';
 import ModalBacker from 'src/components/ModalBacker';
 import { useLayersDispatch, REMOVE_LAYER } from 'src/containers/LayersContext';
 
-interface HalfSheetProps {
+interface BottomSheetProps {
   children: ReactNode;
 }
 
-const HalfSheet = ({ children }: HalfSheetProps) => {
-  const halfSheet = useRef<HTMLDivElement>(null);
+const BottomSheet = ({ children }: BottomSheetProps) => {
+  const bottomSheet = useRef<HTMLDivElement>(null);
   const layersDispatch = useLayersDispatch();
 
   useEffect(() => {
-    if (halfSheet.current) {
-      halfSheet.current.scrollIntoView({
+    if (bottomSheet.current) {
+      bottomSheet.current.scrollIntoView({
         behavior: 'smooth',
       });
     }
@@ -29,11 +29,11 @@ const HalfSheet = ({ children }: HalfSheetProps) => {
   return (
     <div className={styles.Main} onScroll={yScroll}>
       <ModalBacker />
-      <div className={styles.halfSheet} ref={halfSheet}>
+      <div className={styles.bottomSheet} ref={bottomSheet}>
         {children}
       </div>
     </div>
   );
 };
 
-export default HalfSheet; 
+export default BottomSheet; 

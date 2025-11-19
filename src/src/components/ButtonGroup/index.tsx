@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./index.module.sass";
 import Button, { ButtonProps, ButtonPropMeta } from "src/components/Buttons/Button";
 
@@ -13,7 +12,7 @@ export interface ButtonGroupProps {
 
 const ButtonGroup = ({ 
   buttons, 
-  horizontal, 
+  horizontal = true, 
   inComponent, 
   showHairline, 
   disclaimer, 
@@ -33,14 +32,14 @@ const ButtonGroup = ({
  
 export default ButtonGroup;
 
-// Omit 'size' and 'icon' from ButtonPropMeta for use in button group fields
-const { size: _buttonSize, icon: _buttonIcon, ...ButtonPropMetaNoSizeNoIcon } = ButtonPropMeta;
+// Omit 'size' from ButtonPropMeta for use in button group fields
+const { size: _buttonSize, ...ButtonPropMetaNoSize } = ButtonPropMeta;
 
 export const ButtonGroupPropMeta = {
   buttons: {
     type: 'array',
     label: 'Buttons',
-    itemFields: ButtonPropMetaNoSizeNoIcon
+    itemFields: ButtonPropMetaNoSize
   },
   horizontal: { type: 'boolean', label: 'Horizontal' },
   inComponent: { type: 'boolean', label: 'In Component' },
