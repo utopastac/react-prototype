@@ -14,20 +14,18 @@ const IconPickerInput: React.FC<IconPickerInputProps> = ({ label, value, onChang
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState<{ x: number; y: number } | undefined>(undefined);
 
-  useEffect(() => {
-    if (isOpen && buttonRef.current) {
+  const handleOpen = () => {
+    if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
-      // Position modal to the right of the button
-      // The Modal component offsets by 320px to the left, so we need to add that plus extra space
-      // to position it well to the right of the input button
+      const modalOffsetLeft = 320; // Modal shifts itself left by 320px
+      const modalOffsetTop = 32;   // Modal shifts itself up by 32px
+
       setPosition({
-        x: rect.right + 600, // Position much further to the right
-        y: rect.bottom + 8
+        x: rect.left + modalOffsetLeft,
+        y: rect.top + modalOffsetTop,
       });
     }
-  }, [isOpen]);
 
-  const handleOpen = () => {
     setIsOpen(true);
   };
 
