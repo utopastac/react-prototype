@@ -34,6 +34,8 @@ import InlineFeedback from 'src/components/InlineFeedback';
 import Menu from 'src/components/Menu';
 import { System } from 'src/data/AllIcons';
 import LinkPreview from 'src/components/LinkPreview';
+import ListOrdered from 'src/components/ListOrdered';
+import ListUnordered from 'src/components/ListUnordered';
 //
 
 const ComponentsView = () => {
@@ -95,6 +97,87 @@ const ComponentsView = () => {
           right={{
           }}
         />
+        {/* Header Examples - All Sizes */}
+        <Header
+          title="Hero Header"
+          body="This is a hero-sized header with an h1 element. Perfect for main page titles."
+          size="hero"
+        />
+        <Divider size="large" />
+        <Header
+          title="Page Header"
+          body="This is a page-sized header with an h2 element. Great for section titles."
+          size="page"
+        />
+        <Divider size="large" />
+        <Header
+          title="Section Header"
+          body="This is a section-sized header with an h3 element. Ideal for subsections."
+          size="section"
+        />
+        <Divider size="extraLarge" />
+        
+        {/* Header Examples - With Accessories */}
+        <Header
+          title="Header with Entity"
+          body="This header includes an entity accessory."
+          size="page"
+          accessory={{
+            type: 'entity',
+            image: Avatars.Karen,
+            size: '64',
+            border: true
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Entity Grid"
+          body="This header includes an entity grid accessory showing multiple entities."
+          size="page"
+          accessory={{
+            type: 'entityGrid',
+            entities: [
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } }
+            ]
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Icon"
+          body="This header includes an icon accessory with a background."
+          size="page"
+          accessory={{
+            type: 'icon',
+            icon: System.Placeholder,
+            theme: 'brand'
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Image"
+          body="This header includes an image accessory."
+          size="page"
+          accessory={{
+            type: 'image',
+            image: Images.Collaboration,
+            alt: "Collaboration"
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Show More"
+          body="This header includes a show more accessory in the section header."
+          size="section"
+          accessory={{
+            type: 'showMore',
+            text: "Show all"
+          }}
+        />
+        <Divider size="extraLarge" />
+        
+        {/* Original Header Example */}
         <Header
           title = "What do you go by?"
           body = "If you don't go by your legal first name, you can change it here. We'll use this name on your profile. "
@@ -422,6 +505,60 @@ const ComponentsView = () => {
               ]
             }
           ]}
+        />
+        <Divider size="extraLarge" />
+        <ListOrdered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+        />
+        <Divider size="extraLarge" />
+        <ListUnordered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+          size="small"
+        />
+        <Divider size="large" />
+        <ListUnordered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+          size="medium"
         />
       </ScrollContainer>
       <ButtonGroup

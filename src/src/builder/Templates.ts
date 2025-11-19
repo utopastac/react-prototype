@@ -914,7 +914,7 @@ export const AdminTemplates: AdminTemplate[] = [
    *
    * PIN entry screen for authentication, matching the provided screenshot.
    * - Header with prompt for PIN and username
-   * - PINCheck for PIN input (4 digits)
+   * - TextInput for PIN input (4 digits)
    * - Top bar with close (left) and help (right) icons
    * - Bottom text button: "I don't have this info"
    */
@@ -923,10 +923,10 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Authentication',
     description: {
       title: 'PIN Entry Template',
-      overview: 'A secure PIN entry screen for authentication. Features a specialized PIN input component that displays dots for entered digits.',
+      overview: 'A secure PIN entry screen for authentication. Features a text input for PIN entry.',
       features: [
         'Page header with username context',
-        'PIN input component (4-digit display)',
+        'Text input for PIN entry',
         'Close and help buttons in top bar',
         'Subtle "I don\'t have this info" button'
       ],
@@ -958,11 +958,12 @@ export const AdminTemplates: AdminTemplate[] = [
         props: { size: 'large' }
       },
       {
-        name: 'PINCheck',
-        Component: (InterventionScreenComponents as any)['PINCheck'],
+        name: 'Input',
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
-          value: '', // Start empty; user will enter PIN
-          length: 4
+          ...initialComponentProps['Input'],
+          placeholder: 'Enter PIN',
+          type: 'password'
         }
       }
     ],

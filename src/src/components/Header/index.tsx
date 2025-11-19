@@ -54,7 +54,7 @@ export type HeaderAccessoryProps =
 export interface HeaderProps {
   title: string;
   body?: string;
-  size: 'hero' | 'page' | 'profile' | 'section';
+  size: 'hero' | 'page' | 'section';
   accessory?: HeaderAccessoryProps;
 }
 
@@ -64,8 +64,6 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
       case 'hero':
         return <h1>{title}</h1>;
       case 'page':
-        return <h2>{title}</h2>;
-      case 'profile':
         return <h2>{title}</h2>;
       case 'section':
         return (
@@ -90,8 +88,6 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
         return styles.hero;
       case 'page':
         return styles.page;
-      case 'profile':
-        return styles.profile;
       case 'section':
         return styles.section;
       default:
@@ -131,7 +127,15 @@ export default Header;
 
 // Omit 'size' from EntityPropMeta and EntityGridPropMeta for use in HeaderPropMeta
 const { size: _entitySize, ...EntityPropMetaNoSize } = EntityPropMeta;
-const { size: _gridSize, ...EntityGridPropMetaNoSize } = EntityGridPropMeta;
+const { entities, ...rest } = EntityGridPropMeta;
+const { size: _gridSize, ...itemFieldsNoSize } = entities.itemFields;
+const EntityGridPropMetaNoSize = {
+  ...rest,
+  entities: {
+    ...entities,
+    itemFields: itemFieldsNoSize
+  }
+};
 
 export const HeaderPropMeta = {
   title: { type: 'string', label: 'Title' },
@@ -139,7 +143,7 @@ export const HeaderPropMeta = {
   size: {
     type: 'select',
     label: 'Size',
-    options: ['hero', 'page', 'profile', 'section'],
+    options: ['hero', 'page', 'section'],
   },
   accessory: {
     type: 'object',

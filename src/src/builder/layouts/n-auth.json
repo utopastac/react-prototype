@@ -78,10 +78,10 @@
           }
         },
         {
-          "name": "PINCheck",
+          "name": "Input",
           "props": {
-            "value": "",
-            "length": 4
+            "placeholder": "Enter PIN",
+            "type": "password"
           }
         }
       ],

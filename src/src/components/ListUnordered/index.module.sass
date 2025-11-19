@@ -6,25 +6,16 @@
   list-style: none
   display: flex
   flex-direction: column
-  &.subtle
-    background: none
-    .title, .value
-      color: var(--color-text)
-    .title
-      @extend %typography-body
-    .body
-      display: none
-  &.standard
-    background: none
-    .title, .value
-      color: var(--color-text)
-    .icon
-      margin-right: size(8)
-  &.compact
+  background: none
+  .title
+    color: var(--color-text)
+  .icon
+    margin-right: size(8)
+  &.small
     gap: size(8)
     .body
       margin-bottom: size(8)
-  &.large
+  &.medium
     gap: size(32)
     padding: size(16) 0
 
@@ -53,9 +44,4 @@
 .body
   @extend %typography-body
   color: var(--color-text)
-  margin-top: size(2)
-
-.value
-  @extend %typography-title-l
-  color: var(--color-text)
-  margin-left: size(12) 
+  margin-top: size(2) 

@@ -25,7 +25,7 @@ import SearchInput, { SearchInputPropMeta } from 'src/components/SearchInput';
 //
 //
 // Removed MoneyInputDisplay
-import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
+// Removed PINCheck
 
 // Entity Components
 import Entity, {
@@ -129,7 +129,6 @@ export const Components = {
   InputCard,
   ButtonGroup,
   SearchInput,
-  PINCheck,
   InputStackedHorizontal,
 
   // List Components
@@ -186,7 +185,6 @@ export const InterventionScreenComponents = {
   ButtonGroup,
   SearchInput,
   InputStackedHorizontal,
-  PINCheck,
 
   // UI Components
   Divider,
@@ -220,7 +218,6 @@ export const ComponentPropMeta = {
   InputCard: InputCardPropMeta,
   ButtonGroup: ButtonGroupPropMeta,
   SearchInput: SearchInputPropMeta,
-  PINCheck: PINCheckPropMeta,
   Entity: EntityPropMeta,
   EntityStack: EntityStackPropMeta,
   EntityGrid: EntityGridPropMeta,
@@ -270,7 +267,6 @@ export const initialComponentProps: Record<string, any> = {
   InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, orientation: 'right', checked: false },
   ButtonGroup: { buttons: [{ title: 'Button' }] },
   SearchInput: { placeholder: 'Search...' },
-  PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
   EntityLockup: {
     entity: { size: '40' },
     title: 'Firstname Lastname',
@@ -365,23 +361,19 @@ export const initialComponentProps: Record<string, any> = {
         body: 'This is the second item body.',
       },
     ],
-    type: 'standard',
   },
   ListUnordered: {
     items: [
       {
         title: 'First item',
         body: 'This is the first item body.',
-        value: 'Value 1'
       },
       {
         title: 'Second item',
         body: 'This is the second item body.',
-        value: 'Value 2'
       },
     ],
-    prominence: 'standard',
-    size: 'compact',
+    size: 'small',
   },
   ProgressIndicatorCircular: {
     fullHeight: true,
