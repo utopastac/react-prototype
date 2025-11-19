@@ -1,0 +1,29 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: flex
+  align-items: center
+  gap: size(12)
+  padding: size(12) size(16)
+  @include animate(0.1s)
+
+  &.clickable
+    cursor: pointer
+
+    &:hover
+      background: var(--color-background-neutral-soft)
+
+    &:active
+      background: var(--color-background-neutral-strong)
+
+.iconWrapper
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-shrink: 0
+
+.title
+  @extend %typography-body
+  color: var(--color-text)
+  flex: 1
+

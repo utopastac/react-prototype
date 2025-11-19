@@ -1,0 +1,45 @@
+@use 'src/styles/site' as *
+
+@use 'src/admin/styles/admin.sass' as *
+
+.Input
+  display: flex
+  flex-direction: row
+  align-items: center
+  gap: size(8)
+
+  label
+    @extend %input-label
+    flex: 0 0 auto
+    min-width: size(80)
+    max-width: size(200)
+
+    span
+      display: block
+
+  .IconButton
+    width: 100%
+    padding: size(4) size(8)
+    border: none
+    border-radius: var(--admin-border-radius)
+    background: var(--admin-gray-20)
+    cursor: pointer
+    transition: all 0.2s ease
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: size(12)
+
+    .IconPreview
+      display: flex
+      align-items: center
+      gap: size(12)
+
+      .IconLabel
+        font-size: --admin-font-size-s
+        color: var(--color-text)
+
+    .Placeholder
+      font-size: --admin-font-size-s
+      color: var(--color-text-subtle)
+

@@ -95,9 +95,8 @@ export default Icon;
 
 export const IconPropMeta = {
   icon: {
-    type: 'select',
-    label: 'Icon',
-    options: Object.values(Icons)
+    type: 'icon',
+    label: 'Icon'
   },
   size: {
     type: 'select',

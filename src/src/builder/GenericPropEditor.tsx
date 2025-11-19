@@ -7,6 +7,7 @@
 
 import React from 'react';
 import LabeledInput from 'src/admin/components/LabeledInput';
+import IconPickerInput from 'src/admin/components/IconPicker/IconPickerInput';
 import ArrayEditor from 'src/builder/ArrayEditor';
 import styles from 'src/builder/index.module.sass';
 import Header from 'src/admin/components/Header';
@@ -54,6 +55,18 @@ const GenericPropEditor: React.FC<GenericPropEditorProps> = ({
       const value = values?.[key];
       // fullKey is the dot/bracket path to this property (e.g. 'foo.bar[2].baz')
       const fullKey = parentKey ? `${parentKey}.${key}` : key;
+
+      // Handle icon type (special picker)
+      if (config.type === 'icon') {
+        return (
+          <IconPickerInput
+            key={fullKey}
+            label={config.label || key}
+            value={value}
+            onChange={val => onChange(fullKey, val)}
+          />
+        );
+      }
 
       // Handle primitive types and selects
       if (["string", "boolean", "select", "textarea"].includes(config.type)) {

@@ -1,0 +1,27 @@
+@use 'src/styles/site' as *
+
+.Main
+  background: var(--color-background-knockout)
+  border-radius: $radius-m
+  box-shadow: var(--elevation-raised)
+  overflow: hidden
+  margin: 0 $margin-default
+
+.section
+  display: flex
+  flex-direction: column
+
+.heading
+  @extend %typography-heading-m
+  color: var(--color-text)
+  padding: size(12) size(16) size(8) size(16)
+
+.items
+  display: flex
+  flex-direction: column
+
+.divider
+  height: 1px
+  background: var(--color-border-subtle)
+  margin: 0 size(16)
+

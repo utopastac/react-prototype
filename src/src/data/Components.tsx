@@ -64,6 +64,7 @@ import Divider, {
 } from 'src/components/Divider';
 //
 import SegmentedControl, { SegmentedControlPropMeta } from 'src/components/SegmentedControl';
+import TabGroup, { TabGroupPropMeta } from 'src/components/TabGroup';
 import Slider, { SliderPropMeta } from 'src/components/Slider';
 import Switch, { SwitchPropMeta } from 'src/components/Switch';
 import ProgressIndicatorCircular, { ProgressIndicatorCircularPropMeta } from 'src/components/ProgressIndicatorCircular';
@@ -97,6 +98,10 @@ import Tag, {
 import InlineFeedback, {
   InlineFeedbackPropMeta
 } from 'src/components/InlineFeedback';
+
+import Menu, {
+  MenuPropMeta
+} from 'src/components/Menu';
 
 import { Avatars } from './Avatars';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
@@ -137,6 +142,7 @@ export const Components = {
   Button,
   Divider,
   SegmentedControl,
+  TabGroup,
   Slider,
   Switch,
   Icon,
@@ -151,6 +157,7 @@ export const Components = {
   Accordion,
   Tag,
   InlineFeedback,
+  Menu,
 };
 
 
@@ -174,6 +181,7 @@ export const InterventionScreenComponents = {
   // UI Components
   Divider,
   SegmentedControl,
+  TabGroup,
   Slider,
   Timeline,
   TimelineRow,
@@ -210,6 +218,7 @@ export const ComponentPropMeta = {
   Button: ButtonPropMeta,
   Divider: DividerPropMeta,
   SegmentedControl: SegmentedControlPropMeta,
+  TabGroup: TabGroupPropMeta,
   Slider: SliderPropMeta,
   Switch: SwitchPropMeta,
   Timeline: TimelinePropMeta,
@@ -226,7 +235,8 @@ export const ComponentPropMeta = {
   Badge: BadgePropMeta,
   Accordion: AccordionPropMeta,
   Tag: TagPropMeta,
-  InlineFeedback: InlineFeedbackPropMeta
+  InlineFeedback: InlineFeedbackPropMeta,
+  Menu: MenuPropMeta
   // Add more component meta objects here as you build them
 };
 
@@ -258,6 +268,7 @@ export const initialComponentProps: Record<string, any> = {
   Text: { text: 'Text', size: 'body', color: 'standard' },
   Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
+  TabGroup: { tabs: [{ title: 'Tab 1' }, { title: 'Tab 2' }, { title: 'Tab 3' }, { title: 'Tab 4' }], activeIndex: 0 },
   Slider: { onDrop: () => {} },
   Switch: { checked: false, title: 'Switch Label', helperText: 'Helper text for the switch' },
   Timeline: {
@@ -372,6 +383,25 @@ export const initialComponentProps: Record<string, any> = {
   InlineFeedback: {
     label: 'Feedback Text. [Link](https://example.com)',
     type: 'positive'
+  },
+  Menu: {
+    sections: [
+      {
+        heading: 'Heading',
+        items: [
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } }
+        ]
+      },
+      {
+        heading: 'Heading',
+        items: [
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } }
+        ]
+      }
+    ]
   }
 };
 

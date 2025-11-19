@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import ComponentsView from "src/views/ComponentsView";
 import DiscoverView from "src/views/DiscoverView";
 import AccountView from "src/views/AccountView";
-import ChavezView from "src/views/ChavezView";
+import AnimationShowcase from "src/views/AnimationShowcase";
 //
 import ParallaxButtonView from 'src/views/ParallaxButtonView';
 import FlowStartView from 'src/views/FlowStartView';
@@ -69,7 +69,7 @@ const AnimatedRoutes = () => {
           <Route path="components" element={withRouteContainer(ComponentsView)} />
           <Route path="discover" element={withRouteContainer(DiscoverView)} />
           <Route path="account" element={withRouteContainer(AccountView)} />
-          <Route path="chavez" element={withRouteContainer(ChavezView)} />
+          <Route path="animation-showcase" element={withRouteContainer(AnimationShowcase)} />
           <Route path="parallax" element={withRouteContainer(ParallaxButtonView)} />
           
           {/* Layout routes (Flows) - nested routes are handled within the layouts */}

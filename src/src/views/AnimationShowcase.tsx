@@ -6,9 +6,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 //
 
-const ChavezView = () => {
+const AnimationShowcase = () => {
 
-  const chavezRef = useRef([]);
+  const elementRef = useRef([]);
   const container = useRef();
 
   const { contextSafe } = useGSAP({ scope: container });
@@ -35,13 +35,13 @@ const ChavezView = () => {
     });
   });
 
-  const elements = array.map((chavez, index) => {
+  const elements = array.map((element, index) => {
     return (
       <img
-        className={styles.chavez}
+        className={styles.animationShowcase}
         src={Chavez}
         key={index}
-        ref={(el) => (chavezRef.current[index] = el)}
+        ref={(el) => (elementRef.current[index] = el)}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       />
@@ -49,7 +49,7 @@ const ChavezView = () => {
   });
 
   const onClickGood = contextSafe(() => {
-    const sections = chavezRef.current;
+    const sections = elementRef.current;
     
     //
     sections.forEach((section, index) => {
@@ -70,7 +70,7 @@ const ChavezView = () => {
   });
 
   const onClickSlide = contextSafe(() => {
-    const sections = chavezRef.current;
+    const sections = elementRef.current;
     
     //
     sections.forEach((section, index) => {
@@ -88,7 +88,7 @@ const ChavezView = () => {
   });
 
   const onClickWild = contextSafe(() => {
-    const sections = chavezRef.current;
+    const sections = elementRef.current;
     
     //
     sections.forEach((section, index) => {
@@ -110,7 +110,7 @@ const ChavezView = () => {
 
   useGSAP(() => {
     //
-    const sections = chavezRef.current;
+    const sections = elementRef.current;
     
     //
     sections.forEach((section, index) => {
@@ -134,7 +134,7 @@ const ChavezView = () => {
 
   return (
     <div className={styles.Main} ref={container}>
-      <div className={styles.chavezHolder}>
+      <div className={styles.animationShowcaseHolder}>
         {elements}
       </div>
       <div className={styles.buttons}>
@@ -146,4 +146,5 @@ const ChavezView = () => {
   );
 };
 
-export default ChavezView;
+export default AnimationShowcase;
+

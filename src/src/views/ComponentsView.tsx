@@ -10,6 +10,7 @@ import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import PillGroup from 'src/components/PillGroup';
 import SegmentedControl from 'src/components/SegmentedControl';
+import TabGroup from 'src/components/TabGroup';
 import Slider from 'src/components/Slider';
 import Switch from 'src/components/Switch';
 import TextInput from 'src/components/TextInput';
@@ -32,6 +33,8 @@ import Badge from 'src/components/Badge';
 import Accordion from 'src/components/Accordion';
 import Tag from 'src/components/Tag';
 import InlineFeedback from 'src/components/InlineFeedback';
+import Menu from 'src/components/Menu';
+import { System } from 'src/data/AllIcons';
 
 import styles from "./index.module.sass";
 //
@@ -117,6 +120,18 @@ const ComponentsView = () => {
           left={{title: "Control left", active: true}}
           right={{title: "Control right", active: false}}
           onClick={(segment) => {}}
+        />
+        <Divider
+          size="extraLarge"
+        />
+        <TabGroup
+          tabs={[
+            { title: "Tab 1" },
+            { title: "Tab 2" },
+            { title: "Tab 3" },
+            { title: "Tab 4" }
+          ]}
+          activeIndex={0}
         />
         <Divider
           size="extraLarge"
@@ -335,6 +350,46 @@ const ComponentsView = () => {
         <InlineFeedback 
           label="Feedback Text. [Link](https://example.com)" 
           type="caution" 
+        />
+        <Divider size="extraLarge" />
+        <Menu
+          sections={[
+            {
+              heading: "Heading",
+              items: [
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                }
+              ]
+            },
+            {
+              heading: "Heading",
+              items: [
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                }
+              ]
+            }
+          ]}
         />
       </ScrollContainer>
       <ButtonGroup

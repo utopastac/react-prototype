@@ -1,0 +1,33 @@
+@use 'src/styles/site' as *
+
+.Tab
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: size(12) size(16)
+  cursor: pointer
+  position: relative
+  @extend %typography-supportive-m-bold
+  color: var(--color-text-meta)
+  font-weight: 400
+  transition: color 0.2s ease
+  border-bottom: 1px solid transparent
+
+  &:hover
+    color: var(--color-text)
+
+  &.active
+    color: var(--color-text)
+    font-weight: 600
+    cursor: default
+
+    &::after
+      content: ''
+      position: absolute
+      bottom: -1px
+      left: 0
+      right: 0
+      height: 3px
+      background: var(--color-positive)
+      z-index: 1
+
