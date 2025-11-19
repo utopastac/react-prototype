@@ -1,0 +1,27 @@
+@use 'src/styles/site' as *
+
+.Main
+  margin: size(8) $margin-default
+
+  .inputWrapper
+    position: relative
+    input
+      outline: none
+      width: 100%
+      border: none
+      border-radius: var(--corner-radius-0_5x)
+      height: size(32)
+      padding: 0 size(16) 0 size(32)
+      @extend %typography-supportive-m
+      background: var(--color-background-neutral-soft)
+      color: var(--color-text)
+      &:placeholder
+        color: var(--color-text-disabled)
+      &:focus
+        border-color: var(--color-action)
+    .icon
+      position: absolute
+      left: size(8)
+      top: 50%
+      transform: translateY(-50%)
+

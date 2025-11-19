@@ -1,24 +1,44 @@
 @use 'src/styles/site' as *
 
 .Main
-  padding: size(8)
+  padding: size(12)
   > div
-    background: var(--color-background-neutral-strong)
-    display: flex
-    align-items: center
+    background: var(--color-background)
+    box-shadow: var(--elevation-raised)
+    border: var(--size-border-width-standard) solid var(--color-border-faint)
     border-radius: $radius-s
     padding: size(8)
-  .content
-    flex: 1
-    padding: size(8)
+    display: flex
+    flex-direction: column
+    gap: size(8)
+  .topLine
+    display: flex
+    align-items: center
+    gap: size(8)
+    padding-left: size(8)
+    position: relative
   .icon
-    padding: size(8)
-  h4, p, h5
-    color: var(--color-text-solid)
-  h4
-    @extend %typography-title-l
-  p
-    @extend %typography-body
-  h5
-    @extend %typography-title-s
-    margin: size(8)
+    flex-shrink: 0
+  .headline
+    flex: 1
+    @extend %typography-supportive-m
+    color: var(--color-text)
+    p
+      margin: 0
+      display: inline
+    a
+      color: var(--color-action)
+      text-decoration: underline
+  .closeButton
+    flex-shrink: 0
+  .bottomLine
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: size(4) size(8) size(4) size(40)
+  .timestamp
+    @extend %typography-supportive-s
+    color: var(--color-text-meta)
+  .counter
+    @extend %typography-supportive-s
+    color: var(--color-text-meta)

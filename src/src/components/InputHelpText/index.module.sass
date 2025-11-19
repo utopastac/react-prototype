@@ -1,0 +1,11 @@
+@use 'src/styles/site' as *
+
+.HelpText
+  display: flex
+  align-items: center
+  margin-top: size(4)
+  gap: size(4)
+  p
+    @extend %typography-supportive-s
+    color: var(--color-text-meta)
+

@@ -5,25 +5,14 @@
   display: flex
   align-items: top
   &.checked
-    .card:after
-      border-color: var(--color-border)
-      border-width: var(--size-border-width-selected)
   .card
     flex: 1
     display: flex
     align-items: top
-    padding: size(16)
+    gap: size(8)
     cursor: pointer
     position: relative
-    &::after
-      content: ""
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      border-radius: $radius-m
-      border: var(--size-border-width-standard) solid var(--color-border-subtle)
+    padding: size(8) 0
   h5
     @extend %typography-title-l
     color: var(--color-text)
@@ -33,4 +22,6 @@
     margin-top: size(4)
   .textContent
     flex: 1
-    padding-right: size(16)
+  &.leftOriented
+    .textContent
+      padding-right: 0

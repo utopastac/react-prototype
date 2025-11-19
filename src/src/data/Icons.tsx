@@ -1,5 +1,5 @@
 // Navigation icons
-import Back from "src/assets/navigation/back.svg";
+import Back from "src/assets/icons/system/Arrow left.svg";
 import Close from "src/assets/navigation/close.svg";
 
 // 16px icons
@@ -45,7 +45,7 @@ import Load24 from "src/assets/24/load.svg";
 import Check32 from "src/assets/32/check.svg";
 
 // Root assets
-import Push from "src/assets/push.svg";
+import Push from "src/assets/icons/system/Arrow right.svg";
 
 export {
   // Navigation icons

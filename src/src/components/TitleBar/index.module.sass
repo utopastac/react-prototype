@@ -4,7 +4,7 @@
   width: 100%
   height: size(52)
   display: flex
-  justify-content: space-between
+  gap: size(8)
   align-items: center
   padding: 0 $margin-default
   &.inverse
@@ -12,5 +12,15 @@
       color: var(--white-a100)
   h4
     @extend %typography-heading-l
-  .avatar
-    cursor: pointer
+
+  .right
+    position: relative
+    width: size(48)
+    height: size(48)
+    display: flex
+    justify-content: center
+    align-items: center
+  .badge
+    position: absolute
+    top: size(5)
+    right: size(7)

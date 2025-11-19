@@ -5,6 +5,7 @@ import ToolbarButton from 'src/admin/components/ToolbarButton';
 import Link from 'src/admin/components/Link';
 import { IconProps } from 'src/components/Icon';
 import * as Icons from 'src/data/Icons';
+import Logo from 'src/components/Logo';
 
 interface SignatureProps {
   contact?: string;
@@ -55,7 +56,10 @@ const Signature: React.FC<SignatureProps> = ({
 const MainNav: React.FC = () => {
   return (
     <nav className={styles.nav} aria-label="Main">
-      <h1>Interventions Hub</h1>
+      <div className={styles.logoContainer}>
+        <Logo type="In" size={4} forceTheme="light" />
+        <h1>Interventions Hub</h1>
+      </div>
       <ul className={styles.list}>
         <li>
           <Link

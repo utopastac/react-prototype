@@ -2,10 +2,9 @@ import React from "react";
 import styles from "./index.module.sass";
 
 /**
- * ListUnordered displays a styled unordered list with optional icons, body, and value for each item.
+ * ListOrdered displays a styled ordered list with optional body for each item.
  *
- * @param items - Array of list items, each with a title, optional body, value, and icon.
- * @param type - Visual prominence: 'subtle' or 'standard'.
+ * @param items - Array of list items, each with a title and optional body.
  */
 export interface ListOrderedItem {
   title: string;
@@ -14,20 +13,17 @@ export interface ListOrderedItem {
 
 export interface ListOrderedProps {
   items: ListOrderedItem[];
-  type?: "subtle" | "standard";
   className?: string;
 }
 
 const ListOrdered: React.FC<ListOrderedProps> = ({
   items,
-  type = "standard",
   className = "",
 }) => {
   return (
     <ul
       className={[
         styles.Main,
-        styles[type],
         className,
       ].filter(Boolean).join(" ")}
     >
@@ -35,7 +31,7 @@ const ListOrdered: React.FC<ListOrderedProps> = ({
         <li className={styles.item} key={idx}>
           <span className={styles.index}>{idx + 1}</span>
           <div className={styles.content}>
-            <span className={`${styles.title} ${item.body && type === "standard" ? styles.showBody : ''}`}>{item.title}</span>
+            <span className={`${styles.title} ${item.body ? styles.showBody : ''}`}>{item.title}</span>
             {item.body && <span className={styles.body}>{item.body}</span>}
           </div>
         </li>
@@ -55,9 +51,4 @@ export const ListOrderedPropMeta = {
       body: { type: 'string', label: 'Body' },
     },
   },
-  type: {
-    type: 'select',
-    label: 'Type',
-    options: ['subtle', 'standard'],
-  }
 };

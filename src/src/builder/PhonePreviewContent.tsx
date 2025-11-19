@@ -114,10 +114,10 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
 
           >
             {/* Render the actual component, or a placeholder if props are missing */}
-            {props !== undefined ? (
+            {Component && props !== undefined ? (
               React.createElement(Component, props)
             ) : (
-              <span style={{ color: '#888' }}>Props required</span>
+              <span style={{ color: '#888' }}>{Component ? 'Props required' : 'Component not found'}</span>
             )}
             {/* Overlay the component name if showComponentNames is enabled */}
             {showComponentNames && (
@@ -166,8 +166,10 @@ const PhonePreviewContent: React.FC<PhonePreviewContentProps> = ({
         >
           <Toast
             headline={toastProps.headline}
-            body={toastProps.body}
-            button={toastProps.button}
+            timestamp={toastProps.timestamp}
+            currentIndex={toastProps.currentIndex}
+            totalCount={toastProps.totalCount}
+            onClose={toastProps.onClose}
             icon={toastProps.icon}
           />
         </div>

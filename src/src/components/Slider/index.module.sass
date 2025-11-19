@@ -2,8 +2,18 @@
 
 .Main
   margin: 0 $margin-default
-  height: size(28)
   position: relative
+
+  .sliderContainer
+    height: size(20)
+    position: relative
+
+  &[data-segmented="true"]
+    .track
+      background: var(--color-text)
+    .handle
+      background: var(--color-text)
+
   .trackBackground
     position: absolute
     top: 50%
@@ -13,21 +23,61 @@
     height: size(4)
     border-radius: $radius-pill
     background: var(--color-background-neutral-soft)
+    z-index: 0
+
   .track
     position: absolute
     top: 50%
     transform: translateY(-50%)
     left: 0
-    right: 0
     height: size(4)
     border-radius: $radius-pill
-    background: var(--color-action)
-  .thumb
+    background: var(--color-text)
+    width: 0
+    z-index: 1
+
+  .marker
+    position: absolute
+    top: 50%
+    transform: translate(-50%, -50%)
+    width: size(2)
+    height: size(2)
+    border-radius: 50%
+    pointer-events: none
+    z-index: 2
+
+    &[data-filled="true"]
+      background: var(--color-background)
+
+    &[data-filled="false"]
+      background: var(--color-text)
+
+  .handle
     position: absolute
     top: 50%
     transform: translateY(-50%)
     left: 0
-    height: size(28)
-    width: size(28)
+    height: size(12)
+    width: size(12)
+    background: var(--color-indicator)
     border-radius: $radius-pill
-    background: var(--color-action)
+    z-index: 3
+
+    &::after
+      content: ""
+      width: size(32)
+      height: size(32)
+      background: rgba(0,0,0,0)
+      position: absolute
+      top: 50%
+      transform: translate(-50%, -50%)
+
+  .labels
+    display: flex
+    justify-content: space-between
+    margin-top: size(8)
+    padding: 0
+
+    .label
+      @extend %typography-supportive-s
+      color: var(--color-text-meta)

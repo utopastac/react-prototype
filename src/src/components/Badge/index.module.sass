@@ -1,0 +1,29 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  flex-shrink: 0
+
+  // Dot badge (circular)
+  &.dot
+    width: size(8)
+    height: size(8)
+    border-radius: $radius-pill
+    min-width: size(8)
+    padding: 0
+
+  // Text badge (rectangular with rounded corners)
+  &.text
+    @extend %typography-supportive-s
+    padding: size(2) size(6)
+    border-radius: $radius-s
+    font-weight: var(--font-weight-medium)
+    white-space: nowrap
+    min-height: size(16)
+    color: var(--white-a100)
+
+  // Red color (only color variant)
+  background-color: var(--system-red-70)
+

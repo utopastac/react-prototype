@@ -3,20 +3,24 @@
 .Main
   height: calc(size(52) + $view-offset-base)
   background: var(--color-background)
-  &.brand
-    background: var(--color-action)
-    > div
-      border-top: none
-    .Tab
-      opacity: 0.45
-      &.active
-        opacity: 1 !important
   > div
     height: size(52)
     display: flex
     justify-content: space-around
     align-items: center
-    padding: 0 $margin-default
     border-top: 1px solid var(--color-border-faint)
 .Tab
   cursor: pointer
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: size(4)
+  flex: 1
+
+  p
+    @extend %typography-supportive-s
+    color: var(--color-nav-label)
+
+  &.active
+    p
+      color: var(--color-current)

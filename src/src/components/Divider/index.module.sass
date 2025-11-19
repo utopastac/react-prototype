@@ -3,18 +3,18 @@
 .Main
   position: relative
   margin: 0 $margin-default
+  display: flex
+  align-items: center
+  justify-content: center
   &:after
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    top: size(15)
+    content: ""
+    display: block
+    width: 100%
     height: size(1)
     background: var(--color-border-faint)
-  &.onBackground
+  &.noLine
     &:after
-      background: var(--color-border-faint)
+      display: none
   &.small
     height: var(--space-s)
   &.medium
@@ -22,14 +22,4 @@
   &.large
     height: var(--space-l)
   &.extraLarge
-    height: size(48)
-    // &:after
-    //   content: ""
-    //   top: size(32)
-    //   height: size(1)
-  &.extraLargeCell
-    height: size(48)
-    // &:after
-    //   content: ""
-    //   top: size(15)
-    //   height: size(1)  
+    height: size(48)  

@@ -1,32 +1,41 @@
-import React from "react";
 import { useNavigate } from 'react-router-dom'
 import { PageWrapper, ScrollContainer } from "src/containers";
 import { Avatars } from "src/data/Avatars";
+import { Images } from "src/data/Images";
 import * as Icons from "src/data/Icons";
 
 // Direct component imports
 import TopBar from 'src/components/TopBar';
 import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
-import FilterBar from 'src/components/FilterBar';
+import PillGroup from 'src/components/PillGroup';
 import SegmentedControl from 'src/components/SegmentedControl';
+import TabGroup from 'src/components/TabGroup';
 import Slider from 'src/components/Slider';
-import Input from 'src/components/Input';
+import Switch from 'src/components/Switch';
+import TextInput from 'src/components/TextInput';
+import SelectInput from 'src/components/SelectInput';
 import InputCard from 'src/components/InputCard';
-import Cell from 'src/components/Cell';
-import Timeline, { TimelineProps} from "src/components/Timeline";
-import TimelineRow, {
+import Timeline from "src/components/Timeline";
+import {
   TimelineRowProps
 } from 'src/components/Timeline/TimelineRow';
-import SearchBar from 'src/components/SearchBar';
-import AvatarCarousel from 'src/components/AvatarCarousel';
+import Stepper from 'src/components/Stepper';
+import SearchInput from 'src/components/SearchInput';
 // Removed Applet components (BalanceApplet, SavingsApplet, DiscoverPromo)
 import ButtonGroup from 'src/components/ButtonGroup';
-import Button from 'src/components/Buttons/Button';
-import IconBg from 'src/components/IconBg';
-import Avatar from 'src/components/Avatar';
-
-import styles from "./index.module.sass";
+import EntityStack from 'src/components/EntityStack';
+import EntityGrid from 'src/components/EntityGrid';
+import EntityLockup from 'src/components/EntityLockup';
+import Badge from 'src/components/Badge';
+import Accordion from 'src/components/Accordion';
+import Tag from 'src/components/Tag';
+import InlineFeedback from 'src/components/InlineFeedback';
+import Menu from 'src/components/Menu';
+import { System } from 'src/data/AllIcons';
+import LinkPreview from 'src/components/LinkPreview';
+import ListOrdered from 'src/components/ListOrdered';
+import ListUnordered from 'src/components/ListUnordered';
 //
 
 const ComponentsView = () => {
@@ -48,33 +57,28 @@ const ComponentsView = () => {
   const rowData: TimelineRowProps[] = [
     { 
       label: 'Application Submitted', 
-      body: application.time,
-      value: application.position,
-      state: 'done', 
+      body: application.position,
+      metadataTime: application.time,
       placing: 'beginning' 
     },
     { 
       label: 'Application Reviewed', 
-      value: 'Under Review',
-      state: 'skipped', 
+      metadataTime: 'Under Review',
       placing: 'middle' 
     },
     { 
       label: 'Recruiter Contacted', 
-      value: application.recruiter,
-      state: 'done', 
+      metadataLocation: application.recruiter,
       placing: 'middle' 
     },
     { 
       label: 'Interview Scheduled', 
-      value: application.location,
-      state: 'collapsed', 
+      metadataLocation: application.location,
       placing: 'middle' 
     },
     { 
       label: 'Decision Made', 
-      value: '4 May 2025',
-      state: 'notStarted', 
+      metadataTime: '4 May 2025',
       placing: 'end' 
     },
   ];
@@ -93,54 +97,192 @@ const ComponentsView = () => {
           right={{
           }}
         />
+        {/* Header Examples - All Sizes */}
+        <Header
+          title="Hero Header"
+          body="This is a hero-sized header with an h1 element. Perfect for main page titles."
+          size="hero"
+        />
+        <Divider size="large" />
+        <Header
+          title="Page Header"
+          body="This is a page-sized header with an h2 element. Great for section titles."
+          size="page"
+        />
+        <Divider size="large" />
+        <Header
+          title="Section Header"
+          body="This is a section-sized header with an h3 element. Ideal for subsections."
+          size="section"
+        />
+        <Divider size="extraLarge" />
+        
+        {/* Header Examples - With Accessories */}
+        <Header
+          title="Header with Entity"
+          body="This header includes an entity accessory."
+          size="page"
+          accessory={{
+            type: 'entity',
+            image: Avatars.Karen,
+            size: '64',
+            border: true
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Entity Grid"
+          body="This header includes an entity grid accessory showing multiple entities."
+          size="page"
+          accessory={{
+            type: 'entityGrid',
+            entities: [
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } }
+            ]
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Icon"
+          body="This header includes an icon accessory with a background."
+          size="page"
+          accessory={{
+            type: 'icon',
+            icon: System.Placeholder,
+            theme: 'brand'
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Image"
+          body="This header includes an image accessory."
+          size="page"
+          accessory={{
+            type: 'image',
+            image: Images.Collaboration,
+            alt: "Collaboration"
+          }}
+        />
+        <Divider size="large" />
+        <Header
+          title="Header with Show More"
+          body="This header includes a show more accessory in the section header."
+          size="section"
+          accessory={{
+            type: 'showMore',
+            text: "Show all"
+          }}
+        />
+        <Divider size="extraLarge" />
+        
+        {/* Original Header Example */}
         <Header
           title = "What do you go by?"
           body = "If you don't go by your legal first name, you can change it here. We'll use this name on your profile. "
           size="page"
         />
-        <Divider size="withinSectionMedium" />
-        <FilterBar
+        <Divider size="medium" />
+        <PillGroup
           filterChips = {[
-            {title: "Chip 1", active: false},
-            {title: "Chip title", active: false},
-            {title: "Chip 3", active: true, icon: true},
-            {title: "Chip 4", active: false},
-            {title: "Chipmunks", active: false},
+            {title: "Chip 1", checked: false, type: 'choice'},
+            {title: "Chip title", checked: false, type: 'choice'},
+            {title: "Chip 3", checked: true, type: 'toggle'},
+            {title: "Chip 4", checked: false, type: 'input'},
+            {title: "Chipmunks", checked: false, type: 'select'},
           ]}
         />
         <Divider
-          size="betweenSectionExtraLargeCell"
+          size="extraLarge"
         />
         <SegmentedControl
           left={{title: "Control left", active: true}}
           right={{title: "Control right", active: false}}
-          onClick={(segment) => {}}
+          onClick={(_segment) => {}}
         />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
+        />
+        <TabGroup
+          tabs={[
+            { title: "Tab 1" },
+            { title: "Tab 2" },
+            { title: "Tab 3" },
+            { title: "Tab 4" }
+          ]}
+          activeIndex={0}
+        />
+        <Divider
+          size="extraLarge"
         />
         <Slider
           onDrop={()=>{}}
         />
+        <Slider
+          onDrop={()=>{}}
+          segmented={10}
+          leftLabel="Left"
+          rightLabel="Right"
+        />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
+        />
+        <Switch
+          checked={false}
+          title="Enable notifications"
+          helperText="Receive push notifications for important updates"
+        />
+        <Switch
+          checked={true}
+          title="Dark mode"
+          helperText="Switch to dark theme"
+        />
+        <Switch
+          checked={false}
+        />
+        <Divider
+          size="extraLarge"
         />
         <Timeline rowData={rowData} />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
-        <Input
+        <Stepper
+          items={[
+            { state: 'checked', size: 'large' },
+            { state: 'current', size: 'large' },
+            { state: 'future', size: 'large' },
+          ]}
+        />
+        <Divider size="large" />
+        <Stepper
+          items={[
+            { state: 'checked', size: 'small' },
+            { state: 'current', size: 'small' },
+            { state: 'future', size: 'small' },
+          ]}
+        />
+        <Divider
+          size="extraLarge"
+        />
+        <TextInput
           label="Preferred first name"
           body="Choose the name you prefer to be called"
           placeholder="Enter a name"
         />
-        <Input
+        <TextInput
           label="Last name"
           body="Your last name must match your legal last name and cannot be edited. Please contact support to change your legal name"
           placeholder="Wright"
         />
+        <SelectInput
+          label="Country"
+          body="Select your country of residence"
+          placeholder="Select a country"
+        />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
         <InputCard
           title="Last name"
@@ -152,7 +294,7 @@ const ComponentsView = () => {
           onClick={() => {}}
         />
         <Divider
-          size='withinSectionMedium'
+          size='medium'
         />
         <InputCard
           title="Last name"
@@ -164,132 +306,264 @@ const ComponentsView = () => {
           onClick={() => {}}
         />
         <Divider
-          size="betweenSectionExtraLarge"
+          size="extraLarge"
         />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "avatar",
-            image: Avatars.Karen
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
+        <LinkPreview
+          title="Design better link cards"
+          source="product.design"
+          metadata="Shared · 1 hour ago"
+          size="compact"
         />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "icon",
-            icon: Icons.Push
-          }}
-          right={{
-            type: "button",
-            title: "Button"
-          }}
-          onClick={()=>{}}
+        <Divider size="large" />
+        <LinkPreview
+          title="Five ways to ship faster than you planned"
+          source="newsletter.example"
+          metadata="Saved by you · 3 min read"
+          size="expanded"
+          imageSrc={Images.Collaboration}
         />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Push,
-            theme: "brand"
-          }}
-          right={{
-            type: "labelPush",
-            title: "Label"
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "avatar",
-            image: undefined,
-          }}
-          right={{
-            type: "toggle",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Push,
-            theme: "grey"
-          }}
-          right={{
-            type: "checkbox",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
-        />
-        <Cell
-          title="Cell"
-          body="Cell default can be used in a wide variety of use casee"
-          left={{
-            type: "iconBg",
-            icon: Icons.Add16,
-            theme: "brand"
-          }}
-          right={{
-            type: "radio",
-            checked: false,
-            onClick: () => {}
-          }}
-          onClick={()=>{}}
+        <Divider
+          size="extraLarge"
         />
         {/* Applet components removed */}
-        <Divider size='betweenSectionExtraLargeCell' />
-        <SearchBar placeholder="Search" />
-        <AvatarCarousel
-          avatars={[
+        <Divider size='extraLarge' />
+        <SearchInput placeholder="Search" />
+        <Divider size="large" />
+        {/* DiscoverPromo removed */}
+        <Divider size="extraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Badge type="dot" />
+          <Badge type="text">99+</Badge>
+        </div>
+        <Divider size="extraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Tag size="small" type="default">Label</Tag>
+          <Tag size="small" type="positive">Label</Tag>
+          <Tag size="small" type="negative">Label</Tag>
+          <Tag size="small" type="caution">Label</Tag>
+          <Tag size="small" type="neutral">Label</Tag>
+        </div>
+        <Divider size="large" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '0 16px', alignItems: 'center' }}>
+          <Tag size="large" type="default">Label</Tag>
+          <Tag size="large" type="positive">Label</Tag>
+          <Tag size="large" type="negative">Label</Tag>
+          <Tag size="large" type="caution">Label</Tag>
+          <Tag size="large" type="neutral">Label</Tag>
+        </div>
+        <Divider size="extraLarge" />
+        <EntityStack
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
+          ]}
+          stacked={false}
+          size="24"
+        />
+        <Divider size="large" />
+        <EntityStack
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
+          ]}
+          stacked={true}
+          size="40"
+        />
+        <Divider size="large" />
+        <EntityStack
+          entities={[
+            { entity: { image: Avatars.Karen } },
+            { entity: { image: Avatars.Darren } },
+            { entity: { image: Avatars.James } },
+            { entity: { image: Avatars.Kevin } },
+            { entity: { image: Avatars.Nina } },
+            { entity: { image: Avatars.Paul } },
+            { entity: { image: Avatars.Isaac } },
+            { entity: { image: Avatars.Peter } },
+          ]}
+          stacked={true}
+          size="40"
+        />
+        <Divider size="extraLarge" />
+        <div style={{ padding: '0 16px' }}>
+          <EntityLockup
+            entity={{ image: Avatars.Karen, size: '40' }}
+            title="Firstname Lastname"
+            badge={true}
+            degree="1st"
+            tag={{ label: 'Label', size: 'small', type: 'default' }}
+            subtitle="Subheading"
+            metadata="Timestamp"
+          />
+        </div>
+        <Divider size="large" />
+        <div style={{ padding: '0 16px' }}>
+          <EntityLockup
+            entity={{ image: Avatars.Darren, size: '40', company: true }}
+            title="Firstname Lastname"
+            tag={{ label: 'Label', size: 'small', type: 'default' }}
+            subtitle="Subheading"
+            metadata="Timestamp"
+          />
+        </div>
+        <Divider size="extraLarge" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '0 16px', alignItems: 'center' }}>
+          <EntityGrid
+            entities={[
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } },
+              { entity: { image: Avatars.Kevin } }
+            ]}
+          />
+          <EntityGrid
+            entities={[
+              { entity: { image: Avatars.Karen } },
+              { entity: { image: Avatars.Darren } },
+              { entity: { image: Avatars.James } },
+              { entity: { image: Avatars.Kevin } },
+              { entity: { image: Avatars.Nina } },
+              { entity: { image: Avatars.Paul } }
+            ]}
+          />
+        </div>
+        <Divider size="extraLarge" />
+        <Accordion heading="Heading">
+          <p>Content that shows when open</p>
+        </Accordion>
+        <Divider size="extraLarge" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="positive" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="negative" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="neutral" 
+        />
+        <Divider size="large" />
+        <InlineFeedback 
+          label="Feedback Text. [Link](https://example.com)" 
+          type="caution" 
+        />
+        <Divider size="extraLarge" />
+        <Menu
+          sections={[
             {
-              avatar: {size: "64", initial: "J"},
-              title: "Jane"
+              heading: "Heading",
+              items: [
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                }
+              ]
             },
             {
-              avatar: {size: "64", initial:"N"},
-              title: "Nigel"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Chavez},
-              title: "Chavez"
-            },
-            {
-              avatar: {size: "64", image:Avatars.James},
-              title: "James"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Nina},
-              title: "Lisa"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Darren},
-              title: "Darren"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Kevin},
-              title: "Kevin"
+              heading: "Heading",
+              items: [
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                },
+                { 
+                  title: "Menu item", 
+                  icon: { icon: System.Placeholder, size: '24', color: 'standard' },
+                  onClick: () => {}
+                }
+              ]
             }
           ]}
         />
-        <Divider size="betweenSectionLarge" />
-        {/* DiscoverPromo removed */}
+        <Divider size="extraLarge" />
+        <ListOrdered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+        />
+        <Divider size="extraLarge" />
+        <ListUnordered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+          size="small"
+        />
+        <Divider size="large" />
+        <ListUnordered
+          items={[
+            {
+              title: 'First item',
+              body: 'This is the first item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Second item',
+              body: 'This is the second item body.',
+              icon: System.Placeholder,
+            },
+            {
+              title: 'Third item',
+            },
+          ]}
+          size="medium"
+        />
       </ScrollContainer>
       <ButtonGroup
         buttons={[
-          {title: "Save", type: "prominent", onClick:()=>{}}
+          {title: "Save", type: "primary", onClick:()=>{}}
         ]}
       />      
     </PageWrapper>

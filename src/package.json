@@ -17,7 +17,6 @@
     "gsap": "^3.12.5",
     "html2canvas": "^1.4.1",
     "lodash": "^4.17.21",
-    "lottie-react": "^2.4.1",
     "lz-string": "^1.5.0",
     "matter-js": "^0.20.0",
     "react": "^18.3.1",

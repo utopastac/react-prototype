@@ -5,9 +5,8 @@ import { useLayersDispatch } from 'src/containers/LayersContext';
 
 // Direct component imports
 import TitleBar from 'src/components/TitleBar';
-import SearchBar from 'src/components/SearchBar';
+import SearchInput from 'src/components/SearchInput';
 import Divider from 'src/components/Divider';
-import AvatarCarousel from 'src/components/AvatarCarousel';
 // DiscoverPromo removed
 import NavigationBar from 'src/components/NavigationBar';
 
@@ -21,44 +20,12 @@ const DiscoverView = () => {
     <PageWrapper background>
       <ScrollContainer>
         <TitleBar title="Discover" />
-        <SearchBar placeholder="Search" />
-        <Divider size="withinSectionSmall" />
-        <AvatarCarousel
-          avatars={[
-            {
-              avatar: {size: "64", initial: "J"},
-              title: "Jane"
-            },
-            {
-              avatar: {size: "64", initial:"N"},
-              title: "Nigel"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Chavez},
-              title: "Chavez"
-            },
-            {
-              avatar: {size: "64", image:Avatars.James},
-              title: "James"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Nina},
-              title: "Lisa"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Darren},
-              title: "Darren"
-            },
-            {
-              avatar: {size: "64", image:Avatars.Kevin},
-              title: "Kevin"
-            }
-          ]}
-        />
+        <SearchInput placeholder="Search" />
+        <Divider size="small" />
         {/* DiscoverPromo removed */}
       </ScrollContainer>
       <NavigationBar
-        activeIndex={3}
+        activeIndex={0}
       />
       
     </PageWrapper>

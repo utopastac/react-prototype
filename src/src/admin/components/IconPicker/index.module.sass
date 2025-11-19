@@ -1,0 +1,57 @@
+@use 'src/styles/site' as *
+
+.IconPicker
+  display: flex
+  flex-direction: column
+  max-height: 600px
+
+  .SearchContainer
+    padding: 0 size(16)
+    margin-top: size(8)
+
+  .TabsContainer
+    padding: 0
+
+  .IconsGrid
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+    gap: size(8)
+    padding: size(16)
+    overflow-y: auto
+    max-height: 400px
+
+    .IconButton
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: center
+      gap: size(8)
+      padding: size(12)
+      border: 1px solid var(--admin-chip-border)
+      border-radius: var(--admin-wrapper-border-radius)
+      background: white
+      cursor: pointer
+      transition: all 0.2s ease
+
+      &:hover
+        background: var(--color-background-subtle)
+        border-color: var(--admin-chip-border-hover)
+
+      &.selected
+        background: var(--admin-gray-30)
+        border-color: transparent
+
+      .IconName
+        font-size: size(12)
+        color: var(--admin-text-medium)
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        width: 100%
+
+    .NoResults
+      grid-column: 1 / -1
+      text-align: center
+      padding: size(32)
+      color: var(--admin-text-medium)
+

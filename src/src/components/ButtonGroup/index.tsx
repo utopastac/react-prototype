@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./index.module.sass";
 import Button, { ButtonProps, ButtonPropMeta } from "src/components/Buttons/Button";
 
@@ -8,16 +7,16 @@ export interface ButtonGroupProps {
   inComponent?: boolean;
   showHairline?: boolean;
   disclaimer?: string;
-  size?: 'compact' | 'default' | 'cta';
+  size?: 'small' | 'medium';
 }
 
 const ButtonGroup = ({ 
   buttons, 
-  horizontal, 
+  horizontal = true, 
   inComponent, 
   showHairline, 
   disclaimer, 
-  size = "cta" 
+  size = "medium" 
 }: ButtonGroupProps) => {
   const buttonsRender = buttons.map((button, index) => {
     return <Button {...button} key={`ButtonGroup${index}`} size={size} />
@@ -33,14 +32,14 @@ const ButtonGroup = ({
  
 export default ButtonGroup;
 
-// Omit 'size' and 'icon' from ButtonPropMeta for use in button group fields
-const { size: _buttonSize, icon: _buttonIcon, ...ButtonPropMetaNoSizeNoIcon } = ButtonPropMeta;
+// Omit 'size' from ButtonPropMeta for use in button group fields
+const { size: _buttonSize, ...ButtonPropMetaNoSize } = ButtonPropMeta;
 
 export const ButtonGroupPropMeta = {
   buttons: {
     type: 'array',
     label: 'Buttons',
-    itemFields: ButtonPropMetaNoSizeNoIcon
+    itemFields: ButtonPropMetaNoSize
   },
   horizontal: { type: 'boolean', label: 'Horizontal' },
   inComponent: { type: 'boolean', label: 'In Component' },
@@ -50,9 +49,8 @@ export const ButtonGroupPropMeta = {
     type: 'select', 
     label: 'Button Size',
     options: [
-      'compact',
-      'cta',
-      'default',
+      'small',
+      'medium',
     ]
   },
 };

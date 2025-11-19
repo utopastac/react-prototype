@@ -1,0 +1,42 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  flex-shrink: 0
+  border-radius: var(--corner-radius-0_5x)
+  white-space: nowrap
+
+  // Size variants
+  &.small
+    height: size(20)
+    padding: 0 size(8)
+    @extend %typography-supportive-m
+
+  &.large
+    height: size(24)
+    padding: 0 size(10)
+    @extend %typography-supportive-l
+
+  // Type variants
+  &.default
+    background-color: var(--color-background-faint)
+    color: var(--color-text)
+
+  &.negative
+    background-color: var(--color-negative)
+    color: var(--white-a100)
+
+  &.positive
+    background-color: var(--color-positive)
+    color: var(--white-a100)
+
+  &.caution
+    background-color: var(--color-caution)
+    color: var(--white-a100)
+
+  &.neutral
+    background-color: var(--system-gray-70)
+    color: var(--white-a100)
+

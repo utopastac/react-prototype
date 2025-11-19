@@ -112,9 +112,9 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     components: [
       {
-        name: 'ProgressCircular',
-        Component: (InterventionScreenComponents as any)['ProgressCircular'],
-        props: initialComponentProps['ProgressCircular']
+        name: 'ProgressIndicatorCircular',
+        Component: (InterventionScreenComponents as any)['ProgressIndicatorCircular'],
+        props: initialComponentProps['ProgressIndicatorCircular']
       },
     ],
     topBarProps: undefined,
@@ -156,7 +156,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -177,7 +177,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionExtraLargeCell' }
+        props: { size: 'extraLarge' }
       },
       {
         name: 'Header',
@@ -191,12 +191,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
-      },
-      {
-        name: 'UpsellCard',
-        Component: (InterventionScreenComponents as any)['UpsellCard'],
-        props: initialComponentProps['UpsellCard']
+        props: { size: 'large' }
       },
     ],
     topBarProps: {
@@ -232,10 +227,9 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Information',
     description: {
       title: 'Promo Page Template',
-      overview: 'A welcome or onboarding screen designed to introduce features or collect user information. Features a hero header with an image accessory and informational cells.',
+      overview: 'A welcome or onboarding screen designed to introduce features or collect user information. Features a hero header with an image accessory.',
       features: [
         'Hero header with image accessory',
-        'Multiple informational cells with icons',
         'Transparent top bar',
         'Prominent call-to-action button'
       ],
@@ -251,12 +245,12 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "Get direct Deposit",
-          body: 'We need to collect some info to confirm that you are really you.',
+          title: "Get started",
+          body: 'We need to collect some information to set up your account.',
           size: 'hero',
           accessory: {
             type: 'image',
-            image: Images.Security,
+            image: Images.Conversation,
             offset: true
           }
         }
@@ -264,40 +258,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
-      },
-      // Informational Cell 1
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Your info is secure',
-          body: 'We use bank-level encryption to protect your data.',
-          left: { type: 'icon', icon: Icons.Push },
-          right: { type: 'none' }
-        }
-      },
-      // Informational Cell 2
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Why we ask',
-          body: 'We need your legal name to verify your identity.',
-          left: { type: 'icon', icon: Icons.Add16 },
-          right: { type: 'none' }
-        }
-      },
-      // Informational Cell 3
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Need help?',
-          body: 'Contact support if you have questions about verification.',
-          left: { type: 'icon', icon: Icons.Help24 },
-          right: { type: 'none' }
-        }
+        props: { size: 'large' }
       },
       
     ],
@@ -311,7 +272,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -360,7 +321,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -370,7 +331,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'InputCard',
@@ -386,7 +347,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -402,7 +363,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -426,7 +387,7 @@ export const AdminTemplates: AdminTemplate[] = [
     bottomButtonsProps: {
       buttons: [
         { title: 'Back', type: 'standard' },
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -469,7 +430,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -479,7 +440,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'InputCard',
@@ -495,7 +456,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -511,7 +472,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'InputCard',
@@ -535,7 +496,7 @@ export const AdminTemplates: AdminTemplate[] = [
     bottomButtonsProps: {
       buttons: [
         { title: 'Back', type: 'standard' },
-        { title: 'Continue', type: 'prominent' }
+        { title: 'Continue', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -579,21 +540,21 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "What's your legal name?",
-          body: 'We need to collect some info to confirm that you are really you.',
+          title: "What's your name?",
+          body: 'We need to collect some information to set up your profile.',
           size: 'page'
         }
       },
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -623,7 +584,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: 'prominent' }
+        { title: 'Next', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -668,14 +629,14 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: "Card numbers don't match",
-          body: "The card number you entered doesn't match what's on file.",
+          title: "Information doesn't match",
+          body: "The information you entered doesn't match our records.",
           size: 'page',
           accessory: {
             type: 'icon',
@@ -694,8 +655,8 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Confirm another way', type: 'standard' },
-        { title: 'Try again', type: 'prominent' }
+        { title: 'Use another method', type: 'standard' },
+        { title: 'Try again', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -738,7 +699,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -764,7 +725,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Done', type: 'prominent' }
+        { title: 'Done', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -807,7 +768,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -820,7 +781,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -861,7 +822,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Next', type: 'prominent' }
+        { title: 'Next', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -904,7 +865,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -918,7 +879,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'TextArea',
@@ -939,7 +900,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Submit', type: 'prominent' }
+        { title: 'Submit', type: 'primary' }
       ],
       horizontal: false,
       inComponent: false,
@@ -953,7 +914,7 @@ export const AdminTemplates: AdminTemplate[] = [
    *
    * PIN entry screen for authentication, matching the provided screenshot.
    * - Header with prompt for PIN and username
-   * - PINCheck for PIN input (4 digits)
+   * - TextInput for PIN input (4 digits)
    * - Top bar with close (left) and help (right) icons
    * - Bottom text button: "I don't have this info"
    */
@@ -962,10 +923,10 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Authentication',
     description: {
       title: 'PIN Entry Template',
-      overview: 'A secure PIN entry screen for authentication. Features a specialized PIN input component that displays dots for entered digits.',
+      overview: 'A secure PIN entry screen for authentication. Features a text input for PIN entry.',
       features: [
         'Page header with username context',
-        'PIN input component (4-digit display)',
+        'Text input for PIN entry',
         'Close and help buttons in top bar',
         'Subtle "I don\'t have this info" button'
       ],
@@ -980,28 +941,29 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: 'Enter your Interventions Hub PIN for $diogomartinez',
-          body: '',
+          title: 'Enter your PIN',
+          body: 'Please enter your PIN to continue.',
           size: 'page'
         }
       },
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
-        name: 'PINCheck',
-        Component: (InterventionScreenComponents as any)['PINCheck'],
+        name: 'Input',
+        Component: (InterventionScreenComponents as any)['Input'],
         props: {
-          value: '', // Start empty; user will enter PIN
-          length: 4
+          ...initialComponentProps['Input'],
+          placeholder: 'Enter PIN',
+          type: 'password'
         }
       }
     ],
@@ -1055,7 +1017,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -1069,7 +1031,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
+        props: { size: 'large' }
       },
       {
         name: 'Input',
@@ -1088,7 +1050,7 @@ export const AdminTemplates: AdminTemplate[] = [
     },
     bottomButtonsProps: {
       buttons: [
-        { title: 'Continue', type: 'prominent', disabled: true }
+        { title: 'Continue', type: 'primary', disabled: true }
       ],
       horizontal: false,
       inComponent: false,
@@ -1107,10 +1069,9 @@ export const AdminTemplates: AdminTemplate[] = [
     group: 'Authentication',
     description: {
       title: 'Account Verification Options Template',
-      overview: 'A selection screen that presents multiple verification methods to users. Each option is displayed as a tappable cell with an icon.',
+      overview: 'A selection screen that presents multiple verification methods to users.',
       features: [
         'Page header with explanation',
-        'List of verification method cells with icons',
         'Push indicators for navigation',
         'Fallback option button'
       ],
@@ -1125,7 +1086,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'withinSectionMedium' }
+        props: { size: 'medium' }
       },
       {
         name: 'Header',
@@ -1139,47 +1100,7 @@ export const AdminTemplates: AdminTemplate[] = [
       {
         name: 'Divider',
         Component: (InterventionScreenComponents as any)['Divider'],
-        props: { size: 'betweenSectionLarge' }
-      },
-      // Email
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Email',
-          left: { type: 'icon', icon: Icons.Email24 },
-          right: { type: 'push' }
-        }
-      },
-      // Interventions Hub PIN
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Interventions Hub PIN',
-          left: { type: 'icon', icon: Icons.Passcode24 },
-          right: { type: 'push' }
-        }
-      },
-      // Synced contacts
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Synced contacts',
-          left: { type: 'icon', icon: Icons.ContactCheck },
-          right: { type: 'push' }
-        }
-      },
-      // Linked debit card
-      {
-        name: 'Cell',
-        Component: (InterventionScreenComponents as any)['Cell'],
-        props: {
-          title: 'Linked debit card',
-          left: { type: 'icon', icon: Icons.Alert24 },
-          right: { type: 'push' }
-        }
+        props: { size: 'large' }
       },
     ],
     topBarProps: {

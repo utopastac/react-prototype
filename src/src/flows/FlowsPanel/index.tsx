@@ -17,7 +17,7 @@ const FlowsPanel: React.FC = () => {
     {title:"App", path:"/flows/discover", description:"Main app interface"},
     {title:"Account", path:"/flows/account", description:"User profile settings"},
     {title:"Reporting", path:"/flows/report", description:"User reporting flow"},
-    {title:"Chavez", path:"/flows/chavez", description:"Special features demo"},
+    {title:"Animation Showcase", path:"/flows/animation-showcase", description:"Special features demo"},
     {title:"Parallax", path:"/flows/parallax", description:"Animation showcase"}
   ];
 

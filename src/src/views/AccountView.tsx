@@ -11,9 +11,8 @@ import TopBar from 'src/components/TopBar';
 import Header from 'src/components/Header';
 import Divider from 'src/components/Divider';
 import Button from 'src/components/Buttons/Button';
-import Cell from 'src/components/Cell';
 import ButtonGroup from 'src/components/ButtonGroup';
-import AccountSwitcherHalfsheet from 'src/views/halfsheets/AccountSwitcherHalfsheet';
+import AccountSwitcherBottomSheet from 'src/views/bottomsheets/AccountSwitcherBottomSheet';
 import { BUTTON_ACTION_HALFSHEET } from 'src/hooks/useButtonAction';
 
 const AccountView = () => {
@@ -43,61 +42,48 @@ const AccountView = () => {
           title={name}
           size="page"
           accessory={{
-            type: "avatar",
+            type: "entity",
             size: "48",
             image: avatar
           }}
         />
         <Divider
-          size="withinSectionMedium"
+          size="medium"
         />
         <div className={styles.buttonRow}>
           <Button 
             title={headline}
-            size="compact"
+            size="small"
             action={{
               type: BUTTON_ACTION_HALFSHEET,
-              halfSheet: AccountSwitcherHalfsheet
+              halfSheet: AccountSwitcherBottomSheet
             }}
             //onClick={openLayer}
             icon={{
-              type: Icons.Expand16,
+              icon: Icons.Expand16,
               size: "16",
               color: "subtle"
             }}
           />
           <Button 
             title="Edit profile"
-            size="compact"
+            size="small"
           />
         </div>
         <Divider
-          size="betweenSectionExtraLargeCell"
-        />
-        <Cell
-          title="Linked apps & businesses"
-          left={{
-            type: "icon",
-            icon: Icons.Alert24,
-            size: '24',
-            color: 'standard'
-          }}
-          right={{
-            type: "push"
-          }}
-          onClick={()=>{}}
+          size="extraLarge"
         />
         <Divider
-          size="betweenSectionExtraLargeCell"
+          size="extraLarge"
         />
        
         <Divider
-          size="withinSectionMedium"
+          size="medium"
         />
         <ButtonGroup
           buttons={[
             {title: "Create a jobs account", onClick: ()=>{}},
-            {title: "Sign out", type: "destructive", onClick:()=>{}}
+            {title: "Sign out", type: "secondary", onClick:()=>{}}
           ]}
         />
       </ScrollContainer>

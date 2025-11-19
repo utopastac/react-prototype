@@ -1,0 +1,31 @@
+@use 'src/styles/site' as *
+
+.Main
+  padding: size(6) $margin-default
+
+  input
+    outline: none
+    width: 100%
+    border: var(--size-border-width-standard) solid var(--color-border)
+    border-radius: var(--corner-radius-0_5x)
+    padding: size(12) size(8)
+    @extend %typography-supportive-m
+    height: size(32)
+    background: var(--color-background)
+    color: var(--color-text)
+    cursor: pointer
+    &:placeholder
+      color: var(--color-text-disabled)
+    &:focus
+      border-color: var(--color-border)
+      border-width: var(--size-border-width-selected)
+
+  .inputWrapper
+    position: relative
+    .trailingIcon
+      position: absolute
+      right: size(12)
+      top: 50%
+      transform: translateY(-50%)
+      pointer-events: none
+

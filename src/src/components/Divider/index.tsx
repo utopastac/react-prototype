@@ -3,30 +3,29 @@ import styles from "./index.module.sass";
 //
 
 export interface DividerProps {
-  size: 'withinSectionSmall' | 'withinSectionMedium' | 'betweenSectionLarge' | 'betweenSectionExtraLarge' | 'betweenSectionExtraLargeCell';
+  size: 'small' | 'medium' | 'large' | 'extraLarge';
+  showLine?: boolean;
   onBackground?: boolean;
 }
 
-const Divider: React.FC<DividerProps> = ({ size, onBackground }) => {
+const Divider: React.FC<DividerProps> = ({ size, showLine = false, onBackground }) => {
   const styleClass = (): string => {
     switch(size) {
-      case 'withinSectionSmall':
+      case 'small':
         return styles.small;
-      case 'withinSectionMedium':
+      case 'medium':
         return styles.medium;
-      case 'betweenSectionLarge':
+      case 'large':
         return styles.large;
-      case 'betweenSectionExtraLarge':
+      case 'extraLarge':
         return styles.extraLarge;
-      case 'betweenSectionExtraLargeCell':
-        return styles.extraLargeCell;
       default:
         return styles.small;
     }
   };
 
   return (
-    <div className={`${styles.Main} ${styleClass()} ${onBackground ? styles.onBackground : ""}`}>
+    <div className={`${styles.Main} ${styleClass()} ${onBackground ? styles.onBackground : ""} ${!showLine ? styles.noLine : ""}`}>
     </div>
   );
 };
@@ -38,12 +37,12 @@ export const DividerPropMeta = {
     type: 'select',
     label: 'Size',
     options: [
-      'betweenSectionExtraLargeCell',
-      'betweenSectionExtraLarge',
-      'betweenSectionLarge',
-      'withinSectionMedium',
-      'withinSectionSmall',
+      'small',
+      'medium',
+      'large',
+      'extraLarge',
     ],
   },
+  showLine: { type: 'boolean', label: 'Show Line' },
   onBackground: { type: 'boolean', label: 'On Background' },
 };

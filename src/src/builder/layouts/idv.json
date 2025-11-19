@@ -5,13 +5,13 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {
@@ -25,7 +25,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {
@@ -77,7 +77,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+            "size": "medium"
           }
         },
         {
@@ -91,7 +91,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {
@@ -148,7 +148,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+            "size": "medium"
           }
         },
         {
@@ -162,7 +162,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {
@@ -213,7 +213,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_WITHIN_SECTION_MEDIUM"
+            "size": "medium"
           }
         },
         {
@@ -227,7 +227,7 @@
         {
           "name": "Divider",
           "props": {
-            "size": "DIVIDER_BETWEEN_SECTION_LARGE"
+            "size": "large"
           }
         },
         {

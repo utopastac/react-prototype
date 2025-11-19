@@ -1,31 +1,27 @@
 import React from "react";
-import Avatar, { AvatarProps, AvatarPropMeta } from "src/components/Avatar";
-import AvatarStackedDiagonal, { AvatarStackedDiagonalProps, AvatarStackedDiagonalPropMeta } from "src/components/AvatarStackedDiagonal";
+import Entity, { EntityProps, EntityPropMeta } from "src/components/Entity";
+import EntityGrid, { EntityGridProps, EntityGridPropMeta } from "src/components/EntityGrid";
 import IconBg, { IconBgProps } from "src/components/IconBg";
 import Icon, { IconPropMeta } from "src/components/Icon";
-import { Images, ImagesArray } from "src/data/Images";
+import { ImagesArray } from "src/data/Images";
 import styles from "./index.module.sass";
-import * as Icons from "src/data/icons";
+import * as Icons from "src/data/Icons";
 
 export interface HeaderAccessory {
-  type: 'avatar' | 'avatarStackedDiagonal' | 'icon' | 'image' | 'showMore';
+  type: 'entity' | 'entityGrid' | 'icon' | 'image' | 'showMore';
 }
 
-export interface HeaderAvatarAccessory extends HeaderAccessory {
-  type: 'avatar';
+export interface HeaderEntityAccessory extends HeaderAccessory {
+  type: 'entity';
   image?: string;
-  initial?: string;
-  size: AvatarProps['size'];
+  size: EntityProps['size'];
   border?: boolean;
+  company?: boolean;
 }
 
-export interface HeaderAvatarStackedDiagonalAccessory extends HeaderAccessory {
-  type: 'avatarStackedDiagonal';
-  image1?: string;
-  image2?: string;
-  initial1?: string;
-  initial2?: string;
-  size: AvatarStackedDiagonalProps['size'];
+export interface HeaderEntityGridAccessory extends HeaderAccessory {
+  type: 'entityGrid';
+  entities: EntityGridProps['entities'];
 }
 
 export interface HeaderIconAccessory extends HeaderAccessory {
@@ -49,8 +45,8 @@ export interface HeaderShowMoreAccessory extends HeaderAccessory {
 }
 
 export type HeaderAccessoryProps = 
-  | HeaderAvatarAccessory 
-  | HeaderAvatarStackedDiagonalAccessory 
+  | HeaderEntityAccessory 
+  | HeaderEntityGridAccessory 
   | HeaderIconAccessory
   | HeaderImageAccessory
   | HeaderShowMoreAccessory;
@@ -58,7 +54,7 @@ export type HeaderAccessoryProps =
 export interface HeaderProps {
   title: string;
   body?: string;
-  size: 'hero' | 'page' | 'profile' | 'section';
+  size: 'hero' | 'page' | 'section';
   accessory?: HeaderAccessoryProps;
 }
 
@@ -69,13 +65,11 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
         return <h1>{title}</h1>;
       case 'page':
         return <h2>{title}</h2>;
-      case 'profile':
-        return <h2>{title}</h2>;
       case 'section':
         return (
           <div className={styles.headerSection}>
             <h3>{title}</h3>
-            { accessory && (
+            { accessory && accessory.type === 'showMore' && (
               <div className={styles.showMore}>
                 <p>{accessory.text ? accessory.text : 'Show more'}</p>
                 <Icon icon={Icons.Push16} size="16" color="standard" />
@@ -94,8 +88,6 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
         return styles.hero;
       case 'page':
         return styles.page;
-      case 'profile':
-        return styles.profile;
       case 'section':
         return styles.section;
       default:
@@ -107,10 +99,10 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
     if (!accessory) return null;
     
     switch(accessory.type) {
-      case 'avatar':
-        return <Avatar {...accessory} size="64" />;
-      case 'avatarStackedDiagonal':
-        return <AvatarStackedDiagonal {...accessory} size="64" />;
+      case 'entity':
+        return <Entity {...accessory} size="64" />;
+      case 'entityGrid':
+        return <EntityGrid {...accessory} />;
       case 'icon':
         return <IconBg {...accessory} iconSize="32" size="64" />;
       case 'image':
@@ -133,9 +125,17 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
 
 export default Header;
 
-// Omit 'size' from AvatarPropMeta and AvatarStackedDiagonalPropMeta for use in HeaderPropMeta
-const { size: _avatarSize, ...AvatarPropMetaNoSize } = AvatarPropMeta;
-const { size: _stackedSize, ...AvatarStackedDiagonalPropMetaNoSize } = AvatarStackedDiagonalPropMeta;
+// Omit 'size' from EntityPropMeta and EntityGridPropMeta for use in HeaderPropMeta
+const { size: _entitySize, ...EntityPropMetaNoSize } = EntityPropMeta;
+const { entities, ...rest } = EntityGridPropMeta;
+const { size: _gridSize, ...itemFieldsNoSize } = entities.itemFields;
+const EntityGridPropMetaNoSize = {
+  ...rest,
+  entities: {
+    ...entities,
+    itemFields: itemFieldsNoSize
+  }
+};
 
 export const HeaderPropMeta = {
   title: { type: 'string', label: 'Title' },
@@ -143,7 +143,7 @@ export const HeaderPropMeta = {
   size: {
     type: 'select',
     label: 'Size',
-    options: ['hero', 'page', 'profile', 'section'],
+    options: ['hero', 'page', 'section'],
   },
   accessory: {
     type: 'object',
@@ -151,14 +151,14 @@ export const HeaderPropMeta = {
     options: [
       { type: null, label: 'None' },
       {
-        type: 'avatar',
-        label: 'Avatar',
-        fields: AvatarPropMetaNoSize,
+        type: 'entity',
+        label: 'Entity',
+        fields: EntityPropMetaNoSize,
       },
       {
-        type: 'avatarStackedDiagonal',
-        label: 'Avatar Stacked Diagonal',
-        fields: AvatarStackedDiagonalPropMetaNoSize,
+        type: 'entityGrid',
+        label: 'Entity Grid',
+        fields: EntityGridPropMetaNoSize,
       },
       {
         type: 'icon',

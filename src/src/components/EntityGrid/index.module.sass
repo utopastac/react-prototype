@@ -1,0 +1,149 @@
+@use 'src/styles/site' as *
+
+.Main
+  position: relative
+  overflow: visible
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  width: size(48)
+  height: size(48)
+
+  .entity
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+
+  // Diagonal layout (2 entities, overlapped)
+  &.layout_diagonal
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      bottom: 0
+      z-index: 2
+
+  // Triangular layout (3 entities)
+  &.layout_triangular
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+    .entity_2
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
+      z-index: 3
+
+  // Grid layout (4 entities, 2x2)
+  &.layout_grid
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+    .entity_2
+      position: absolute
+      left: 0
+      bottom: 0
+      z-index: 3
+    .entity_3
+      position: absolute
+      right: 0
+      bottom: 0
+      z-index: 4
+
+  // Diagonal with badge layout (2 entities + badge)
+  &.layout_diagonalWithBadge
+    .entity_0
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+    .entity_1
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 2
+
+    .badge
+      position: absolute
+      left: 50%
+      bottom: 0
+      transform: translateX(-50%)
+      padding: size(4) size(8)
+      border-radius: var(--radius-s)
+      background-color: var(--color-background-neutral-soft)
+      color: var(--color-text)
+      font-size: size(12)
+      font-weight: 500
+      white-space: nowrap
+      z-index: 5
+
+  // Size variants
+  &.a_32
+    width: size(32)
+    height: size(32)
+
+    &.layout_diagonalWithBadge
+      height: size(48)
+
+    .entity
+      width: size(24)
+      height: size(24)
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(20)
+        height: size(20)
+      .entity_2
+        width: size(22)
+        height: size(22)
+
+    &.layout_grid
+      .entity
+        width: size(16)
+        height: size(16)
+
+  &.a_24
+    width: size(32)
+    height: size(32)
+
+    &.layout_diagonalWithBadge
+      height: size(44)
+
+    .entity
+      width: size(24)
+      height: size(24)
+
+    &.layout_triangular
+      .entity_0, .entity_1
+        width: size(20)
+        height: size(20)
+      .entity_2
+        width: size(22)
+        height: size(22)
+
+    &.layout_grid
+      .entity
+        width: size(16)
+        height: size(16)
+

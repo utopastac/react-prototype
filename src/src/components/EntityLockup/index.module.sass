@@ -1,0 +1,45 @@
+@use 'src/styles/site' as *
+
+.Main
+  display: flex
+  align-items: flex-start
+  gap: size(12)
+
+  .entityWrapper
+    flex-shrink: 0
+
+  .content
+    flex: 1
+    min-width: 0
+    display: flex
+    flex-direction: column
+    gap: size(4)
+
+    .titleRow
+      display: flex
+      align-items: center
+      gap: size(8)
+      flex-wrap: wrap
+
+      .title
+        @extend %typography-title-s
+        color: var(--color-text)
+
+      .badge
+        display: inline-flex
+        align-items: center
+        flex-shrink: 0
+
+      .degree
+        @extend %typography-supportive-m
+        color: var(--color-text-subtle)
+        white-space: nowrap
+
+    .subtitle
+      @extend %typography-supportive-m
+      color: var(--color-text-subtle)
+
+    .metadata
+      @extend %typography-supportive-s
+      color: var(--color-text-subtle)
+

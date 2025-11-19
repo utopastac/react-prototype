@@ -10,11 +10,12 @@ export interface InputCardProps {
   right?: {
     type: 'radio' | 'checkbox';
   };
+  orientation?: 'left' | 'right';
   checked?: boolean;
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
-const InputCard = ({ title, body, right, checked, onClick }: InputCardProps) => {
+const InputCard = ({ title, body, right, orientation = 'right', checked, onClick }: InputCardProps) => {
   const [checkedValue, setCheckedValue] = useState(checked ?? false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const InputCard = ({ title, body, right, checked, onClick }: InputCardProps) => 
     }
   }, [checked]);
 
-  const rightElement = () => {
+  const controlElement = () => {
     if (!right) return null;
     switch (right.type) {
       case 'radio':
@@ -39,17 +40,20 @@ const InputCard = ({ title, body, right, checked, onClick }: InputCardProps) => 
     }
   };
 
+  const isLeftOriented = orientation === 'left';
+
   return (
     <div 
       className={`${styles.Main} ${checkedValue ? styles.checked : ''}`} 
       onClick={onClick ?? (() => { setCheckedValue(!checkedValue); })}
     >
-      <div className={styles.card}>
+      <div className={`${styles.card} ${isLeftOriented ? styles.leftOriented : ''}`}>
+        {isLeftOriented && controlElement()}
         <div className={styles.textContent}>
           <h5>{title}</h5>
           {body && <p>{body}</p>}
         </div>
-        {rightElement()}
+        {!isLeftOriented && controlElement()}
       </div>
     </div>
   );
@@ -68,5 +72,6 @@ export const InputCardPropMeta = {
       type: { type: 'select', label: 'Right', options: ['radio', 'checkbox'] }
     }
   },
+  orientation: { type: 'select', label: 'Orientation', options: ['left', 'right'] },
   checked: { type: 'boolean', label: 'Checked' },
 };

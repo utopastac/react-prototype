@@ -7,23 +7,12 @@
   display: flex
   flex-direction: column
   gap: size(16)
-  
-  &.subtle
-    background: none
-    .title
-      color: var(--color-text)      
-    .body
-      display: none
-    .index
-      background-color: var(--color-background-neutral-soft)
-      color: var(--color-text)
-  &.standard
-    background: none
-    .title
-      color: var(--color-text)
-    .index
-      background-color: var(--color-icon)
-      color: var(--color-background)
+  background: none
+  .title
+    color: var(--color-text)
+  .index
+    background-color: var(--color-background-neutral-soft)
+    color: var(--color-text)
 
 .item
   display: flex
@@ -36,8 +25,8 @@
   justify-content: center
   width: size(24)
   height: size(24)
-  border-radius: $radius-pill
-  @extend %typography-title-s
+  border-radius: var(--corner-radius-1x)
+  @extend %typography-supportive-s
 
 .content
   flex: 1

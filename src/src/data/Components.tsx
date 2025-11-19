@@ -1,4 +1,3 @@
-import { Images } from "src/data/Images";
 // Header Components
 import Header, { 
   HeaderPropMeta
@@ -7,13 +6,14 @@ import Header, {
 import TopBar from 'src/components/TopBar';
 import TitleBar, { TitleBarPropMeta } from 'src/components/TitleBar';
 import NavigationBar from 'src/components/NavigationBar';
-import FilterBar, { FilterBarPropMeta } from 'src/components/FilterBar';
+import PillGroup, { PillGroupPropMeta } from 'src/components/PillGroup';
 // Input Components
-import Input, {
+import TextInput, {
   InputStackedHorizontal,
   InputStackedHorizontalPropMeta,
-  InputPropMeta
-} from 'src/components/Input';
+  TextInputPropMeta
+} from 'src/components/TextInput';
+import SelectInput, { SelectInputPropMeta } from 'src/components/SelectInput';
 import TextArea, { TextAreaPropMeta } from 'src/components/TextArea';
 //
 import InputCard, {
@@ -21,33 +21,26 @@ import InputCard, {
 } from 'src/components/InputCard';
 //
 import ButtonGroup, { ButtonGroupPropMeta } from 'src/components/ButtonGroup';
-import SearchBar, { SearchBarPropMeta } from 'src/components/SearchBar';
+import SearchInput, { SearchInputPropMeta } from 'src/components/SearchInput';
 //
 //
 // Removed MoneyInputDisplay
-import UpsellCard, { UpsellCardPropMeta } from 'src/components/UpsellCard';
-import PINCheck, { PINCheckPropMeta } from 'src/components/PINCheck';
+// Removed PINCheck
 
-// Cell Components
-import Cell, {
-  CellPropMeta
-} from 'src/components/Cell';
+// Entity Components
+import Entity, {
+  EntityPropMeta
+} from 'src/components/Entity';
 //
-import CellActivity, {
-  CellActivityPropMeta
-} from 'src/components/CellActivity';
-
-// Avatar Components
-import Avatar, {
-  AvatarPropMeta
-} from 'src/components/Avatar';
+import EntityStack, { EntityStackPropMeta } from "src/components/EntityStack";
 //
-import AvatarCarousel, { AvatarCarouselPropMeta } from "src/components/AvatarCarousel";
-import AvatarRow, { AvatarRowPropMeta } from "src/components/AvatarRow";
+import EntityGrid, {
+  EntityGridPropMeta
+} from 'src/components/EntityGrid';
 //
-import AvatarStackedDiagonal, {
-  AvatarStackedDiagonalPropMeta
-} from 'src/components/AvatarStackedDiagonal';
+import EntityLockup, {
+  EntityLockupPropMeta
+} from 'src/components/EntityLockup';
 
 // Applet Components
 // Removed Applet components (DiscoverPromo, BalanceApplet, SavingsApplet, CryptoApplet, SecondaryApplet, TertiaryApplet)
@@ -71,12 +64,18 @@ import Divider, {
 } from 'src/components/Divider';
 //
 import SegmentedControl, { SegmentedControlPropMeta } from 'src/components/SegmentedControl';
+import TabGroup, { TabGroupPropMeta } from 'src/components/TabGroup';
 import Slider, { SliderPropMeta } from 'src/components/Slider';
-import ProgressCircular, { ProgressCircularPropMeta } from 'src/components/ProgressCircular';
+import Switch, { SwitchPropMeta } from 'src/components/Switch';
+import ProgressIndicatorCircular, { ProgressIndicatorCircularPropMeta } from 'src/components/ProgressIndicatorCircular';
 import Timeline, { TimelinePropMeta } from 'src/components/Timeline';
 import TimelineRow, {
   TimelineRowPropMeta
 } from 'src/components/Timeline/TimelineRow';
+import Stepper, { StepperPropMeta } from 'src/components/Stepper';
+import StepperItem, {
+  StepperItemPropMeta
+} from 'src/components/Stepper/StepperItem';
 
 import Toast, { ToastPropMeta } from 'src/components/Toast';
 import ListOrdered, { ListOrderedPropMeta } from 'src/components/ListOrdered';
@@ -88,10 +87,31 @@ import Icon, {
   IconPropMeta
 } from 'src/components/Icon';
 
-import { Avatars } from './Avatars';
+import Badge, {
+  BadgePropMeta
+} from 'src/components/Badge';
+
+import Accordion, {
+  AccordionPropMeta
+} from 'src/components/Accordion';
+
+import Tag, {
+  TagPropMeta
+} from 'src/components/Tag';
+
+import InlineFeedback, {
+  InlineFeedbackPropMeta
+} from 'src/components/InlineFeedback';
+
+import Menu, {
+  MenuPropMeta
+} from 'src/components/Menu';
+import LinkPreview, {
+  LinkPreviewPropMeta
+} from 'src/components/LinkPreview';
+
+import { Images } from './Images';
 import IOSStatusBar, {IOSStatusBarPropMeta} from 'src/components/IOSStatusBar';
-import MarketingCardSmall, { MarketingCardSmallPropMeta } from 'src/components/MarketingCardSmall';
-import MarketingCardLarge, { MarketingCardLargePropMeta } from "src/components/MarketingCardLarge";
 
 // Component Exports
 export const Components = {
@@ -100,29 +120,26 @@ export const Components = {
   TopBar,
   TitleBar,
   NavigationBar,
-  FilterBar,
+  PillGroup,
 
   // Input Components
-  Input,
+  TextInput,
+  SelectInput,
   TextArea,
   InputCard,
   ButtonGroup,
-  SearchBar,
-  PINCheck,
-  UpsellCard,
+  SearchInput,
   InputStackedHorizontal,
 
-  // Cell Components
-  Cell,
-  CellActivity,
+  // List Components
   ListUnordered,
   ListOrdered,
 
-  // Avatar Components
-  Avatar,
-  AvatarCarousel,
-  AvatarRow,
-  AvatarStackedDiagonal,
+  // Entity Components
+  Entity,
+  EntityStack,
+  EntityGrid,
+  EntityLockup,
 
   // Applet Components removed
 
@@ -131,17 +148,25 @@ export const Components = {
   Button,
   Divider,
   SegmentedControl,
+  TabGroup,
   Slider,
+  Switch,
   Icon,
-  ProgressCircular,
+  ProgressIndicatorCircular,
   Timeline,
   TimelineRow,
+  Stepper,
+  StepperItem,
   Toast,
   IOSStatusBar,
   Text,
   Modal,
-  MarketingCardSmall,
-  MarketingCardLarge,
+  Badge,
+  Accordion,
+  Tag,
+  InlineFeedback,
+  Menu,
+  LinkPreview,
 };
 
 
@@ -149,39 +174,33 @@ export const Components = {
 export const InterventionScreenComponents = {
   // Header Components
   Header,
-  FilterBar,
+  PillGroup,
 
   // Input Components
-  Input,
+  TextInput,
+  Input: TextInput, // Alias for TextInput (used in templates)
+  SelectInput,
   TextArea,
   InputCard,
   ButtonGroup,
-  SearchBar,
-  UpsellCard,
+  SearchInput,
   InputStackedHorizontal,
-  PINCheck,
-
-  // Cell Components
-  Cell,
-  CellActivity,
-
-  // Avatar Components
-  AvatarCarousel,
 
   // UI Components
   Divider,
   SegmentedControl,
+  TabGroup,
   Slider,
   Timeline,
   TimelineRow,
+  Stepper,
+  StepperItem,
   Toast,
   Text,
   ListUnordered,
   ListOrdered,
-  ProgressCircular,
-  Modal,
-  MarketingCardSmall,
-  MarketingCardLarge
+  ProgressIndicatorCircular,
+  Modal
 };
 
 // InterventionScreen Component Exports
@@ -192,30 +211,29 @@ export const UiComponents = {
 export const ComponentPropMeta = {
   Header: HeaderPropMeta,
   TitleBar: TitleBarPropMeta,
-  FilterBar: FilterBarPropMeta,
-  Input: InputPropMeta,
+  PillGroup: PillGroupPropMeta,
+  TextInput: TextInputPropMeta,
+  SelectInput: SelectInputPropMeta,
   TextArea: TextAreaPropMeta,
   InputCard: InputCardPropMeta,
   ButtonGroup: ButtonGroupPropMeta,
-  SearchBar: SearchBarPropMeta,
-  PINCheck: PINCheckPropMeta,
-  UpsellCard: UpsellCardPropMeta,
-  MarketingCardSmall: MarketingCardSmallPropMeta,
-  MarketingCardLarge: MarketingCardLargePropMeta,
-  Cell: CellPropMeta,
-  CellActivity: CellActivityPropMeta,
-  Avatar: AvatarPropMeta,
-  AvatarCarousel: AvatarCarouselPropMeta,
-  AvatarRow: AvatarRowPropMeta,
-  AvatarStackedDiagonal: AvatarStackedDiagonalPropMeta,
+  SearchInput: SearchInputPropMeta,
+  Entity: EntityPropMeta,
+  EntityStack: EntityStackPropMeta,
+  EntityGrid: EntityGridPropMeta,
+  EntityLockup: EntityLockupPropMeta,
   // DiscoverPromo removed
   IconBg: IconBgPropMeta,
   Button: ButtonPropMeta,
   Divider: DividerPropMeta,
   SegmentedControl: SegmentedControlPropMeta,
+  TabGroup: TabGroupPropMeta,
   Slider: SliderPropMeta,
+  Switch: SwitchPropMeta,
   Timeline: TimelinePropMeta,
   TimelineRow: TimelineRowPropMeta,
+  Stepper: StepperPropMeta,
+  StepperItem: StepperItemPropMeta,
   Icon: IconPropMeta,
   Toast: ToastPropMeta,
   IOSStatusBar: IOSStatusBarPropMeta,
@@ -223,15 +241,22 @@ export const ComponentPropMeta = {
   ListUnordered: ListUnorderedPropMeta,
   ListOrdered: ListOrderedPropMeta,
   InputStackedHorizontal: InputStackedHorizontalPropMeta,
-  ProgressCircular: ProgressCircularPropMeta,
-  Modal: ModalPropMeta
+  ProgressIndicatorCircular: ProgressIndicatorCircularPropMeta,
+  Modal: ModalPropMeta,
+  Badge: BadgePropMeta,
+  Accordion: AccordionPropMeta,
+  Tag: TagPropMeta,
+  InlineFeedback: InlineFeedbackPropMeta,
+  Menu: MenuPropMeta,
+  LinkPreview: LinkPreviewPropMeta
   // Add more component meta objects here as you build them
 };
 
 export const initialComponentProps: Record<string, any> = {
   Header: { title: 'Header', body: 'Body copy', size: 'page' },
-  FilterBar: { filterChips: [{ title: 'Chip', active: true }] },
-  Input: { label: 'Label', placeholder: 'Placeholder' },
+  PillGroup: { filterChips: [{ title: 'Chip', checked: true, type: 'choice' }] },
+  TextInput: { label: 'Label', placeholder: 'Placeholder' },
+  SelectInput: { label: 'Label', placeholder: 'Select an option' },
   InputStackedHorizontal: {
     label1: 'Label 1',
     placeholder1: 'Placeholder 1',
@@ -239,31 +264,24 @@ export const initialComponentProps: Record<string, any> = {
     placeholder2: 'Placeholder 2'
   },
   TextArea: { label: 'Label', placeholder: 'Placeholder' },
-  InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, checked: false },
+  InputCard: { title: 'Input Card', body: 'Body', right: { type: 'radio' }, orientation: 'right', checked: false },
   ButtonGroup: { buttons: [{ title: 'Button' }] },
-  SearchBar: { placeholder: 'Search...' },
-  PINCheck: { label: 'PIN', placeholder: 'Enter PIN' },
-  UpsellCard: { title: 'Info Card', body: 'Body', size: 'small' },
-  MarketingCardSmall: { title: 'Marketing Card Small', body: 'Body', image: Images.Bed, button: 'Button text' },
-  MarketingCardLarge: { title: 'Marketing Card Large', body: 'Body', image: Images.Cards, button: 'Button text' },
-  Cell: { title: 'Cell', body: 'Body' },
-  CellActivity: { title: 'Cell Activity', body: 'Body', date: 'Today', left: {}, right: {}, onClick: () => {} },
+  SearchInput: { placeholder: 'Search...' },
+  EntityLockup: {
+    entity: { size: '40' },
+    title: 'Firstname Lastname',
+    badge: true,
+    degree: '1st',
+    tag: { label: 'Label', size: 'small', type: 'default' },
+    subtitle: 'Subheading',
+    metadata: 'Timestamp'
+  },
   Text: { text: 'Text', size: 'body', color: 'standard' },
-  AvatarCarousel: { avatars: [{
-    avatar: {size: '64', initial: "J", image: null},
-    title: "Jane"
-  },
-  {
-    avatar: {size: '64', initial:"N", image: null},
-    title: "Nigel"
-  },
-  {
-    avatar: {size: '64', image:Avatars.Chavez, initial: undefined},
-    title: "Chavez"
-  },] },
-  Divider: { size: 'withinSectionMedium' },
+  Divider: { size: 'medium' },
   SegmentedControl: { left: { title: 'Left', active: true }, right: { title: 'Right', active: false }, onClick: () => {} },
+  TabGroup: { tabs: [{ title: 'Tab 1' }, { title: 'Tab 2' }, { title: 'Tab 3' }, { title: 'Tab 4' }], activeIndex: 0 },
   Slider: { onDrop: () => {} },
+  Switch: { checked: false, title: 'Switch Label', helperText: 'Helper text for the switch' },
   Timeline: {
     rowData: [
       {
@@ -303,10 +321,29 @@ export const initialComponentProps: Record<string, any> = {
   TimelineRow: {
     label: "Card Ordered",
     body: "Card",
-    value: "Jan 10",
-    valueDescriptor: "In Progress",
-    state: 'inProgress',
+    metadataTime: "Jan 10",
+    metadataLocation: "New York, NY",
     placing: 'middle'
+  },
+  Stepper: {
+    items: [
+      {
+        state: 'checked',
+        size: 'large'
+      },
+      {
+        state: 'current',
+        size: 'large'
+      },
+      {
+        state: 'future',
+        size: 'large'
+      }
+    ]
+  },
+  StepperItem: {
+    state: 'current',
+    size: 'large'
   },
   Toast: {
     headline: "Headline",
@@ -324,25 +361,21 @@ export const initialComponentProps: Record<string, any> = {
         body: 'This is the second item body.',
       },
     ],
-    type: 'standard',
   },
   ListUnordered: {
     items: [
       {
         title: 'First item',
         body: 'This is the first item body.',
-        value: 'Value 1'
       },
       {
         title: 'Second item',
         body: 'This is the second item body.',
-        value: 'Value 2'
       },
     ],
-    prominence: 'standard',
-    size: 'compact',
+    size: 'small',
   },
-  ProgressCircular: {
+  ProgressIndicatorCircular: {
     fullHeight: true,
     width: 56,
     height: 56,
@@ -354,6 +387,55 @@ export const initialComponentProps: Record<string, any> = {
     icon: '',
     primaryButton: { label: 'OK' },
     secondaryButton: { label: 'Cancel' }
+  },
+  Badge: {
+    type: 'text',
+    children: '99+'
+  },
+  Accordion: {
+    heading: 'Heading',
+    defaultOpen: false,
+    children: 'Content that shows when open'
+  },
+  Button: {
+    title: 'Button',
+    type: 'secondary',
+    size: 'medium'
+  },
+  Tag: {
+    children: 'Label',
+    size: 'small',
+    type: 'default'
+  },
+  InlineFeedback: {
+    label: 'Feedback Text. [Link](https://example.com)',
+    type: 'positive'
+  },
+  Menu: {
+    sections: [
+      {
+        heading: 'Heading',
+        items: [
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } }
+        ]
+      },
+      {
+        heading: 'Heading',
+        items: [
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } },
+          { title: 'Menu item', icon: { icon: '', size: '24', color: 'standard' } }
+        ]
+      }
+    ]
+  },
+  LinkPreview: {
+    title: 'Linked content headline',
+    source: 'example.com',
+    metadata: 'Saved by you · 2 min read',
+    size: 'compact',
+    imageSrc: Images.Broadcast
   }
 };
 
