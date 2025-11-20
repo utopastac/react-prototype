@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.sass";
 import Icon, { IconPropMeta } from "src/components/Icon";
+import Logo, { LogoPropMeta } from "src/components/Logo";
 import * as Icons from "src/data/Icons";
 import { useTransition, slideInLeft } from "src/containers/TransitionContext";
 
@@ -10,16 +11,23 @@ export interface TopBarButton {
   icon?: string;
 }
 
+export interface TopBarLogo {
+  type: 'In' | 'Logo';
+  size: 4 | 5 | 6 | 7 | 8 | 9;
+  forceTheme?: 'light' | 'dark';
+}
+
 export interface TopBarProps {
   title?: string;
   left?: TopBarButton;
+  leftLogo?: TopBarLogo;
   right?: TopBarButton;
   inverse?: boolean;
   transparent?: boolean;
   isBackNavigation?: boolean;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ title, left, right, inverse, transparent, isBackNavigation }) => {
+const TopBar: React.FC<TopBarProps> = ({ title, left, leftLogo, right, inverse, transparent, isBackNavigation }) => {
   const navigate = useNavigate();
   const { currentTransition, setTransition } = useTransition();
 
@@ -39,11 +47,19 @@ const TopBar: React.FC<TopBarProps> = ({ title, left, right, inverse, transparen
   return (
     <div className={`${styles.Main} ${inverse ? styles.inverse : ""} ${transparent && styles.transparent}`}>
       <div className={styles.left} onClick={handleLeftClick}>
-        <Icon 
-          icon={isBackNavigation ? Icons.Back : (left?.icon || Icons.Back)} 
-          size="24"
-          color={inverse ? "inverse" : "prominent"}
-        />
+        {leftLogo ? (
+          <Logo 
+            type={leftLogo.type}
+            size={leftLogo.size}
+            forceTheme={leftLogo.forceTheme}
+          />
+        ) : (
+          <Icon 
+            icon={isBackNavigation ? Icons.Back : (left?.icon || Icons.Back)} 
+            size="24"
+            color={inverse ? "inverse" : "prominent"}
+          />
+        )}
       </div>
       {title && <div className={styles.title}><h4>{title}</h4></div> }
       <div className={styles.right}>
@@ -75,6 +91,24 @@ export const TopBarPropMeta = {
         ...IconPropMeta.icon,
         label: 'Left action',
         options: [Icons.Close, Icons.Back]
+      }
+    }
+  },
+  leftLogo: {
+    type: 'object',
+    label: 'Left Logo',
+    fields: {
+      type: {
+        ...LogoPropMeta.type,
+        label: 'Logo Type'
+      },
+      size: {
+        ...LogoPropMeta.size,
+        label: 'Logo Size'
+      },
+      forceTheme: {
+        ...LogoPropMeta.forceTheme,
+        label: 'Force Theme'
       }
     }
   },

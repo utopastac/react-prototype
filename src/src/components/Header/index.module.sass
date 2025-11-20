@@ -46,3 +46,15 @@
     p
       @extend %typography-body
       color: var(--color-text)
+
+  &.centered
+    align-items: center
+    text-align: center
+    h1, h2, h3
+      text-align: center
+      + p
+        text-align: center
+    p
+      text-align: center
+    .headerSection
+      justify-content: center

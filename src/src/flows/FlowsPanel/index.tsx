@@ -15,7 +15,6 @@ const FlowsPanel: React.FC = () => {
   const routeData: LinkProps[] = [
     {title:"Components", path:"/flows/components", description:"All UI components"},
     {title:"App", path:"/flows/discover", description:"Main app interface"},
-    {title:"Account", path:"/flows/account", description:"User profile settings"},
     {title:"Reporting", path:"/flows/report", description:"User reporting flow"},
     {title:"Animation Showcase", path:"/flows/animation-showcase", description:"Special features demo"},
     {title:"Parallax", path:"/flows/parallax", description:"Animation showcase"}

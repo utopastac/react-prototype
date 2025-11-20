@@ -970,7 +970,6 @@ export const AdminTemplates: AdminTemplate[] = [
     topBarProps: {
       title: '',
       left: { icon: Icons.Close },
-      right: { icon: Icons.Help24 },
       inverse: false,
       isBackNavigation: false,
     },
@@ -1023,7 +1022,7 @@ export const AdminTemplates: AdminTemplate[] = [
         name: 'Header',
         Component: (InterventionScreenComponents as any)['Header'],
         props: {
-          title: 'Enter the code sent to d••••••z@gmail.com',
+          title: 'Enter the code sent to p••••••t@linkedin.com',
           body: '',
           size: 'page'
         }
@@ -1044,7 +1043,7 @@ export const AdminTemplates: AdminTemplate[] = [
     topBarProps: {
       title: '',
       left: { icon: Icons.Back },
-      right: { icon: Icons.Help24 },
+      leftLogo: { type: 'Logo', size: 7 },
       inverse: false,
       isBackNavigation: false,
     },

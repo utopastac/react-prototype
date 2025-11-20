@@ -56,9 +56,10 @@ export interface HeaderProps {
   body?: string;
   size: 'hero' | 'page' | 'section';
   accessory?: HeaderAccessoryProps;
+  centered?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
+const Header: React.FC<HeaderProps> = ({ title, body, size, accessory, centered }) => {
   const headerElement = () => {
     switch(size) {
       case 'hero':
@@ -113,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ title, body, size, accessory }) => {
   };
 
   return (
-    <div className={`${styles.Main} ${headerClassName()}`}>
+    <div className={`${styles.Main} ${headerClassName()} ${centered ? styles.centered : ''}`}>
       {accessoryElement()}
       <header>
         {headerElement()}
@@ -145,6 +146,7 @@ export const HeaderPropMeta = {
     label: 'Size',
     options: ['hero', 'page', 'section'],
   },
+  centered: { type: 'boolean', label: 'Centered' },
   accessory: {
     type: 'object',
     label: 'Accessory',

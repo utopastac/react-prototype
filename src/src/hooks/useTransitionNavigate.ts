@@ -18,7 +18,7 @@ import type { TransitionType } from 'src/containers/TransitionContext';
  * 
  * Usage patterns found in the codebase:
  * - Avatar clicks in TitleBar: transitionNavigate('/account', transitions.slideInOver)
- * - Back button in AccountView: transitionNavigate(-1, transitions.closeModal)
+ * - Back button navigation: transitionNavigate(-1, transitions.closeModal)
  * - Button actions with custom transitions for different navigation contexts
  * 
  * @returns A function that accepts a path (string or number) and optional transition

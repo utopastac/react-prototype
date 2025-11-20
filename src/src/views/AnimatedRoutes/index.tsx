@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 // All views
 import ComponentsView from "src/views/ComponentsView";
 import DiscoverView from "src/views/DiscoverView";
-import AccountView from "src/views/AccountView";
 import AnimationShowcase from "src/views/AnimationShowcase";
 //
 import ParallaxButtonView from 'src/views/ParallaxButtonView';
@@ -68,7 +67,6 @@ const AnimatedRoutes = () => {
 
           <Route path="components" element={withRouteContainer(ComponentsView)} />
           <Route path="discover" element={withRouteContainer(DiscoverView)} />
-          <Route path="account" element={withRouteContainer(AccountView)} />
           <Route path="animation-showcase" element={withRouteContainer(AnimationShowcase)} />
           <Route path="parallax" element={withRouteContainer(ParallaxButtonView)} />
           
